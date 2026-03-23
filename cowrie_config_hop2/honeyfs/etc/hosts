@@ -1,0 +1,15 @@
+127.0.0.1	localhost
+127.0.1.1	db-primary
+
+# Database cluster
+10.0.3.10	db-primary
+10.0.3.15	db-standby db-standby.internal.corp
+10.0.3.20	app-server app-server.internal.corp
+10.0.3.50	monitoring nagios.internal.corp
+10.0.3.100	backup-s3-gateway
+10.0.3.1	gateway
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters172.10.2.12	ci-runner-07

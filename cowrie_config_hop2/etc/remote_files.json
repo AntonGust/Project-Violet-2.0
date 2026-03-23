@@ -1,0 +1,54 @@
+{
+  "10.0.3.15": {
+    "/var/backups/db_dump_latest.sql": {
+      "size": 603,
+      "honeyfs_path": "_remote/10.0.3.15/var/backups/db_dump_latest.sql"
+    },
+    "/etc/mysql/conf.d/replication.cnf": {
+      "size": 240,
+      "honeyfs_path": "_remote/10.0.3.15/etc/mysql/conf.d/replication.cnf"
+    },
+    "/opt/db/.env": {
+      "size": 304,
+      "honeyfs_path": "_remote/10.0.3.15/opt/db/.env"
+    }
+  },
+  "10.0.3.20": {
+    "/var/www/html/wp-config.php": {
+      "size": 286,
+      "honeyfs_path": "_remote/10.0.3.20/var/www/html/wp-config.php"
+    },
+    "/var/log/nginx/error.log": {
+      "size": 419,
+      "honeyfs_path": "_remote/10.0.3.20/var/log/nginx/error.log"
+    },
+    "/opt/app/.env": {
+      "size": 304,
+      "honeyfs_path": "_remote/10.0.3.20/opt/app/.env"
+    }
+  },
+  "10.0.3.50": {
+    "/etc/grafana/grafana.ini": {
+      "size": 206,
+      "honeyfs_path": "_remote/10.0.3.50/etc/grafana/grafana.ini"
+    },
+    "/opt/prometheus/prometheus.yml": {
+      "size": 268,
+      "honeyfs_path": "_remote/10.0.3.50/opt/prometheus/prometheus.yml"
+    }
+  },
+  "10.0.3.100": {
+    "/var/backups/full_backup_latest.sql.gz": {
+      "size": 4913505,
+      "honeyfs_path": "_remote/10.0.3.100/var/backups/full_backup_latest.sql.gz"
+    },
+    "/opt/backup/backup.sh": {
+      "size": 188,
+      "honeyfs_path": "_remote/10.0.3.100/opt/backup/backup.sh"
+    },
+    "/opt/backup/.env": {
+      "size": 305,
+      "honeyfs_path": "_remote/10.0.3.100/opt/backup/.env"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Jenkins
+After=network.target
+
+[Service]
+Type=forking
+User=jenkins
+ExecStart=/usr/bin/java -jar /usr/share/java/jenkins.war --httpPort=8080
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

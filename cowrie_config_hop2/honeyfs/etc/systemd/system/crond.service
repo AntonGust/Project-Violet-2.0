@@ -1,0 +1,13 @@
+[Unit]
+Description=Crond
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/sbin/crond -n
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

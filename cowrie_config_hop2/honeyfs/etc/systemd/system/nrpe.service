@@ -1,0 +1,13 @@
+[Unit]
+Description=Nrpe
+After=network.target
+
+[Service]
+Type=forking
+User=nagios
+ExecStart=/usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,701 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "timestamp": "2026-02-19T12:00:00Z",
+  "system": {
+    "os": "Ubuntu 20.04.6 LTS",
+    "hostname": "wp-prod-01",
+    "kernel_version": "5.4.0-169-generic",
+    "arch": "x86_64",
+    "timezone": "UTC"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rK3xQ7Wp$Ej8RSTO.dVKg0p2YxHbMcPvqJ5nFw9GkLm1sT4uA6XiBz7dZ2RvWfC3yQ8eN0hKjL5aG4tD9iO6mP1rS3wU7/",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "www-data",
+      "uid": 33,
+      "gid": 33,
+      "home": "/var/www",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "www-data"
+      ]
+    },
+    {
+      "name": "deploy",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/deploy",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$Tn5vBm8J$Xw2KfPqL7dR9sYc0hN3jA6gE1iM4tU8oV5bZ7xWkJ2nF3rG9lD6pQ0aS4yH8eC1mT5uI7wO3vB9kL2xR6jN/",
+      "groups": [
+        "deploy",
+        "sudo",
+        "docker"
+      ],
+      "sudo_rules": "deploy ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "mysql",
+      "uid": 111,
+      "gid": 115,
+      "home": "/var/lib/mysql",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "mysql"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 3106
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 2847
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 342
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1204
+      }
+    ],
+    "/home/deploy": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 3771
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "deploy",
+        "group": "deploy"
+      },
+      {
+        "name": "backup_db.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 482
+      },
+      {
+        "name": ".mysql_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 1247
+      },
+      {
+        "name": ".jenkins_api_token",
+        "type": "file",
+        "permissions": "600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 64
+      },
+      {
+        "name": ".npmrc",
+        "type": "file",
+        "permissions": "600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 98
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 1842
+      }
+    ],
+    "/home/deploy/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 738
+      },
+      {
+        "name": "id_rsa",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 3243
+      },
+      {
+        "name": "id_rsa.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 738
+      }
+    ],
+    "/var/www/html": [
+      {
+        "name": "index.php",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 405
+      },
+      {
+        "name": "wp-config.php",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 3012
+      },
+      {
+        "name": "wp-content",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "www-data",
+        "group": "www-data"
+      },
+      {
+        "name": ".env",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 289
+      },
+      {
+        "name": ".git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "deploy",
+        "group": "deploy"
+      },
+      {
+        "name": "uploads",
+        "type": "dir",
+        "permissions": "0777",
+        "owner": "www-data",
+        "group": "www-data"
+      }
+    ],
+    "/etc/cron.d": [
+      {
+        "name": "certbot",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 128
+      },
+      {
+        "name": "backup",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 95
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 15234
+      },
+      {
+        "name": "apache2",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "adm"
+      }
+    ],
+    "/var/log/apache2": [
+      {
+        "name": "error.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 28471
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 2847
+      }
+    ],
+    "/tmp": [
+      {
+        "name": ".X11-unix",
+        "type": "dir",
+        "permissions": "1777",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "wp_migrate_2026.sql",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 4521
+      }
+    ],
+    "/home/deploy/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 234
+      }
+    ],
+    "/home/deploy/.kube": [
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "600",
+        "owner": "deploy",
+        "group": "deploy",
+        "size": 348
+      }
+    ],
+    "/var/run": [
+      {
+        "name": "docker.sock",
+        "type": "file",
+        "permissions": "660",
+        "owner": "root",
+        "group": "docker",
+        "size": 0
+      }
+    ],
+    "/etc/apache2": [
+      {
+        "name": "apache2.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 7224
+      },
+      {
+        "name": "ports.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 320
+      },
+      {
+        "name": "sites-enabled",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "envvars",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1782
+      }
+    ],
+    "/etc/apache2/sites-enabled": [
+      {
+        "name": "000-default.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1432
+      },
+      {
+        "name": "wordpress.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 982
+      }
+    ],
+    "/etc/mysql": [
+      {
+        "name": "my.cnf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 682
+      },
+      {
+        "name": "mysql.conf.d",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/etc/mysql/mysql.conf.d": [
+      {
+        "name": "mysqld.cnf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 3214
+      }
+    ],
+    "/etc/php/7.4/apache2": [
+      {
+        "name": "php.ini",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 72482
+      }
+    ],
+    "/etc/letsencrypt": [
+      {
+        "name": "renewal",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/etc/letsencrypt/renewal": [
+      {
+        "name": "wp-prod-01.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 548
+      }
+    ]
+  },
+  "file_contents": {
+    "/etc/apache2/sites-enabled/wordpress.conf": "<VirtualHost *:80>\n    ServerName wp-prod-01\n    ServerAlias www.wp-prod-01\n    DocumentRoot /var/www/html\n\n    <Directory /var/www/html>\n        AllowOverride All\n        Require all granted\n    </Directory>\n\n    ErrorLog ${APACHE_LOG_DIR}/error.log\n    CustomLog ${APACHE_LOG_DIR}/access.log combined\n</VirtualHost>",
+    "/etc/mysql/mysql.conf.d/mysqld.cnf": "[mysqld]\npid-file\t= /var/run/mysqld/mysqld.pid\nsocket\t\t= /var/run/mysqld/mysqld.sock\ndatadir\t\t= /var/lib/mysql\nlog-error\t= /var/log/mysql/error.log\nbind-address\t= 127.0.0.1\nport\t\t= 3306\nmax_connections\t= 150\ninnodb_buffer_pool_size = 256M\ngeneral_log_file = /var/log/mysql/mysql.log\ngeneral_log = 0",
+    "/var/www/html/wp-config.php": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Str0ng_But_Le4ked!');\ndefine('DB_HOST', 'localhost');\ndefine('DB_CHARSET', 'utf8mb4');\n$table_prefix = 'wp_';\ndefine('AUTH_KEY', 'put your unique phrase here');\ndefine('SECURE_AUTH_KEY', 'put your unique phrase here');\ndefine('WP_DEBUG', true);\ndefine('WP_DEBUG_LOG', true);\nif ( ! defined('ABSPATH') ) {\n    define('ABSPATH', __DIR__ . '/');\n}\nrequire_once ABSPATH . 'wp-settings.php';",
+    "/var/www/html/.env": "DB_HOST=localhost\nDB_PORT=3306\nDB_USER=wp_admin\nDB_PASS=Str0ng_But_Le4ked!\nAWS_ACCESS_KEY_ID=AKIA4RWNLJ7XVPC8Q2HM\nAWS_SECRET_ACCESS_KEY=j9bK3vRtPnF8xLmW4dYqH2sNcE7gA1uZ6iO0wX5r\nS3_BUCKET=wp-prod-backups",
+    "/home/deploy/.ssh/id_rsa": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACDSfKJYxRbnPJbssxPSrz8VnKFPcmbQSLNcnqJkFtqPDAAAAJgAAAATAAAA\nC3NzaC1lZDI1NTE5AAAAINJla8olgS/b+8WH23kvJKYFcMqpL7BRjKiMr7hSa0OPAAAAEA\nV9p7tMnRGmYakq1rB6xOhUAAAAD2RlcGxveUB3cC1wcm9k\n-----END OPENSSH PRIVATE KEY-----",
+    "/home/deploy/backup_db.sh": "#!/bin/bash\n# Quick DB backup script\nMYSQL_PWD='Str0ng_But_Le4ked!' mysqldump -u wp_admin wordpress_prod | gzip > /tmp/db_backup_$(date +%Y%m%d).sql.gz\naws s3 cp /tmp/db_backup_*.sql.gz s3://wp-prod-backups/\nscp /tmp/db_backup_*.sql.gz deploy@10.0.1.20:/var/backups/wp/\nrm /tmp/db_backup_*.sql.gz",
+    "/home/deploy/.mysql_history": "show databases;\nuse wordpress_prod;\nshow tables;\nSELECT user, host FROM mysql.user;\nGRANT ALL ON *.* TO 'wp_admin'@'%';\nFLUSH PRIVILEGES;\nselect * from wp_users limit 5;",
+    "/home/deploy/.bash_history": "sudo systemctl restart apache2\nmysql -u wp_admin -p wordpress_prod\ncd /var/www/html\ngit pull origin main\nsudo chown -R www-data:www-data /var/www/html\ndocker ps\ndocker compose logs -f\ncat /var/www/html/.env\nsudo tail -f /var/log/apache2/error.log\nss -tlnp\ndf -h\nfree -m\nbash backup_db.sh\naws s3 ls s3://wp-prod-backups/\nssh deploy@db-replica-01\ncat /etc/hosts\nsudo cat /etc/shadow\nhistory",
+    "/root/.bash_history": "apt update\napt upgrade -y\napt install mysql-server apache2 php php-mysql libapache2-mod-php -y\nmysql_secure_installation\nsystemctl status mysql\nsystemctl enable apache2\nsystemctl restart apache2\na2enmod rewrite\nsystemctl restart apache2\ncd /var/www/html\nls\ngit clone https://github.com/WordPress/WordPress.git .\nls -la\nchown -R www-data:www-data /var/www/html\nchmod -R 755 /var/www/html\nnano wp-config.php\nsystemctl restart apache2\ncurl -I localhost\ntail -f /var/log/apache2/error.log\ndf -h\nfree -m\nhtop\ndocker ps\ndocker compose up -d\nss -tlnp\nufw allow 80/tcp\nufw allow 443/tcp\ncertbot --apache\ncat /var/www/html/.env\nssh deploy@db-replica-01 'pg_isready'\ncat /etc/hosts\nhistory",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\twp-prod-01\n\n# Internal network hosts\n10.0.1.15\twp-prod-01\n10.0.1.20\tdb-replica-01\n10.0.1.25\tredis-cache-01\n10.0.1.30\tmonitoring\n10.0.1.50\tjenkins-ci\n10.0.1.100\tbackup-nfs\n10.0.1.1\tgateway\n172.17.0.2\twp-docker-app\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/root/.ssh/config": "Host db-replica-01\n    HostName 10.0.1.20\n    User deploy\n    IdentityFile /home/deploy/.ssh/id_rsa\n    StrictHostKeyChecking no\n\nHost jenkins-ci\n    HostName 10.0.1.50\n    User admin\n    Port 22\n    IdentityFile /root/.ssh/id_ed25519\n\nHost backup-nfs\n    HostName 10.0.1.100\n    User backupd\n    IdentityFile /home/deploy/.ssh/id_rsa",
+    "/var/log/auth.log": "Feb 24 08:12:01 wp-prod-01 CRON[12845]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 08:12:01 wp-prod-01 CRON[12845]: pam_unix(cron:session): session closed for user root\nFeb 24 09:15:22 wp-prod-01 sshd[13201]: Accepted password for root from 10.0.1.1 port 52341 ssh2\nFeb 24 09:15:22 wp-prod-01 sshd[13201]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 10:22:45 wp-prod-01 sshd[13456]: Accepted password for deploy from 10.0.1.50 port 48923 ssh2\nFeb 24 10:22:45 wp-prod-01 sshd[13456]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)\nFeb 24 10:45:12 wp-prod-01 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/docker ps\nFeb 24 11:30:00 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2\nFeb 24 11:30:02 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2\nFeb 24 11:30:05 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2\nFeb 24 12:00:01 wp-prod-01 CRON[14523]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 13:05:33 wp-prod-01 sshd[14890]: Accepted publickey for deploy from 10.0.1.50 port 51234 ssh2\nFeb 24 14:23:01 wp-prod-01 sshd[15102]: Accepted password for root from 10.0.1.1 port 53421 ssh2",
+    "/var/mail/root": "From cron@wp-prod-01 Mon Feb 24 02:00:15 2026\nSubject: Cron <root@wp-prod-01> /home/deploy/backup_db.sh\nDate: Mon, 24 Feb 2026 02:00:15 +0000\n\nmysqldump: [Warning] Using a password on the command line interface can be insecure.\nUpload complete: s3://wp-prod-backups/db_backup_20260224.sql.gz\n\nFrom admin@internal.corp Fri Feb 21 16:45:00 2026\nSubject: Migration to new DB cluster next week\nDate: Fri, 21 Feb 2026 16:45:00 +0000\n\nHi,\n\nWe're migrating the WordPress database to db-replica-01 (10.0.1.20) next Tuesday.\nThe new PostgreSQL credentials will be:\n  Host: db-replica-01\n  Port: 5432\n  User: wp_migrate\n  Password: M1gr@te_WP_2026!\n\nPlease update wp-config.php after the migration window.\nThe old MySQL instance will remain read-only for 30 days.\n\n- IT Operations",
+    "/var/log/apache2/error.log": "[Mon Feb 24 08:15:23.456789 2026] [php7:error] [pid 1240] [client 10.0.1.1:52341] PHP Fatal error:  Uncaught Error: Call to undefined function wp_cache_get() in /var/www/html/wp-content/plugins/redis-cache/includes/class-plugin.php:42\n[Mon Feb 24 09:22:11.123456 2026] [php7:warn] [pid 1241] [client 203.0.113.10:48201] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'wp_readonly'@'localhost' (using password: YES) in /var/www/html/wp-content/plugins/custom-reporting/db.php:15\n[Mon Feb 24 09:22:11.234567 2026] [php7:warn] [pid 1241] [client 203.0.113.10:48201] PHP Warning:  Attempt to connect to MySQL with password 'R3p0rt1ng_R34d!' failed\n[Mon Feb 24 10:05:45.678901 2026] [core:error] [pid 1242] [client 10.0.1.30:39201] AH00126: Invalid URI in request GET /wp-admin/admin-ajax.php?action=heartbeat HTTP/1.1\n[Mon Feb 24 11:45:00.000000 2026] [ssl:warn] [pid 1234] AH01909: wp-prod-01:443:0 server certificate is a self-signed certificate\n[Mon Feb 24 12:30:15.111111 2026] [php7:notice] [pid 1243] [client 10.0.1.50:41234] PHP Notice: WP-CLI: Updating WordPress database tables from 10.0.1.50 (jenkins-ci)\n[Mon Feb 24 13:15:00.222222 2026] [php7:error] [pid 1244] [client 172.17.0.2:55001] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted in /var/www/html/wp-includes/class-wpdb.php:2056\n[Mon Feb 24 14:00:30.333333 2026] [authz_core:error] [pid 1245] [client 198.51.100.23:60123] AH01630: client denied by server configuration: /var/www/html/.env",
+    "/var/run/docker.sock": "",
+    "/home/deploy/.docker/config.json": "{\n  \"auths\": {\n    \"https://index.docker.io/v1/\": {\n      \"auth\": \"ZG9ja2VyOnBhc3N3b3JkMTIz\"\n    },\n    \"https://private-registry.company.local/\": {\n      \"auth\": \"cHJpdmF0ZVVzZXI6c2VjcmV0VG9rZW4=\"\n    }\n  }\n}",
+    "/home/deploy/.jenkins_api_token": "jenkins-user:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.sampletoken1234567890",
+    "/home/deploy/.kube/config": "apiVersion: v1\nkind: Config\nclusters:\n- cluster:\n    server: https://10.0.1.50:6443\n  name: jenkins-ci\ncontexts:\n- context:\n    cluster: jenkins-ci\n    user: jenkins-user\n  name: jenkins-context\ncurrent-context: jenkins-context\nusers:\n- name: jenkins-user\n  user:\n    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjEyMzQ1Njc4OTAiLCJ0eXAiOiJKV1QifQ.sampletoken\n",
+    "/home/deploy/.npmrc": "registry=https://private-registry.company.local/\n//private-registry.company.local/:_authToken=secretnpmregistrytoken12345\n",
+    "/root/.ssh/known_hosts": "10.0.1.20 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKbP5P7LVrGsNjH3Qx5mXBKwX4bOqY9J+4nR1ClJ3iMs\n10.0.1.50 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJmV9GmT3NzLYpK6xB2hQ8rW5sF1dN4eC7gR0jPqK9Ht\n10.0.1.100 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkR4fT5wXp7aL3mQ9nS2cV1bE6gH8jK0iYuD3sA7Wz\n172.17.0.2 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKpMqGhOXAJgKhMN3JjqE4aJmkr2eqXNwDhK6v3FxRto5MnGYwIy8JxXMuT7G1P4sN2kL5vR0bQ3wHf6dA8eXYc=",
+    "/tmp/wp_migrate_2026.sql": "-- WordPress Migration Export\n-- Generated: 2026-02-18 14:32:05\n-- Source: wordpress_prod @ localhost\n\nSET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\nSTART TRANSACTION;\n\nDROP TABLE IF EXISTS `wp_users`;\nCREATE TABLE `wp_users` (\n  `ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `user_login` varchar(60) NOT NULL DEFAULT '',\n  `user_pass` varchar(255) NOT NULL DEFAULT '',\n  `user_email` varchar(100) NOT NULL DEFAULT '',\n  `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',\n  `user_status` int(11) NOT NULL DEFAULT 0,\n  `display_name` varchar(250) NOT NULL DEFAULT '',\n  PRIMARY KEY (`ID`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `wp_users` VALUES\n(1,'admin','$P$BgW2YRfZ.nLc8r8NqPk7XdBvMT/KA60','admin@wp-prod-01.internal.corp','2024-06-15 10:23:01',0,'Administrator'),\n(2,'editor','$P$B1T4k9hGnXq5r.vJf2L3eW8mP6yNc70','editor@wp-prod-01.internal.corp','2024-07-20 14:15:33',0,'Content Editor'),\n(3,'deploy','$P$Bkq9RvJ3nLm7xW2fP5tYe8sHc1gA6u0','deploy@internal.corp','2024-08-01 09:00:00',0,'Deploy Service');\n\nDROP TABLE IF EXISTS `wp_options`;\nCREATE TABLE `wp_options` (\n  `option_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,\n  `option_name` varchar(191) NOT NULL DEFAULT '',\n  `option_value` longtext NOT NULL,\n  `autoload` varchar(20) NOT NULL DEFAULT 'yes',\n  PRIMARY KEY (`option_id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `wp_options` VALUES\n(1,'siteurl','https://wp-prod-01.internal.corp','yes'),\n(2,'blogname','Internal Corp Blog','yes'),\n(3,'admin_email','admin@wp-prod-01.internal.corp','yes');\n\nCOMMIT;",
+    "/root/.bashrc": "# ~/.bashrc: executed by bash(1) for non-login shells.\n\n# If not running interactively, don't do anything\n[ -z \"$PS1\" ] && return\n\nHISTCONTROL=ignoredups:ignorespace\nshopt -s histappend\nHISTSIZE=1000\nHISTFILESIZE=2000\nshopt -s checkwinsize\n\n# set a fancy prompt\nPS1='${debian_chroot:+($debian_chroot)}\\[\\033[01;31m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\# '\n\nexport LS_OPTIONS='--color=auto'\nalias ls='ls $LS_OPTIONS'\nalias ll='ls $LS_OPTIONS -l'\nalias l='ls $LS_OPTIONS -lA'\n\nalias rm='rm -i'\nalias cp='cp -i'\nalias mv='mv -i'\n\nif [ -f /etc/bash_completion ]; then\n    . /etc/bash_completion\nfi\n\nexport PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"",
+    "/home/deploy/.bashrc": "# ~/.bashrc: executed by bash(1) for non-login shells.\n\n[ -z \"$PS1\" ] && return\n\nHISTCONTROL=ignoredups:ignorespace\nshopt -s histappend\nHISTSIZE=2000\nHISTFILESIZE=4000\nshopt -s checkwinsize\n\nPS1='${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ '\n\nexport LS_OPTIONS='--color=auto'\nalias ls='ls $LS_OPTIONS'\nalias ll='ls -alF'\nalias la='ls -A'\n\n# WordPress shortcuts\nalias wp-logs='sudo tail -f /var/log/apache2/error.log'\nalias wp-restart='sudo systemctl restart apache2'\nalias wp-deploy='cd /var/www/html && git pull origin main && sudo chown -R www-data:www-data .'\nalias db-backup='bash ~/backup_db.sh'\nalias db-connect='mysql -u wp_admin -p wordpress_prod'\n\nexport PATH=\"$HOME/.local/bin:$PATH\"\nexport EDITOR=vim",
+    "/var/www/html/index.php": "<?php\n/**\n * Front to the WordPress application. This file doesn't do anything, but loads\n * wp-blog-header.php which does and tells WordPress to load the theme.\n *\n * @package WordPress\n */\n\n/**\n * Tells WordPress to load the WordPress theme and output it.\n *\n * @var bool\n */\ndefine( 'WP_USE_THEMES', true );\n\n/** Loads the WordPress Environment and Template */\nrequire __DIR__ . '/wp-blog-header.php';",
+    "/etc/mysql/my.cnf": "#\n# The MySQL database server configuration file.\n#\n# One can use all long options that the program supports.\n# Run program with --help to get a list of available options and\n# with --print-defaults to see which it would actually understand\n# and use.\n\n!includedir /etc/mysql/conf.d/\n!includedir /etc/mysql/mysql.conf.d/",
+    "/etc/apache2/sites-enabled/000-default.conf": "<VirtualHost *:80>\n    ServerAdmin webmaster@localhost\n    DocumentRoot /var/www/html\n\n    ErrorLog ${APACHE_LOG_DIR}/error.log\n    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\n    # Redirect all traffic to WordPress vhost\n    RewriteEngine On\n    RewriteCond %{HTTP_HOST} !^wp-prod-01 [NC]\n    RewriteRule ^(.*)$ http://wp-prod-01$1 [R=301,L]\n</VirtualHost>",
+    "/home/deploy/.ssh/authorized_keys": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJla8olgS/b+8WH23kvJKYFcMqpL7BRjKiMr7hSa0OP deploy@wp-prod-01\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJmV9GmT3NzLYpK6xB2hQ8rW5sF1dN4eC7gR0jPqK9Ht jenkins@jenkins-ci",
+    "/home/deploy/.ssh/id_rsa.pub": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINJla8olgS/b+8WH23kvJKYFcMqpL7BRjKiMr7hSa0OP deploy@wp-prod-01",
+    "/etc/cron.d/certbot": "# /etc/cron.d/certbot: crontab entries for the certbot package\nSHELL=/bin/sh\nPATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin\n\n0 */12 * * * root test -x /usr/bin/certbot -a \\! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew",
+    "/etc/cron.d/backup": "# Daily database backup\nSHELL=/bin/sh\n0 2 * * * deploy /home/deploy/backup_db.sh >> /var/log/backup.log 2>&1",
+    "/etc/apache2/ports.conf": "# If you just change the port or add more ports here, you will likely also\n# have to change the VirtualHost statement in\n# /etc/apache2/sites-enabled/000-default.conf\n\nListen 80\n\n<IfModule ssl_module>\n\tListen 443\n</IfModule>\n\n<IfModule mod_gnutls.c>\n\tListen 443\n</IfModule>",
+    "/etc/letsencrypt/renewal/wp-prod-01.conf": "# Options used in the renewal process\n[renewalparams]\naccount = 4a8b2c1d3e5f6a7b8c9d0e1f\nauthenticator = apache\nserver = https://acme-v02.api.letsencrypt.org/directory\n\n[[webroot]]\nwp-prod-01 = /var/www/html",
+    "/etc/apache2/apache2.conf": "# This is the main Apache server configuration file.\n# See /usr/share/doc/apache2/README.Debian\n\nDefaultRuntimeDir ${APACHE_RUN_DIR}\nPidFile ${APACHE_PID_FILE}\nTimeout 300\nKeepAlive On\nMaxKeepAliveRequests 100\nKeepAliveTimeout 5\n\nUser ${APACHE_RUN_USER}\nGroup ${APACHE_RUN_GROUP}\n\nHostnameLookups Off\nErrorLog ${APACHE_LOG_DIR}/error.log\nLogLevel warn\n\nIncludeOptional mods-enabled/*.load\nIncludeOptional mods-enabled/*.conf\nInclude ports.conf\n\n<Directory />\n\tOptions FollowSymLinks\n\tAllowOverride None\n\tRequire all denied\n</Directory>\n\n<Directory /usr/share>\n\tAllowOverride None\n\tRequire all granted\n</Directory>\n\n<Directory /var/www/>\n\tOptions Indexes FollowSymLinks\n\tAllowOverride All\n\tRequire all granted\n</Directory>\n\nAccessFileName .htaccess\n<FilesMatch \"^\\.ht\">\n\tRequire all denied\n</FilesMatch>\n\nLogFormat \"%v:%p %h %l %u %t \\\"%r\\\" %>s %O \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" vhost_combined\nLogFormat \"%h %l %u %t \\\"%r\\\" %>s %O \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" combined\nLogFormat \"%h %l %u %t \\\"%r\\\" %>s %O\" common\nLogFormat \"%{Referer}i -> %U\" referer\nLogFormat \"%{User-agent}i\" agent\n\nIncludeOptional conf-enabled/*.conf\nIncludeOptional sites-enabled/*.conf",
+    "/etc/apache2/envvars": "# envvars - default environment variables for apache2ctl\n\nunset HOME\n\nexport APACHE_RUN_USER=www-data\nexport APACHE_RUN_GROUP=www-data\nexport APACHE_PID_FILE=/var/run/apache2/apache2$SUFFIX.pid\nexport APACHE_RUN_DIR=/var/run/apache2$SUFFIX\nexport APACHE_LOCK_DIR=/var/lock/apache2$SUFFIX\nexport APACHE_LOG_DIR=/var/log/apache2$SUFFIX\nexport LANG=C\nexport LANG"
+  },
+  "services": [
+    {
+      "name": "apache2",
+      "pid": 1234,
+      "user": "root",
+      "command": "/usr/sbin/apache2 -k start",
+      "ports": [
+        80,
+        443
+      ]
+    },
+    {
+      "name": "apache2-worker",
+      "pid": 1240,
+      "user": "www-data",
+      "command": "/usr/sbin/apache2 -k start",
+      "ports": []
+    },
+    {
+      "name": "mysqld",
+      "pid": 2345,
+      "user": "mysql",
+      "command": "/usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql",
+      "ports": [
+        3306
+      ]
+    },
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "dockerd",
+      "pid": 3456,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd://",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.1.15",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:01:0f"
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:b8:7f:c3:a1"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "apache2",
+      "version": "2.4.41-4ubuntu3.17"
+    },
+    {
+      "name": "mysql-server",
+      "version": "8.0.36-0ubuntu0.20.04.1"
+    },
+    {
+      "name": "php",
+      "version": "7.4.3-4ubuntu2.22"
+    },
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.2p1-4ubuntu0.11"
+    },
+    {
+      "name": "git",
+      "version": "1:2.25.1-1ubuntu3.12"
+    },
+    {
+      "name": "curl",
+      "version": "7.68.0-1ubuntu2.22"
+    },
+    {
+      "name": "wordpress",
+      "version": "6.4.2"
+    },
+    {
+      "name": "awscli",
+      "version": "1.32.18"
+    }
+  ],
+  "crontabs": {
+    "root": "0 2 * * * /home/deploy/backup_db.sh\n0 */12 * * * certbot renew --quiet\n30 3 * * * /usr/local/bin/wp-cron.sh >> /var/log/wp-cron.log 2>&1"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.11",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456",
+        "toor",
+        "password"
+      ],
+      "deploy": [
+        "deploy123",
+        "123456"
+      ]
+    }
+  },
+  "description": "Neglected WordPress production server with exposed database credentials in wp-config.php and .env, SSH private key in deploy user home, sudo NOPASSWD for deploy, Docker installed, MySQL history showing privilege grants, /etc/hosts with internal network map, SSH config pointing to db-replica and jenkins-ci, auth.log with recent logins, mail with database migration credentials, Apache error log leaking additional passwords",
+  "remote_files": {
+    "10.0.1.20": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.1.20\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 603
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.1.20:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 240
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.1.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.1.25": {
+      "/etc/redis/redis.conf": {
+        "content_type": "text",
+        "content": "bind 0.0.0.0\nport 6379\nrequirepass R3dis_Pr0d_s3cret_2024\nmaxmemory 2gb\nmaxmemory-policy allkeys-lru\n# masterauth R3dis_R3pl_Auth!\n",
+        "size": 131
+      }
+    },
+    "10.0.1.30": {
+      "/etc/grafana/grafana.ini": {
+        "content_type": "text",
+        "content": "[database]\ntype = mysql\nhost = db-primary:3306\nname = grafana\nuser = grafana_svc\npassword = Gr@f_DB_2024!\n\n[security]\nadmin_user = admin\nadmin_password = Gr@f_Adm1n_s3cret\nsecret_key = SW2YcwTIb9zpOOhoPsMm\n",
+        "size": 206
+      },
+      "/opt/prometheus/prometheus.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.1.30:/opt/prometheus/prometheus.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 268
+      }
+    },
+    "10.0.1.50": {
+      "/var/lib/jenkins/credentials.xml": {
+        "content_type": "text",
+        "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<credentials>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>deploy-ssh</id>\n    <username>deploy</username>\n    <password>d3pl0y_pr0d_2024!</password>\n  </entry>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>db-backup</id>\n    <username>backupuser</username>\n    <password>Bkp_s3cur3_db#99</password>\n  </entry>\n</credentials>\n",
+        "size": 394
+      },
+      "/opt/ci/deploy.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.1.50:/opt/ci/deploy.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 183
+      },
+      "/var/log/jenkins/jenkins.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.1.50\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      }
+    },
+    "10.0.1.100": {
+      "/var/backups/full_backup_latest.sql.gz": {
+        "content_type": "binary",
+        "size": 4913505
+      },
+      "/opt/backup/backup.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.1.100:/opt/backup/backup.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 188
+      },
+      "/opt/backup/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.1.100\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    },
+    "172.17.0.2": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 172.17.0.2\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 420
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 172.17.0.2\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    }
+  }
+}

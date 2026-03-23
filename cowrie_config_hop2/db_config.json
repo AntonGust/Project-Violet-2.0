@@ -1,0 +1,59 @@
+{
+  "engine": "postgresql",
+  "image": "postgres:16",
+  "spoofed_version": "14.11",
+  "port": 5432,
+  "databases": [
+    {
+      "name": "postgres",
+      "users": [
+        {
+          "username": "postgres",
+          "password": "P0stgr3s_Sup3r_S3cret!",
+          "host": "%"
+        },
+        {
+          "username": "replicator",
+          "password": "R3pl1c@t0r_Key",
+          "host": "%"
+        },
+        {
+          "username": "backupuser",
+          "password": "B@ckup_Usr_2024!",
+          "host": "%"
+        },
+        {
+          "username": "app_user",
+          "password": "Pr0d_App_P@ssw0rd",
+          "host": "%"
+        },
+        {
+          "username": "nagios_check",
+          "password": "N@g10s_M0n_2024",
+          "host": "%"
+        }
+      ]
+    },
+    {
+      "name": "app_production",
+      "users": [
+        {
+          "username": "app_user",
+          "password": "Pr0d_App_P@ssw0rd",
+          "host": "%"
+        }
+      ]
+    },
+    {
+      "name": "monitoring",
+      "users": [
+        {
+          "username": "nagios_check",
+          "password": "N@g10s_M0n_2024",
+          "host": "%"
+        }
+      ]
+    }
+  ],
+  "root_password": "H0n3yp0t_R00t!"
+}

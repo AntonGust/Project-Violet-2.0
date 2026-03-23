@@ -1,0 +1,24 @@
+From cron@wp-prod-01 Mon Feb 24 02:00:15 2026
+Subject: Cron <root@wp-prod-01> /home/deploy/backup_db.sh
+Date: Mon, 24 Feb 2026 02:00:15 +0000
+
+mysqldump: [Warning] Using a password on the command line interface can be insecure.
+Upload complete: s3://wp-prod-backups/db_backup_20260224.sql.gz
+
+From admin@internal.corp Fri Feb 21 16:45:00 2026
+Subject: Migration to new DB cluster next week
+Date: Fri, 21 Feb 2026 16:45:00 +0000
+
+Hi,
+
+We're migrating the WordPress database to db-replica-01 (10.0.1.20) next Tuesday.
+The new PostgreSQL credentials will be:
+  Host: db-replica-01
+  Port: 5432
+  User: wp_migrate
+  Password: M1gr@te_WP_2026!
+
+Please update wp-config.php after the migration window.
+The old MySQL instance will remain read-only for 30 days.
+
+- IT Operations

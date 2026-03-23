@@ -1,0 +1,12 @@
+Feb 24 02:00:01 db-primary CRON[8921]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 02:00:45 db-primary CRON[8921]: pam_unix(cron:session): session closed for user root
+Feb 24 04:00:01 db-primary CRON[9102]: pam_unix(cron:session): session opened for user postgres(uid=26) by (uid=0)
+Feb 24 04:15:33 db-primary CRON[9102]: pam_unix(cron:session): session closed for user postgres
+Feb 24 08:30:12 db-primary sshd[9456]: Accepted password for dba from 10.0.3.50 port 44231 ssh2
+Feb 24 08:30:12 db-primary sshd[9456]: pam_unix(sshd:session): session opened for user dba(uid=1000) by (uid=0)
+Feb 24 09:15:22 db-primary sshd[9801]: Accepted password for root from 10.0.3.1 port 52341 ssh2
+Feb 24 10:45:00 db-primary sudo:      dba : TTY=pts/0 ; PWD=/home/dba ; USER=root ; COMMAND=/bin/systemctl restart postgresql-14
+Feb 24 11:22:33 db-primary sshd[10234]: Failed password for postgres from 198.51.100.42 port 39201 ssh2
+Feb 24 11:22:35 db-primary sshd[10234]: Failed password for postgres from 198.51.100.42 port 39201 ssh2
+Feb 24 12:00:01 db-primary CRON[10567]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 14:05:18 db-primary sshd[10890]: Accepted publickey for dba from 10.0.3.50 port 48923 ssh2

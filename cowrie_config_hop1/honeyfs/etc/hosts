@@ -1,0 +1,17 @@
+127.0.0.1	localhost
+127.0.1.1	wp-prod-01
+
+# Internal network hosts
+10.0.1.15	wp-prod-01
+10.0.1.20	db-replica-01
+10.0.1.25	redis-cache-01
+10.0.1.30	monitoring
+10.0.1.50	jenkins-ci
+10.0.1.100	backup-nfs
+10.0.1.1	gateway
+172.17.0.2	wp-docker-app
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters172.10.1.11	db-primary

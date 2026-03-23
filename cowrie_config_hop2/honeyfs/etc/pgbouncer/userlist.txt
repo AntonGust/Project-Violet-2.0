@@ -1,0 +1,4 @@
+"postgres" "P0stgr3s_Sup3r_S3cret!"
+"app_user" "Pr0d_App_P@ssw0rd"
+"nagios_check" "N@g10s_M0n_2024"
+"backupuser" "B@ckup_Usr_2024!"

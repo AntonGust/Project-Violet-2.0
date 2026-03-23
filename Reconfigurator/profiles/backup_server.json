@@ -1,0 +1,553 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-234567890abc",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Debian 12.4 bookworm",
+    "hostname": "backup-01",
+    "kernel_version": "6.1.0-17-amd64",
+    "arch": "x86_64",
+    "timezone": "America/Denver"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rnd$fakehashroot000",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "backupadm",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/backupadm",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$bkp$fakehashbackupadm",
+      "groups": [
+        "backupadm",
+        "sudo"
+      ],
+      "sudo_rules": "backupadm ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "borguser",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/borguser",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$brg$fakehashborguser0",
+      "groups": [
+        "borguser"
+      ]
+    },
+    {
+      "name": "restic",
+      "uid": 1002,
+      "gid": 1002,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "restic"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1420
+      }
+    ],
+    "/home/backupadm": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 890
+      },
+      {
+        "name": ".config",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "backupadm",
+        "group": "backupadm"
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "backupadm",
+        "group": "backupadm"
+      },
+      {
+        "name": "backup_all.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 1842
+      },
+      {
+        "name": "verify_backups.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 412
+      }
+    ],
+    "/home/backupadm/.config": [
+      {
+        "name": "restic",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "backupadm",
+        "group": "backupadm"
+      }
+    ],
+    "/home/backupadm/.config/restic": [
+      {
+        "name": "env",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 284
+      }
+    ],
+    "/home/backupadm/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 100
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 3100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 742
+      }
+    ],
+    "/home/borguser": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "borguser",
+        "group": "borguser",
+        "size": 570
+      },
+      {
+        "name": ".borgenv",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "borguser",
+        "group": "borguser",
+        "size": 128
+      },
+      {
+        "name": "repos",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "borguser",
+        "group": "borguser"
+      }
+    ],
+    "/home/borguser/repos": [
+      {
+        "name": "db-primary",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "borguser",
+        "group": "borguser"
+      },
+      {
+        "name": "web-01",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "borguser",
+        "group": "borguser"
+      },
+      {
+        "name": "mail-relay-01",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "borguser",
+        "group": "borguser"
+      }
+    ],
+    "/etc": [
+      {
+        "name": "rsyncd.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 682
+      },
+      {
+        "name": "rsyncd.secrets",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 96
+      },
+      {
+        "name": "hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 410
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8234
+      },
+      {
+        "name": "backup.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 12480
+      },
+      {
+        "name": "restic_verify.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1240
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1820
+      }
+    ],
+    "/var/backups": [
+      {
+        "name": "restic",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "backupadm",
+        "group": "backupadm"
+      },
+      {
+        "name": "rsync",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/var/backups/restic": [
+      {
+        "name": "cache",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "backupadm",
+        "group": "backupadm"
+      }
+    ],
+    "/var/backups/rsync": [
+      {
+        "name": "nas-01",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "restic-lock-backup-01",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "backupadm",
+        "group": "backupadm",
+        "size": 0
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "systemctl status sshd\nsystemctl status rsyncd\nss -tlnp\niptables -L -n\nrestic -r s3:s3.amazonaws.com/infrabackups-prod snapshots\nrestic -r s3:s3.amazonaws.com/infrabackups-prod stats\nexport RESTIC_PASSWORD='Tr0ub4dor&Backup#2024'\nrestic -r s3:s3.amazonaws.com/infrabackups-prod check\nborg list /home/borguser/repos/db-primary\nexport BORG_PASSPHRASE='BorgM@ster_phr@se!99'\nborg info /home/borguser/repos/db-primary\ncat /etc/rsyncd.secrets\ncat /home/backupadm/.config/restic/env\njournalctl -u rsyncd --since today\ntail -f /var/log/backup.log\ncrontab -l\ndf -h\ndu -sh /home/borguser/repos/*\ncat /home/backupadm/backup_all.sh",
+    "/home/backupadm/.config/restic/env": "RESTIC_REPOSITORY=s3:s3.amazonaws.com/infrabackups-prod\nRESTIC_PASSWORD=Tr0ub4dor&Backup#2024\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\nAWS_DEFAULT_REGION=us-west-2\nRESTIC_CACHE_DIR=/var/backups/restic/cache",
+    "/home/borguser/.borgenv": "BORG_REPO=/home/borguser/repos/db-primary\nBORG_PASSPHRASE=BorgM@ster_phr@se!99\nBORG_RELOCATED_REPO_ACCESS_IS_OK=yes",
+    "/etc/rsyncd.secrets": "rsyncbackup:Rsync_S3cur3_2024!\nnas-sync:N@sSync_Pass_88\nwebpull:W3bPu11_bkp#21",
+    "/home/backupadm/backup_all.sh": "#!/bin/bash\n# Centralized backup orchestration script\n# Runs nightly via cron at 01:00 MST\n# Contact: backupadm@infra.internal / ext 4402\n\nset -euo pipefail\n\nLOGFILE=/var/log/backup.log\nDATE=$(date '+%Y-%m-%d %H:%M:%S')\nSSH_KEY=/home/backupadm/.ssh/id_ed25519\nRETENTION_DAYS=30\n\nlog() { echo \"[$DATE] $1\" >> \"$LOGFILE\"; }\n\nlog \"===== Starting nightly backup run =====\"\n\n# --- Restic: db-primary (PostgreSQL dump) ---\nlog \"[restic] Backing up db-primary (10.0.9.10)...\"\nexport RESTIC_REPOSITORY=s3:s3.amazonaws.com/infrabackups-prod\nexport RESTIC_PASSWORD='Tr0ub4dor&Backup#2024'\nexport AWS_ACCESS_KEY_ID='AKIAIOSFODNN7EXAMPLE'\nexport AWS_SECRET_ACCESS_KEY='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'\nssh -i $SSH_KEY -o StrictHostKeyChecking=no backupadm@10.0.9.10 \\\n  \"pg_dump -U postgres -Fc production_db\" | restic backup --stdin --stdin-filename db-primary.dump\nrestic forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune\nlog \"[restic] db-primary complete.\"\n\n# --- Borg: web-01 (web root + config) ---\nlog \"[borg] Backing up web-01 (10.0.9.20)...\"\nexport BORG_PASSPHRASE='BorgM@ster_phr@se!99'\nssh -i $SSH_KEY -o StrictHostKeyChecking=no backupadm@10.0.9.20 \\\n  \"sudo tar czf - /var/www /etc/nginx /etc/letsencrypt\" | \\\n  borg create --stdin-name web-01.tar.gz /home/borguser/repos/web-01::web-01-{now} -\nborg prune --keep-daily=7 --keep-weekly=4 /home/borguser/repos/web-01\nlog \"[borg] web-01 complete.\"\n\n# --- Borg: mail-relay-01 (postfix + dovecot) ---\nlog \"[borg] Backing up mail-relay-01 (10.0.9.30)...\"\nssh -i $SSH_KEY -o StrictHostKeyChecking=no backupadm@10.0.9.30 \\\n  \"sudo tar czf - /etc/postfix /etc/dovecot /var/mail\" | \\\n  borg create --stdin-name mail-relay.tar.gz /home/borguser/repos/mail-relay-01::mail-{now} -\nborg prune --keep-daily=7 --keep-weekly=4 /home/borguser/repos/mail-relay-01\nlog \"[borg] mail-relay-01 complete.\"\n\n# --- Rsync: nas-01 (file share mirror) ---\nlog \"[rsync] Syncing nas-01 (10.0.9.40)...\"\nrsync -avz --delete --password-file=/etc/rsyncd.secrets \\\n  rsyncbackup@10.0.9.40::shared /var/backups/rsync/nas-01/\nlog \"[rsync] nas-01 sync complete.\"\n\n# --- Restic: git-01 (Gitea repositories) ---\nlog \"[restic] Backing up git-01 (10.0.9.50)...\"\nssh -i $SSH_KEY -o StrictHostKeyChecking=no backupadm@10.0.9.50 \\\n  \"sudo tar czf - /opt/gitea/data /opt/gitea/custom\" | restic backup --stdin --stdin-filename git-01.tar.gz\nlog \"[restic] git-01 complete.\"\n\nlog \"===== Nightly backup run finished =====\"\n\n# Send summary mail\necho \"Backup completed at $(date)\" | mail -s \"[backup-01] Nightly backup OK\" root@backup-01",
+    "/home/backupadm/.ssh/config": "Host db-primary\n    HostName 10.0.9.10\n    User backupadm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost web-01\n    HostName 10.0.9.20\n    User backupadm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost mail-relay-01\n    HostName 10.0.9.30\n    User backupadm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost nas-01\n    HostName 10.0.9.40\n    User backupadm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost git-01\n    HostName 10.0.9.50\n    User backupadm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost gateway\n    HostName 10.0.9.1\n    User admin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tbackup-01\n\n# Backup infrastructure\n10.0.9.100\tbackup-01\n10.0.9.10\tdb-primary\n10.0.9.20\tweb-01\n10.0.9.30\tmail-relay-01\n10.0.9.40\tnas-01\n10.0.9.50\tgit-01\n10.0.9.1\tgateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/etc/rsyncd.conf": "# /etc/rsyncd.conf - rsync daemon configuration\nuid = nobody\ngid = nogroup\nuse chroot = yes\nmax connections = 4\nlog file = /var/log/rsyncd.log\npid file = /var/run/rsyncd.pid\n\n[db-dumps]\n    path = /var/backups/rsync/db-dumps\n    comment = Database dump staging area\n    read only = no\n    auth users = rsyncbackup\n    secrets file = /etc/rsyncd.secrets\n    hosts allow = 10.0.9.10 10.0.9.40\n\n[shared-files]\n    path = /var/backups/rsync/nas-01\n    comment = NAS file share mirror\n    read only = no\n    auth users = rsyncbackup, nas-sync\n    secrets file = /etc/rsyncd.secrets\n    hosts allow = 10.0.9.40\n\n[web-assets]\n    path = /var/backups/rsync/web-assets\n    comment = Web server static asset backup\n    read only = no\n    auth users = webpull\n    secrets file = /etc/rsyncd.secrets\n    hosts allow = 10.0.9.20",
+    "/var/log/auth.log": "Mar  5 01:00:01 backup-01 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 01:00:02 backup-01 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  5 01:30:01 backup-01 CRON[4589]: pam_unix(cron:session): session opened for user backupadm(uid=1000) by (uid=0)\nMar  5 01:30:45 backup-01 CRON[4589]: pam_unix(cron:session): session closed for user backupadm\nMar  5 06:00:01 backup-01 CRON[5102]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 06:00:01 backup-01 CRON[5102]: pam_unix(cron:session): session closed for user root\nMar  5 08:22:14 backup-01 sshd[5234]: Accepted password for backupadm from 10.0.9.1 port 48120 ssh2\nMar  5 08:22:14 backup-01 sshd[5234]: pam_unix(sshd:session): session opened for user backupadm(uid=1000) by (uid=0)\nMar  5 08:45:33 backup-01 sudo: backupadm : TTY=pts/0 ; PWD=/home/backupadm ; USER=root ; COMMAND=/usr/bin/systemctl status rsyncd\nMar  5 09:10:07 backup-01 sshd[5567]: Accepted password for root from 10.0.9.1 port 52340 ssh2\nMar  5 09:10:07 backup-01 sshd[5567]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  5 11:15:22 backup-01 sshd[5890]: Failed password for admin from 198.51.100.44 port 39821 ssh2\nMar  5 11:15:24 backup-01 sshd[5890]: Failed password for admin from 198.51.100.44 port 39821 ssh2\nMar  5 14:30:10 backup-01 sshd[6123]: Accepted publickey for borguser from 10.0.9.20 port 55412 ssh2\nMar  5 14:30:10 backup-01 sshd[6123]: pam_unix(sshd:session): session opened for user borguser(uid=1001) by (uid=0)",
+    "/var/log/backup.log": "[2026-03-05 01:00:02] ===== Starting nightly backup run =====\n[2026-03-05 01:00:02] [restic] Backing up db-primary (10.0.9.10)...\n[2026-03-05 01:00:08] repository 5a8f3c21 opened successfully, password is correct\n[2026-03-05 01:00:08] created new cache in /var/backups/restic/cache\n[2026-03-05 01:02:44] Files:           1 new,     0 changed,     0 unmodified\n[2026-03-05 01:02:44] Dirs:            0 new,     0 changed,     0 unmodified\n[2026-03-05 01:02:44] Added to the repo: 248.731 MiB\n[2026-03-05 01:02:44] processed 1 files, 512.204 MiB in 2:36\n[2026-03-05 01:02:44] snapshot a1b2c3d4 saved\n[2026-03-05 01:03:10] applying Policy: keep 7 daily, 4 weekly, 6 monthly snapshots\n[2026-03-05 01:03:10] keep 7 snapshots:\n[2026-03-05 01:03:10]   a1b2c3d4  2026-03-05 01:02:44  db-primary.dump\n[2026-03-05 01:03:10]   e5f6a7b8  2026-03-04 01:02:31  db-primary.dump\n[2026-03-05 01:03:10]   c9d0e1f2  2026-03-03 01:02:18  db-primary.dump\n[2026-03-05 01:03:12] [restic] db-primary complete.\n[2026-03-05 01:03:12] [borg] Backing up web-01 (10.0.9.20)...\n[2026-03-05 01:05:48] Creating archive at \"/home/borguser/repos/web-01::web-01-2026-03-05T01:03:12\"\n[2026-03-05 01:05:48] Archive name: web-01-2026-03-05T01:03:12\n[2026-03-05 01:05:48] Archive fingerprint: 9f8e7d6c5b4a39281706f5e4d3c2b1a0\n[2026-03-05 01:05:48] Time (start): Wed, 2026-03-05 01:03:14\n[2026-03-05 01:05:48] Time (end):   Wed, 2026-03-05 01:05:47\n[2026-03-05 01:05:48] Duration: 2 minutes 33.42 seconds\n[2026-03-05 01:05:48] Number of files: 14823\n[2026-03-05 01:05:48] Original size: 1.82 GiB\n[2026-03-05 01:05:48] Deduplicated size: 38.44 MiB\n[2026-03-05 01:05:50] [borg] web-01 complete.\n[2026-03-05 01:05:50] [borg] Backing up mail-relay-01 (10.0.9.30)...\n[2026-03-05 01:08:22] Creating archive at \"/home/borguser/repos/mail-relay-01::mail-2026-03-05T01:05:50\"\n[2026-03-05 01:08:22] Archive name: mail-2026-03-05T01:05:50\n[2026-03-05 01:08:22] Number of files: 8412\n[2026-03-05 01:08:22] Original size: 945.20 MiB\n[2026-03-05 01:08:22] Deduplicated size: 12.81 MiB\n[2026-03-05 01:08:24] [borg] mail-relay-01 complete.\n[2026-03-05 01:08:24] [rsync] Syncing nas-01 (10.0.9.40)...\n[2026-03-05 01:12:05] sending incremental file list\n[2026-03-05 01:12:05] shared/documents/Q1-2026-financials.xlsx\n[2026-03-05 01:12:05] shared/documents/employee-handbook-v4.pdf\n[2026-03-05 01:12:05] shared/engineering/architecture-diagrams/network-topology.vsdx\n[2026-03-05 01:12:05] sent 24,891,204 bytes  received 4,821 bytes  2,718,220.55 bytes/sec\n[2026-03-05 01:12:05] total size is 48,291,048,192  speedup is 1,940.21\n[2026-03-05 01:12:07] [rsync] nas-01 sync complete.\n[2026-03-05 01:12:07] [restic] Backing up git-01 (10.0.9.50)...\n[2026-03-05 01:15:33] Files:           1 new,     0 changed,     0 unmodified\n[2026-03-05 01:15:33] Added to the repo: 892.100 MiB\n[2026-03-05 01:15:33] processed 1 files, 1.204 GiB in 3:26\n[2026-03-05 01:15:33] snapshot f4e3d2c1 saved\n[2026-03-05 01:15:35] [restic] git-01 complete.\n[2026-03-05 01:15:35] ===== Nightly backup run finished =====",
+    "/var/mail/root": "From cron@backup-01 Wed Mar  5 01:15:36 2026\nSubject: [backup-01] Nightly backup OK\nDate: Wed, 05 Mar 2026 01:15:36 -0700\nFrom: root@backup-01\nTo: root@backup-01\n\nBackup completed at Wed Mar  5 01:15:36 MST 2026\n\nSummary:\n  db-primary  (restic/s3)   - OK  248.7 MiB added\n  web-01      (borg)        - OK  38.4 MiB dedup\n  mail-relay-01 (borg)      - OK  12.8 MiB dedup\n  nas-01      (rsync)       - OK  24.9 MB transferred\n  git-01      (restic/s3)   - OK  892.1 MiB added\n\nNext scheduled run: Thu Mar  6 01:00:00 MST 2026\nVerification run: Sun Mar  8 06:00:00 MST 2026\n\nFrom logwatch@backup-01 Wed Mar  5 06:25:00 2026\nSubject: [backup-01] Logwatch for Wed Mar 5\nDate: Wed, 05 Mar 2026 06:25:00 -0700\n\n---------- Disk Usage ----------\n/dev/sda1        50G   18G   30G  38% /\n/dev/sdb1       500G  312G  163G  66% /var/backups\n\n---------- SSH ----------\nUsers logging in through sshd:\n   backupadm: 10.0.9.1 (1 time)\n   root:      10.0.9.1 (1 time)\n   borguser:  10.0.9.20 (1 time)\nFailed logins from 198.51.100.44: 2 times (user: admin)",
+    "/home/backupadm/verify_backups.sh": "#!/bin/bash\n# Quick verification of last backup snapshots\nsource /home/backupadm/.config/restic/env\nrestic snapshots --latest 1 --json > /dev/null 2>&1 && echo \"Restic OK\" || echo \"Restic FAIL\"\nexport BORG_PASSPHRASE='BorgM@ster_phr@se!99'\nborg list --last 1 /home/borguser/repos/db-primary > /dev/null 2>&1 && echo \"Borg db-primary OK\" || echo \"Borg db-primary FAIL\"\nborg list --last 1 /home/borguser/repos/web-01 > /dev/null 2>&1 && echo \"Borg web-01 OK\" || echo \"Borg web-01 FAIL\"",
+    "/home/backupadm/.bash_history": "restic snapshots\nrestic stats\nsource ~/.config/restic/env\nrestic check\nborg list /home/borguser/repos/db-primary\nborg info /home/borguser/repos/web-01\ncat /var/log/backup.log | tail -50\nsudo systemctl status rsyncd\nsudo journalctl -u rsyncd --since today\ndf -h /var/backups\ndu -sh /home/borguser/repos/*\nssh db-primary 'pg_dump -U postgres -l'\nssh web-01 'df -h'\nssh mail-relay-01 'systemctl status postfix'\ncrontab -l\ncat backup_all.sh",
+    "/opt/monitoring/docker-compose.yml": "version: '3.8'\nservices:\n  node-exporter:\n    image: prom/node-exporter:latest\n    container_name: node-exporter\n    restart: unless-stopped\n    ports:\n      - '9100:9100'\n    volumes:\n      - /proc:/host/proc:ro\n      - /sys:/host/sys:ro\n  grafana-agent:\n    image: grafana/agent:latest\n    container_name: grafana-agent\n    restart: unless-stopped\n    volumes:\n      - ./agent-config.yml:/etc/agent-config.yml\n    environment:\n      - GRAFANA_CLOUD_API_KEY=HONEYPOT_LURE_grafana_cloud_api_key_backup01_0123456789abcdef\n      - REMOTE_WRITE_URL=https://prometheus-us-central1.grafana.net/api/prom/push\n    command: --config.file=/etc/agent-config.yml"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 892,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "borgbackup-serve",
+      "pid": 1534,
+      "user": "borguser",
+      "command": "/usr/bin/borg serve --restrict-to-repository /home/borguser/repos",
+      "ports": []
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "node_exporter",
+      "pid": 2345,
+      "user": "node_exporter",
+      "command": "/usr/bin/node_exporter --web.listen-address=:9100",
+      "ports": [
+        9100
+      ]
+    },
+    {
+      "name": "rsyncd",
+      "pid": 1678,
+      "user": "root",
+      "command": "/usr/bin/rsync --daemon --no-detach",
+      "ports": [
+        873
+      ]
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.9.100",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:09:64"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "restic",
+      "version": "0.16.2-1"
+    },
+    {
+      "name": "borgbackup",
+      "version": "1.2.7-1"
+    },
+    {
+      "name": "rsync",
+      "version": "3.2.7-1"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:9.2p1-2+deb12u2"
+    },
+    {
+      "name": "awscli",
+      "version": "2.15.10"
+    },
+    {
+      "name": "prometheus-node-exporter",
+      "version": "1.5.0"
+    },
+    {
+      "name": "python3",
+      "version": "3.11.2-1+b1"
+    },
+    {
+      "name": "cron",
+      "version": "3.0pl1-162"
+    },
+    {
+      "name": "s3cmd",
+      "version": "2.3.0-1"
+    },
+    {
+      "name": "duplicity",
+      "version": "0.8.23-1"
+    }
+  ],
+  "crontabs": {
+    "root": "0 1 * * * /home/backupadm/backup_all.sh >> /var/log/backup.log 2>&1\n0 6 * * 0 restic check --read-data >> /var/log/restic_verify.log 2>&1",
+    "backupadm": "30 1 * * * /home/backupadm/verify_backups.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "backupadm": [
+        "backupadm",
+        "B@ckup2024!",
+        "admin123"
+      ],
+      "borguser": [
+        "borguser",
+        "borg123"
+      ]
+    }
+  },
+  "description": "Centralized backup server running Restic, BorgBackup, and rsync. Leaked Restic repo password and AWS S3 credentials in env file, Borg passphrase, rsync module passwords, comprehensive backup script revealing all backup targets with SSH access, /etc/hosts mapping entire infrastructure, SSH config for all managed servers, backup logs and backup script as rabbit holes showing backup topology.",
+  "remote_files": {
+    "10.0.9.10": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.9.10\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 603
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.9.10:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 240
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.9.10\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.9.20": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.9.20\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.9.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.9.30": {
+      "/etc/postfix/sasl_passwd": {
+        "content_type": "text",
+        "content": "[smtp.relay.internal]:587 relay_user:R3l@y_P@ss_2024!\n[mx-backup.internal]:25 backup_user:Mx_Bkp_s3cret\n",
+        "size": 104
+      },
+      "/etc/dovecot/dovecot-ldap.conf.ext": {
+        "content_type": "text",
+        "content": "hosts = ldap.internal.corp\ndn = cn=mail-service,ou=services,dc=internal,dc=corp\ndnpass = Ld@p_M@il_Bind_2024!\nbase = ou=users,dc=internal,dc=corp\nauth_bind = yes\n",
+        "size": 162
+      },
+      "/var/log/mail.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.9.30\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      }
+    },
+    "10.0.9.40": {
+      "/var/backups/full_backup_latest.sql.gz": {
+        "content_type": "binary",
+        "size": 4913505
+      },
+      "/opt/backup/backup.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.9.40:/opt/backup/backup.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 187
+      },
+      "/opt/backup/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.9.40\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.9.50": {
+      "/opt/gitea/custom/conf/app.ini": {
+        "content_type": "text",
+        "content": "[database]\nDB_TYPE = mysql\nHOST = db-replica:3306\nNAME = gitea\nUSER = gitea_svc\nPASSWD = G1t_DB_Pr0d_2024!\n\n[server]\nROOT_URL = https://git.internal.corp/\nSSH_PORT = 2222\n",
+        "size": 171
+      }
+    }
+  }
+}

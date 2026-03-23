@@ -1,0 +1,656 @@
+{
+  "id": "e7a1c3d5-b2f4-4809-9e6a-d83f17294a50",
+  "timestamp": "2026-03-05T18:00:00Z",
+  "system": {
+    "os": "Ubuntu 24.04 LTS",
+    "hostname": "dev-ws-03",
+    "kernel_version": "6.8.0-31-generic",
+    "arch": "x86_64",
+    "timezone": "America/New_York"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rNd$fakehashroot000000000000000000",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "jsmith",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/jsmith",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$sDq$fakehashjsmith00000000000000000",
+      "groups": [
+        "jsmith",
+        "sudo",
+        "docker",
+        "vboxusers"
+      ],
+      "sudo_rules": "jsmith ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "postgres",
+      "uid": 132,
+      "gid": 132,
+      "home": "/var/lib/postgresql",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "postgres"
+      ]
+    },
+    {
+      "name": "redis",
+      "uid": 133,
+      "gid": 133,
+      "home": "/var/lib/redis",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "redis"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 312
+      }
+    ],
+    "/home/jsmith": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 3771
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 4287
+      },
+      {
+        "name": ".profile",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 807
+      },
+      {
+        "name": ".gitconfig",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 215
+      },
+      {
+        "name": ".npmrc",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 98
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": ".aws",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": ".config",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "projects",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": ".local",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      }
+    ],
+    "/home/jsmith/.ssh": [
+      {
+        "name": "id_rsa",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 1679
+      },
+      {
+        "name": "id_rsa.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 396
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 1832
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 487
+      }
+    ],
+    "/home/jsmith/.aws": [
+      {
+        "name": "credentials",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 246
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 102
+      }
+    ],
+    "/home/jsmith/.config": [
+      {
+        "name": "gcloud",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "code-server",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      }
+    ],
+    "/home/jsmith/.config/gcloud": [
+      {
+        "name": "application_default_credentials.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 735
+      },
+      {
+        "name": "properties",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 86
+      }
+    ],
+    "/home/jsmith/.config/code-server": [
+      {
+        "name": "config.yaml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 94
+      }
+    ],
+    "/home/jsmith/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 154
+      }
+    ],
+    "/home/jsmith/projects": [
+      {
+        "name": "webapp",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "infra",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      }
+    ],
+    "/home/jsmith/projects/webapp": [
+      {
+        "name": ".env",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 412
+      },
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 1847
+      },
+      {
+        "name": "src",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "tests",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 1230
+      },
+      {
+        "name": ".git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "node_modules",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      },
+      {
+        "name": "README.md",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 2450
+      }
+    ],
+    "/home/jsmith/projects/infra": [
+      {
+        "name": "main.tf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 892
+      },
+      {
+        "name": "terraform.tfvars",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 310
+      },
+      {
+        "name": ".terraform",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8934
+      },
+      {
+        "name": "syslog",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "syslog",
+        "group": "adm",
+        "size": 24512
+      },
+      {
+        "name": "postgresql",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "postgres",
+        "group": "postgres"
+      }
+    ],
+    "/var/log/postgresql": [
+      {
+        "name": "postgresql-16-main.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "postgres",
+        "group": "postgres",
+        "size": 5423
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "jsmith",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "jsmith",
+        "group": "mail",
+        "size": 1847
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "pytest_results.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jsmith",
+        "group": "jsmith",
+        "size": 3421
+      },
+      {
+        "name": ".docker-compose-tmp",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jsmith",
+        "group": "jsmith"
+      }
+    ],
+    "/var/lib/postgresql/16/main": [
+      {
+        "name": "PG_VERSION",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "postgres",
+        "group": "postgres",
+        "size": 3
+      }
+    ],
+    "/etc/postgresql/16/main": [
+      {
+        "name": "postgresql.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "postgres",
+        "group": "postgres",
+        "size": 2840
+      },
+      {
+        "name": "pg_hba.conf",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "postgres",
+        "group": "postgres",
+        "size": 512
+      }
+    ]
+  },
+  "file_contents": {
+    "/home/jsmith/.bash_history": "cd projects/webapp\nnpm install\nnpm run dev\ndocker-compose up -d\ndocker-compose logs -f api\npython3 -m pytest tests/ -v --tb=short 2>&1 | tee /tmp/pytest_results.log\ngit status\ngit add -A && git commit -m \"fix: resolve race condition in payment webhook handler\"\ngit push origin feature/payment-webhooks\ngit clone https://ghp_Rk4mTz8vNpLqW2xJ7yBcD9eHfA3sU6iO@github.com/acme-corp/webapp.git\ngit clone https://ghp_Rk4mTz8vNpLqW2xJ7yBcD9eHfA3sU6iO@github.com/acme-corp/infrastructure.git\ndocker login registry.acme-corp.io -u jsmith -p Dkr_Pr0d!2024xQ\ndocker build -t registry.acme-corp.io/webapp:dev .\ndocker push registry.acme-corp.io/webapp:dev\nssh staging-api 'sudo systemctl restart webapp'\nssh prod-bastion\nssh git-01 'cd /srv/git/webapp.git && git log --oneline -5'\nkubectl get pods -n staging\nkubectl logs -f deployment/webapp -n staging\nterraform plan -var-file=staging.tfvars\nterraform apply -auto-approve -var-file=staging.tfvars\naws s3 ls s3://acme-staging-assets/\naws s3 cp dist/ s3://acme-staging-assets/ --recursive\naws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 123456789012.dkr.ecr.us-east-1.amazonaws.com\nsudo systemctl restart postgresql\nsudo systemctl status redis-server\npsql -U webapp_dev -d webapp_development -c \"SELECT count(*) FROM users;\"\nredis-cli -a R3d1s_L0cal#Dev ping\ncurl -s http://localhost:8443 | head\ncode-server --bind-addr 0.0.0.0:8443\ncat ~/.aws/credentials\ncat /home/jsmith/projects/webapp/.env\nenv | grep -i secret\nhistory | grep ssh\nfind /var/log -name '*.log' -mtime -1\ntail -f /var/log/auth.log\nsudo docker ps -a\nsudo docker images\nsudo iptables -L -n\nss -tlnp\nwho\nlast -10\ndf -h\nfree -m\nhtop\ncurl -X POST https://api.stripe.com/v1/charges -u HONEYPOT_LURE_stripe_test_key_4eC39HqLyjWDarjtT1: -d amount=2000 -d currency=usd\nnpm run test:integration\npip install -r requirements.txt\npython3 manage.py migrate\npython3 manage.py createsuperuser --username admin --email admin@acme-corp.io\nscp jsmith@staging-api:/var/log/webapp/error.log ./logs/\nrsync -avz ./dist/ jsmith@staging-api:/opt/webapp/static/",
+    "/home/jsmith/projects/webapp/.env": "# Local development environment\nNODE_ENV=development\nPORT=3000\n\n# Database\nDB_HOST=localhost\nDB_PORT=5432\nDB_NAME=webapp_development\nDB_USER=webapp_dev\nDB_PASSWORD=W3bApp_D3v#Pg2024!\n\n# Staging DB (for migration testing)\nSTAGING_DB_HOST=10.0.10.20\nSTAGING_DB_USER=webapp_staging\nSTAGING_DB_PASSWORD=St@g1ng_DB_s3cret!\n\n# Stripe\nSTRIPE_SECRET_KEY=HONEYPOT_LURE_stripe_test_key_4eC39HqLyjWDarjtT1\nSTRIPE_WEBHOOK_SECRET=whsec_test_oKhEr2m5N7pQ1xYz3vBcA9dF\n\n# JWT\nJWT_SECRET=super_secret_jwt_key_d3v_2024!@#xQ7\nJWT_EXPIRY=86400\n\n# Redis\nREDIS_URL=redis://:R3d1s_L0cal#Dev@localhost:6379/0\n\n# SendGrid\nSENDGRID_API_KEY=SG.fK3mN8pR2wXyZ1aB4cD7eG.qH9jL0sT5uV6iO3rE8tY\n\n# AWS\nAWS_REGION=us-east-1\nAWS_S3_BUCKET=acme-staging-assets",
+    "/home/jsmith/.aws/credentials": "[dev]\naws_access_key_id = AKIAIOSFODNN7EXAMPLE\naws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n\n[staging]\naws_access_key_id = AKIAI44QH8DHBEXAMPLE\naws_secret_access_key = je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY\nregion = us-east-1",
+    "/home/jsmith/.aws/config": "[profile dev]\nregion = us-east-1\noutput = json\n\n[profile staging]\nregion = us-east-1\noutput = json",
+    "/home/jsmith/.ssh/id_rsa": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA0Z3VS5JJcds3xfn/ygWyF8PbnGcY5unA1FKbTz6Rh0IEk1FN\nvTSjph2gHbEFMxOGTnKSVbQxOaJcfEPKdGFG8aSgWJmfHe3kBG4RDz3OaZjYHOaL\nmGKVB8FT5PLkdkm2bQMDziSBJy6Rk4xHQNpwmBKFPAlQfeLJJGM4VsoaYkHGPzdO\nb7A0E2EntPVU9HJdf2wG3P0zJDEBp6v/KT4RSKLVM9NeX6rNjaeQoEywKsDl1hEB\nQ3MiOD5ePB3GYFkdJL0c8B81e1YFqxxveR3T58ixFLqMDPPqWnMcNGKSMm5YMaHk\no7mnK0ZJHGVLBP5fN2M7G9GdkJ1OaYbxaQZcDwIDAQABAoIBAFj7mGMn4FmDpSaR\nVkGn1KeejqZh0MKbM5Vl5V8dGJVqTm4v3qcML5zJPkFBz2YN4ReJv8GLE7YMNBcH\nIiGilQLcKPCVqFTk1Ecea7AAMw5y2jDqWaJeFnLjWQie3mtn1EWfR2U4p1oLnKaG\njEfO4qIJMOPFk7xH8wxaBn12bojf3KSy9k4v8MDE9CRO7BEpYuB3k56rGJjLqPBH\n0kG1j7FiN7JkQR0bnTBF9IjfbM8HYJYe5KqFheweyOy2C+RMVl/bxPBPayZNpGPz\nnL4bJUjYF6lKj3F0sAWCwE1h7aKqBTmCP8MIkJ3BuXjBr1bZPkexkLMn3TYaFdYG\nwDCaQsECgYEA6jCgFePMO/rJ3b7mVFwzrl1hcp6LDsT4EBSTaWLRfxnVB3DREZBA\nszPiQ+kIoRi/M6oQpMbUg+4PyYBMkRJDxq6lFt2e7NXAB7xm6F1Er3cUBfJ0J+D\n1LxNd0nf+DY1aDkiZ1ra3P7veTF15B3ZE1M1OGpFThRTLViYAj3Dg8ECgYEA5Y7W\npKXkb+PBh0swlGQzxgNE5TZRdfvJk3vdeNcWuKlJGG8mC5vVFhA2EE8jdmFx5v1b\nJxp/qgYoPkrRHjEJPDiP6b5JeJCvP0KlPL8FZ1bXYVS0um0h4Gf8YH2fUMbJhGcA\nPn9kscKeJfzJ4K3mLKpoG7SFxCgC8SSiPVXPxvfGdfsCgYAjG4IYDS7M/H5YCBmO\nlfE3tFB6k7VZq+ef/PEwLTJl+0xAiR/BMclrzAXG7xBBraFJ1J2qVCDE0V3yChBl\noVEfhyJ9E2bNLRa0aN2raVu/grFGvFhq3TrPfLqZWgaD4ydbF0CXNJ8d1P3P3V8Y\nqa8nH7s0uSxqjY0JeZ5fKQIMnQKBgCjKqnWpKsFMYxb6eH3pxFwi/oQXVCKH0MTz\ncb1ADSIv4qcwD8mT7Hn7HMkR3ceFqpEQwjTTNmyLRe5N+GDefrz7EbIqjHhHvh3S\npjGNj5FTMQVG2dDRr9NLU1GtXpQJcEF7hdxpTt5JWwR4UBbhY5pHDIf3HRimqMhX\nELG/KYlhAoGBAMrqHoHaNFLfCcx6hC0hF2LuQ7EM4TnEPIoRqlVIPvD0FNnqVdOi\nvhpelDEBe/h5K3Fs8eVImpTGb3fM9RAAibJWJ6FN3MFbRLDjBdaWPp4hnbEv9rJh\n4kz0S/JxaWmEP1OBQC3aqnGdIa+brL0RqrWRLBkVhDSzFBuJz2JfuME\n-----END RSA PRIVATE KEY-----",
+    "/home/jsmith/.ssh/config": "Host staging-api\n    HostName 10.0.10.10\n    User jsmith\n    IdentityFile ~/.ssh/id_rsa\n    Port 22\n\nHost prod-bastion\n    HostName 10.0.10.50\n    User jsmith\n    IdentityFile ~/.ssh/id_rsa\n    Port 22\n    ProxyJump none\n\nHost git-01\n    HostName 10.0.10.5\n    User git\n    IdentityFile ~/.ssh/id_rsa\n    Port 22\n\nHost staging-db\n    HostName 10.0.10.20\n    User dbadmin\n    IdentityFile ~/.ssh/id_rsa\n    ProxyJump staging-api",
+    "/home/jsmith/.ssh/known_hosts": "10.0.10.10 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKbP4MjGvSpWEnEGCpoVHvDJWBDdSAFG0xZ2Q4Ry1a3m\n10.0.10.50 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJmLVh0wE5pf9Tl3KZMuRPz1cBG4D1fQ7xH2kN9yA0bP\n10.0.10.5 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzOPc2rQx1bD7gG5nKY4mJ3fVwX8eA0iT6qB9sR2pLk\n10.0.10.20 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIQnR4tA2bC8dE0fG6hI5jK7lM9nO1pQ3rS5tU7vW9xYz\ngithub.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3...(truncated)",
+    "/home/jsmith/.gitconfig": "[user]\n    name = John Smith\n    email = jsmith@acme-corp.io\n[credential]\n    helper = store\n[credential \"https://github.com\"]\n    helper = !echo protocol=https\\nhost=github.com\\nusername=jsmith-acme\\npassword=ghp_Rk4mTz8vNpLqW2xJ7yBcD9eHfA3sU6iO",
+    "/home/jsmith/.npmrc": "//registry.npmjs.org/:_authToken=npm_4aB7cD9eF2gH5iJ8kL1mN3oP6qR0sT\n@acme-corp:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=ghp_Rk4mTz8vNpLqW2xJ7yBcD9eHfA3sU6iO",
+    "/home/jsmith/.config/gcloud/application_default_credentials.json": "HONEYPOT_LURE_GCP_APPLICATION_DEFAULT_CREDENTIALS",
+    "/home/jsmith/.config/gcloud/properties": "[core]\nproject = acme-staging-294017\naccount = dev-sa@acme-staging-294017.iam.gserviceaccount.com",
+    "/home/jsmith/.docker/config.json": "{\n  \"auths\": {\n    \"registry.acme-corp.io\": {\n      \"auth\": \"anNtaXRoOkRrcl9QcjBkITIwMjR4UQ==\"\n    },\n    \"https://index.docker.io/v1/\": {\n      \"auth\": \"anNtaXRoZGV2OmQwY2tlcmh1YiEyNA==\"\n    }\n  }\n}",
+    "/home/jsmith/projects/webapp/docker-compose.yml": "version: '3.8'\n\nservices:\n  api:\n    build:\n      context: .\n      dockerfile: Dockerfile\n    ports:\n      - \"3000:3000\"\n    environment:\n      - NODE_ENV=development\n      - DB_HOST=postgres\n      - DB_PORT=5432\n      - DB_NAME=webapp_development\n      - DB_USER=webapp_dev\n      - DB_PASSWORD=W3bApp_D3v#Pg2024!\n      - REDIS_URL=redis://:R3d1s_L0cal#Dev@redis:6379/0\n      - JWT_SECRET=super_secret_jwt_key_d3v_2024!@#xQ7\n      - STRIPE_SECRET_KEY=HONEYPOT_LURE_stripe_test_key_4eC39HqLyjWDarjtT1\n      - SENDGRID_API_KEY=SG.fK3mN8pR2wXyZ1aB4cD7eG.qH9jL0sT5uV6iO3rE8tY\n    depends_on:\n      postgres:\n        condition: service_healthy\n      redis:\n        condition: service_healthy\n    volumes:\n      - .:/app\n      - /app/node_modules\n    networks:\n      - webapp-net\n    restart: unless-stopped\n\n  postgres:\n    image: postgres:16-alpine\n    ports:\n      - \"5432:5432\"\n    environment:\n      - POSTGRES_USER=webapp_dev\n      - POSTGRES_PASSWORD=W3bApp_D3v#Pg2024!\n      - POSTGRES_DB=webapp_development\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n    healthcheck:\n      test: [\"CMD-SHELL\", \"pg_isready -U webapp_dev -d webapp_development\"]\n      interval: 5s\n      timeout: 5s\n      retries: 5\n    networks:\n      - webapp-net\n\n  redis:\n    image: redis:7-alpine\n    ports:\n      - \"6379:6379\"\n    command: redis-server --requirepass R3d1s_L0cal#Dev\n    healthcheck:\n      test: [\"CMD\", \"redis-cli\", \"-a\", \"R3d1s_L0cal#Dev\", \"ping\"]\n      interval: 5s\n      timeout: 5s\n      retries: 5\n    networks:\n      - webapp-net\n\n  worker:\n    build:\n      context: .\n      dockerfile: Dockerfile.worker\n    environment:\n      - NODE_ENV=development\n      - REDIS_URL=redis://:R3d1s_L0cal#Dev@redis:6379/0\n      - DB_HOST=postgres\n      - DB_USER=webapp_dev\n      - DB_PASSWORD=W3bApp_D3v#Pg2024!\n      - SENDGRID_API_KEY=SG.fK3mN8pR2wXyZ1aB4cD7eG.qH9jL0sT5uV6iO3rE8tY\n    depends_on:\n      - postgres\n      - redis\n    networks:\n      - webapp-net\n\nvolumes:\n  pgdata:\n\nnetworks:\n  webapp-net:\n    driver: bridge",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tdev-ws-03\n\n# Development network\n10.0.10.103\tdev-ws-03\n10.0.10.5\tgit-01\n10.0.10.10\tstaging-api\n10.0.10.20\tstaging-db\n10.0.10.50\tprod-bastion\n10.0.10.1\tgateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/var/log/auth.log": "Mar  5 06:25:01 dev-ws-03 CRON[2345]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 06:25:01 dev-ws-03 CRON[2345]: pam_unix(cron:session): session closed for user root\nMar  5 08:02:14 dev-ws-03 sshd[3012]: Accepted password for jsmith from 10.0.10.1 port 52831 ssh2\nMar  5 08:02:14 dev-ws-03 sshd[3012]: pam_unix(sshd:session): session opened for user jsmith(uid=1000) by (uid=0)\nMar  5 08:15:33 dev-ws-03 sudo:   jsmith : TTY=pts/0 ; PWD=/home/jsmith ; USER=root ; COMMAND=/usr/bin/docker ps -a\nMar  5 08:30:00 dev-ws-03 CRON[3456]: pam_unix(cron:session): session opened for user jsmith(uid=1000) by (uid=0)\nMar  5 08:30:01 dev-ws-03 CRON[3456]: pam_unix(cron:session): session closed for user jsmith\nMar  5 09:11:45 dev-ws-03 sudo:   jsmith : TTY=pts/0 ; PWD=/home/jsmith/projects/webapp ; USER=root ; COMMAND=/usr/bin/systemctl restart postgresql\nMar  5 10:44:22 dev-ws-03 sshd[4501]: Failed password for root from 203.0.113.42 port 41923 ssh2\nMar  5 10:44:24 dev-ws-03 sshd[4501]: Failed password for root from 203.0.113.42 port 41923 ssh2\nMar  5 10:44:26 dev-ws-03 sshd[4501]: Failed password for root from 203.0.113.42 port 41923 ssh2\nMar  5 11:30:00 dev-ws-03 CRON[5012]: pam_unix(cron:session): session opened for user jsmith(uid=1000) by (uid=0)\nMar  5 13:05:18 dev-ws-03 sshd[5234]: Accepted password for jsmith from 10.0.10.1 port 55102 ssh2\nMar  5 13:05:18 dev-ws-03 sshd[5234]: pam_unix(sshd:session): session opened for user jsmith(uid=1000) by (uid=0)\nMar  5 14:22:07 dev-ws-03 sudo:   jsmith : TTY=pts/1 ; PWD=/home/jsmith ; USER=root ; COMMAND=/usr/bin/docker images\nMar  5 16:00:01 dev-ws-03 CRON[6012]: pam_unix(cron:session): session opened for user jsmith(uid=1000) by (uid=0)",
+    "/tmp/pytest_results.log": "============================= test session starts ==============================\nplatform linux -- Python 3.12.3, pytest-8.1.1, pluggy-1.4.0 -- /usr/bin/python3\ncachedir: .pytest_cache\nrootdir: /home/jsmith/projects/webapp\ncollecting ... collected 47 items\n\ntests/test_auth.py::test_login_success PASSED\ntests/test_auth.py::test_login_invalid_password PASSED\ntests/test_auth.py::test_jwt_token_generation PASSED\ntests/test_auth.py::test_jwt_token_expiry PASSED\ntests/test_payments.py::test_stripe_charge_success PASSED\ntests/test_payments.py::test_stripe_webhook_signature PASSED\ntests/test_payments.py::test_payment_refund PASSED\ntests/test_payments.py::test_webhook_race_condition FAILED\ntests/test_users.py::test_create_user PASSED\ntests/test_users.py::test_update_user_profile PASSED\ntests/test_users.py::test_delete_user_cascade PASSED\ntests/test_email.py::test_sendgrid_send PASSED\ntests/test_email.py::test_email_template_render PASSED\n\n=================================== FAILURES ===================================\n_____________________ test_webhook_race_condition ______________________________\n\n    def test_webhook_race_condition():\n        # Simulate concurrent webhook delivery\n>       assert result.status_code == 200\nE       AssertionError: assert 409 == 200\n\ntests/test_payments.py:87: AssertionError\n========================= 1 failed, 12 passed in 4.23s ========================",
+    "/var/mail/jsmith": "From cron-daemon@dev-ws-03 Wed Mar  5 08:30:01 2026\nSubject: Cron <jsmith@dev-ws-03> cd /home/jsmith/projects/webapp && git fetch origin 2>/dev/null\nDate: Wed, 05 Mar 2026 08:30:01 -0500\n\n>From git-01:/srv/git/webapp.git\n   a1b2c3d..e4f5g6h  main       -> origin/main\n   h7i8j9k..l0m1n2o  feature/payment-webhooks -> origin/feature/payment-webhooks\n\nFrom alerts@acme-corp.io Wed Mar  5 11:15:00 2026\nSubject: [Staging] Deployment failed - webapp v2.4.1\nDate: Wed, 05 Mar 2026 11:15:00 -0500\n\nDeployment of webapp v2.4.1 to staging-api (10.0.10.10) failed.\nError: Connection refused to staging-db (10.0.10.20:5432)\nPlease check database connectivity and retry.\n\nDeploy user: jsmith\nTarget: staging-api (10.0.10.10)\nDB Host: staging-db (10.0.10.20)\nRef: feature/payment-webhooks @ e4f5g6h",
+    "/home/jsmith/.config/code-server/config.yaml": "bind-addr: 0.0.0.0:8443\nauth: password\npassword: C0de_S3rver!2024\ncert: false",
+    "/root/.bash_history": "apt update && apt upgrade -y\nsystemctl status sshd\nsystemctl enable postgresql redis-server\nusermod -aG docker jsmith\npasswd jsmith\ncat /var/log/auth.log\nss -tlnp\nreboot"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 812,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "postgresql",
+      "pid": 1134,
+      "user": "postgres",
+      "command": "/usr/lib/postgresql/16/bin/postgres -D /var/lib/postgresql/16/main -c config_file=/etc/postgresql/16/main/postgresql.conf",
+      "ports": [
+        5432
+      ]
+    },
+    {
+      "name": "redis-server",
+      "pid": 1198,
+      "user": "redis",
+      "command": "/usr/bin/redis-server 127.0.0.1:6379",
+      "ports": [
+        6379
+      ]
+    },
+    {
+      "name": "dockerd",
+      "pid": 1256,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock",
+      "ports": []
+    },
+    {
+      "name": "code-server",
+      "pid": 2890,
+      "user": "jsmith",
+      "command": "/usr/bin/code-server --bind-addr 0.0.0.0:8443",
+      "ports": [
+        8443
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 678,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.10.103",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:0a:67"
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:ac:11:00:01"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "docker-ce",
+      "version": "26.1.3-1"
+    },
+    {
+      "name": "postgresql-16",
+      "version": "16.2-1ubuntu4"
+    },
+    {
+      "name": "redis-server",
+      "version": "7.2.4-1"
+    },
+    {
+      "name": "nodejs",
+      "version": "20.12.2-1nodesource1"
+    },
+    {
+      "name": "python3.12",
+      "version": "3.12.3-1ubuntu0.1"
+    },
+    {
+      "name": "code-server",
+      "version": "4.89.1"
+    },
+    {
+      "name": "git",
+      "version": "1:2.43.0-1ubuntu7"
+    },
+    {
+      "name": "awscli",
+      "version": "2.15.30"
+    },
+    {
+      "name": "google-cloud-cli",
+      "version": "473.0.0-0"
+    },
+    {
+      "name": "kubectl",
+      "version": "1.29.3-1"
+    },
+    {
+      "name": "terraform",
+      "version": "1.7.5"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:9.6p1-3ubuntu13"
+    }
+  ],
+  "crontabs": {
+    "jsmith": "*/30 * * * * cd /home/jsmith/projects/webapp && git fetch origin 2>/dev/null"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "jsmith": [
+        "jsmith",
+        "D3v2024!",
+        "password123"
+      ]
+    }
+  },
+  "description": "Developer workstation with local dev stack (PostgreSQL, Redis, Docker). Leaked AWS credentials for dev and staging, GCP service account key, Stripe and SendGrid API keys in .env, GitHub token in git config, SSH private key, extensive bash history revealing workflow and targets, /etc/hosts with staging and production bastion, docker-compose dev stack and bash history as rabbit holes.",
+  "remote_files": {
+    "10.0.10.5": {
+      "/opt/gitea/custom/conf/app.ini": {
+        "content_type": "text",
+        "content": "[database]\nDB_TYPE = mysql\nHOST = db-replica:3306\nNAME = gitea\nUSER = gitea_svc\nPASSWD = G1t_DB_Pr0d_2024!\n\n[server]\nROOT_URL = https://git.internal.corp/\nSSH_PORT = 2222\n",
+        "size": 171
+      }
+    },
+    "10.0.10.20": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.10.20\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 604
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.10.20:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 241
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.10.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    }
+  }
+}

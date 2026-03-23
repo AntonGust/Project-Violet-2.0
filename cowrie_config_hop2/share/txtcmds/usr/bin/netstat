@@ -1,0 +1,10 @@
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:5432            0.0.0.0:*               LISTEN      1456/postgresql-14
+tcp6       0      0 :::5432                 :::*                    LISTEN      1456/postgresql-14
+tcp        0      0 0.0.0.0:6432            0.0.0.0:*               LISTEN      2345/pgbouncer
+tcp6       0      0 :::6432                 :::*                    LISTEN      2345/pgbouncer
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      890/sshd
+tcp6       0      0 :::22                   :::*                    LISTEN      890/sshd
+tcp        0      0 0.0.0.0:5666            0.0.0.0:*               LISTEN      4567/nrpe
+tcp6       0      0 :::5666                 :::*                    LISTEN      4567/nrpe

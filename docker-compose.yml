@@ -1,0 +1,44 @@
+#version: "3.9"
+
+services:
+  kali:
+    build: Blue_Lagoon/kali_image
+    privileged: true
+    ports:
+      - "30${RUNID}:3022"  # SSH from host -> Kali
+    networks:
+      innet:
+        ipv4_address: "172.${RUNID}.0.2"
+
+  cowrie:
+    build: Cowrie/cowrie-src
+    restart: always
+    ports:
+      - "22${RUNID}:2222"    # Direct SSH for demo mode
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Allows container to reach host (for local LLMs)
+    environment:
+      - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
+      - COWRIE_HYBRID_LLM_ENABLED=true
+      - COWRIE_DB_HOST=${COWRIE_DB_HOST:-}
+      - COWRIE_DB_ENGINE=${COWRIE_DB_ENGINE:-}
+      - COWRIE_DB_PORT=${COWRIE_DB_PORT:-}
+      - COWRIE_DB_NAME=${COWRIE_DB_NAME:-}
+      - COWRIE_DB_USER=${COWRIE_DB_USER:-}
+      - COWRIE_DB_PASSWORD=${COWRIE_DB_PASSWORD:-}
+      - COWRIE_DB_ROOT_PASSWORD=${COWRIE_DB_ROOT_PASSWORD:-}
+    volumes:
+      - "./cowrie_config/etc:/cowrie/cowrie-git/etc"
+      - "./cowrie_config/honeyfs:/cowrie/cowrie-git/honeyfs"
+      - "./cowrie_config/share:/cowrie/cowrie-git/share/cowrie"
+      - "./cowrie_config/var:/cowrie/cowrie-git/var"
+    networks:
+      innet:
+        ipv4_address: "172.${RUNID}.0.3"
+
+networks:
+  innet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.${RUNID}.0.0/24"

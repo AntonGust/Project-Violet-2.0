@@ -1,0 +1,677 @@
+{
+  "id": "a1e2f3c4-d5b6-7890-abcd-e12345678902",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Debian 12.4 bookworm",
+    "hostname": "mail-relay-01",
+    "kernel_version": "6.1.0-18-amd64",
+    "arch": "x86_64",
+    "timezone": "America/New_York"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rKz8mP$fakehashroot0192837465abcdef",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "postfix",
+      "uid": 89,
+      "gid": 89,
+      "home": "/var/spool/postfix",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "postfix"
+      ]
+    },
+    {
+      "name": "dovecot",
+      "uid": 97,
+      "gid": 97,
+      "home": "/usr/lib/dovecot",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "dovecot"
+      ]
+    },
+    {
+      "name": "mailadmin",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/mailadmin",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$xQp3vN$fakehashmailadmin7382910abcdef",
+      "groups": [
+        "mailadmin",
+        "sudo",
+        "mail"
+      ],
+      "sudo_rules": "mailadmin ALL=(ALL) NOPASSWD: /usr/sbin/postfix, /usr/bin/systemctl"
+    },
+    {
+      "name": "vmail",
+      "uid": 5000,
+      "gid": 5000,
+      "home": "/var/vmail",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "vmail"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 2145
+      },
+      {
+        "name": ".profile",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 161
+      }
+    ],
+    "/home/mailadmin": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 3526
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 1890
+      },
+      {
+        "name": ".my.cnf",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 94
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "mailadmin",
+        "group": "mailadmin"
+      },
+      {
+        "name": "backup_mail.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 637
+      },
+      {
+        "name": ".profile",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 807
+      }
+    ],
+    "/home/mailadmin/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 100
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 1780
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 312
+      },
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 580
+      }
+    ],
+    "/etc/postfix": [
+      {
+        "name": "main.cf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 2847
+      },
+      {
+        "name": "master.cf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1230
+      },
+      {
+        "name": "sasl_passwd",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 128
+      },
+      {
+        "name": "sasl_passwd.db",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 12288
+      },
+      {
+        "name": "virtual_mailbox_domains",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 68
+      },
+      {
+        "name": "virtual_mailbox_maps",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 215
+      }
+    ],
+    "/etc/dovecot": [
+      {
+        "name": "dovecot.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 482
+      },
+      {
+        "name": "conf.d",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/etc/dovecot/conf.d": [
+      {
+        "name": "10-auth.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 340
+      },
+      {
+        "name": "10-mail.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 290
+      },
+      {
+        "name": "10-ssl.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 210
+      }
+    ],
+    "/opt/roundcube": [
+      {
+        "name": "config",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "www-data",
+        "group": "www-data"
+      },
+      {
+        "name": "index.php",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 2840
+      },
+      {
+        "name": "logs",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "www-data",
+        "group": "www-data"
+      }
+    ],
+    "/opt/roundcube/config": [
+      {
+        "name": "config.inc.php",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 1456
+      },
+      {
+        "name": "defaults.inc.php",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "www-data",
+        "group": "www-data",
+        "size": 4821
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8942
+      },
+      {
+        "name": "mail.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 45230
+      },
+      {
+        "name": "syslog",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 23451
+      },
+      {
+        "name": "fail2ban.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 5120
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 2340
+      }
+    ],
+    "/var/vmail": [
+      {
+        "name": "internal.corp",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "vmail",
+        "group": "vmail"
+      }
+    ],
+    "/var/spool/postfix": [
+      {
+        "name": "active",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "postfix",
+        "group": "root"
+      },
+      {
+        "name": "deferred",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "postfix",
+        "group": "root"
+      },
+      {
+        "name": "incoming",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "postfix",
+        "group": "root"
+      },
+      {
+        "name": "maildrop",
+        "type": "dir",
+        "permissions": "0730",
+        "owner": "postfix",
+        "group": "postdrop"
+      }
+    ],
+    "/etc/letsencrypt/live/mail.internal.corp": [
+      {
+        "name": "fullchain.pem",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 3480
+      },
+      {
+        "name": "privkey.pem",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1704
+      }
+    ],
+    "/var/spool/cron/crontabs": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "crontab",
+        "size": 120
+      },
+      {
+        "name": "mailadmin",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mailadmin",
+        "group": "crontab",
+        "size": 85
+      }
+    ],
+    "/usr/local/bin": [
+      {
+        "name": "check_mail_queue.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 342
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "postfix-queue-dump.txt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mailadmin",
+        "group": "mailadmin",
+        "size": 1024
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "systemctl status postfix\nsystemctl status dovecot\njournalctl -u postfix -f\ntail -f /var/log/mail.log\npostconf -n\npostconf smtpd_sasl_auth_enable\npostconf smtp_sasl_password_maps\npostmap /etc/postfix/sasl_passwd\ncat /etc/postfix/sasl_passwd\nmysql -u mailadmin -p'V!rtu@lM@il_2024' -h db-mail.internal.corp maildb -e 'SELECT COUNT(*) FROM virtual_users;'\nss -tlnp\nfail2ban-client status postfix-sasl\ncertbot certificates\ndovecot -n\ncat /etc/dovecot/conf.d/10-auth.conf\nnetstat -tulnp\ndf -h\nfree -m\nfind /var/vmail -type f -name '*.eml' | wc -l\npostqueue -p\npostsuper -d ALL deferred\nsystemctl restart postfix\nsystemctl restart dovecot\ncat /opt/roundcube/config/config.inc.php\nls -la /var/vmail/internal.corp/\nopendkim-testkey -d internal.corp -s mail -vvv\niptables -L -n",
+    "/etc/postfix/sasl_passwd": "[smtp-relay.external.com]:587 relay-user@internal.corp:R3l@y_Smtp!Pass_2024\n[backup-smtp.external.com]:587 backup-relay@internal.corp:Bkup_Sm7p#F@ll2024",
+    "/home/mailadmin/.my.cnf": "[client]\nuser=mailadmin\npassword=V!rtu@lM@il_2024\nhost=db-mail.internal.corp\ndatabase=maildb",
+    "/opt/roundcube/config/config.inc.php": "<?php\n\n/* Local configuration for Roundcube Webmail */\n\n// Database connection string (DSN)\n$config['db_dsnw'] = 'mysql://roundcube:Rc_DB#s3cur3_2024@db-mail.internal.corp/roundcubemail';\n\n// IMAP server host\n$config['default_host'] = 'ssl://localhost';\n$config['default_port'] = 993;\n\n// SMTP server host\n$config['smtp_server'] = 'tls://localhost';\n$config['smtp_port'] = 587;\n$config['smtp_user'] = '%u';\n$config['smtp_pass'] = '%p';\n\n// System temp directory\n$config['temp_dir'] = '/tmp/roundcube';\n\n// DES key for session encryption (must be exactly 24 chars)\n$config['des_key'] = 'G7k!mP2x#vB9qR4w$nL6jY8e';\n\n// Logging\n$config['log_driver'] = 'file';\n$config['log_dir'] = '/opt/roundcube/logs/';\n\n// Skin\n$config['skin'] = 'elastic';\n\n// Plugins\n$config['plugins'] = array(\n    'archive',\n    'zipdownload',\n    'managesieve',\n    'password',\n    'markasjunk',\n);\n\n// Support URL\n$config['support_url'] = 'mailto:mailadmin@internal.corp';\n\n// Product name\n$config['product_name'] = 'Internal Corp Webmail';\n\n// Auto-create addressbook on login\n$config['create_default_folders'] = true;\n\n// Session lifetime in minutes\n$config['session_lifetime'] = 30;\n\n// Password plugin config\n$config['password_driver'] = 'sql';\n$config['password_db_dsn'] = 'mysql://roundcube:Rc_DB#s3cur3_2024@db-mail.internal.corp/maildb';\n$config['password_query'] = \"UPDATE virtual_users SET password=ENCRYPT(%p,CONCAT('$6$',SHA2(RAND(),256))) WHERE email=%u\";\n",
+    "/home/mailadmin/backup_mail.sh": "#!/bin/bash\n# Mail backup script - runs nightly via cron\n# Backs up mail data and database to backup-01\n\nBACKUP_HOST=\"backup-01.internal.corp\"\nBACKUP_USER=\"backupagent\"\nBACKUP_PASS=\"Bk@p_Ag3nt!2024\"\nBACKUP_DIR=\"/srv/backups/mail-relay-01\"\nDATE=$(date +%Y%m%d)\n\n# Dump MySQL mail database\nmysqldump -u mailadmin -p'V!rtu@lM@il_2024' -h db-mail.internal.corp maildb > /tmp/maildb_${DATE}.sql\n\n# Sync mail data\nexport RSYNC_PASSWORD=\"${BACKUP_PASS}\"\nrsync -avz --delete /var/vmail/ ${BACKUP_USER}@${BACKUP_HOST}::mail-backup/vmail/\nrsync -avz /tmp/maildb_${DATE}.sql ${BACKUP_USER}@${BACKUP_HOST}::mail-backup/db/\nrsync -avz /etc/postfix/ ${BACKUP_USER}@${BACKUP_HOST}::mail-backup/postfix-config/\nrsync -avz /etc/dovecot/ ${BACKUP_USER}@${BACKUP_HOST}::mail-backup/dovecot-config/\n\n# Cleanup\nrm -f /tmp/maildb_${DATE}.sql\n\nlogger \"Mail backup completed to ${BACKUP_HOST}:${BACKUP_DIR}\"",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tmail-relay-01\n\n# Mail infrastructure\n10.0.5.10\tmail-relay-01\n10.0.5.20\twebmail.internal.corp webmail\n10.0.5.30\tldap.internal.corp ldap\n10.0.5.100\tdb-mail.internal.corp db-mail\n10.0.5.1\tgateway.internal.corp gateway\n10.0.5.50\tbackup-01.internal.corp backup-01\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/home/mailadmin/.ssh/config": "Host backup-01\n    HostName 10.0.5.50\n    User backupagent\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost db-mail\n    HostName 10.0.5.100\n    User mailadmin\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost webmail\n    HostName 10.0.5.20\n    User deploy\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519",
+    "/var/log/auth.log": "Mar  5 03:00:01 mail-relay-01 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 03:00:02 mail-relay-01 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  5 06:45:18 mail-relay-01 sshd[5102]: Accepted password for mailadmin from 10.0.5.1 port 44231 ssh2\nMar  5 06:45:18 mail-relay-01 sshd[5102]: pam_unix(sshd:session): session opened for user mailadmin(uid=1000) by (uid=0)\nMar  5 07:12:33 mail-relay-01 sudo: mailadmin : TTY=pts/0 ; PWD=/home/mailadmin ; USER=root ; COMMAND=/usr/bin/systemctl restart postfix\nMar  5 07:12:34 mail-relay-01 sudo: pam_unix(sudo:session): session opened for user root(uid=0) by mailadmin(uid=1000)\nMar  5 07:12:35 mail-relay-01 sudo: pam_unix(sudo:session): session closed for user root\nMar  5 08:30:22 mail-relay-01 sshd[5389]: Accepted password for root from 10.0.5.1 port 48721 ssh2\nMar  5 08:30:22 mail-relay-01 sshd[5389]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  5 09:15:44 mail-relay-01 sshd[5567]: Failed password for admin from 203.0.113.45 port 39212 ssh2\nMar  5 09:15:46 mail-relay-01 sshd[5567]: Failed password for admin from 203.0.113.45 port 39212 ssh2\nMar  5 09:15:48 mail-relay-01 sshd[5567]: Failed password for admin from 203.0.113.45 port 39212 ssh2\nMar  5 09:15:48 mail-relay-01 sshd[5567]: Connection closed by 203.0.113.45 port 39212 [preauth]\nMar  5 10:00:01 mail-relay-01 CRON[5890]: pam_unix(cron:session): session opened for user mailadmin(uid=1000) by (uid=0)\nMar  5 10:00:01 mail-relay-01 CRON[5890]: pam_unix(cron:session): session closed for user mailadmin\nMar  5 11:22:07 mail-relay-01 sshd[6012]: Accepted password for mailadmin from 10.0.5.20 port 52100 ssh2\nMar  5 11:22:07 mail-relay-01 sshd[6012]: pam_unix(sshd:session): session opened for user mailadmin(uid=1000) by (uid=0)\nMar  5 12:45:30 mail-relay-01 sudo: mailadmin : TTY=pts/1 ; PWD=/etc/postfix ; USER=root ; COMMAND=/usr/sbin/postfix reload\nMar  5 14:00:01 mail-relay-01 CRON[6234]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 14:00:02 mail-relay-01 CRON[6234]: pam_unix(cron:session): session closed for user root\nMar  5 15:30:19 mail-relay-01 sshd[6478]: Accepted password for root from 10.0.5.50 port 60112 ssh2\nMar  5 15:30:19 mail-relay-01 sshd[6478]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)",
+    "/var/log/mail.log": "Mar  5 06:00:01 mail-relay-01 postfix/pickup[3412]: E2A1F4C001: uid=0 from=<root@mail-relay-01>\nMar  5 06:00:01 mail-relay-01 postfix/cleanup[3450]: E2A1F4C001: message-id=<20260305060001.E2A1F4C001@mail-relay-01>\nMar  5 06:00:01 mail-relay-01 postfix/qmgr[3210]: E2A1F4C001: from=<root@mail-relay-01>, size=1245, nrcpt=1 (queue active)\nMar  5 06:00:02 mail-relay-01 postfix/local[3455]: E2A1F4C001: to=<root@mail-relay-01>, relay=local, delay=0.12, delays=0.08/0.01/0/0.03, dsn=2.0.0, status=sent (delivered to mailbox)\nMar  5 06:00:02 mail-relay-01 postfix/qmgr[3210]: E2A1F4C001: removed\nMar  5 07:15:22 mail-relay-01 postfix/smtpd[4201]: connect from webmail.internal.corp[10.0.5.20]\nMar  5 07:15:22 mail-relay-01 postfix/smtpd[4201]: 8B3C14C002: client=webmail.internal.corp[10.0.5.20], sasl_method=PLAIN, sasl_username=j.smith@internal.corp\nMar  5 07:15:22 mail-relay-01 postfix/cleanup[4210]: 8B3C14C002: message-id=<a1b2c3d4@webmail.internal.corp>\nMar  5 07:15:22 mail-relay-01 postfix/qmgr[3210]: 8B3C14C002: from=<j.smith@internal.corp>, size=2847, nrcpt=1 (queue active)\nMar  5 07:15:23 mail-relay-01 postfix/smtp[4215]: 8B3C14C002: to=<vendor@example.com>, relay=smtp-relay.external.com[198.51.100.25]:587, delay=0.98, delays=0.12/0.01/0.55/0.30, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as ABC123)\nMar  5 07:15:23 mail-relay-01 postfix/qmgr[3210]: 8B3C14C002: removed\nMar  5 08:00:45 mail-relay-01 dovecot: imap-login: Login: user=<j.smith@internal.corp>, method=PLAIN, rip=10.0.5.20, lip=10.0.5.10, mpid=4301, TLS, session=<abc123def456>\nMar  5 08:01:12 mail-relay-01 dovecot: imap(j.smith@internal.corp)<4301><abc123def456>: Logged out in=342 out=8451 deleted=0 expunged=0 trashed=0 hdr_count=12 hdr_bytes=4521 body_count=3 body_bytes=28450\nMar  5 08:30:11 mail-relay-01 postfix/smtpd[4401]: connect from unknown[203.0.113.99]\nMar  5 08:30:12 mail-relay-01 postfix/smtpd[4401]: NOQUEUE: reject: RCPT from unknown[203.0.113.99]: 554 5.7.1 <spammer@spam.test>: Relay access denied; from=<spammer@spam.test> to=<victim@example.net> proto=ESMTP helo=<spam.test>\nMar  5 08:30:12 mail-relay-01 postfix/smtpd[4401]: disconnect from unknown[203.0.113.99] ehlo=1 mail=1 rcpt=0/1 quit=1 commands=3/4\nMar  5 09:22:33 mail-relay-01 postfix/smtpd[4501]: connect from ldap.internal.corp[10.0.5.30]\nMar  5 09:22:33 mail-relay-01 postfix/smtpd[4501]: A7F214C003: client=ldap.internal.corp[10.0.5.30], sasl_method=PLAIN, sasl_username=svc-ldap@internal.corp\nMar  5 09:22:34 mail-relay-01 postfix/cleanup[4510]: A7F214C003: message-id=<ldap-notify-0305@ldap.internal.corp>\nMar  5 09:22:34 mail-relay-01 postfix/qmgr[3210]: A7F214C003: from=<svc-ldap@internal.corp>, size=1580, nrcpt=3 (queue active)\nMar  5 09:22:35 mail-relay-01 postfix/smtp[4515]: A7F214C003: to=<mailadmin@internal.corp>, relay=local, delay=0.15, delays=0.08/0.01/0/0.06, dsn=2.0.0, status=sent (delivered to maildir)\nMar  5 09:22:35 mail-relay-01 postfix/smtp[4515]: A7F214C003: to=<security@internal.corp>, relay=local, delay=0.18, delays=0.08/0.01/0/0.09, dsn=2.0.0, status=sent (delivered to maildir)\nMar  5 09:22:36 mail-relay-01 postfix/smtp[4515]: A7F214C003: to=<admin@internal.corp>, relay=local, delay=0.20, delays=0.08/0.01/0/0.11, dsn=2.0.0, status=sent (delivered to maildir)\nMar  5 09:22:36 mail-relay-01 postfix/qmgr[3210]: A7F214C003: removed\nMar  5 10:45:18 mail-relay-01 postfix/smtpd[4601]: connect from webmail.internal.corp[10.0.5.20]\nMar  5 10:45:18 mail-relay-01 postfix/smtpd[4601]: D3E214C004: client=webmail.internal.corp[10.0.5.20], sasl_method=PLAIN, sasl_username=m.jones@internal.corp\nMar  5 10:45:19 mail-relay-01 postfix/cleanup[4610]: D3E214C004: message-id=<xyz789@webmail.internal.corp>\nMar  5 10:45:19 mail-relay-01 postfix/qmgr[3210]: D3E214C004: from=<m.jones@internal.corp>, size=15230, nrcpt=1 (queue active)\nMar  5 10:45:20 mail-relay-01 postfix/smtp[4615]: D3E214C004: to=<partner@example.org>, relay=smtp-relay.external.com[198.51.100.25]:587, delay=1.45, delays=0.10/0.01/0.82/0.52, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as DEF456)\nMar  5 10:45:20 mail-relay-01 postfix/qmgr[3210]: D3E214C004: removed\nMar  5 11:30:05 mail-relay-01 postfix/smtp[4701]: F1A214C005: to=<bounced-user@stale-domain.test>, relay=none, delay=72341, delays=72300/0.01/41/0, dsn=4.4.1, status=deferred (connect to stale-domain.test[192.0.2.1]:25: Connection timed out)\nMar  5 12:00:01 mail-relay-01 dovecot: imap-login: Login: user=<m.jones@internal.corp>, method=PLAIN, rip=10.0.5.20, lip=10.0.5.10, mpid=4801, TLS, session=<def456ghi789>\nMar  5 13:15:42 mail-relay-01 opendkim[2890]: A7F214C003: DKIM-Signature field added (s=mail, d=internal.corp)\nMar  5 14:22:10 mail-relay-01 postfix/smtpd[4901]: connect from gateway.internal.corp[10.0.5.1]\nMar  5 14:22:11 mail-relay-01 postfix/smtpd[4901]: 5CA214C006: client=gateway.internal.corp[10.0.5.1]\nMar  5 14:22:11 mail-relay-01 postfix/cleanup[4910]: 5CA214C006: message-id=<gw-alert-0305@gateway.internal.corp>\nMar  5 14:22:11 mail-relay-01 postfix/qmgr[3210]: 5CA214C006: from=<noreply@gateway.internal.corp>, size=980, nrcpt=1 (queue active)\nMar  5 14:22:12 mail-relay-01 postfix/local[4915]: 5CA214C006: to=<root@mail-relay-01>, relay=local, delay=0.09, delays=0.06/0.01/0/0.02, dsn=2.0.0, status=sent (delivered to mailbox)\nMar  5 14:22:12 mail-relay-01 postfix/qmgr[3210]: 5CA214C006: removed",
+    "/var/mail/root": "From MAILER-DAEMON Mon Mar  5 02:00:01 2026\nSubject: Cron <root@mail-relay-01> /home/mailadmin/backup_mail.sh\nDate: Mon, 05 Mar 2026 02:00:01 -0500\n\nMail backup completed to backup-01.internal.corp:/srv/backups/mail-relay-01\nFiles transferred: 1,247\nTotal size: 3.2G\nDuration: 4m 12s\n\nFrom logwatch@mail-relay-01 Mon Mar  5 04:00:00 2026\nSubject: Logwatch for mail-relay-01 (Linux)\nDate: Mon, 05 Mar 2026 04:00:00 -0500\n\n################### Logwatch 7.7 (11/22/22) ####################\n        Processing Initiated: Mon Mar  5 04:00:00 2026\n        Date Range Processed: yesterday\n\n --------------------- Postfix Begin ------------------------\n     4,521  Messages accepted\n        23  Messages rejected\n         3  Messages bounced\n     4,498  Messages delivered\n --------------------- Postfix End --------------------------\n\n --------------------- SSHD Begin --------------------------\n  Users logging in through sshd:\n    mailadmin: 10.0.5.1 (2 times), 10.0.5.20 (1 time)\n    root: 10.0.5.1 (1 time), 10.0.5.50 (1 time)\n  Failed logins from:\n    203.0.113.45: 3 times (admin)\n --------------------- SSHD End ----------------------------\n\nFrom noreply@gateway.internal.corp Mon Mar  5 14:22:11 2026\nSubject: [Gateway Alert] Firewall rule update\nDate: Mon, 05 Mar 2026 14:22:11 -0500\n\nFirewall rules updated on gateway.internal.corp.\nNew rule added: ALLOW TCP 10.0.5.0/24 -> 0.0.0.0/0:587 (SMTP submission)\nRequested by: mailadmin\nApproved by: auto-policy",
+    "/etc/postfix/main.cf": "# Postfix main configuration - mail-relay-01.internal.corp\n# See /usr/share/postfix/main.cf.dist for full reference\n# Last modified: 2026-02-28 by mailadmin\n\n# General settings\nsmtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)\nbiff = no\nappend_dot_mydomain = no\nreadme_directory = no\ncompatibility_level = 3.6\n\n# TLS parameters\nsmtpd_tls_cert_file = /etc/letsencrypt/live/mail.internal.corp/fullchain.pem\nsmtpd_tls_key_file = /etc/letsencrypt/live/mail.internal.corp/privkey.pem\nsmtpd_tls_security_level = may\nsmtpd_tls_auth_only = yes\nsmtpd_tls_loglevel = 1\nsmtpd_tls_received_header = yes\nsmtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache\nsmtp_tls_CApath = /etc/ssl/certs\nsmtp_tls_security_level = may\nsmtp_tls_session_cache_database = btree:${data_directory}/smtp_scache\nsmtp_tls_loglevel = 1\n\n# SASL authentication\nsmtpd_sasl_type = dovecot\nsmtpd_sasl_path = private/auth\nsmtpd_sasl_auth_enable = yes\nsmtpd_sasl_security_options = noanonymous\nsmtpd_sasl_local_domain = $myhostname\nbroken_sasl_auth_clients = yes\n\n# Relay configuration\nsmtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nrelayhost = [smtp-relay.external.com]:587\n\n# Network and access\nmyhostname = mail-relay-01.internal.corp\nmydomain = internal.corp\nmyorigin = $mydomain\nmydestination = $myhostname, localhost.$mydomain, localhost, $mydomain\nmynetworks = 127.0.0.0/8 10.0.5.0/24 [::ffff:127.0.0.0]/104 [::1]/128\ninet_interfaces = all\ninet_protocols = ipv4\n\n# Virtual mailbox settings\nvirtual_mailbox_domains = internal.corp\nvirtual_mailbox_base = /var/vmail\nvirtual_mailbox_maps = mysql:/etc/postfix/virtual_mailbox_maps.cf\nvirtual_alias_maps = mysql:/etc/postfix/virtual_alias_maps.cf\nvirtual_uid_maps = static:5000\nvirtual_gid_maps = static:5000\nvirtual_transport = lmtp:unix:private/dovecot-lmtp\n\n# Restrictions\nsmtpd_helo_required = yes\nsmtpd_helo_restrictions =\n    permit_mynetworks,\n    reject_non_fqdn_helo_hostname,\n    reject_invalid_helo_hostname\nsmtpd_sender_restrictions =\n    permit_mynetworks,\n    permit_sasl_authenticated,\n    reject_non_fqdn_sender,\n    reject_unknown_sender_domain\nsmtpd_recipient_restrictions =\n    permit_mynetworks,\n    permit_sasl_authenticated,\n    reject_unauth_destination,\n    reject_non_fqdn_recipient,\n    reject_unknown_recipient_domain,\n    check_policy_service unix:private/policyd-spf\nsmtpd_relay_restrictions =\n    permit_mynetworks,\n    permit_sasl_authenticated,\n    defer_unauth_destination\n\n# Milter configuration (OpenDKIM)\nmilter_default_action = accept\nmilter_protocol = 6\nsmtpd_milters = local:opendkim/opendkim.sock\nnon_smtpd_milters = $smtpd_milters\n\n# Queue settings\nmaximal_queue_lifetime = 5d\nbounce_queue_lifetime = 1d\nminimal_backoff_time = 300s\nmaximal_backoff_time = 4000s\nqueue_run_delay = 300s\n\n# Size limits\nmessage_size_limit = 52428800\nmailbox_size_limit = 0\n\n# Logging\nsmtpd_tls_loglevel = 1\n\n# Aliases\nalias_maps = hash:/etc/aliases\nalias_database = hash:/etc/aliases",
+    "/home/mailadmin/.bash_history": "sudo systemctl status postfix\nsudo systemctl status dovecot\ntail -100 /var/log/mail.log\npostqueue -p\npostqueue -f\nmailq\nsudo postsuper -d ALL deferred\ncat /etc/postfix/main.cf\nvim /etc/postfix/main.cf\nsudo postfix reload\nsudo systemctl restart dovecot\nmysql -u mailadmin -p'V!rtu@lM@il_2024' -h db-mail.internal.corp maildb\nSELECT * FROM virtual_users LIMIT 10;\nssh backup-01\nrsync -avz /var/vmail/ backupagent@backup-01.internal.corp::mail-backup/vmail/\ndf -h\ndu -sh /var/vmail/*\nfail2ban-client status\nfail2ban-client status postfix-sasl\ncertbot renew --dry-run\nopenssl s_client -connect localhost:993\ncat /opt/roundcube/config/config.inc.php\nsudo journalctl -u postfix --since '1 hour ago'\nss -tlnp"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 812,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "postfix",
+      "pid": 3201,
+      "user": "root",
+      "command": "/usr/lib/postfix/sbin/master -w",
+      "ports": [
+        25,
+        587
+      ]
+    },
+    {
+      "name": "dovecot",
+      "pid": 3340,
+      "user": "root",
+      "command": "/usr/sbin/dovecot -F",
+      "ports": [
+        993,
+        143
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "fail2ban",
+      "pid": 1045,
+      "user": "root",
+      "command": "/usr/bin/python3 /usr/bin/fail2ban-server -xf start",
+      "ports": []
+    },
+    {
+      "name": "rsyslogd",
+      "pid": 498,
+      "user": "root",
+      "command": "/usr/sbin/rsyslogd -n -iNONE",
+      "ports": []
+    },
+    {
+      "name": "opendkim",
+      "pid": 2890,
+      "user": "opendkim",
+      "command": "/usr/sbin/opendkim -x /etc/opendkim.conf",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.5.10",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:05:0a"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "postfix",
+      "version": "3.7.10-0+deb12u1"
+    },
+    {
+      "name": "dovecot-imapd",
+      "version": "1:2.3.19.1+dfsg1-2.1+deb12u1"
+    },
+    {
+      "name": "dovecot-pop3d",
+      "version": "1:2.3.19.1+dfsg1-2.1+deb12u1"
+    },
+    {
+      "name": "roundcube",
+      "version": "1.6.6+dfsg-1~deb12u1"
+    },
+    {
+      "name": "mysql-client",
+      "version": "8.0.36-0debian12"
+    },
+    {
+      "name": "fail2ban",
+      "version": "1.0.2-2"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:9.2p1-2+deb12u2"
+    },
+    {
+      "name": "rsync",
+      "version": "3.2.7-1"
+    },
+    {
+      "name": "certbot",
+      "version": "2.1.0-4"
+    },
+    {
+      "name": "opendkim",
+      "version": "2.11.0~beta2-8+deb12u1"
+    }
+  ],
+  "crontabs": {
+    "root": "0 2 * * * /home/mailadmin/backup_mail.sh\n0 3 * * 0 certbot renew --quiet",
+    "mailadmin": "*/10 * * * * /usr/local/bin/check_mail_queue.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456",
+        "mail"
+      ],
+      "mailadmin": [
+        "mailadmin",
+        "M@il2024!",
+        "admin123"
+      ]
+    }
+  },
+  "description": "Corporate mail relay running Postfix/Dovecot with Roundcube webmail. Leaked SMTP relay credentials in sasl_passwd, MySQL DB password in .my.cnf and Roundcube config, backup script with remote host password, /etc/hosts mapping internal mail infrastructure, SSH config pointing to backup and database servers, auth.log and mail.log with recent activity, Postfix main.cf as rabbit hole config.",
+  "remote_files": {
+    "10.0.5.20": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.5.20\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.5.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.5.30": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.5.100": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.5.100\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 604
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.5.100:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 241
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.5.100\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    },
+    "10.0.5.50": {
+      "/var/backups/full_backup_latest.sql.gz": {
+        "content_type": "binary",
+        "size": 4913505
+      },
+      "/opt/backup/backup.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.5.50:/opt/backup/backup.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 187
+      },
+      "/opt/backup/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.5.50\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    }
+  }
+}

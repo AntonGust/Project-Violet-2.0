@@ -1,0 +1,6 @@
+root:0:root
+root:0:123456
+root:0:toor
+root:0:password
+deploy:1000:deploy123
+deploy:1000:123456

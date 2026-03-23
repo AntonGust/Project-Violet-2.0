@@ -1,0 +1,13 @@
+[Unit]
+Description=Tuned
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/bin/python2 -Es /usr/sbin/tuned -l -P
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

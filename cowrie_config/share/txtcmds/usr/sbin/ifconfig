@@ -1,0 +1,17 @@
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.1.15  netmask 255.255.255.0
+        ether 02:42:0a:00:01:0f  txqueuelen 1000  (Ethernet)
+        RX packets 1234567  bytes 123456789 (123.4 MB)
+        TX packets 987654  bytes 98765432 (98.7 MB)
+
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0
+        ether 02:42:b8:7f:c3:a1  txqueuelen 1000  (Ethernet)
+        RX packets 1234567  bytes 123456789 (123.4 MB)
+        TX packets 987654  bytes 98765432 (98.7 MB)
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        RX packets 1234567  bytes 123456789 (123.4 MB)
+        TX packets 987654  bytes 98765432 (98.7 MB)
+

@@ -1,0 +1,13 @@
+[Unit]
+Description=Dockerd
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/bin/dockerd -H fd://
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+jenkins       1456  0.1  0.3    22537  11157 ?        Ss   Jan01   0:42 /usr/bin/java -jar /usr/share/java/jenkins.war --httpPort=8080
+root           890  0.1  0.1    72304   5520 ?        Ss   Jan01   0:42 sshd: /usr/sbin/sshd -D
+root          1023  0.1  2.2  1564832  89424 ?        Ss   Jan01   0:42 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+root           987  0.1  0.2    19254   9750 ?        Ss   Jan01   0:42 /usr/bin/containerd
+gitlab-runner  2345  0.1  0.3    28760  13824 ?        Ss   Jan01   0:42 /usr/bin/gitlab-runner run --working-directory /home/gitlab-runner --config /home/gitlab-runner/.gitlab-runner/config.toml
+node_exporter  3456  0.1  0.4    36537  17157 ?        Ss   Jan01   0:42 /usr/bin/node_exporter --web.listen-address=:9100
+root           567  0.1  0.1     8544   3200 ?        Ss   Jan01   0:42 /usr/sbin/cron -f

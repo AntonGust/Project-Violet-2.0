@@ -1,0 +1,65 @@
+[
+  {
+    "chain_id": "chain-001",
+    "name": "AWS Credential Discovery to Backup Gateway Access",
+    "steps": [
+      {
+        "file": "/home/dba/.aws/credentials",
+        "discovery_hint": "Contains AWS access keys used to interact with cloud services",
+        "leads_to": "/home/dba/scripts/full_backup.sh"
+      },
+      {
+        "file": "/home/dba/scripts/full_backup.sh",
+        "discovery_hint": "Script uses AWS CLI to sync backups to s3://backup-s3-gateway",
+        "leads_to": "10.0.3.100"
+      },
+      {
+        "file": "10.0.3.100",
+        "discovery_hint": "Internal IP for backup-s3-gateway reachable with AWS credentials",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-002",
+    "name": "Container Escape via Docker Socket and Registry Credentials",
+    "steps": [
+      {
+        "file": "/var/run/docker.sock",
+        "discovery_hint": "Presence of docker.sock indicates the container is privileged or host-mounted socket is exposed",
+        "leads_to": "/home/dba/.docker/config.json"
+      },
+      {
+        "file": "/home/dba/.docker/config.json",
+        "discovery_hint": "Contains auth tokens to private Docker registries",
+        "leads_to": "/etc/docker/daemon.json"
+      },
+      {
+        "file": "/etc/docker/daemon.json",
+        "discovery_hint": "Daemon configuration showing docker API exposed on TCP port, potentially allowing remote control",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-003",
+    "name": "CI/CD Pipeline Token to Kubernetes Cluster Access",
+    "steps": [
+      {
+        "file": "/home/dba/.gitlab-ci.yml",
+        "discovery_hint": "CI/CD pipeline config contains a GitLab token for pipeline operations",
+        "leads_to": "/home/dba/.kube/config"
+      },
+      {
+        "file": "/home/dba/.kube/config",
+        "discovery_hint": "Kubernetes config with a service account token allowing access to db-standby cluster",
+        "leads_to": "10.0.3.15"
+      },
+      {
+        "file": "10.0.3.15",
+        "discovery_hint": "Internal IP for db-standby, reachable from db-primary with kubectl config",
+        "leads_to": null
+      }
+    ]
+  }
+]

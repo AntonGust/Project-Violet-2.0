@@ -1,0 +1,713 @@
+{
+  "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+  "timestamp": "2026-02-19T12:00:00Z",
+  "system": {
+    "os": "Debian 12.4 bookworm",
+    "hostname": "ci-runner-07",
+    "kernel_version": "6.1.0-17-amd64",
+    "arch": "x86_64",
+    "timezone": "Europe/London"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$abc$fakehashroot",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "jenkins",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/var/lib/jenkins",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$def$fakehashjenkins",
+      "groups": [
+        "jenkins",
+        "docker"
+      ],
+      "sudo_rules": "jenkins ALL=(ALL) NOPASSWD: /usr/bin/docker, /usr/bin/systemctl"
+    },
+    {
+      "name": "gitlab-runner",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/gitlab-runner",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$ghi$fakehashrunner",
+      "groups": [
+        "gitlab-runner",
+        "docker"
+      ]
+    },
+    {
+      "name": "node_exporter",
+      "uid": 9100,
+      "gid": 9100,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "node_exporter"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1893
+      },
+      {
+        "name": ".kube",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.kube": [
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1824
+      }
+    ],
+    "/var/lib/jenkins": [
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jenkins",
+        "group": "jenkins"
+      },
+      {
+        "name": "workspace",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jenkins",
+        "group": "jenkins"
+      },
+      {
+        "name": "secrets",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jenkins",
+        "group": "jenkins"
+      },
+      {
+        "name": "config.xml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 4521
+      },
+      {
+        "name": "credentials.xml",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 2890
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "jenkins",
+        "group": "jenkins"
+      },
+      {
+        "name": "jenkins_api_token.xml",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 130
+      }
+    ],
+    "/var/lib/jenkins/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 100
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 2340
+      }
+    ],
+    "/var/lib/jenkins/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 187
+      }
+    ],
+    "/var/lib/jenkins/secrets": [
+      {
+        "name": "master.key",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 256
+      },
+      {
+        "name": "initialAdminPassword",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 33
+      }
+    ],
+    "/var/lib/jenkins/workspace": [
+      {
+        "name": "deploy-production",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jenkins",
+        "group": "jenkins"
+      },
+      {
+        "name": "build-api-service",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jenkins",
+        "group": "jenkins"
+      }
+    ],
+    "/var/lib/jenkins/workspace/deploy-production": [
+      {
+        "name": "Jenkinsfile",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 1823
+      },
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 956
+      },
+      {
+        "name": ".env.production",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 412
+      }
+    ],
+    "/home/gitlab-runner": [
+      {
+        "name": ".bash_logout",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 220
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 1456
+      },
+      {
+        "name": ".gitlab-runner",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner"
+      },
+      {
+        "name": "builds",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner"
+      },
+      {
+        "name": ".pypirc",
+        "type": "file",
+        "permissions": "600",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 130
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "700",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 4096
+      }
+    ],
+    "/home/gitlab-runner/.gitlab-runner": [
+      {
+        "name": "config.toml",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 743
+      }
+    ],
+    "/opt/prometheus": [
+      {
+        "name": "prometheus.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1024
+      },
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 9823
+      },
+      {
+        "name": "jenkins",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jenkins",
+        "group": "jenkins"
+      }
+    ],
+    "/var/log/jenkins": [
+      {
+        "name": "jenkins.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 34521
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1523
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "jenkins-build-cache",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "jenkins",
+        "group": "jenkins"
+      }
+    ],
+    "/var/lib/gitlab-runner": [
+      {
+        "name": ".gitlab-ci.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 342
+      }
+    ],
+    "/root/.config/gh": [
+      {
+        "name": "hosts.yml",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 112
+      }
+    ],
+    "/home/gitlab-runner/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitlab-runner",
+        "group": "gitlab-runner",
+        "size": 128
+      }
+    ],
+    "/home/jenkins/.m2": [
+      {
+        "name": "settings.xml",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 280
+      }
+    ],
+    "/home/jenkins": [
+      {
+        "name": ".npmrc",
+        "type": "file",
+        "permissions": "600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 70
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "700",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 4096
+      },
+      {
+        "name": ".m2",
+        "type": "dir",
+        "permissions": "700",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 4096
+      }
+    ],
+    "/home/jenkins/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "600",
+        "owner": "jenkins",
+        "group": "jenkins",
+        "size": 120
+      }
+    ]
+  },
+  "file_contents": {
+    "/var/lib/jenkins/credentials.xml": "<?xml version='1.1' encoding='UTF-8'?>\n<com.cloudbees.plugins.credentials.SystemCredentialsProvider>\n  <domainCredentialsMap>\n    <entry>\n      <com.cloudbees.plugins.credentials.domains.Domain>\n        <specifications/>\n      </com.cloudbees.plugins.credentials.domains.Domain>\n      <java.util.concurrent.CopyOnWriteArrayList>\n        <com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey>\n          <id>deploy-key-prod</id>\n          <username>deployer</username>\n          <privateKeySource class=\"directEntry\">\n            <privateKey>-----BEGIN OPENSSH PRIVATE KEY-----\nfake_jenkins_deploy_private_key_content\n-----END OPENSSH PRIVATE KEY-----</privateKey>\n          </privateKeySource>\n        </com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey>\n        <com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>\n          <id>docker-registry</id>\n          <username>ci-deploy</username>\n          <password>R3g1stry_P@ss_2024!</password>\n        </com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl>\n      </java.util.concurrent.CopyOnWriteArrayList>\n    </entry>\n  </domainCredentialsMap>\n</com.cloudbees.plugins.credentials.SystemCredentialsProvider>",
+    "/var/lib/jenkins/.docker/config.json": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"Y2ktZGVwbG95OlIzZzFzdHJ5X1BAc3NfMjAyNCE=\"\n    },\n    \"https://index.docker.io/v1/\": {\n      \"auth\": \"amVua2luc2JvdDpEMGNrZXJIdWIhMjAyNA==\"\n    }\n  }\n}",
+    "/var/lib/jenkins/secrets/initialAdminPassword": "a4f8e2d1b3c5a7f9e0d2b4c6",
+    "/var/lib/jenkins/workspace/deploy-production/Jenkinsfile": "pipeline {\n    agent any\n    environment {\n        DOCKER_REGISTRY = 'registry.internal.corp:5000'\n        DEPLOY_HOST = '10.0.2.50'\n        SLACK_WEBHOOK = 'https://hooks.example.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'\n    }\n    stages {\n        stage('Build') {\n            steps {\n                sh 'docker build -t ${DOCKER_REGISTRY}/api-service:${BUILD_NUMBER} .'\n            }\n        }\n        stage('Push') {\n            steps {\n                sh 'docker push ${DOCKER_REGISTRY}/api-service:${BUILD_NUMBER}'\n            }\n        }\n        stage('Deploy') {\n            steps {\n                sshagent(credentials: ['deploy-key-prod']) {\n                    sh 'ssh deployer@${DEPLOY_HOST} \"cd /opt/api && docker-compose pull && docker-compose up -d\"'\n                }\n            }\n        }\n    }\n}",
+    "/var/lib/jenkins/workspace/deploy-production/.env.production": "DATABASE_URL=postgresql://app_user:Pr0d_DB_S3cret@db-primary.internal.corp:5432/api_production\nREDIS_URL=redis://:R3d1s_C@che_Key@redis.internal.corp:6379/0\nSECRET_KEY=django-insecure-yk3#m8v&x2!q9w7$p5z1a0f4j6h8g\nAWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE\nAWS_SECRET_ACCESS_KEY=je7MtGbClwBF/2Zp9Utk/h3yCo8nvbEXAMPLEKEY\nSENTRY_DSN=https://examplePublicKey@o0.ingest.sentry.io/0",
+    "/home/gitlab-runner/.gitlab-runner/config.toml": "concurrent = 4\ncheck_interval = 0\n\n[session_server]\n  session_timeout = 1800\n\n[[runners]]\n  name = \"ci-runner-07\"\n  url = \"https://gitlab.internal.corp/\"\n  token = \"glrt-7xPq3Km9NvWs2Yb4Jf8R\"\n  executor = \"docker\"\n  [runners.docker]\n    image = \"docker:24.0\"\n    privileged = true\n    volumes = [\"/var/run/docker.sock:/var/run/docker.sock\", \"/cache\"]\n    allowed_images = [\"*\"]",
+    "/root/.bash_history": "systemctl status jenkins\njournalctl -u jenkins -f\ndocker ps -a\ndocker system prune -af\ncurl -sSL https://get.docker.com | sh\nusermod -aG docker jenkins\nsystemctl restart jenkins\ncat /var/lib/jenkins/secrets/initialAdminPassword\niptables -L -n\nss -tlnp\ngitlab-runner register\ncat /home/gitlab-runner/.gitlab-runner/config.toml\nkubectl get pods -A\nkubectl get nodes\ncat /root/.kube/config",
+    "/root/.kube/config": "apiVersion: v1\nclusters:\n- cluster:\n    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM...\n    server: https://k8s-master.internal.corp:6443\n  name: production\ncontexts:\n- context:\n    cluster: production\n    user: ci-deployer\n    namespace: default\n  name: production\ncurrent-context: production\nkind: Config\npreferences: {}\nusers:\n- name: ci-deployer\n  user:\n    token: eyJhbGciOiJSUzI1NiIsImtpZCI6InQxZHk0RmhJUGFLX3VKOWdMSXJfR0tCa3lISGtQVzFhWkF3dDdBVmVWcEEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6Y2ktZGVwbG95ZXIifQ.Vy3K8xOpJ4wN2mR7hL9cFdA6gT1bQ5uY0zX3eW8jI4s",
+    "/opt/prometheus/prometheus.yml": "global:\n  scrape_interval: 15s\n  evaluation_interval: 15s\n\nscrape_configs:\n  - job_name: 'node'\n    static_configs:\n      - targets: ['localhost:9100']\n\n  - job_name: 'jenkins'\n    metrics_path: /prometheus\n    static_configs:\n      - targets: ['localhost:8080']\n\n  - job_name: 'docker'\n    static_configs:\n      - targets: ['localhost:9323']\n\n  - job_name: 'gitlab-runner'\n    static_configs:\n      - targets: ['localhost:9252']",
+    "/var/lib/jenkins/secrets/master.key": "8a4f2e91c3b7d560a1e9f8234c6d7b05e3a2f198d4c6b7a50e1f2d3c4b5a6978",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tci-runner-07\n\n# CI/CD infrastructure\n10.0.2.7\tci-runner-07\n10.0.2.10\tgitlab.internal.corp gitlab\n10.0.2.20\tregistry.internal.corp registry\n10.0.2.30\tk8s-master.internal.corp k8s-master\n10.0.2.50\tapp-prod-01\n10.0.2.51\tapp-prod-02\n10.0.2.100\tdb-primary.internal.corp db-primary\n10.0.2.110\tredis.internal.corp redis\n10.0.2.1\tgateway.internal.corp gateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/home/gitlab-runner/.bash_history": "docker ps\ndocker images\ngitlab-runner list\ngitlab-runner verify\ncat /home/gitlab-runner/.gitlab-runner/config.toml\ncurl -k https://registry.internal.corp:5000/v2/_catalog\ndocker login registry.internal.corp:5000 -u ci-deploy -p R3g1stry_P@ss_2024!\nkubectl --kubeconfig=/root/.kube/config get pods",
+    "/var/log/auth.log": "Feb 24 03:00:01 ci-runner-07 CRON[5678]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 03:00:45 ci-runner-07 CRON[5678]: pam_unix(cron:session): session closed for user root\nFeb 24 08:15:22 ci-runner-07 sshd[6012]: Accepted password for root from 10.0.2.10 port 48231 ssh2\nFeb 24 08:15:22 ci-runner-07 sshd[6012]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 09:30:11 ci-runner-07 sshd[6345]: Accepted password for jenkins from 10.0.2.10 port 52341 ssh2\nFeb 24 09:30:11 ci-runner-07 sshd[6345]: pam_unix(sshd:session): session opened for user jenkins(uid=1000) by (uid=0)\nFeb 24 09:45:00 ci-runner-07 sudo:  jenkins : TTY=pts/1 ; PWD=/var/lib/jenkins ; USER=root ; COMMAND=/usr/bin/docker build -t registry.internal.corp:5000/api-service:142 .\nFeb 24 10:22:33 ci-runner-07 sshd[6789]: Failed password for admin from 192.0.2.100 port 39821 ssh2\nFeb 24 10:22:35 ci-runner-07 sshd[6789]: Failed password for admin from 192.0.2.100 port 39821 ssh2\nFeb 24 11:00:01 ci-runner-07 CRON[7012]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nFeb 24 12:15:44 ci-runner-07 sshd[7234]: Accepted password for jenkins from 10.0.2.10 port 55421 ssh2\nFeb 24 14:30:18 ci-runner-07 sshd[7567]: Accepted password for root from 10.0.2.1 port 53421 ssh2",
+    "/var/log/jenkins/jenkins.log": "2026-02-24 08:20:00.123 [id=45] INFO jenkins.InitReactorRunner$1#onAttained: Completed initialization\n2026-02-24 08:20:01.456 [id=45] INFO hudson.WebAppMain$3#run: Jenkins is fully up and running\n2026-02-24 09:30:15.789 [id=102] INFO org.jenkinsci.plugins.workflow.job.WorkflowRun#execute: deploy-production #142 started\n2026-02-24 09:30:16.012 [id=102] INFO o.j.p.w.s.FlowNode: [Pipeline] stage: Build\n2026-02-24 09:31:45.345 [id=102] INFO o.j.p.w.s.FlowNode: docker build -t registry.internal.corp:5000/api-service:142 .\n2026-02-24 09:32:10.678 [id=102] INFO o.j.p.w.s.FlowNode: [Pipeline] stage: Push\n2026-02-24 09:32:15.901 [id=102] INFO o.j.p.w.s.FlowNode: docker push registry.internal.corp:5000/api-service:142\n2026-02-24 09:32:45.234 [id=102] INFO o.j.p.w.s.FlowNode: [Pipeline] stage: Deploy\n2026-02-24 09:32:46.567 [id=102] INFO o.j.p.w.s.FlowNode: ssh deployer@10.0.2.50 \"cd /opt/api && docker-compose pull && docker-compose up -d\"\n2026-02-24 09:33:00.890 [id=102] INFO o.j.p.w.s.FlowNode: Deploy complete to app-prod-01 (10.0.2.50)\n2026-02-24 09:33:01.123 [id=102] INFO org.jenkinsci.plugins.workflow.job.WorkflowRun#finish: deploy-production #142 completed: SUCCESS\n2026-02-24 10:00:00.456 [id=103] INFO org.jenkinsci.plugins.workflow.job.WorkflowRun#execute: build-api-service #89 started\n2026-02-24 10:00:01.789 [id=103] WARN h.s.CredentialsStore: Credentials accessed: docker-registry (ci-deploy/R3g1stry_P@ss_2024!)\n2026-02-24 10:05:30.012 [id=103] ERROR h.m.HudsonPrivateSecurityRealm: Authentication failed for user 'admin' from 192.0.2.100\n2026-02-24 10:05:31.345 [id=103] ERROR h.m.HudsonPrivateSecurityRealm: Authentication failed for user 'admin' from 192.0.2.100\n2026-02-24 10:10:00.678 [id=103] INFO org.jenkinsci.plugins.workflow.job.WorkflowRun#finish: build-api-service #89 completed: SUCCESS",
+    "/var/mail/root": "From gitlab@gitlab.internal.corp Mon Feb 24 09:33:05 2026\nSubject: [GitLab] Pipeline #1847 passed for main\nDate: Mon, 24 Feb 2026 09:33:05 +0000\n\nPipeline #1847 has passed.\nProject: internal-api\nCommit: abc1234 - Update database migration scripts\nRunner: ci-runner-07\nDeploy target: app-prod-01 (10.0.2.50)\n\nRegistry: registry.internal.corp:5000\nImage: api-service:142\n\nFrom k8s-alerts@internal.corp Mon Feb 24 11:00:00 2026\nSubject: [K8s Alert] Pod restart detected in production\nDate: Mon, 24 Feb 2026 11:00:00 +0000\n\nPod api-service-7d8f9c6b5-x2k4p restarted 3 times in namespace default.\nCluster: production (k8s-master.internal.corp:6443)\nService account: ci-deployer\nCheck kubectl logs for details.",
+    "/var/lib/gitlab-runner/.gitlab-ci.yml": "stages:\n  - build\n  - test\n  - deploy\n\nvariables:\n  GITLAB_TOKEN: \"HONEYPOT_LURE_gitlab_pat_3Qx9Y_pN8s7e6r0vX2yz\"\n\nbuild_job:\n  stage: build\n  script:\n    - echo \"Building the project...\"\n\ndeploy_job:\n  stage: deploy\n  script:\n    - echo \"Deploying to production using Docker\"\n    - docker login registry.internal.corp -u gitlab-runner -p $CI_JOB_TOKEN\n    - docker push registry.internal.corp/app-prod:latest\n  only:\n    - main\n",
+    "/root/.config/gh/hosts.yml": "github.com:\n  user: gitlab-runner\n  oauth_token: ghp_9aB4cD3EfGhIjKlMnOpQrStUvWxYz1234\n  git_protocol: https\n",
+    "/var/lib/jenkins/jenkins_api_token.xml": "<apiTokens>\n  <token>\n    <name>ci-token</name>\n    <value>jenkins-token-abc123xyz789</value>\n    <user>jenkins</user>\n  </token>\n</apiTokens>",
+    "/home/gitlab-runner/.docker/config.json": "{\n  \"auths\": {\n    \"registry.internal.corp\": {\n      \"auth\": \"Z2l0bGFiLXJ1bm5lcjpzZWNyZXQtdG9rZW4xMjM=\"\n    }\n  }\n}",
+    "/home/jenkins/.m2/settings.xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<settings xmlns=\"http://maven.apache.org/SETTINGS/1.0.0\"\n          xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n          xsi:schemaLocation=\"http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd\">\n  <servers>\n    <server>\n      <id>internal-nexus</id>\n      <username>jenkins</username>\n      <password>nexus-secret-pass-456</password>\n    </server>\n  </servers>\n</settings>",
+    "/home/jenkins/.npmrc": "//registry.internal.corp/:_authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.jenkins-npm-token.abcdef1234567890",
+    "/home/gitlab-runner/.pypirc": "[distutils]\nindex-servers =\n    internal\n\n[internal]\nrepository: https://registry.internal.corp/pypi/\nusername: gitlab-runner\npassword: gl-runner-pypi-token-12345",
+    "/home/jenkins/.docker/config.json": "{\n  \"auths\": {\n    \"registry.internal.corp\": {\n      \"auth\": \"amVua2luczpqZW5raW5zLXBhc3M=\"\n    }\n  }\n}"
+  },
+  "services": [
+    {
+      "name": "jenkins",
+      "pid": 1456,
+      "user": "jenkins",
+      "command": "/usr/bin/java -jar /usr/share/java/jenkins.war --httpPort=8080",
+      "ports": [
+        8080
+      ]
+    },
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "dockerd",
+      "pid": 1023,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock",
+      "ports": []
+    },
+    {
+      "name": "containerd",
+      "pid": 987,
+      "user": "root",
+      "command": "/usr/bin/containerd",
+      "ports": []
+    },
+    {
+      "name": "gitlab-runner",
+      "pid": 2345,
+      "user": "gitlab-runner",
+      "command": "/usr/bin/gitlab-runner run --working-directory /home/gitlab-runner --config /home/gitlab-runner/.gitlab-runner/config.toml",
+      "ports": []
+    },
+    {
+      "name": "node_exporter",
+      "pid": 3456,
+      "user": "node_exporter",
+      "command": "/usr/bin/node_exporter --web.listen-address=:9100",
+      "ports": [
+        9100
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.2.7",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:02:07"
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:ac:11:00:01"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "jenkins",
+      "version": "2.440.1"
+    },
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1"
+    },
+    {
+      "name": "gitlab-runner",
+      "version": "16.8.0"
+    },
+    {
+      "name": "openjdk-17-jre-headless",
+      "version": "17.0.10+7-1"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:9.2p1-2+deb12u2"
+    },
+    {
+      "name": "git",
+      "version": "1:2.39.5-0+deb12u1"
+    },
+    {
+      "name": "prometheus-node-exporter",
+      "version": "1.5.0"
+    },
+    {
+      "name": "curl",
+      "version": "7.88.1-10+deb12u5"
+    },
+    {
+      "name": "kubectl",
+      "version": "1.28.4"
+    },
+    {
+      "name": "awscli",
+      "version": "2.15.10"
+    }
+  ],
+  "crontabs": {
+    "root": "0 3 * * 0 docker system prune -af\n*/5 * * * * /usr/local/bin/check_jenkins_health.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456",
+        "jenkins"
+      ],
+      "jenkins": [
+        "jenkins",
+        "admin123",
+        "123456"
+      ]
+    }
+  },
+  "description": "CI/CD build runner with Jenkins and GitLab Runner, exposed Docker registry credentials in .docker/config.json, Jenkins credentials.xml with SSH deploy keys and registry passwords, GitLab runner token in config.toml, production database URLs and AWS keys in .env.production, Kubernetes config with service account token, /etc/hosts mapping full CI/CD infrastructure, auth.log with login activity, Jenkins log leaking credentials, mail with deployment and K8s alert details",
+  "remote_files": {
+    "10.0.2.10": {
+      "/var/lib/jenkins/credentials.xml": {
+        "content_type": "text",
+        "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<credentials>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>deploy-ssh</id>\n    <username>deploy</username>\n    <password>d3pl0y_pr0d_2024!</password>\n  </entry>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>db-backup</id>\n    <username>backupuser</username>\n    <password>Bkp_s3cur3_db#99</password>\n  </entry>\n</credentials>\n",
+        "size": 394
+      },
+      "/opt/ci/deploy.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.2.10:/opt/ci/deploy.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 183
+      },
+      "/var/log/jenkins/jenkins.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.2.10\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      }
+    },
+    "10.0.2.20": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.2.20:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 262
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.2.30": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.2.30:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 262
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.2.50": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.2.50\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.2.50\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.2.51": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.2.51\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.2.51\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.2.100": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.2.100\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 604
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.2.100:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 241
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.2.100\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    },
+    "10.0.2.110": {
+      "/etc/redis/redis.conf": {
+        "content_type": "text",
+        "content": "bind 0.0.0.0\nport 6379\nrequirepass R3dis_Pr0d_s3cret_2024\nmaxmemory 2gb\nmaxmemory-policy allkeys-lru\n# masterauth R3dis_R3pl_Auth!\n",
+        "size": 131
+      }
+    }
+  }
+}

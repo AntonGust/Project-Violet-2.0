@@ -1,0 +1,3 @@
+# Daily database backup
+SHELL=/bin/sh
+0 2 * * * deploy /home/deploy/backup_db.sh >> /var/log/backup.log 2>&1

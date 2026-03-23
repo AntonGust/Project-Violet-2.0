@@ -1,0 +1,19 @@
+{
+  "engine": "mysql",
+  "image": "mysql:8.0",
+  "spoofed_version": "8.0.36",
+  "port": 3306,
+  "databases": [
+    {
+      "name": "wordpress_prod",
+      "users": [
+        {
+          "username": "wp_admin",
+          "password": "Str0ng_But_Le4ked!",
+          "host": "%"
+        }
+      ]
+    }
+  ],
+  "root_password": "H0n3yp0t_R00t!"
+}

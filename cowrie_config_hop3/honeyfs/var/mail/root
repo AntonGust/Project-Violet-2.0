@@ -1,0 +1,21 @@
+From gitlab@gitlab.internal.corp Mon Feb 24 09:33:05 2026
+Subject: [GitLab] Pipeline #1847 passed for main
+Date: Mon, 24 Feb 2026 09:33:05 +0000
+
+Pipeline #1847 has passed.
+Project: internal-api
+Commit: abc1234 - Update database migration scripts
+Runner: ci-runner-07
+Deploy target: app-prod-01 (10.0.2.50)
+
+Registry: registry.internal.corp:5000
+Image: api-service:142
+
+From k8s-alerts@internal.corp Mon Feb 24 11:00:00 2026
+Subject: [K8s Alert] Pod restart detected in production
+Date: Mon, 24 Feb 2026 11:00:00 +0000
+
+Pod api-service-7d8f9c6b5-x2k4p restarted 3 times in namespace default.
+Cluster: production (k8s-master.internal.corp:6443)
+Service account: ci-deployer
+Check kubectl logs for details.

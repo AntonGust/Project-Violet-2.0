@@ -1,0 +1,13 @@
+[Unit]
+Description=Gitlab Runner
+After=network.target
+
+[Service]
+Type=forking
+User=gitlab-runner
+ExecStart=/usr/bin/gitlab-runner run --working-directory /home/gitlab-runner --config /home/gitlab-runner/.gitlab-runner/config.toml
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

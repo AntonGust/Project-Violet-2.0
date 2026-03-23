@@ -1,0 +1,13 @@
+Feb 24 08:12:01 wp-prod-01 CRON[12845]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 08:12:01 wp-prod-01 CRON[12845]: pam_unix(cron:session): session closed for user root
+Feb 24 09:15:22 wp-prod-01 sshd[13201]: Accepted password for root from 10.0.1.1 port 52341 ssh2
+Feb 24 09:15:22 wp-prod-01 sshd[13201]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 10:22:45 wp-prod-01 sshd[13456]: Accepted password for deploy from 10.0.1.50 port 48923 ssh2
+Feb 24 10:22:45 wp-prod-01 sshd[13456]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+Feb 24 10:45:12 wp-prod-01 sudo:   deploy : TTY=pts/1 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/docker ps
+Feb 24 11:30:00 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2
+Feb 24 11:30:02 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2
+Feb 24 11:30:05 wp-prod-01 sshd[14001]: Failed password for admin from 203.0.113.45 port 39821 ssh2
+Feb 24 12:00:01 wp-prod-01 CRON[14523]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 13:05:33 wp-prod-01 sshd[14890]: Accepted publickey for deploy from 10.0.1.50 port 51234 ssh2
+Feb 24 14:23:01 wp-prod-01 sshd[15102]: Accepted password for root from 10.0.1.1 port 53421 ssh2

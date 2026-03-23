@@ -1,0 +1,590 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Ubuntu 22.04.4 LTS",
+    "hostname": "swarm-mgr-01",
+    "kernel_version": "5.15.0-95-generic",
+    "arch": "x86_64",
+    "timezone": "UTC"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rSw$fakehashroot000",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "dockeradm",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/dockeradm",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$dAm$fakehashdockeradm",
+      "groups": [
+        "dockeradm",
+        "sudo",
+        "docker"
+      ],
+      "sudo_rules": "dockeradm ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "deployer",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/deployer",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$dPl$fakehashdeployer0",
+      "groups": [
+        "deployer",
+        "docker"
+      ]
+    },
+    {
+      "name": "prometheus",
+      "uid": 9090,
+      "gid": 9090,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "prometheus"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 2104
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 100
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1876
+      }
+    ],
+    "/home/dockeradm": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 3771
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 1342
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "dockeradm",
+        "group": "dockeradm"
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "dockeradm",
+        "group": "dockeradm"
+      },
+      {
+        "name": "backup_swarm_configs.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 342
+      }
+    ],
+    "/home/dockeradm/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 245
+      }
+    ],
+    "/home/dockeradm/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 620
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "dockeradm",
+        "size": 2210
+      }
+    ],
+    "/home/deployer": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "deployer",
+        "group": "deployer",
+        "size": 3771
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "deployer",
+        "group": "deployer",
+        "size": 567
+      },
+      {
+        "name": "deploy.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "deployer",
+        "group": "deployer",
+        "size": 498
+      }
+    ],
+    "/opt/stacks": [
+      {
+        "name": "traefik",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "dockeradm",
+        "group": "docker"
+      },
+      {
+        "name": "app",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "dockeradm",
+        "group": "docker"
+      },
+      {
+        "name": "monitoring",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "dockeradm",
+        "group": "docker"
+      }
+    ],
+    "/opt/stacks/traefik": [
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "docker",
+        "size": 1245
+      },
+      {
+        "name": "acme.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 4096
+      },
+      {
+        "name": "traefik.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "docker",
+        "size": 512
+      }
+    ],
+    "/opt/stacks/app": [
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "docker",
+        "size": 2134
+      },
+      {
+        "name": ".env",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dockeradm",
+        "group": "docker",
+        "size": 478
+      }
+    ],
+    "/opt/stacks/monitoring": [
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dockeradm",
+        "group": "docker",
+        "size": 890
+      }
+    ],
+    "/etc/docker": [
+      {
+        "name": "daemon.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 312
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8934
+      },
+      {
+        "name": "docker_deploy.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 6723
+      },
+      {
+        "name": "syslog",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "syslog",
+        "group": "adm",
+        "size": 45230
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1847
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "stack_health_check.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 2456
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "docker node ls\ndocker service ls\ndocker stack ls\ndocker stack ps app\ndocker secret create db_password /tmp/db_pass.txt\ndocker secret create api_key /tmp/api_key.txt\ndocker secret ls\nrm /tmp/db_pass.txt /tmp/api_key.txt\ndocker login registry.internal.corp:5000 -u admin -p R3g!stryAdm1n2024\ndocker pull registry.internal.corp:5000/webapp:latest\ndocker stack deploy -c /opt/stacks/app/docker-compose.yml app\ndocker stack deploy -c /opt/stacks/traefik/docker-compose.yml traefik\ndocker service update --image registry.internal.corp:5000/webapp:v2.3.1 app_web\ncat /etc/docker/daemon.json\nss -tlnp\niptables -L -n\njournalctl -u docker -f\nsystemctl status traefik\ncurl -k https://localhost:8080/api/overview\ncurl -u admin:Tr@ef1k_D@sh_2024 http://localhost:8080/dashboard/",
+    "/home/dockeradm/.docker/config.json": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"ZG9ja2VyYWRtOkQwY2tlckBkbTIwMjQh\"\n    },\n    \"https://index.docker.io/v1/\": {\n      \"auth\": \"c3dhcm1kZXBsb3k6UHRXN2tMOXhSZE1qMnY=\"\n    }\n  },\n  \"credsStore\": \"\"\n}",
+    "/opt/stacks/traefik/docker-compose.yml": "version: '3.8'\n\nservices:\n  traefik:\n    image: traefik:v2.11\n    command:\n      - \"--api.dashboard=true\"\n      - \"--api.insecure=true\"\n      - \"--providers.docker.swarmMode=true\"\n      - \"--providers.docker.exposedbydefault=false\"\n      - \"--entrypoints.web.address=:80\"\n      - \"--entrypoints.websecure.address=:443\"\n      - \"--certificatesresolvers.letsencrypt.acme.httpchallenge=true\"\n      - \"--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web\"\n      - \"--certificatesresolvers.letsencrypt.acme.email=devops@swarmcorp.io\"\n      - \"--certificatesresolvers.letsencrypt.acme.storage=/acme/acme.json\"\n      - \"--log.level=INFO\"\n    ports:\n      - \"80:80\"\n      - \"443:443\"\n      - \"8080:8080\"\n    volumes:\n      - /var/run/docker.sock:/var/run/docker.sock:ro\n      - traefik-acme:/acme\n    networks:\n      - traefik-public\n    deploy:\n      mode: global\n      placement:\n        constraints:\n          - node.role == manager\n      labels:\n        - \"traefik.enable=true\"\n        - \"traefik.http.routers.dashboard.rule=Host(`traefik.swarmcorp.io`)\"\n        - \"traefik.http.routers.dashboard.service=api@internal\"\n        - \"traefik.http.routers.dashboard.middlewares=auth\"\n        - \"traefik.http.middlewares.auth.basicauth.users=admin:$$apr1$$8Ev0HPWJ$$T3HgR.2LQz8GZfk4u5PCR/\"\n    environment:\n      - TRAEFIK_DASHBOARD_USER=admin\n      - TRAEFIK_DASHBOARD_PASS=Tr@ef1k_D@sh_2024\n\nvolumes:\n  traefik-acme:\n\nnetworks:\n  traefik-public:\n    external: true",
+    "/opt/stacks/app/.env": "# Application secrets - DO NOT COMMIT\nDATABASE_URL=postgresql://app_svc:Pr0d_Pg_S3cret!@db-01.internal.corp:5432/webapp_production\nREDIS_URL=redis://:R3d1s_Cl0ster_P@ss@redis-01.internal.corp:6379/0\nAPI_SECRET_KEY=HONEYPOT_LURE_stripe_live_key_4eC39HqLyjWDarjtT1\nSTRIPE_WEBHOOK_SECRET=whsec_5KaBcDeFgHiJkLmNoPqRsTuVwXyZ\nSENTRY_DSN=https://abc123def456@o789.ingest.sentry.io/1234567\nSMTP_PASSWORD=M@1lgun_Smtp_2024\nJWT_SECRET=super_secret_jwt_key_d0_n0t_share_ever",
+    "/opt/stacks/app/docker-compose.yml": "version: '3.8'\n\nservices:\n  web:\n    image: registry.internal.corp:5000/webapp:v2.3.1\n    env_file:\n      - .env\n    networks:\n      - traefik-public\n      - backend\n    deploy:\n      replicas: 3\n      update_config:\n        parallelism: 1\n        delay: 30s\n        failure_action: rollback\n      restart_policy:\n        condition: on-failure\n        max_attempts: 3\n      labels:\n        - \"traefik.enable=true\"\n        - \"traefik.http.routers.webapp.rule=Host(`app.swarmcorp.io`)\"\n        - \"traefik.http.routers.webapp.entrypoints=websecure\"\n        - \"traefik.http.routers.webapp.tls.certresolver=letsencrypt\"\n        - \"traefik.http.services.webapp.loadbalancer.server.port=8000\"\n    healthcheck:\n      test: [\"CMD\", \"curl\", \"-f\", \"http://localhost:8000/health\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\n  worker:\n    image: registry.internal.corp:5000/webapp-worker:v2.3.1\n    env_file:\n      - .env\n    networks:\n      - backend\n    deploy:\n      replicas: 2\n      restart_policy:\n        condition: on-failure\n    command: celery -A webapp worker --loglevel=info --concurrency=4\n    depends_on:\n      - redis\n\n  scheduler:\n    image: registry.internal.corp:5000/webapp-worker:v2.3.1\n    env_file:\n      - .env\n    networks:\n      - backend\n    deploy:\n      replicas: 1\n      placement:\n        constraints:\n          - node.role == manager\n    command: celery -A webapp beat --loglevel=info --schedule=/tmp/celerybeat-schedule\n\n  redis:\n    image: redis:7.2-alpine\n    command: redis-server --requirepass R3d1s_Cl0ster_P@ss\n    networks:\n      - backend\n    volumes:\n      - redis-data:/data\n    deploy:\n      replicas: 1\n      placement:\n        constraints:\n          - node.labels.storage == true\n\n  nginx-exporter:\n    image: nginx/nginx-prometheus-exporter:0.11\n    command: -nginx.scrape-uri=http://web:8000/stub_status\n    networks:\n      - backend\n    deploy:\n      replicas: 1\n\nvolumes:\n  redis-data:\n\nnetworks:\n  traefik-public:\n    external: true\n  backend:\n    driver: overlay\n    attachable: true",
+    "/home/deployer/deploy.sh": "#!/bin/bash\n# Deployment script for swarm stack updates\nset -euo pipefail\n\nREGISTRY=\"registry.internal.corp:5000\"\nREGISTRY_USER=\"deployer\"\nREGISTRY_PASS=\"D3pl0y_R3g_2024!\"\n\necho \"[$(date)] Logging into registry...\"\ndocker login \"$REGISTRY\" -u \"$REGISTRY_USER\" -p \"$REGISTRY_PASS\"\n\nSTACK=\"${1:-app}\"\nCOMPOSE_FILE=\"/opt/stacks/${STACK}/docker-compose.yml\"\n\necho \"[$(date)] Pulling latest images for stack: $STACK\"\ndocker compose -f \"$COMPOSE_FILE\" pull\n\necho \"[$(date)] Deploying stack: $STACK\"\ndocker stack deploy -c \"$COMPOSE_FILE\" \"$STACK\" --with-registry-auth\n\necho \"[$(date)] Deployment complete. Verifying services...\"\nsleep 10\ndocker stack services \"$STACK\"",
+    "/etc/docker/daemon.json": "{\n  \"storage-driver\": \"overlay2\",\n  \"log-driver\": \"json-file\",\n  \"log-opts\": {\n    \"max-size\": \"50m\",\n    \"max-file\": \"3\"\n  },\n  \"insecure-registries\": [\n    \"registry.internal.corp:5000\",\n    \"10.0.8.20:5000\"\n  ],\n  \"metrics-addr\": \"0.0.0.0:9323\",\n  \"experimental\": true,\n  \"hosts\": [\"unix:///var/run/docker.sock\", \"tcp://0.0.0.0:2376\"]\n}",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tswarm-mgr-01\n\n# Docker Swarm cluster\n10.0.8.5\tswarm-mgr-01\n10.0.8.6\tswarm-worker-01\n10.0.8.7\tswarm-worker-02\n10.0.8.8\tswarm-worker-03\n10.0.8.20\tregistry.internal.corp registry\n10.0.8.50\tdb-01 db-01.internal.corp\n10.0.8.1\tgateway gateway.internal.corp\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/home/dockeradm/.ssh/config": "Host swarm-worker-01\n    HostName 10.0.8.6\n    User dockeradm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost swarm-worker-02\n    HostName 10.0.8.7\n    User dockeradm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost swarm-worker-03\n    HostName 10.0.8.8\n    User dockeradm\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost registry\n    HostName 10.0.8.20\n    User admin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost db-01\n    HostName 10.0.8.50\n    User postgres\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no",
+    "/home/dockeradm/.bash_history": "docker node ls\ndocker service ls\ndocker stack deploy -c /opt/stacks/app/docker-compose.yml app\ndocker stack deploy -c /opt/stacks/traefik/docker-compose.yml traefik\ndocker service update --image registry.internal.corp:5000/webapp:v2.3.1 app_web\nsudo docker node update --availability drain swarm-worker-02\ndocker service logs app_web --tail 100\nssh swarm-worker-01 docker ps\nssh swarm-worker-02 docker ps\ncat /opt/stacks/app/.env\ndocker secret ls",
+    "/var/log/auth.log": "Mar  5 02:10:01 swarm-mgr-01 CRON[4512]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 02:10:02 swarm-mgr-01 CRON[4512]: pam_unix(cron:session): session closed for user root\nMar  5 02:00:01 swarm-mgr-01 CRON[4321]: pam_unix(cron:session): session opened for user dockeradm(uid=1000) by (uid=0)\nMar  5 02:00:45 swarm-mgr-01 CRON[4321]: pam_unix(cron:session): session closed for user dockeradm\nMar  5 08:22:17 swarm-mgr-01 sshd[5123]: Accepted password for dockeradm from 10.0.8.1 port 49231 ssh2\nMar  5 08:22:17 swarm-mgr-01 sshd[5123]: pam_unix(sshd:session): session opened for user dockeradm(uid=1000) by (uid=0)\nMar  5 08:45:33 swarm-mgr-01 sudo: dockeradm : TTY=pts/0 ; PWD=/opt/stacks ; USER=root ; COMMAND=/usr/bin/docker stack deploy -c /opt/stacks/app/docker-compose.yml app\nMar  5 09:15:44 swarm-mgr-01 sshd[5456]: Accepted password for deployer from 10.0.8.1 port 52341 ssh2\nMar  5 09:15:44 swarm-mgr-01 sshd[5456]: pam_unix(sshd:session): session opened for user deployer(uid=1001) by (uid=0)\nMar  5 10:30:12 swarm-mgr-01 sshd[5789]: Failed password for admin from 203.0.113.45 port 38921 ssh2\nMar  5 10:30:14 swarm-mgr-01 sshd[5789]: Failed password for admin from 203.0.113.45 port 38921 ssh2\nMar  5 11:00:01 swarm-mgr-01 CRON[6012]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 14:22:08 swarm-mgr-01 sshd[6234]: Accepted password for root from 10.0.8.1 port 55712 ssh2\nMar  5 14:22:08 swarm-mgr-01 sshd[6234]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)",
+    "/var/mail/root": "From swarm-alerts@swarmcorp.io Wed Mar  5 09:33:12 2026\nSubject: [Swarm] Stack 'app' deployed successfully\nDate: Wed, 05 Mar 2026 09:33:12 +0000\n\nStack 'app' has been deployed to Docker Swarm cluster.\nServices: web (3 replicas), worker (2 replicas), scheduler (1 replica), redis (1 replica)\nRegistry: registry.internal.corp:5000\nImage: webapp:v2.3.1\nDeployed by: dockeradm from 10.0.8.1\n\nCluster nodes:\n  swarm-mgr-01 (10.0.8.5) - Manager, Leader\n  swarm-worker-01 (10.0.8.6) - Worker, Active\n  swarm-worker-02 (10.0.8.7) - Worker, Drain\n  swarm-worker-03 (10.0.8.8) - Worker, Active\n\nFrom cron-daemon@swarm-mgr-01 Wed Mar  5 03:00:05 2026\nSubject: Cron <root@swarm-mgr-01> docker system prune -af\nDate: Wed, 05 Mar 2026 03:00:05 +0000\n\nDeleted Images:\n  - registry.internal.corp:5000/webapp:v2.2.8\n  - registry.internal.corp:5000/webapp-worker:v2.2.8\nTotal reclaimed space: 1.2GB",
+    "/tmp/stack_health_check.log": "[2026-03-05T23:50:01Z] === Swarm Health Check ===\n[2026-03-05T23:50:01Z] Node swarm-mgr-01: Ready (Leader)\n[2026-03-05T23:50:01Z] Node swarm-worker-01: Ready\n[2026-03-05T23:50:02Z] Node swarm-worker-02: Ready (Drain)\n[2026-03-05T23:50:02Z] Node swarm-worker-03: Ready\n[2026-03-05T23:50:02Z] Service app_web: 3/3 replicas running\n[2026-03-05T23:50:03Z] Service app_worker: 2/2 replicas running\n[2026-03-05T23:50:03Z] Service app_scheduler: 1/1 replicas running\n[2026-03-05T23:50:03Z] Service app_redis: 1/1 replicas running\n[2026-03-05T23:50:04Z] Service traefik_traefik: 1/1 replicas running\n[2026-03-05T23:50:04Z] All services healthy.\n[2026-03-06T00:00:01Z] === Swarm Health Check ===\n[2026-03-06T00:00:01Z] Node swarm-mgr-01: Ready (Leader)\n[2026-03-06T00:00:01Z] Node swarm-worker-01: Ready\n[2026-03-06T00:00:02Z] Node swarm-worker-02: Ready (Drain)\n[2026-03-06T00:00:02Z] Node swarm-worker-03: Ready\n[2026-03-06T00:00:02Z] Service app_web: 3/3 replicas running\n[2026-03-06T00:00:03Z] Service app_worker: 2/2 replicas running\n[2026-03-06T00:00:03Z] Service app_scheduler: 1/1 replicas running\n[2026-03-06T00:00:03Z] Service app_redis: 1/1 replicas running\n[2026-03-06T00:00:04Z] Service traefik_traefik: 1/1 replicas running\n[2026-03-06T00:00:04Z] All services healthy.",
+    "/var/log/docker_deploy.log": "[2026-02-28T14:22:01Z] deploy: user=dockeradm stack=traefik action=deploy\n[2026-02-28T14:22:01Z] Pulling image traefik:v2.11 from Docker Hub...\n[2026-02-28T14:22:18Z] Image pull complete: traefik:v2.11\n[2026-02-28T14:22:19Z] Creating service traefik_traefik\n[2026-02-28T14:22:25Z] Service traefik_traefik converged (1/1 replicas)\n[2026-02-28T14:22:25Z] Stack traefik deployed successfully.\n[2026-03-01T09:15:33Z] deploy: user=deployer stack=app action=deploy\n[2026-03-01T09:15:33Z] Logging into registry.internal.corp:5000...\n[2026-03-01T09:15:34Z] Login succeeded for user deployer.\n[2026-03-01T09:15:35Z] Pulling image registry.internal.corp:5000/webapp:v2.3.0...\n[2026-03-01T09:15:52Z] Pulling image registry.internal.corp:5000/webapp-worker:v2.3.0...\n[2026-03-01T09:16:08Z] Creating service app_web (replicas: 3)\n[2026-03-01T09:16:15Z] Creating service app_worker (replicas: 2)\n[2026-03-01T09:16:18Z] Creating service app_scheduler (replicas: 1)\n[2026-03-01T09:16:20Z] Creating service app_redis (replicas: 1)\n[2026-03-01T09:16:45Z] All services converged. Stack app deployed successfully.\n[2026-03-03T11:42:17Z] deploy: user=dockeradm stack=app action=update service=app_web\n[2026-03-03T11:42:17Z] Updating app_web image to registry.internal.corp:5000/webapp:v2.3.1\n[2026-03-03T11:42:18Z] Rolling update in progress: 0/3 tasks updated\n[2026-03-03T11:42:48Z] Rolling update in progress: 1/3 tasks updated\n[2026-03-03T11:43:18Z] Rolling update in progress: 2/3 tasks updated\n[2026-03-03T11:43:48Z] Rolling update complete: 3/3 tasks updated\n[2026-03-03T11:43:48Z] Service app_web update complete.\n[2026-03-05T08:50:01Z] deploy: user=dockeradm stack=app action=deploy\n[2026-03-05T08:50:02Z] Logging into registry.internal.corp:5000...\n[2026-03-05T08:50:03Z] Login succeeded for user dockeradm.\n[2026-03-05T08:50:04Z] Pulling latest images for stack app...\n[2026-03-05T08:50:22Z] Stack app redeployed. All services converged."
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "dockerd",
+      "pid": 1023,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --containerd=/run/containerd/containerd.sock",
+      "ports": [
+        2376
+      ]
+    },
+    {
+      "name": "containerd",
+      "pid": 987,
+      "user": "root",
+      "command": "/usr/bin/containerd",
+      "ports": []
+    },
+    {
+      "name": "node_exporter",
+      "pid": 3456,
+      "user": "prometheus",
+      "command": "/usr/bin/node_exporter --web.listen-address=:9100",
+      "ports": [
+        9100
+      ]
+    },
+    {
+      "name": "traefik",
+      "pid": 4567,
+      "user": "root",
+      "command": "/usr/bin/traefik --configfile=/etc/traefik/traefik.yml",
+      "ports": [
+        80,
+        443,
+        8080
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.8.5",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:08:05"
+      },
+      {
+        "name": "docker_gwbridge",
+        "ip": "172.18.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:ac:12:00:01"
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:ac:11:00:01"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1~ubuntu.22.04~jammy"
+    },
+    {
+      "name": "containerd.io",
+      "version": "1.6.28-1"
+    },
+    {
+      "name": "docker-compose-plugin",
+      "version": "2.24.5-1~ubuntu.22.04~jammy"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.9p1-3ubuntu0.6"
+    },
+    {
+      "name": "prometheus-node-exporter",
+      "version": "1.5.0-1"
+    },
+    {
+      "name": "curl",
+      "version": "7.81.0-1ubuntu1.15"
+    },
+    {
+      "name": "jq",
+      "version": "1.6-2.1ubuntu3"
+    },
+    {
+      "name": "git",
+      "version": "1:2.34.1-1ubuntu1.10"
+    },
+    {
+      "name": "htop",
+      "version": "3.1.2-1build1"
+    },
+    {
+      "name": "net-tools",
+      "version": "1.60+git20181103.0eebece-1ubuntu5"
+    }
+  ],
+  "crontabs": {
+    "root": "*/10 * * * * /usr/local/bin/swarm_health_check.sh\n0 3 * * 0 docker system prune -af",
+    "dockeradm": "0 2 * * * /home/dockeradm/backup_swarm_configs.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "dockeradm": [
+        "dockeradm",
+        "Sw@rm2024!",
+        "admin123"
+      ],
+      "deployer": [
+        "deployer",
+        "deploy123"
+      ]
+    }
+  },
+  "description": "Docker Swarm manager with Traefik reverse proxy. Leaked Docker registry credentials in .docker/config.json, Traefik dashboard auth and Let's Encrypt email in compose files, DATABASE_URL and API keys in .env, /etc/hosts mapping all swarm workers and registry, SSH config for worker nodes, multi-service docker-compose files and deployment logs as rabbit holes.",
+  "remote_files": {
+    "10.0.8.6": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.8.6:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 261
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.8.7": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.8.7:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 261
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.8.8": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.8.8:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 261
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.8.20": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.8.20:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 262
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.8.50": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.8.50\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 603
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.8.50:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 240
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.8.50\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    }
+  }
+}

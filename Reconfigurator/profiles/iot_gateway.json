@@ -1,0 +1,597 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-234567890abc",
+  "timestamp": "2026-03-06T10:00:00Z",
+  "system": {
+    "os": "Raspbian GNU/Linux 11 (bullseye)",
+    "hostname": "iot-gw-01",
+    "kernel_version": "5.15.84-v8+",
+    "arch": "aarch64",
+    "timezone": "Europe/Amsterdam"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rPi$fakehashroot",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "mosquitto",
+      "uid": 110,
+      "gid": 110,
+      "home": "/var/lib/mosquitto",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "mosquitto"
+      ]
+    },
+    {
+      "name": "nodered",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/nodered",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$nrd$fakehashnodered",
+      "groups": [
+        "nodered",
+        "gpio",
+        "i2c",
+        "spi",
+        "dialout"
+      ]
+    },
+    {
+      "name": "iotadmin",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/iotadmin",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$iot$fakehashiotadmin",
+      "groups": [
+        "iotadmin",
+        "sudo",
+        "docker",
+        "gpio"
+      ],
+      "sudo_rules": "iotadmin ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "influxdb",
+      "uid": 999,
+      "gid": 999,
+      "home": "/var/lib/influxdb",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "influxdb"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1247
+      }
+    ],
+    "/etc/mosquitto": [
+      {
+        "name": "mosquitto.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1285
+      },
+      {
+        "name": "passwd",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mosquitto",
+        "group": "mosquitto",
+        "size": 412
+      },
+      {
+        "name": "ca_certificates",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "certs",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "mosquitto",
+        "group": "mosquitto"
+      }
+    ],
+    "/etc/mosquitto/ca_certificates": [
+      {
+        "name": "ca.crt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1834
+      }
+    ],
+    "/etc/mosquitto/certs": [
+      {
+        "name": "server.crt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mosquitto",
+        "group": "mosquitto",
+        "size": 1521
+      },
+      {
+        "name": "server.key",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "mosquitto",
+        "group": "mosquitto",
+        "size": 1704
+      }
+    ],
+    "/home/nodered": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "nodered",
+        "group": "nodered",
+        "size": 3526
+      },
+      {
+        "name": ".node-red",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "nodered",
+        "group": "nodered"
+      }
+    ],
+    "/home/nodered/.node-red": [
+      {
+        "name": "settings.js",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "nodered",
+        "group": "nodered",
+        "size": 1842
+      },
+      {
+        "name": "flows.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "nodered",
+        "group": "nodered",
+        "size": 8924
+      },
+      {
+        "name": "flows_cred.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "nodered",
+        "group": "nodered",
+        "size": 743
+      },
+      {
+        "name": "package.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "nodered",
+        "group": "nodered",
+        "size": 412
+      },
+      {
+        "name": "node_modules",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "nodered",
+        "group": "nodered"
+      }
+    ],
+    "/home/iotadmin": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 3526
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 892
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "iotadmin",
+        "group": "iotadmin"
+      },
+      {
+        "name": ".influxdb_token",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 98
+      },
+      {
+        "name": "provision_device.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 1456
+      },
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 1823
+      },
+      {
+        "name": "backup_influxdb.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 534
+      }
+    ],
+    "/home/iotadmin/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 387
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 1120
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 7823
+      },
+      {
+        "name": "mosquitto",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "mosquitto",
+        "group": "mosquitto"
+      },
+      {
+        "name": "syslog",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 45210
+      }
+    ],
+    "/var/log/mosquitto": [
+      {
+        "name": "mosquitto.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "mosquitto",
+        "group": "mosquitto",
+        "size": 28943
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "sensor_data_latest.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 623
+      }
+    ],
+    "/usr/local/bin": [
+      {
+        "name": "collect_sensor_data.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 412
+      }
+    ],
+    "/opt/zigbee2mqtt": [
+      {
+        "name": "configuration.yaml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "iotadmin",
+        "group": "iotadmin",
+        "size": 534
+      },
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "iotadmin",
+        "group": "iotadmin"
+      }
+    ],
+    "/var/lib/influxdb": [
+      {
+        "name": "engine",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "influxdb",
+        "group": "influxdb"
+      },
+      {
+        "name": "influxd.bolt",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "influxdb",
+        "group": "influxdb",
+        "size": 131072
+      }
+    ]
+  },
+  "file_contents": {
+    "/etc/mosquitto/passwd": "temp-sensor-01:$7$101$sE8hQ3rK$YnJva2VyX3Bhc3N3b3Jk\ntemp-sensor-02:$7$101$pL4mW9xR$c2Vuc29yX3RlbXAyMDI0\nhvac-controller:$7$101$kN7jT2vF$aHZhY19jb250cm9sMQ==\ndoor-lock-03:$7$101$bM5gH8wA$ZG9vcmxvY2tfczNjcjN0\nenergy-meter-01:$7$101$qX3cR6yD$ZW5lcmd5X20zdGVyXzIw\ncamera-front:$7$101$zW1fP4tB$Y2FtX2Zyb250XzIwMjQ=\nsmoke-detector-02:$7$101$uV9dK3sJ$c21va2VfZDN0M2N0\niot-bridge:$7$101$eY2aL8nG$YnJpZGdlX2tleV8yMDI0",
+    "/home/nodered/.node-red/settings.js": "module.exports = {\n    uiPort: process.env.PORT || 1880,\n    mqttReconnectTime: 15000,\n    serialReconnectTime: 15000,\n    debugMaxLength: 1000,\n\n    adminAuth: {\n        type: \"credentials\",\n        users: [{\n            username: \"admin\",\n            password: \"$2b$08$kT3F5gVqL8pN2wXrY7mHaOjQx9vK4cR1dE6fS0tPuB3nWzA7yMi2q\",\n            permissions: \"*\"\n        }]\n    },\n\n    functionGlobalContext: {\n        os: require('os'),\n        moment: require('moment')\n    },\n\n    httpNodeAuth: {\n        user: \"api-user\",\n        pass: \"$2b$08$xM9kL4jW7nR3vY6pQ1tHcOsA5fD2gB8eU0iZ3mK9wN7rT1yX4oP6q\"\n    },\n\n    // MQTT broker connection for flows\n    mqttBroker: {\n        url: \"mqtt://127.0.0.1:1883\",\n        username: \"iot-bridge\",\n        password: \"bridge_key_2024\"\n    },\n\n    logging: {\n        console: {\n            level: \"info\",\n            metrics: false,\n            audit: false\n        }\n    },\n\n    editorTheme: {\n        projects: {\n            enabled: false\n        }\n    },\n\n    credentialSecret: \"n0d3r3d_cr3d_s3cr3t_k3y_2024!\"\n}",
+    "/home/iotadmin/.influxdb_token": "# InfluxDB API Token - DO NOT SHARE\nINFLUXDB_TOKEN=xJ4kL9mN2pQ7rS0tUvWxYz3aB5cD6eF8gHiKlMnOpRsTuVw==",
+    "/root/.bash_history": "systemctl status mosquitto\njournalctl -u mosquitto -f\nsystemctl restart nodered\ndocker ps -a\nss -tlnp\nmosquitto_pub -h localhost -t sensors/temp-sensor-01/data -u iot-bridge -P bridge_key_2024 -m '{\"temp\":22.5}'\nmosquitto_sub -h localhost -t '#' -u iot-bridge -P bridge_key_2024 -v\ncat /etc/mosquitto/passwd\nsystemctl status zigbee2mqtt\ni2cdetect -y 1\ngpioinfo\nifconfig\nip route\nping 192.168.1.50\nping scada-hmi\nssh iotadmin@scada-hmi\ncurl -s http://localhost:8086/health\ncurl -H 'Authorization: Token xJ4kL9mN2pQ7rS0tUvWxYz3aB5cD6eF8gHiKlMnOpRsTuVw==' http://localhost:8086/api/v2/buckets\ncat /home/iotadmin/.ssh/config\nreboot",
+    "/home/iotadmin/provision_device.sh": "#!/bin/bash\n# Device provisioning script for AWS IoT Core\n# Usage: ./provision_device.sh --device-id <id> [--check]\n\nset -euo pipefail\n\nAWS_IOT_ENDPOINT=\"a3k7b2c9d1e5f8.iot.eu-west-1.amazonaws.com\"\nAWS_ACCESS_KEY_ID=\"AKIAIOSFODNN7EXAMPLE\"\nAWS_SECRET_ACCESS_KEY=\"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\"\nAWS_REGION=\"eu-west-1\"\nCERTS_PATH=\"/home/iotadmin/certs\"\nMQTT_CA_CERT=\"/etc/mosquitto/ca_certificates/ca.crt\"\n\nDEVICE_ID=\"${1:-}\"\nCHECK_MODE=false\n\nfor arg in \"$@\"; do\n    case $arg in\n        --check)\n            CHECK_MODE=true\n            shift\n            ;;\n        --device-id)\n            DEVICE_ID=\"$2\"\n            shift 2\n            ;;\n    esac\ndone\n\nif [ \"$CHECK_MODE\" = true ]; then\n    echo \"[$(date)] Checking device provisioning status...\"\n    aws iot list-things --region $AWS_REGION 2>/dev/null | jq -r '.things[].thingName'\n    aws iot describe-endpoint --endpoint-type iot:Data-ATS --region $AWS_REGION 2>/dev/null\n    exit 0\nfi\n\nif [ -z \"$DEVICE_ID\" ]; then\n    echo \"Usage: $0 --device-id <device-id>\"\n    exit 1\nfi\n\necho \"[$(date)] Provisioning device: $DEVICE_ID\"\necho \"[$(date)] IoT Core endpoint: $AWS_IOT_ENDPOINT\"\n\n# Create thing in AWS IoT\naws iot create-thing --thing-name \"$DEVICE_ID\" --region $AWS_REGION\n\n# Generate and register device certificate\naws iot create-keys-and-certificate \\\n    --set-as-active \\\n    --certificate-pem-outfile \"$CERTS_PATH/$DEVICE_ID.cert.pem\" \\\n    --public-key-outfile \"$CERTS_PATH/$DEVICE_ID.public.key\" \\\n    --private-key-outfile \"$CERTS_PATH/$DEVICE_ID.private.key\" \\\n    --region $AWS_REGION\n\n# Add MQTT credentials to local broker\necho \"Adding local MQTT credentials for $DEVICE_ID\"\nmosquitto_passwd -b /etc/mosquitto/passwd \"$DEVICE_ID\" \"$(openssl rand -base64 16)\"\nsystemctl reload mosquitto\n\necho \"[$(date)] Device $DEVICE_ID provisioned successfully\"",
+    "/home/nodered/.node-red/flows_cred.json": "{\n    \"$\": \"n0d3r3d_cr3d_s3cr3t_k3y_2024!\",\n    \"mqtt-broker-node\": {\n        \"user\": \"iot-bridge\",\n        \"password\": \"bridge_key_2024\"\n    },\n    \"influxdb-node\": {\n        \"token\": \"xJ4kL9mN2pQ7rS0tUvWxYz3aB5cD6eF8gHiKlMnOpRsTuVw==\"\n    },\n    \"http-request-node-cloud\": {\n        \"user\": \"cloud-api\",\n        \"password\": \"Cl0ud_@PI_K3y_2024!\"\n    },\n    \"telegram-bot-node\": {\n        \"botToken\": \"7234567890:AAFgHiJkLmNoPqRsTuVwXyZ-aBcDeFgHiJk\"\n    },\n    \"email-node\": {\n        \"userid\": \"iot-alerts@smartbuilding.local\",\n        \"password\": \"Al3rt_M@il_2024\"\n    }\n}",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tiot-gw-01\n\n# IoT / OT network\n192.168.1.100\tiot-gw-01\n192.168.1.1\trouter\n192.168.1.50\tscada-hmi\n192.168.1.60\tplc-controller-01\n10.0.20.10\tcloud-bridge\n10.0.20.1\tvpn-gw\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/home/iotadmin/.ssh/config": "Host scada-hmi\n    HostName 192.168.1.50\n    User operator\n    IdentityFile ~/.ssh/id_ed25519\n    Port 22\n    StrictHostKeyChecking no\n\nHost cloud-bridge\n    HostName 10.0.20.10\n    User deploy\n    IdentityFile ~/.ssh/id_ed25519\n    Port 2222\n    StrictHostKeyChecking no\n    ProxyJump vpn-gw\n\nHost vpn-gw\n    HostName 10.0.20.1\n    User tunnel\n    Port 22",
+    "/etc/mosquitto/mosquitto.conf": "# Mosquitto MQTT Broker Configuration\n# iot-gw-01 - IoT Gateway\n\npid_file /run/mosquitto/mosquitto.pid\n\npersistence true\npersistence_location /var/lib/mosquitto/\n\nlog_dest file /var/log/mosquitto/mosquitto.log\nlog_type error\nlog_type warning\nlog_type notice\nlog_type information\nlog_type subscribe\nlog_type unsubscribe\nlog_timestamp true\nlog_timestamp_format %Y-%m-%dT%H:%M:%S\n\n# Default MQTT listener (unencrypted, LAN only)\nlistener 1883 0.0.0.0\nprotocol mqtt\nallow_anonymous false\npassword_file /etc/mosquitto/passwd\nmax_connections 100\n\n# TLS listener for external/WAN devices\nlistener 8883 0.0.0.0\nprotocol mqtt\ncafile /etc/mosquitto/ca_certificates/ca.crt\ncertfile /etc/mosquitto/certs/server.crt\nkeyfile /etc/mosquitto/certs/server.key\nrequire_certificate false\nallow_anonymous false\npassword_file /etc/mosquitto/passwd\n\n# WebSocket listener for Node-RED dashboard\nlistener 9001 127.0.0.1\nprotocol websockets\nallow_anonymous false\npassword_file /etc/mosquitto/passwd\n\n# Access control\n# topic readwrite sensors/#\n# topic readwrite actuators/#\n# topic readwrite zigbee2mqtt/#\n# topic read $SYS/#\n\nmax_inflight_messages 200\nmax_queued_messages 1000\nmessage_size_limit 1048576\nretain_available true\n\nautosave_interval 300\nautosave_on_changes true\n\ninclude_dir /etc/mosquitto/conf.d",
+    "/var/log/mosquitto/mosquitto.log": "2026-03-06T06:00:01 mosquitto version 2.0.11 starting\n2026-03-06T06:00:01 Config loaded from /etc/mosquitto/mosquitto.conf.\n2026-03-06T06:00:01 Opening ipv4 listen socket on port 1883.\n2026-03-06T06:00:01 Opening ipv4 listen socket on port 8883.\n2026-03-06T06:00:01 Opening websockets listen socket on port 9001.\n2026-03-06T06:00:02 mosquitto version 2.0.11 running\n2026-03-06T06:00:15 New connection from 192.168.1.31 (temp-sensor-01) on port 1883.\n2026-03-06T06:00:15 Client temp-sensor-01 connected (p2, c1, k60, u'temp-sensor-01').\n2026-03-06T06:00:16 Client temp-sensor-01 subscribing to sensors/temp-sensor-01/cmd (QoS 1).\n2026-03-06T06:00:18 New connection from 192.168.1.32 (temp-sensor-02) on port 1883.\n2026-03-06T06:00:18 Client temp-sensor-02 connected (p2, c1, k60, u'temp-sensor-02').\n2026-03-06T06:00:20 Received PUBLISH from temp-sensor-01 (d0, q1, r0, m1, 'sensors/temp-sensor-01/data', ... (87 bytes))\n2026-03-06T06:00:20 Sending PUBLISH to iot-bridge (d0, q1, r0, m5, 'sensors/temp-sensor-01/data', ... (87 bytes))\n2026-03-06T06:00:35 New connection from 192.168.1.45 (hvac-controller) on port 1883.\n2026-03-06T06:00:35 Client hvac-controller connected (p2, c1, k30, u'hvac-controller').\n2026-03-06T06:00:36 Client hvac-controller subscribing to actuators/hvac/# (QoS 1).\n2026-03-06T06:00:36 Client hvac-controller subscribing to sensors/temp-sensor-01/data (QoS 0).\n2026-03-06T06:00:36 Client hvac-controller subscribing to sensors/temp-sensor-02/data (QoS 0).\n2026-03-06T06:00:50 New connection from 192.168.1.71 (door-lock-03) on port 8883.\n2026-03-06T06:00:50 Client door-lock-03 connected (p2, c1, k120, u'door-lock-03').\n2026-03-06T06:00:51 Client door-lock-03 subscribing to actuators/doors/lock-03/cmd (QoS 2).\n2026-03-06T06:01:00 Received PUBLISH from hvac-controller (d0, q0, r0, m0, 'sensors/hvac/status', ... (124 bytes))\n2026-03-06T06:01:15 New connection from 192.168.1.80 (energy-meter-01) on port 1883.\n2026-03-06T06:01:15 Client energy-meter-01 connected (p2, c1, k60, u'energy-meter-01').\n2026-03-06T06:01:16 Received PUBLISH from energy-meter-01 (d0, q1, r0, m1, 'sensors/energy/meter-01/reading', ... (156 bytes))\n2026-03-06T06:01:30 New connection from 192.168.1.90 (camera-front) on port 8883.\n2026-03-06T06:01:30 Client camera-front connected (p2, c1, k30, u'camera-front').\n2026-03-06T06:01:31 Client camera-front subscribing to actuators/cameras/front/cmd (QoS 1).\n2026-03-06T06:01:31 Received PUBLISH from camera-front (d0, q0, r1, m0, 'sensors/cameras/front/status', ... (93 bytes))\n2026-03-06T06:01:45 New connection from 192.168.1.95 (smoke-detector-02) on port 1883.\n2026-03-06T06:01:45 Client smoke-detector-02 connected (p2, c1, k300, u'smoke-detector-02').\n2026-03-06T06:01:46 Received PUBLISH from smoke-detector-02 (d0, q2, r1, m1, 'sensors/safety/smoke-02/status', ... (68 bytes))\n2026-03-06T06:02:00 New connection from 127.0.0.1 (iot-bridge) on port 1883.\n2026-03-06T06:02:00 Client iot-bridge connected (p2, c1, k60, u'iot-bridge').\n2026-03-06T06:02:01 Client iot-bridge subscribing to sensors/# (QoS 1).\n2026-03-06T06:02:01 Client iot-bridge subscribing to actuators/# (QoS 1).\n2026-03-06T06:02:01 Client iot-bridge subscribing to zigbee2mqtt/# (QoS 0).\n2026-03-06T06:05:00 Received PUBLISH from temp-sensor-01 (d0, q1, r0, m12, 'sensors/temp-sensor-01/data', ... (89 bytes))\n2026-03-06T06:05:00 Sending PUBLISH to iot-bridge (d0, q1, r0, m18, 'sensors/temp-sensor-01/data', ... (89 bytes))\n2026-03-06T06:05:00 Sending PUBLISH to hvac-controller (d0, q0, r0, m0, 'sensors/temp-sensor-01/data', ... (89 bytes))\n2026-03-06T06:05:01 Received PUBLISH from temp-sensor-02 (d0, q1, r0, m8, 'sensors/temp-sensor-02/data', ... (91 bytes))\n2026-03-06T06:10:00 Received PUBLISH from energy-meter-01 (d0, q1, r0, m5, 'sensors/energy/meter-01/reading', ... (162 bytes))\n2026-03-06T06:10:00 Sending PUBLISH to iot-bridge (d0, q1, r0, m24, 'sensors/energy/meter-01/reading', ... (162 bytes))\n2026-03-06T06:15:02 Received PUBLISH from iot-bridge (d0, q1, r0, m3, 'actuators/hvac/zone-1/setpoint', ... (42 bytes))\n2026-03-06T06:15:02 Sending PUBLISH to hvac-controller (d0, q1, r0, m9, 'actuators/hvac/zone-1/setpoint', ... (42 bytes))\n2026-03-06T06:20:00 Client temp-sensor-01 sending PINGREQ\n2026-03-06T06:20:00 Sending PINGRESP to temp-sensor-01",
+    "/var/log/auth.log": "Mar  6 05:55:01 iot-gw-01 CRON[2345]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  6 05:55:01 iot-gw-01 CRON[2345]: pam_unix(cron:session): session closed for user root\nMar  6 06:00:01 iot-gw-01 CRON[2401]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  6 06:00:03 iot-gw-01 CRON[2401]: pam_unix(cron:session): session closed for user root\nMar  6 06:12:44 iot-gw-01 sshd[2567]: Accepted password for iotadmin from 192.168.1.50 port 48231 ssh2\nMar  6 06:12:44 iot-gw-01 sshd[2567]: pam_unix(sshd:session): session opened for user iotadmin(uid=1001) by (uid=0)\nMar  6 06:30:11 iot-gw-01 sudo: iotadmin : TTY=pts/0 ; PWD=/home/iotadmin ; USER=root ; COMMAND=/usr/bin/systemctl restart mosquitto\nMar  6 07:00:01 iot-gw-01 CRON[2890]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  6 07:00:03 iot-gw-01 CRON[2890]: pam_unix(cron:session): session closed for user root\nMar  6 07:15:22 iot-gw-01 sshd[3012]: Failed password for root from 10.0.20.55 port 39821 ssh2\nMar  6 07:15:24 iot-gw-01 sshd[3012]: Failed password for root from 10.0.20.55 port 39821 ssh2\nMar  6 08:00:01 iot-gw-01 CRON[3201]: pam_unix(cron:session): session opened for user iotadmin(uid=1001) by (uid=0)\nMar  6 08:00:05 iot-gw-01 CRON[3201]: pam_unix(cron:session): session closed for user iotadmin\nMar  6 08:45:33 iot-gw-01 sshd[3456]: Accepted password for iotadmin from 192.168.1.1 port 52341 ssh2\nMar  6 08:45:33 iot-gw-01 sshd[3456]: pam_unix(sshd:session): session opened for user iotadmin(uid=1001) by (uid=0)",
+    "/tmp/sensor_data_latest.json": "{\n  \"timestamp\": \"2026-03-06T06:05:00Z\",\n  \"sensors\": {\n    \"temp-sensor-01\": {\"temperature\": 22.4, \"humidity\": 45.2, \"battery\": 87, \"rssi\": -42},\n    \"temp-sensor-02\": {\"temperature\": 19.8, \"humidity\": 51.0, \"battery\": 92, \"rssi\": -38},\n    \"energy-meter-01\": {\"voltage\": 230.1, \"current\": 12.4, \"power\": 2853.24, \"energy_kwh\": 14521.7},\n    \"smoke-detector-02\": {\"smoke_level\": 0, \"battery\": 95, \"status\": \"OK\"},\n    \"door-lock-03\": {\"locked\": true, \"battery\": 78, \"last_unlock\": \"2026-03-05T18:32:00Z\"}\n  },\n  \"gateway\": {\"uptime\": 847231, \"cpu_temp\": 52.3, \"mem_free_mb\": 412}\n}",
+    "/home/iotadmin/docker-compose.yml": "version: '3.8'\n\nservices:\n  influxdb:\n    image: arm64v8/influxdb:2.7\n    container_name: influxdb\n    restart: unless-stopped\n    ports:\n      - \"8086:8086\"\n    volumes:\n      - influxdb-data:/var/lib/influxdb2\n      - influxdb-config:/etc/influxdb2\n    environment:\n      - DOCKER_INFLUXDB_INIT_MODE=setup\n      - DOCKER_INFLUXDB_INIT_USERNAME=admin\n      - DOCKER_INFLUXDB_INIT_PASSWORD=Infl0x_@dm1n_2024!\n      - DOCKER_INFLUXDB_INIT_ORG=smart-building\n      - DOCKER_INFLUXDB_INIT_BUCKET=sensor_data\n      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=xJ4kL9mN2pQ7rS0tUvWxYz3aB5cD6eF8gHiKlMnOpRsTuVw==\n    networks:\n      - iot-stack\n\n  zigbee2mqtt:\n    image: koenkk/zigbee2mqtt:latest\n    container_name: zigbee2mqtt\n    restart: unless-stopped\n    ports:\n      - \"8080:8080\"\n    volumes:\n      - /opt/zigbee2mqtt:/app/data\n      - /run/udev:/run/udev:ro\n    devices:\n      - /dev/ttyACM0:/dev/ttyACM0\n    environment:\n      - TZ=Europe/Amsterdam\n    depends_on:\n      - mosquitto-check\n    networks:\n      - iot-stack\n\n  grafana:\n    image: grafana/grafana:latest\n    container_name: grafana\n    restart: unless-stopped\n    ports:\n      - \"3000:3000\"\n    volumes:\n      - grafana-data:/var/lib/grafana\n    environment:\n      - GF_SECURITY_ADMIN_USER=admin\n      - GF_SECURITY_ADMIN_PASSWORD=Gr@fana_2024!\n      - GF_INSTALL_PLUGINS=grafana-clock-panel\n    depends_on:\n      - influxdb\n    networks:\n      - iot-stack\n\n  mosquitto-check:\n    image: arm64v8/alpine:3.18\n    container_name: mosquitto-check\n    command: sh -c \"until nc -z 192.168.1.100 1883; do sleep 2; done\"\n    networks:\n      - iot-stack\n\nvolumes:\n  influxdb-data:\n  influxdb-config:\n  grafana-data:\n\nnetworks:\n  iot-stack:\n    driver: bridge"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 534,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "mosquitto",
+      "pid": 892,
+      "user": "mosquitto",
+      "command": "/usr/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf",
+      "ports": [
+        1883,
+        8883
+      ]
+    },
+    {
+      "name": "node-red",
+      "pid": 1023,
+      "user": "nodered",
+      "command": "/usr/bin/node-red -s /home/nodered/.node-red/settings.js",
+      "ports": [
+        1880
+      ]
+    },
+    {
+      "name": "influxdb",
+      "pid": 1456,
+      "user": "influxdb",
+      "command": "/usr/bin/influxd --bolt-path=/var/lib/influxdb/influxd.bolt",
+      "ports": [
+        8086
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 412,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "zigbee2mqtt",
+      "pid": 1789,
+      "user": "root",
+      "command": "docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port 8080 -container-ip 172.18.0.3 -container-port 8080",
+      "ports": [
+        8080
+      ]
+    },
+    {
+      "name": "dockerd",
+      "pid": 678,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock",
+      "ports": []
+    },
+    {
+      "name": "containerd",
+      "pid": 623,
+      "user": "root",
+      "command": "/usr/bin/containerd",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "192.168.1.100",
+        "netmask": "255.255.255.0",
+        "mac": "dc:a6:32:ab:cd:ef"
+      },
+      {
+        "name": "wlan0",
+        "ip": "10.0.20.5",
+        "netmask": "255.255.255.0",
+        "mac": "dc:a6:32:ab:cd:f0"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "mosquitto",
+      "version": "2.0.11-1+deb11u1"
+    },
+    {
+      "name": "mosquitto-clients",
+      "version": "2.0.11-1+deb11u1"
+    },
+    {
+      "name": "nodered",
+      "version": "3.1.3-1"
+    },
+    {
+      "name": "influxdb2",
+      "version": "2.7.4-1"
+    },
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1"
+    },
+    {
+      "name": "zigbee2mqtt",
+      "version": "1.35.1"
+    },
+    {
+      "name": "python3",
+      "version": "3.9.2-3"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.4p1-5+deb11u3"
+    },
+    {
+      "name": "i2c-tools",
+      "version": "4.2-1+b1"
+    },
+    {
+      "name": "gpioctl",
+      "version": "0.6.1-1"
+    }
+  ],
+  "crontabs": {
+    "root": "*/5 * * * * /usr/local/bin/collect_sensor_data.sh\n0 3 * * * /home/iotadmin/backup_influxdb.sh",
+    "iotadmin": "0 */6 * * * /home/iotadmin/provision_device.sh --check"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.4p1 Raspbian-5+deb11u3",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "raspberry",
+        "123456"
+      ],
+      "iotadmin": [
+        "iotadmin",
+        "IoT@2024!",
+        "admin123"
+      ],
+      "nodered": [
+        "nodered",
+        "flows123"
+      ]
+    }
+  },
+  "description": "IoT gateway running Mosquitto MQTT broker, Node-RED, InfluxDB, and Zigbee2MQTT on Raspberry Pi. Leaked MQTT device credentials in passwd file, Node-RED admin password and flow credentials, InfluxDB API token, AWS IoT Core provisioning keys, /etc/hosts revealing SCADA/HMI and PLC controllers on OT network, SSH config for industrial control systems, MQTT logs showing device telemetry and mosquitto config as rabbit holes.",
+  "remote_files": {
+    "192.168.1.50": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "192.168.1.60": {
+      "/opt/scada/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"modbus_host\": \"plc-controller-01\",\n  \"modbus_port\": 502,\n  \"api_key\": \"SCADA_API_k3y_2024_s3cret\",\n  \"db_connection\": \"postgresql://scada_user:Sc@d@_DB_2024@localhost:5432/scada_hmi\"\n}\n",
+        "size": 190
+      }
+    },
+    "10.0.20.1": {
+      "/etc/openvpn/server.conf": {
+        "content_type": "text",
+        "content": "port 1194\nproto udp\ndev tun\nca /etc/openvpn/pki/ca.crt\ncert /etc/openvpn/pki/server.crt\nkey /etc/openvpn/pki/server.key\nauth-user-pass-verify /etc/openvpn/auth.sh via-file\n",
+        "size": 172
+      },
+      "/etc/openvpn/auth.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\nLDAP_BIND_DN='cn=vpn-auth,ou=services,dc=internal,dc=corp'\nLDAP_BIND_PW='Vpn_Ld@p_B1nd_2024!'\nldapwhoami -x -H ldap://ldap.internal.corp -D \"$LDAP_BIND_DN\" -w \"$LDAP_BIND_PW\"\n",
+        "size": 187
+      }
+    }
+  }
+}

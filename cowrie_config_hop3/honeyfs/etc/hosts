@@ -1,0 +1,18 @@
+127.0.0.1	localhost
+127.0.1.1	ci-runner-07
+
+# CI/CD infrastructure
+10.0.2.7	ci-runner-07
+10.0.2.10	gitlab.internal.corp gitlab
+10.0.2.20	registry.internal.corp registry
+10.0.2.30	k8s-master.internal.corp k8s-master
+10.0.2.50	app-prod-01
+10.0.2.51	app-prod-02
+10.0.2.100	db-primary.internal.corp db-primary
+10.0.2.110	redis.internal.corp redis
+10.0.2.1	gateway.internal.corp gateway
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

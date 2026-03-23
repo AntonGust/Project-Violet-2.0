@@ -1,0 +1,123 @@
+{
+  "command": {
+    "ps": [
+      {
+        "USER": "root",
+        "PID": 1,
+        "CPU": 0.0,
+        "MEM": 0.4,
+        "VSZ": 167340,
+        "RSS": 11200,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.48,
+        "COMMAND": "/sbin/init"
+      },
+      {
+        "USER": "root",
+        "PID": 2,
+        "CPU": 0.0,
+        "MEM": 0.0,
+        "VSZ": 0,
+        "RSS": 0,
+        "TTY": "?",
+        "STAT": "S",
+        "START": "Jan01",
+        "TIME": 0.0,
+        "COMMAND": "[kthreadd]"
+      },
+      {
+        "USER": "jenkins",
+        "PID": 1456,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 22537,
+        "RSS": 11157,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/java -jar /usr/share/java/jenkins.war --httpPort=8080"
+      },
+      {
+        "USER": "root",
+        "PID": 890,
+        "CPU": 0.1,
+        "MEM": 0.1,
+        "VSZ": 72304,
+        "RSS": 5520,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "sshd: /usr/sbin/sshd -D"
+      },
+      {
+        "USER": "root",
+        "PID": 1023,
+        "CPU": 0.1,
+        "MEM": 2.2,
+        "VSZ": 1564832,
+        "RSS": 89424,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock"
+      },
+      {
+        "USER": "root",
+        "PID": 987,
+        "CPU": 0.1,
+        "MEM": 1.0,
+        "VSZ": 842000,
+        "RSS": 42800,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/containerd"
+      },
+      {
+        "USER": "gitlab-runner",
+        "PID": 2345,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 28760,
+        "RSS": 13824,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/gitlab-runner run --working-directory /home/gitlab-runner --config /home/gitlab-runner/.gitlab-runner/config.toml"
+      },
+      {
+        "USER": "node_exporter",
+        "PID": 3456,
+        "CPU": 0.1,
+        "MEM": 0.2,
+        "VSZ": 24680,
+        "RSS": 8120,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/node_exporter --web.listen-address=:9100"
+      },
+      {
+        "USER": "root",
+        "PID": 567,
+        "CPU": 0.1,
+        "MEM": 0.1,
+        "VSZ": 8544,
+        "RSS": 3200,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/cron -f"
+      }
+    ]
+  }
+}

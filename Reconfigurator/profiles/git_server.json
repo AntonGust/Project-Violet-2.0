@@ -1,0 +1,683 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-234567890123",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Rocky Linux 9.3",
+    "hostname": "git-01",
+    "kernel_version": "5.14.0-362.el9.x86_64",
+    "arch": "x86_64",
+    "timezone": "Europe/London"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rKz$fakehashroot000000000000000000",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "git",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/git",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$gTv$fakehashgit0000000000000000000",
+      "groups": [
+        "git"
+      ]
+    },
+    {
+      "name": "gitadmin",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/gitadmin",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$aDm$fakehashgitadmin00000000000000",
+      "groups": [
+        "gitadmin",
+        "wheel",
+        "docker"
+      ],
+      "sudo_rules": "gitadmin ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "mysql",
+      "uid": 27,
+      "gid": 27,
+      "home": "/var/lib/mysql",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "mysql"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 492
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1247
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 412
+      }
+    ],
+    "/home/git": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "git",
+        "group": "git",
+        "size": 390
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "git",
+        "group": "git",
+        "size": 578
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "gitea",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "gitea-repositories",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "git",
+        "group": "git",
+        "size": 1680
+      },
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "git",
+        "group": "git",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "git",
+        "group": "git",
+        "size": 98
+      }
+    ],
+    "/home/git/gitea": [
+      {
+        "name": "custom",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "log",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/gitea/custom": [
+      {
+        "name": "conf",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/gitea/custom/conf": [
+      {
+        "name": "app.ini",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "git",
+        "group": "git",
+        "size": 2487
+      }
+    ],
+    "/home/git/gitea/data": [
+      {
+        "name": "gitea.db",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "git",
+        "group": "git",
+        "size": 2097152
+      },
+      {
+        "name": "lfs",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "sessions",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/gitea-repositories": [
+      {
+        "name": "infra-team",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "platform",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/gitea-repositories/infra-team": [
+      {
+        "name": "ansible-playbooks.git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "terraform-modules.git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/git/gitea-repositories/platform": [
+      {
+        "name": "api-gateway.git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "auth-service.git",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ],
+    "/home/gitadmin": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 390
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 892
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "gitadmin",
+        "group": "gitadmin"
+      },
+      {
+        "name": ".gitea_admin_token",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 64
+      },
+      {
+        "name": "db_backup.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 1124
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "gitadmin",
+        "group": "gitadmin"
+      }
+    ],
+    "/home/gitadmin/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 102
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 487
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 1820
+      }
+    ],
+    "/home/gitadmin/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "gitadmin",
+        "group": "gitadmin",
+        "size": 134
+      }
+    ],
+    "/etc/nginx/conf.d": [
+      {
+        "name": "gitea.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1087
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "secure",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 8934
+      },
+      {
+        "name": "gitea",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      },
+      {
+        "name": "nginx",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "mysqld.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "mysql",
+        "group": "mysql",
+        "size": 12450
+      }
+    ],
+    "/var/log/gitea": [
+      {
+        "name": "gitea.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "git",
+        "group": "git",
+        "size": 45230
+      }
+    ],
+    "/var/log/nginx": [
+      {
+        "name": "access.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 23400
+      },
+      {
+        "name": "error.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 5670
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1834
+      }
+    ],
+    "/var/lib/mysql": [
+      {
+        "name": "gitea",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "mysql",
+        "group": "mysql"
+      },
+      {
+        "name": "mysql",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "mysql",
+        "group": "mysql"
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "gitea-cache",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "git",
+        "group": "git"
+      }
+    ]
+  },
+  "file_contents": {
+    "/home/git/gitea/custom/conf/app.ini": "APP_NAME = Gitea: Internal Code Hosting\nRUN_USER = git\nRUN_MODE = prod\nWORK_PATH = /home/git/gitea\n\n[server]\nSSH_DOMAIN       = git-01.internal.corp\nDOMAIN            = git-01.internal.corp\nHTTP_PORT         = 3000\nROOT_URL          = https://git-01.internal.corp/\nDISABLE_SSH       = false\nSSH_PORT          = 22\nLFS_START_SERVER  = true\nLFS_JWT_SECRET    = eyJhbGciOiJIUzI1NiJ9.bGZzLXNlY3JldC1rZXktZ2l0ZWE.Rk9SX0hPTkVZUE9UX09OTFk\nOFFLINE_MODE      = false\n\n[database]\nDB_TYPE  = mysql\nHOST     = 127.0.0.1:3306\nNAME     = gitea\nUSER     = gitea\nPASSWD   = G1te@_DB_p4ss!2025\nSSL_MODE = disable\nCHARSET  = utf8mb4\nLOG_SQL  = false\n\n[security]\nINSTALL_LOCK                  = true\nSECRET_KEY                    = 4aXn9kQf7Wp2sLm6RjTvYhBc3DgEi8Ao5ZuNx1Vy0CwMtHbGpJeUqKrSdFzIlO\nINTERNAL_TOKEN                = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE3MDkxNTg0MDAsImlhdCI6MTcwOTE1ODQwMCwiaXNzIjoiZ2l0ZWEtaW50ZXJuYWwifQ.Vk1GRV9JTlRFUk5BTF9UT0tFTg\nPASSWORD_HASH_ALGO            = pbkdf2\nMIN_PASSWORD_LENGTH            = 8\n\n[service]\nDISABLE_REGISTRATION          = true\nREQUIRE_SIGNIN_VIEW           = true\nENABLE_NOTIFY_MAIL            = true\nENABLE_BASIC_AUTHENTICATION   = true\n\n[mailer]\nENABLED   = true\nSMTP_ADDR = smtp.internal.corp\nSMTP_PORT = 587\nFROM      = gitea@internal.corp\nUSER      = gitea@internal.corp\nPASSWD    = Sm7p_M@1l_s3nd3r!\n\n[openid]\nENABLE_OPENID_SIGNIN = false\n\n[oauth2]\nENABLE = true\n\n[session]\nPROVIDER = file\n\n[log]\nMODE      = file\nLEVEL     = info\nROOT_PATH = /home/git/gitea/log\n\n[repository]\nROOT               = /home/git/gitea-repositories\nDEFAULT_BRANCH     = main\nENABLE_PUSH_CREATE_USER = true\n\n[lfs]\nPATH = /home/git/gitea/data/lfs\n\n[indexer]\nISSUE_INDEXER_TYPE  = bleve\nISSUE_INDEXER_PATH  = /home/git/gitea/data/indexers/issues.bleve\nREPO_INDEXER_ENABLED = true\n\n[authentication]\nLDAP_ENABLED         = true\nLDAP_HOST            = 10.0.7.30\nLDAP_PORT            = 389\nLDAP_BASE_DN         = dc=internal,dc=corp\nLDAP_BIND_DN         = cn=gitea-svc,ou=service-accounts,dc=internal,dc=corp\nLDAP_BIND_PASSWORD   = Ld@p_B1nd_Gitea#2025\nLDAP_USER_FILTER     = (&(objectClass=person)(uid=%s))\nLDAP_ADMIN_FILTER    = (memberOf=cn=git-admins,ou=groups,dc=internal,dc=corp)\nLDAP_ATTRIBUTE_USERNAME = uid\nLDAP_ATTRIBUTE_NAME  = cn\nLDAP_ATTRIBUTE_MAIL  = mail",
+    "/root/.bash_history": "systemctl status gitea\nsystemctl status mysqld\nsystemctl status nginx\nss -tlnp\njournalctl -u gitea -f\nmysql -u root -p'R00t_MyS0L_2025!' -e 'SHOW DATABASES;'\nmysql -u root -p'R00t_MyS0L_2025!' gitea -e 'SELECT name,email FROM user;'\ndocker ps\nfirewall-cmd --list-all\nyum update -y\ncat /home/git/gitea/custom/conf/app.ini\nfail2ban-client status sshd\ncertbot certificates\nnginx -t\nsystemctl restart nginx\ncat /var/log/secure | grep Failed\ndf -h\nfree -m\nuptimee\nuptime",
+    "/home/gitadmin/.gitea_admin_token": "gta_4kR7xWn2Lp9QbTmVf3YhJcSdAe6Ui8Go5Zr1Nv0Cw",
+    "/home/git/.ssh/authorized_keys": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8kH3p2mVxLfN7Qq5bR0tYjWuZeXcAnK9gd4Si6Fb7v jenkins@ci-runner-07\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBrW4nPx8kT2Ym9Qh7Lz1vAfJdNcXuRp3Ki6Go5Ws0Ee gitadmin@git-01\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL5mN9p2kR3xYbTvQh7Wf1JcAeDuZeXrKg4Si8Go6Fw0 deployer@app-prod-01.internal.corp\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7R3pN2kYxLf8vQh9Tm5bW1uZeXcJdAnKg4Si6Go3Fp0rEeBbTvQh7Wf1JcANzaC1lZDI1NTE5Qh7= gitlab-runner@ci-runner-07\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmT8p2vN3xYbRfQh7Lz1WcJdAeNuZeXrKg4Si8Go6Fw backup-svc@db-replica.internal.corp",
+    "/home/gitadmin/db_backup.sh": "#!/bin/bash\n# Gitea MySQL backup script\n# Runs nightly via root crontab at 02:00\n# Author: gitadmin\n# Last modified: 2026-02-28\n\nset -euo pipefail\n\nBACKUP_DIR=\"/var/backups/gitea-mysql\"\nDATE=$(date +%Y%m%d_%H%M%S)\nRETENTION_DAYS=14\nLOG_FILE=\"/var/log/gitea-backup.log\"\nDB_HOST=\"127.0.0.1\"\nDB_USER=\"gitea_backup\"\nDB_PASS=\"B@ckup_DB_2025!secure\"\nDB_NAME=\"gitea\"\n\nlog_msg() {\n    echo \"[$(date '+%Y-%m-%d %H:%M:%S')] $1\" | tee -a \"$LOG_FILE\"\n}\n\nmkdir -p \"$BACKUP_DIR\"\n\nlog_msg \"Starting MySQL backup for database: $DB_NAME\"\n\nif ! mysqldump -h \"$DB_HOST\" -u \"$DB_USER\" -p\"$DB_PASS\" \\\n    --single-transaction --quick --lock-tables=false \\\n    \"$DB_NAME\" | gzip > \"$BACKUP_DIR/gitea_${DATE}.sql.gz\" 2>>\"$LOG_FILE\"; then\n    log_msg \"ERROR: mysqldump failed with exit code $?\"\n    echo \"Gitea DB backup FAILED on $(hostname) at $(date)\" | mail -s \"[ALERT] Gitea Backup Failed\" gitadmin@internal.corp\n    exit 1\nfi\n\nBACKUP_SIZE=$(du -sh \"$BACKUP_DIR/gitea_${DATE}.sql.gz\" | awk '{print $1}')\nlog_msg \"Backup completed: gitea_${DATE}.sql.gz ($BACKUP_SIZE)\"\n\n# Also backup Gitea repositories\nlog_msg \"Backing up Gitea repositories...\"\ntar czf \"$BACKUP_DIR/repos_${DATE}.tar.gz\" -C /home/git gitea-repositories 2>>\"$LOG_FILE\"\nlog_msg \"Repository backup completed\"\n\n# Cleanup old backups\nfind \"$BACKUP_DIR\" -name \"*.gz\" -mtime +${RETENTION_DAYS} -delete\nlog_msg \"Cleaned up backups older than ${RETENTION_DAYS} days\"\n\nlog_msg \"All backup tasks completed successfully\"",
+    "/home/gitadmin/.ssh/config": "Host ci-runner\n    HostName 10.0.7.10\n    User gitadmin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost registry\n    HostName 10.0.7.20\n    User gitadmin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost ldap\n    HostName 10.0.7.30\n    User admin\n    IdentityFile ~/.ssh/id_ed25519\n    Port 22\n\nHost db-replica\n    HostName 10.0.7.100\n    User dba\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tgit-01\n\n# Git infrastructure\n10.0.7.5\tgit-01 git-01.internal.corp\n10.0.7.10\tci-runner-07 ci-runner-07.internal.corp\n10.0.7.20\tregistry.internal.corp registry\n10.0.7.30\tldap.internal.corp ldap\n10.0.7.100\tdb-replica.internal.corp db-replica\n10.0.7.1\tgateway gateway.internal.corp\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/etc/nginx/conf.d/gitea.conf": "upstream gitea_backend {\n    server 127.0.0.1:3000;\n    keepalive 32;\n}\n\nserver {\n    listen 80;\n    server_name git-01.internal.corp;\n    return 301 https://$host$request_uri;\n}\n\nserver {\n    listen 443 ssl http2;\n    server_name git-01.internal.corp;\n\n    ssl_certificate     /etc/letsencrypt/live/git-01.internal.corp/fullchain.pem;\n    ssl_certificate_key /etc/letsencrypt/live/git-01.internal.corp/privkey.pem;\n    ssl_protocols       TLSv1.2 TLSv1.3;\n    ssl_ciphers         HIGH:!aNULL:!MD5;\n    ssl_prefer_server_ciphers on;\n\n    client_max_body_size 256M;\n\n    location / {\n        proxy_pass http://gitea_backend;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n        proxy_buffering off;\n    }\n\n    location /api/v1 {\n        proxy_pass http://gitea_backend;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n\n    access_log /var/log/nginx/access.log;\n    error_log  /var/log/nginx/error.log;\n}",
+    "/var/log/secure": "Mar  5 02:00:01 git-01 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 02:00:45 git-01 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  5 03:00:01 git-01 CRON[4890]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 03:00:22 git-01 CRON[4890]: pam_unix(cron:session): session closed for user root\nMar  5 08:22:14 git-01 sshd[5102]: Accepted password for gitadmin from 10.0.7.1 port 44231 ssh2\nMar  5 08:22:14 git-01 sshd[5102]: pam_unix(sshd:session): session opened for user gitadmin(uid=1001) by (uid=0)\nMar  5 09:15:33 git-01 sshd[5340]: Accepted publickey for git from 10.0.7.10 port 52190 ssh2\nMar  5 09:15:33 git-01 sshd[5340]: pam_unix(sshd:session): session opened for user git(uid=1000) by (uid=0)\nMar  5 09:45:01 git-01 sudo: gitadmin : TTY=pts/0 ; PWD=/home/gitadmin ; USER=root ; COMMAND=/usr/bin/systemctl restart gitea\nMar  5 10:10:07 git-01 sshd[5621]: Failed password for root from 203.0.113.45 port 39821 ssh2\nMar  5 10:10:09 git-01 sshd[5621]: Failed password for root from 203.0.113.45 port 39821 ssh2\nMar  5 10:10:11 git-01 sshd[5621]: Failed password for root from 203.0.113.45 port 39821 ssh2\nMar  5 10:11:45 git-01 sshd[5634]: Failed password for invalid user admin from 203.0.113.45 port 40112 ssh2\nMar  5 11:30:22 git-01 sshd[5890]: Accepted publickey for git from 10.0.7.10 port 53412 ssh2\nMar  5 12:00:01 git-01 CRON[6012]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 14:22:18 git-01 sshd[6234]: Accepted password for gitadmin from 10.0.7.1 port 48910 ssh2\nMar  5 14:22:18 git-01 sshd[6234]: pam_unix(sshd:session): session opened for user gitadmin(uid=1001) by (uid=0)\nMar  5 14:30:55 git-01 sudo: gitadmin : TTY=pts/1 ; PWD=/home/gitadmin ; USER=root ; COMMAND=/usr/bin/docker ps",
+    "/var/log/gitea/gitea.log": "2026/03/05 08:00:01 [I] Gitea v1.21.5 built with GNU Make 4.3, go1.21.6 : bindata, sqlite, sqlite_unlock_notify\n2026/03/05 08:00:01 [I] AppPath: /usr/local/bin/gitea\n2026/03/05 08:00:01 [I] AppWorkPath: /home/git/gitea\n2026/03/05 08:00:01 [I] Custom path: /home/git/gitea/custom\n2026/03/05 08:00:01 [I] Log path: /home/git/gitea/log\n2026/03/05 08:00:01 [I] Configuration file: /home/git/gitea/custom/conf/app.ini\n2026/03/05 08:00:02 [I] Starting Gitea on PID: 1834\n2026/03/05 08:00:02 [I] Global init\n2026/03/05 08:00:02 [I] MySQL Connection: gitea@tcp(127.0.0.1:3306)/gitea\n2026/03/05 08:00:03 [I] LDAP Authentication source \"internal-ldap\" initialized: 10.0.7.30:389\n2026/03/05 08:00:03 [I] ORM engine initialized successfully\n2026/03/05 08:00:03 [I] LFS server enabled at /home/git/gitea/data/lfs\n2026/03/05 08:00:03 [I] SSH server started on :22\n2026/03/05 08:00:03 [I] Listen: http://0.0.0.0:3000\n2026/03/05 09:15:33 [I] Git push received: infra-team/ansible-playbooks (branch: main) by jenkins via SSH from 10.0.7.10\n2026/03/05 09:15:34 [I] Post-receive hook executed for infra-team/ansible-playbooks: webhook delivery to http://ci-runner-07.internal.corp:8080/gitea-webhook/post\n2026/03/05 09:16:01 [I] Git pull: platform/api-gateway (branch: main) by deployer via SSH from 10.0.7.10\n2026/03/05 09:45:22 [W] Failed authentication attempt for user 'admin' from 203.0.113.45 via web interface\n2026/03/05 09:45:24 [W] Failed authentication attempt for user 'admin' from 203.0.113.45 via web interface\n2026/03/05 09:45:26 [W] Failed authentication attempt for user 'root' from 203.0.113.45 via web interface\n2026/03/05 10:00:15 [I] LDAP user sync: 12 users synchronized from 10.0.7.30\n2026/03/05 10:30:44 [I] Git push received: platform/auth-service (branch: feature/oauth-refactor) by d.chen via HTTPS\n2026/03/05 10:30:45 [I] Post-receive hook executed for platform/auth-service: webhook delivery to http://ci-runner-07.internal.corp:8080/gitea-webhook/post\n2026/03/05 11:15:10 [I] API token authentication: user=gitadmin token=gta_4kR7x*** scope=all from 10.0.7.1\n2026/03/05 11:15:10 [I] API: GET /api/v1/repos/search by gitadmin from 10.0.7.1\n2026/03/05 11:30:22 [I] Git pull: infra-team/terraform-modules (branch: main) by jenkins via SSH from 10.0.7.10\n2026/03/05 12:00:01 [I] Cron: update mirrors started\n2026/03/05 12:00:03 [I] Cron: update mirrors finished, 0 mirrors updated\n2026/03/05 14:22:30 [I] Repository created: infra-team/docker-compose-stacks by gitadmin\n2026/03/05 14:25:18 [I] Git push received: infra-team/docker-compose-stacks (branch: main) by gitadmin via SSH from 10.0.7.1\n2026/03/05 14:30:00 [I] Mailer: sent notification to d.chen@internal.corp: [Gitea] New repository: docker-compose-stacks\n2026/03/05 15:00:01 [I] Cron: repo health check started\n2026/03/05 15:00:05 [I] Cron: repo health check finished, 6 repos checked, 0 issues found",
+    "/var/mail/root": "From cron@git-01 Thu Mar  5 02:01:00 2026\nSubject: Cron <root@git-01> /home/gitadmin/db_backup.sh\nDate: Thu, 5 Mar 2026 02:01:00 +0000\n\n[2026-03-05 02:00:01] Starting MySQL backup for database: gitea\n[2026-03-05 02:00:18] Backup completed: gitea_20260305_020001.sql.gz (14M)\n[2026-03-05 02:00:19] Backing up Gitea repositories...\n[2026-03-05 02:00:45] Repository backup completed\n[2026-03-05 02:00:46] Cleaned up backups older than 14 days\n[2026-03-05 02:00:46] All backup tasks completed successfully\n\nFrom certbot@git-01 Sun Mar  1 03:00:15 2026\nSubject: Cron <root@git-01> certbot renew --quiet\nDate: Sun, 1 Mar 2026 03:00:15 +0000\n\nCertificate not yet due for renewal: git-01.internal.corp\nNo renewal attempted.\n\nFrom fail2ban@git-01 Wed Mar  5 10:12:00 2026\nSubject: [Fail2Ban] sshd: banned 203.0.113.45\nDate: Wed, 5 Mar 2026 10:12:00 +0000\n\nThe IP 203.0.113.45 has been banned by Fail2Ban after 3 failed attempts against sshd.",
+    "/home/gitadmin/.bash_history": "sudo systemctl status gitea\nsudo systemctl restart gitea\nsudo systemctl status mysqld\nmysql -u root -p'R00t_MyS0L_2025!' -e 'SELECT name,email,is_admin FROM user;' gitea\ncurl -s http://localhost:3000/api/v1/repos/search -H 'Authorization: token gta_4kR7xWn2Lp9QbTmVf3YhJcSdAe6Ui8Go5Zr1Nv0Cw' | jq .\nsudo docker ps\nsudo docker images\nssh ci-runner 'gitlab-runner list'\ncat /home/git/gitea/custom/conf/app.ini\nsudo journalctl -u gitea --since today\nsudo fail2ban-client status sshd\ndf -h\nsudo certbot certificates\nbash db_backup.sh\ncat /var/log/gitea/gitea.log | tail -50",
+    "/home/git/.bash_history": "gitea admin user list\ngitea dump -c /home/git/gitea/custom/conf/app.ini\nls gitea-repositories/\ndu -sh gitea-repositories/*\ngitea doctor check\nsystemctl status gitea",
+    "/home/gitadmin/.docker/config.json": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"Z2l0YWRtaW46UjNnMXN0cnlfUEBzc18yMDI1IQ==\"\n    }\n  }\n}"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 812,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "gitea",
+      "pid": 1834,
+      "user": "git",
+      "command": "/usr/local/bin/gitea web --config /home/git/gitea/custom/conf/app.ini",
+      "ports": [
+        3000
+      ]
+    },
+    {
+      "name": "mysqld",
+      "pid": 1102,
+      "user": "mysql",
+      "command": "/usr/sbin/mysqld --datadir=/var/lib/mysql",
+      "ports": [
+        3306
+      ]
+    },
+    {
+      "name": "dockerd",
+      "pid": 1045,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock",
+      "ports": []
+    },
+    {
+      "name": "nginx",
+      "pid": 1567,
+      "user": "root",
+      "command": "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;",
+      "ports": [
+        80,
+        443
+      ]
+    },
+    {
+      "name": "crond",
+      "pid": 678,
+      "user": "root",
+      "command": "/usr/sbin/crond -n",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.7.5",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:07:05"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "gitea",
+      "version": "1.21.5"
+    },
+    {
+      "name": "nginx",
+      "version": "1.20.1-14.el9"
+    },
+    {
+      "name": "mysql-server",
+      "version": "8.0.36-1.el9"
+    },
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1.el9"
+    },
+    {
+      "name": "openssh-server",
+      "version": "8.7p1-34.el9"
+    },
+    {
+      "name": "git",
+      "version": "2.39.3-1.el9"
+    },
+    {
+      "name": "certbot",
+      "version": "2.3.0-1.el9"
+    },
+    {
+      "name": "python3",
+      "version": "3.9.18-3.el9"
+    },
+    {
+      "name": "fail2ban",
+      "version": "1.0.2-10.el9"
+    },
+    {
+      "name": "vim",
+      "version": "8.2.2637-20.el9"
+    }
+  ],
+  "crontabs": {
+    "root": "0 2 * * * /home/gitadmin/db_backup.sh\n0 3 * * 0 certbot renew --quiet\n*/5 * * * * /usr/local/bin/check_gitea.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.7",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "gitadmin": [
+        "gitadmin",
+        "G1t@dmin!",
+        "admin123"
+      ]
+    }
+  },
+  "description": "Self-hosted Gitea server with nginx reverse proxy and MySQL backend. Leaked DB credentials and secret keys in app.ini, API admin token, mysqldump password in backup script, LDAP integration revealing directory server, /etc/hosts mapping CI/CD and registry infrastructure, SSH config for build runners, Gitea app.ini and access logs as rabbit holes.",
+  "remote_files": {
+    "10.0.7.5": {
+      "/opt/gitea/custom/conf/app.ini": {
+        "content_type": "text",
+        "content": "[database]\nDB_TYPE = mysql\nHOST = db-replica:3306\nNAME = gitea\nUSER = gitea_svc\nPASSWD = G1t_DB_Pr0d_2024!\n\n[server]\nROOT_URL = https://git.internal.corp/\nSSH_PORT = 2222\n",
+        "size": 171
+      }
+    },
+    "10.0.7.10": {
+      "/var/lib/jenkins/credentials.xml": {
+        "content_type": "text",
+        "content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<credentials>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>deploy-ssh</id>\n    <username>deploy</username>\n    <password>d3pl0y_pr0d_2024!</password>\n  </entry>\n  <entry type=\"password\">\n    <scope>GLOBAL</scope>\n    <id>db-backup</id>\n    <username>backupuser</username>\n    <password>Bkp_s3cur3_db#99</password>\n  </entry>\n</credentials>\n",
+        "size": 394
+      },
+      "/opt/ci/deploy.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.7.10:/opt/ci/deploy.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 183
+      },
+      "/var/log/jenkins/jenkins.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.7.10\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      }
+    },
+    "10.0.7.20": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.7.20:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 262
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    },
+    "10.0.7.30": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.7.100": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.7.100\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 604
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.7.100:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 241
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.7.100\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    }
+  }
+}

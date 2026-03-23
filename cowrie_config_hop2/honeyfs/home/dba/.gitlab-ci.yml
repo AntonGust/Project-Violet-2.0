@@ -1,0 +1,17 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  GITLAB_TOKEN: "HONEYPOT_LURE_gitlab_pat_abcdef1234567890"
+
+build_job:
+  stage: build
+  script:
+    - echo "Building..."
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying to db-primary"
+  only:
+    - master

@@ -1,0 +1,19 @@
+From nagios@monitoring.internal.corp Sat Feb 22 06:00:01 2026
+Subject: CRITICAL - PostgreSQL replication lag on db-standby
+Date: Sat, 22 Feb 2026 06:00:01 -0600
+
+***** Nagios *****
+Notification Type: PROBLEM
+Host: db-standby (10.0.3.15)
+Service: PostgreSQL Replication Lag
+State: CRITICAL
+Info: Replication lag is 45 minutes. Check pg_stat_replication on db-primary.
+Nagios credentials: nagios_check / N@g10s_M0n_2024
+
+From cron@db-primary Sun Feb 23 02:08:46 2026
+Subject: Cron <root@db-primary> /home/dba/scripts/full_backup.sh
+Date: Sun, 23 Feb 2026 02:08:46 -0600
+
+Backup complete: daily_2026-02-23.sql.gz
+Uploaded to s3://corp-db-backups/pg-primary/
+Replicated to db-standby.internal.corp

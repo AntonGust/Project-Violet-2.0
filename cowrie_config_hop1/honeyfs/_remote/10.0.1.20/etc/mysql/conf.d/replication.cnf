@@ -1,0 +1,12 @@
+# Configuration from 10.0.1.20:/etc/mysql/conf.d/replication.cnf
+[database]
+host = localhost
+port = 3306
+user = app_user
+password = Pr0d_DB_p@ss_2024
+database = production
+
+[redis]
+host = 127.0.0.1
+port = 6379
+password = R3dis_C@che_s3cret

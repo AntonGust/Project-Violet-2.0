@@ -1,0 +1,13 @@
+[Unit]
+Description=Pgbouncer
+After=network.target
+
+[Service]
+Type=forking
+User=postgres
+ExecStart=/usr/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

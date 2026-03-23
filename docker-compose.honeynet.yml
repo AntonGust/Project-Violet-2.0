@@ -1,0 +1,144 @@
+services:
+  kali:
+    build: Blue_Lagoon/kali_image
+    privileged: true
+    ports:
+    - 3010:3022
+    networks:
+      net_entry:
+        ipv4_address: 172.10.0.2
+  cowrie_hop1:
+    build: Cowrie/cowrie-src
+    restart: always
+    extra_hosts:
+    - host.docker.internal:host-gateway
+    environment:
+    - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
+    - COWRIE_HYBRID_LLM_ENABLED=true
+    - HONEYNET_MODE=true
+    - COWRIE_DB_HOST=172.10.0.21
+    - COWRIE_DB_ENGINE=mysql
+    - COWRIE_DB_PORT=3306
+    - COWRIE_DB_ROOT_PASSWORD=H0n3yp0t_R00t!
+    - COWRIE_DB_NAME=wordpress_prod
+    - COWRIE_DB_USER=wp_admin
+    - COWRIE_DB_PASSWORD=Str0ng_But_Le4ked!
+    volumes:
+    - ./cowrie_config_hop1/etc:/cowrie/cowrie-git/etc
+    - ./cowrie_config_hop1/honeyfs:/cowrie/cowrie-git/honeyfs
+    - ./cowrie_config_hop1/share:/cowrie/cowrie-git/share/cowrie
+    - ./cowrie_config_hop1/var:/cowrie/cowrie-git/var
+    networks:
+      net_entry:
+        ipv4_address: 172.10.0.10
+      net_hop1:
+        ipv4_address: 172.10.1.10
+    ports:
+    - 2210:2222
+  cowrie_hop2:
+    build: Cowrie/cowrie-src
+    restart: always
+    extra_hosts:
+    - host.docker.internal:host-gateway
+    environment:
+    - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
+    - COWRIE_HYBRID_LLM_ENABLED=true
+    - HONEYNET_MODE=true
+    - COWRIE_DB_HOST=172.10.1.22
+    - COWRIE_DB_ENGINE=postgresql
+    - COWRIE_DB_PORT=5432
+    - COWRIE_DB_ROOT_PASSWORD=H0n3yp0t_R00t!
+    - COWRIE_DB_NAME=postgres
+    - COWRIE_DB_USER=postgres
+    - COWRIE_DB_PASSWORD=P0stgr3s_Sup3r_S3cret!
+    volumes:
+    - ./cowrie_config_hop2/etc:/cowrie/cowrie-git/etc
+    - ./cowrie_config_hop2/honeyfs:/cowrie/cowrie-git/honeyfs
+    - ./cowrie_config_hop2/share:/cowrie/cowrie-git/share/cowrie
+    - ./cowrie_config_hop2/var:/cowrie/cowrie-git/var
+    networks:
+      net_hop1:
+        ipv4_address: 172.10.1.11
+      net_hop2:
+        ipv4_address: 172.10.2.11
+  cowrie_hop3:
+    build: Cowrie/cowrie-src
+    restart: always
+    extra_hosts:
+    - host.docker.internal:host-gateway
+    environment:
+    - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
+    - COWRIE_HYBRID_LLM_ENABLED=true
+    - HONEYNET_MODE=true
+    - COWRIE_DB_HOST=
+    - COWRIE_DB_ENGINE=
+    - COWRIE_DB_PORT=
+    - COWRIE_DB_NAME=
+    - COWRIE_DB_USER=
+    - COWRIE_DB_PASSWORD=
+    - COWRIE_DB_ROOT_PASSWORD=
+    volumes:
+    - ./cowrie_config_hop3/etc:/cowrie/cowrie-git/etc
+    - ./cowrie_config_hop3/honeyfs:/cowrie/cowrie-git/honeyfs
+    - ./cowrie_config_hop3/share:/cowrie/cowrie-git/share/cowrie
+    - ./cowrie_config_hop3/var:/cowrie/cowrie-git/var
+    networks:
+      net_hop2:
+        ipv4_address: 172.10.2.12
+  honeypot_db_hop1:
+    image: mysql:8.0
+    restart: 'no'
+    volumes:
+    - ./cowrie_config_hop1/db_init:/docker-entrypoint-initdb.d:ro
+    - ./cowrie_config_hop1/var/log/db:/var/log/mysql
+    networks:
+      net_entry:
+        ipv4_address: 172.10.0.21
+    environment:
+      MYSQL_ROOT_PASSWORD: H0n3yp0t_R00t!
+      MYSQL_DATABASE: wordpress_prod
+    healthcheck:
+      test:
+      - CMD
+      - mysqladmin
+      - ping
+      - -h
+      - localhost
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  honeypot_db_hop2:
+    image: postgres:16
+    restart: 'no'
+    volumes:
+    - ./cowrie_config_hop2/db_init:/docker-entrypoint-initdb.d:ro
+    - ./cowrie_config_hop2/var/log/db:/var/log/postgresql
+    networks:
+      net_hop1:
+        ipv4_address: 172.10.1.22
+    environment:
+      POSTGRES_PASSWORD: H0n3yp0t_R00t!
+      POSTGRES_DB: app_production
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -U postgres
+      interval: 5s
+      timeout: 3s
+      retries: 15
+networks:
+  net_entry:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.10.0.0/24
+  net_hop1:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.10.1.0/24
+  net_hop2:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.10.2.0/24

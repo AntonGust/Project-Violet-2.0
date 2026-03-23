@@ -1,0 +1,498 @@
+{
+  "id": "d5e6f7a8-b9c0-1234-def0-a98765432101",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "CentOS Stream 9",
+    "hostname": "ns1",
+    "kernel_version": "5.14.0-391.el9.x86_64",
+    "arch": "x86_64",
+    "timezone": "America/Chicago"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rnd$fakehashroot",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "named",
+      "uid": 25,
+      "gid": 25,
+      "home": "/var/named",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "named"
+      ]
+    },
+    {
+      "name": "dnsadmin",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/dnsadmin",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$dns$fakehashdnsadmin",
+      "groups": [
+        "dnsadmin",
+        "wheel",
+        "named"
+      ],
+      "sudo_rules": "dnsadmin ALL=(ALL) ALL"
+    },
+    {
+      "name": "node_exporter",
+      "uid": 9100,
+      "gid": 9100,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "node_exporter"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 492
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1247
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 412
+      }
+    ],
+    "/home/dnsadmin": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 376
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 1583
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "dnsadmin",
+        "group": "dnsadmin"
+      },
+      {
+        "name": "dns_update.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "dnsadmin",
+        "group": "named",
+        "size": 687
+      },
+      {
+        "name": ".my.cnf",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 94
+      }
+    ],
+    "/home/dnsadmin/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 310
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "dnsadmin",
+        "group": "dnsadmin",
+        "size": 1780
+      }
+    ],
+    "/etc/named": [
+      {
+        "name": "named.conf",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "named",
+        "size": 1842
+      },
+      {
+        "name": "keys",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "root",
+        "group": "named"
+      },
+      {
+        "name": "zones",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "named",
+        "group": "named"
+      }
+    ],
+    "/etc/named/keys": [
+      {
+        "name": "tsig-key.conf",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "named",
+        "size": 178
+      },
+      {
+        "name": "rndc.key",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "named",
+        "size": 100
+      }
+    ],
+    "/etc/named/zones": [
+      {
+        "name": "internal.corp.zone",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "named",
+        "group": "named",
+        "size": 2847
+      },
+      {
+        "name": "6.0.10.in-addr.arpa.zone",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "named",
+        "group": "named",
+        "size": 620
+      }
+    ],
+    "/var/named": [
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "named",
+        "group": "named"
+      },
+      {
+        "name": "dynamic",
+        "type": "dir",
+        "permissions": "0770",
+        "owner": "named",
+        "group": "named"
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "secure",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 8734
+      },
+      {
+        "name": "messages",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 15230
+      },
+      {
+        "name": "named",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "named",
+        "group": "named"
+      }
+    ],
+    "/var/log/named": [
+      {
+        "name": "queries.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "named",
+        "group": "named",
+        "size": 42180
+      },
+      {
+        "name": "named.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "named",
+        "group": "named",
+        "size": 8920
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1104
+      }
+    ],
+    "/usr/local/bin": [
+      {
+        "name": "check_dns_sync.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 342
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "named-session.jnl",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "named",
+        "group": "named",
+        "size": 1024
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "systemctl status named\njournalctl -u named -f\nrndc status\nrndc reload\nrndc querylog on\nrndc tsig-list\ncat /etc/named/keys/tsig-key.conf\nrndc signing -list internal.corp\nnamed-checkzone internal.corp /etc/named/zones/internal.corp.zone\nnamed-checkconf /etc/named.conf\nss -tlnp\nfirewall-cmd --list-all\nyum update bind bind-utils -y\ncat /var/log/named/queries.log | tail -50\ndig @127.0.0.1 internal.corp AXFR\ntsig-keygen -a hmac-sha256 update-key",
+    "/etc/named/keys/tsig-key.conf": "key \"update-key\" {\n    algorithm hmac-sha256;\n    secret \"a3Vj9kL2mN8pQ5rT1wX4yB7dF0gHjE6iC3oA2sU9vZ=\";\n};\n\nkey \"transfer-key\" {\n    algorithm hmac-sha256;\n    secret \"Xr7Gp2Wn5Ky8Bv0Lm3Qf6Jt1Ds4Ah9Eu2Cz7Ni0Ox=\";\n};",
+    "/home/dnsadmin/dns_update.sh": "#!/bin/bash\n# Dynamic DNS update script - sync records from PowerDNS admin DB\n# Runs nightly via cron\nDNS_PRIMARY=\"10.0.6.2\"\nDNS_SECONDARY=\"10.0.6.3\"\nTSIG_SECRET=\"a3Vj9kL2mN8pQ5rT1wX4yB7dF0gHjE6iC3oA2sU9vZ=\"\nMYSQL_HOST=\"10.0.6.10\"\nMYSQL_USER=\"pdns_admin\"\nMYSQL_PASS=\"PdNs@Dm1n_2024!Corp\"\nMYSQL_DB=\"pdns\"\n\n# Pull new records from PowerDNS admin DB\nmysql -h $MYSQL_HOST -u $MYSQL_USER -p\"$MYSQL_PASS\" $MYSQL_DB -e \"SELECT name,type,content FROM records WHERE domain_id=1;\" > /tmp/dns_records.txt\n\n# Push updates via nsupdate\nnsupdate -y hmac-sha256:update-key:$TSIG_SECRET <<EOF\nserver $DNS_PRIMARY\nzone internal.corp\n# updates applied from DB export\nsend\nEOF\n\n# Notify secondary\nrndc notify internal.corp",
+    "/home/dnsadmin/.my.cnf": "[client]\nhost=10.0.6.10\nuser=pdns_admin\npassword=PdNs@Dm1n_2024!Corp\ndatabase=pdns",
+    "/home/dnsadmin/.bash_history": "sudo systemctl restart named\nsudo rndc reload\nnamed-checkzone internal.corp /etc/named/zones/internal.corp.zone\nnamed-checkconf /etc/named.conf\ndig @localhost internal.corp AXFR\ndig @10.0.6.3 internal.corp AXFR\nmysql -h 10.0.6.10 -u pdns_admin -p'PdNs@Dm1n_2024!Corp' pdns -e 'SELECT * FROM records LIMIT 20;'\nmysql -h 10.0.6.10 -u pdns_admin -p'PdNs@Dm1n_2024!Corp' pdns -e 'SHOW TABLES;'\nsudo cat /var/log/named/queries.log | grep AXFR\nssh ns2.internal.corp\nssh dc-01.internal.corp\ncat /etc/named/zones/internal.corp.zone\nsudo journalctl -u named --since '1 hour ago'\nbash /home/dnsadmin/dns_update.sh\ndig @127.0.0.1 dc-01.internal.corp A\ndig @127.0.0.1 _ldap._tcp.internal.corp SRV\ncurl -s http://10.0.6.10:8080/api/v1/servers/localhost/zones/internal.corp | python3 -m json.tool\nsudo firewall-cmd --list-all\ncat ~/.ssh/config",
+    "/home/dnsadmin/.ssh/config": "Host ns2\n    HostName 10.0.6.3\n    User dnsadmin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost dc-01\n    HostName 10.0.6.10\n    User dnsadmin\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost gateway\n    HostName 10.0.6.1\n    User admin\n    IdentityFile ~/.ssh/id_ed25519",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.0.1\tns1\n10.0.6.2\tns1\n10.0.6.3\tns2.internal.corp ns2\n10.0.6.10\tdc-01.internal.corp dc-01\n10.0.6.20\tweb-01\n10.0.6.30\tmail-relay-01\n10.0.6.1\tgateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/etc/named.conf": "// BIND named configuration for ns1.internal.corp\n// Generated by dnsadmin on 2026-01-15\n\nacl \"trusted\" {\n    10.0.6.0/24;\n    10.0.7.0/24;\n    10.0.8.0/24;\n    127.0.0.1;\n};\n\noptions {\n    listen-on port 53 { 127.0.0.1; 10.0.6.2; };\n    listen-on-v6 port 53 { ::1; };\n    directory       \"/var/named\";\n    dump-file       \"/var/named/data/cache_dump.db\";\n    statistics-file \"/var/named/data/named_stats.txt\";\n    memstatistics-file \"/var/named/data/named_mem_stats.txt\";\n    secroots-file   \"/var/named/data/named.secroots\";\n    recursing-file  \"/var/named/data/named.recursing\";\n    allow-query     { trusted; };\n    allow-transfer  { 10.0.6.3; key transfer-key; };\n    allow-update    { key update-key; };\n    recursion yes;\n    dnssec-validation yes;\n    managed-keys-directory \"/var/named/dynamic\";\n    pid-file \"/run/named/named.pid\";\n    session-keyfile \"/run/named/session.key\";\n};\n\nlogging {\n    channel default_log {\n        file \"/var/log/named/named.log\" versions 5 size 50m;\n        severity info;\n        print-time yes;\n        print-category yes;\n        print-severity yes;\n    };\n    channel query_log {\n        file \"/var/log/named/queries.log\" versions 10 size 100m;\n        severity dynamic;\n        print-time yes;\n    };\n    category default { default_log; };\n    category queries { query_log; };\n};\n\ninclude \"/etc/named/keys/tsig-key.conf\";\ninclude \"/etc/named/keys/rndc.key\";\n\ncontrols {\n    inet 127.0.0.1 port 953 allow { 127.0.0.1; } keys { \"rndc-key\"; };\n};\n\nzone \".\" IN {\n    type hint;\n    file \"named.ca\";\n};\n\nzone \"internal.corp\" IN {\n    type master;\n    file \"/etc/named/zones/internal.corp.zone\";\n    allow-update { key update-key; };\n    allow-transfer { 10.0.6.3; key transfer-key; };\n    also-notify { 10.0.6.3; };\n};\n\nzone \"6.0.10.in-addr.arpa\" IN {\n    type master;\n    file \"/etc/named/zones/6.0.10.in-addr.arpa.zone\";\n    allow-update { key update-key; };\n    allow-transfer { 10.0.6.3; key transfer-key; };\n};",
+    "/etc/named/zones/internal.corp.zone": "$TTL 86400\n@       IN      SOA     ns1.internal.corp. admin.internal.corp. (\n                        2026030501      ; Serial\n                        3600            ; Refresh\n                        1800            ; Retry\n                        1209600         ; Expire\n                        86400 )         ; Minimum TTL\n\n; Name servers\n@               IN      NS      ns1.internal.corp.\n@               IN      NS      ns2.internal.corp.\n\n; A records - DNS infrastructure\nns1             IN      A       10.0.6.2\nns2             IN      A       10.0.6.3\n\n; A records - Domain controllers and directory services\ndc-01           IN      A       10.0.6.10\ndc-02           IN      A       10.0.6.11\nldap            IN      CNAME   dc-01.internal.corp.\n\n; A records - Web tier\nweb-01          IN      A       10.0.6.20\nweb-02          IN      A       10.0.6.21\nweb-03          IN      A       10.0.6.22\nlb-01           IN      A       10.0.6.25\nportal          IN      CNAME   lb-01.internal.corp.\nintranet        IN      CNAME   lb-01.internal.corp.\n\n; A records - Mail infrastructure\nmail-relay-01   IN      A       10.0.6.30\nmail-relay-02   IN      A       10.0.6.31\nsmtp            IN      CNAME   mail-relay-01.internal.corp.\n@               IN      MX  10  mail-relay-01.internal.corp.\n@               IN      MX  20  mail-relay-02.internal.corp.\n\n; A records - Database tier\ndb-primary      IN      A       10.0.6.40\ndb-replica-01   IN      A       10.0.6.41\ndb-replica-02   IN      A       10.0.6.42\nredis-01        IN      A       10.0.6.45\nredis-02        IN      A       10.0.6.46\nelastic-01      IN      A       10.0.6.50\nelastic-02      IN      A       10.0.6.51\nelastic-03      IN      A       10.0.6.52\n\n; A records - Application servers\napi-01          IN      A       10.0.6.60\napi-02          IN      A       10.0.6.61\nworker-01       IN      A       10.0.6.65\nworker-02       IN      A       10.0.6.66\nscheduler-01    IN      A       10.0.6.70\n\n; A records - CI/CD and DevOps\ngitlab          IN      A       10.0.6.80\nregistry        IN      A       10.0.6.81\nci-runner-01    IN      A       10.0.6.82\nci-runner-02    IN      A       10.0.6.83\nnexus           IN      A       10.0.6.85\nsonarqube       IN      A       10.0.6.86\n\n; A records - Monitoring and management\nprometheus      IN      A       10.0.6.90\ngrafana         IN      A       10.0.6.91\nzabbix          IN      A       10.0.6.92\nvault           IN      A       10.0.6.95\nansible-ctrl    IN      A       10.0.6.96\njumpbox         IN      A       10.0.6.99\n\n; A records - Network and gateway\ngateway         IN      A       10.0.6.1\nvpn             IN      A       10.0.6.5\nfw-mgmt         IN      A       10.0.6.4\n\n; SRV records - Active Directory services\n_ldap._tcp      IN      SRV     0 100 389   dc-01.internal.corp.\n_ldap._tcp      IN      SRV     10 100 389  dc-02.internal.corp.\n_kerberos._tcp  IN      SRV     0 100 88    dc-01.internal.corp.\n_kerberos._tcp  IN      SRV     10 100 88   dc-02.internal.corp.\n_gc._tcp        IN      SRV     0 100 3268  dc-01.internal.corp.\n\n; SRV records - Application services\n_http._tcp.api  IN      SRV     0 50 8080   api-01.internal.corp.\n_http._tcp.api  IN      SRV     0 50 8080   api-02.internal.corp.\n_mysql._tcp     IN      SRV     0 100 3306  db-primary.internal.corp.\n_redis._tcp     IN      SRV     0 50 6379   redis-01.internal.corp.\n_redis._tcp     IN      SRV     0 50 6379   redis-02.internal.corp.\n\n; TXT records\n@               IN      TXT     \"v=spf1 mx a:mail-relay-01.internal.corp a:mail-relay-02.internal.corp -all\"",
+    "/var/log/secure": "Mar  5 02:30:01 ns1 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 02:30:01 ns1 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  5 03:00:01 ns1 CRON[4678]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 03:00:45 ns1 CRON[4678]: pam_unix(cron:session): session closed for user root\nMar  5 08:12:05 ns1 sshd[5102]: Accepted password for root from 10.0.6.10 port 42187 ssh2\nMar  5 08:12:05 ns1 sshd[5102]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  5 08:45:33 ns1 sshd[5234]: Accepted password for dnsadmin from 10.0.6.10 port 48923 ssh2\nMar  5 08:45:33 ns1 sshd[5234]: pam_unix(sshd:session): session opened for user dnsadmin(uid=1000) by (uid=0)\nMar  5 08:46:01 ns1 sudo: dnsadmin : TTY=pts/1 ; PWD=/home/dnsadmin ; USER=root ; COMMAND=/usr/bin/systemctl restart named\nMar  5 09:15:22 ns1 sshd[5567]: Failed password for admin from 203.0.113.45 port 39281 ssh2\nMar  5 09:15:24 ns1 sshd[5567]: Failed password for admin from 203.0.113.45 port 39281 ssh2\nMar  5 09:15:27 ns1 sshd[5567]: Failed password for root from 203.0.113.45 port 39281 ssh2\nMar  5 10:00:01 ns1 CRON[5890]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 10:30:00 ns1 CRON[5890]: pam_unix(cron:session): session closed for user root\nMar  5 11:22:18 ns1 sshd[6012]: Accepted password for dnsadmin from 10.0.6.96 port 51432 ssh2\nMar  5 11:22:18 ns1 sshd[6012]: pam_unix(sshd:session): session opened for user dnsadmin(uid=1000) by (uid=0)\nMar  5 11:23:05 ns1 sudo: dnsadmin : TTY=pts/2 ; PWD=/etc/named/zones ; USER=root ; COMMAND=/usr/sbin/rndc reload",
+    "/var/log/named/queries.log": "05-Mar-2026 08:00:01.123 client @0x7f8a4c002d80 10.0.6.20#41523 (web-01.internal.corp): query: web-01.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:00:01.456 client @0x7f8a4c002d80 10.0.6.60#52341 (db-primary.internal.corp): query: db-primary.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:00:02.012 client @0x7f8a4c002d80 10.0.6.80#39821 (registry.internal.corp): query: registry.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:00:05.345 client @0x7f8a4c002d80 10.0.6.10#48123 (_ldap._tcp.internal.corp): query: _ldap._tcp.internal.corp IN SRV +E(0)K (10.0.6.2)\n05-Mar-2026 08:05:11.678 client @0x7f8a4c002d80 10.0.6.65#55432 (redis-01.internal.corp): query: redis-01.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:10:22.901 client @0x7f8a4c002d80 10.0.6.91#42156 (prometheus.internal.corp): query: prometheus.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:15:33.234 client @0x7f8a4c002d80 10.0.6.30#38912 (internal.corp): query: internal.corp IN MX +E(0)K (10.0.6.2)\n05-Mar-2026 08:20:44.567 client @0x7f8a4c002d80 10.0.6.3#53 (internal.corp): query: internal.corp IN AXFR +T (10.0.6.2)\n05-Mar-2026 08:20:44.568 client @0x7f8a4c002d80 10.0.6.3#53 (internal.corp): transfer of 'internal.corp/IN': AXFR started: TSIG transfer-key\n05-Mar-2026 08:20:44.890 client @0x7f8a4c002d80 10.0.6.3#53 (internal.corp): transfer of 'internal.corp/IN': AXFR ended\n05-Mar-2026 08:30:55.123 client @0x7f8a4c002d80 10.0.6.82#43210 (gitlab.internal.corp): query: gitlab.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 08:45:06.456 client @0x7f8a4c002d80 10.0.6.99#47823 (vault.internal.corp): query: vault.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 09:00:17.789 client @0x7f8a4c002d80 10.0.6.96#51234 (jumpbox.internal.corp): query: jumpbox.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 09:15:28.012 client @0x7f8a4c002d80 10.0.6.61#39456 (elastic-01.internal.corp): query: elastic-01.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 09:30:39.345 client @0x7f8a4c002d80 10.0.6.10#48923 (_kerberos._tcp.internal.corp): query: _kerberos._tcp.internal.corp IN SRV +E(0)K (10.0.6.2)\n05-Mar-2026 09:45:50.678 client @0x7f8a4c002d80 203.0.113.45#12345 (internal.corp): query: internal.corp IN AXFR +T (10.0.6.2)\n05-Mar-2026 09:45:50.679 client @0x7f8a4c002d80 203.0.113.45#12345 (internal.corp): zone transfer 'internal.corp/IN' denied\n05-Mar-2026 10:00:01.901 client @0x7f8a4c002d80 10.0.6.25#55678 (api-01.internal.corp): query: api-01.internal.corp IN A +E(0)K (10.0.6.2)\n05-Mar-2026 10:00:02.234 client @0x7f8a4c002d80 10.0.6.25#55679 (api-02.internal.corp): query: api-02.internal.corp IN A +E(0)K (10.0.6.2)",
+    "/var/mail/root": "From nagios@internal.corp Wed Mar  5 06:00:01 2026\nSubject: [DNS Alert] Zone transfer to ns2 completed\nDate: Wed, 05 Mar 2026 06:00:01 -0600\n\nAutomatic zone transfer of internal.corp to ns2 (10.0.6.3) completed successfully.\nSerial: 2026030501\nRecords transferred: 52\nTransfer time: 0.023s\n\nFrom cron@ns1 Wed Mar  5 03:00:02 2026\nSubject: Cron <root@ns1> /home/dnsadmin/dns_update.sh\nDate: Wed, 05 Mar 2026 03:00:02 -0600\n\nDNS sync completed. 3 records updated from PowerDNS admin DB (10.0.6.10).\nUpdated: ci-runner-03.internal.corp, staging-api.internal.corp, dev-db-01.internal.corp",
+    "/etc/named/keys/rndc.key": "key \"rndc-key\" {\n    algorithm hmac-sha256;\n    secret \"Bk4Wp8Xn2Ry6Tj0Lm3Qf9Ds5Ah1Eu7Cz4Ni6Ox8Gv=\";\n};",
+    "/usr/local/bin/check_dns_sync.sh": "#!/bin/bash\n# Check if primary and secondary DNS are in sync\nPRIMARY_SERIAL=$(dig @10.0.6.2 internal.corp SOA +short | awk '{print $3}')\nSECONDARY_SERIAL=$(dig @10.0.6.3 internal.corp SOA +short | awk '{print $3}')\nif [ \"$PRIMARY_SERIAL\" != \"$SECONDARY_SERIAL\" ]; then\n    echo \"WARNING: DNS serial mismatch! Primary=$PRIMARY_SERIAL Secondary=$SECONDARY_SERIAL\" | mail -s '[DNS Alert] Serial mismatch' root\nfi"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 892,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "named",
+      "pid": 1234,
+      "user": "named",
+      "command": "/usr/sbin/named -u named -c /etc/named.conf",
+      "ports": [
+        53
+      ]
+    },
+    {
+      "name": "node_exporter",
+      "pid": 2345,
+      "user": "node_exporter",
+      "command": "/usr/bin/node_exporter --web.listen-address=:9100",
+      "ports": [
+        9100
+      ]
+    },
+    {
+      "name": "crond",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/crond -n",
+      "ports": []
+    },
+    {
+      "name": "firewalld",
+      "pid": 445,
+      "user": "root",
+      "command": "/usr/bin/python3 -s /usr/sbin/firewalld --nofork --nopid",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.6.2",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:06:02"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "bind",
+      "version": "9.16.23-14.el9"
+    },
+    {
+      "name": "bind-utils",
+      "version": "9.16.23-14.el9"
+    },
+    {
+      "name": "python3",
+      "version": "3.9.18-3.el9"
+    },
+    {
+      "name": "mysql",
+      "version": "8.0.36-1.el9"
+    },
+    {
+      "name": "openssh-server",
+      "version": "8.7p1-38.el9"
+    },
+    {
+      "name": "firewalld",
+      "version": "1.2.5-2.el9"
+    },
+    {
+      "name": "prometheus-node-exporter",
+      "version": "1.5.0-1.el9"
+    },
+    {
+      "name": "certbot",
+      "version": "2.6.0-1.el9"
+    },
+    {
+      "name": "vim",
+      "version": "8.2.2637-20.el9"
+    }
+  ],
+  "crontabs": {
+    "root": "*/30 * * * * /usr/local/bin/check_dns_sync.sh\n0 3 * * * /home/dnsadmin/dns_update.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.7",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "dnsadmin": [
+        "dnsadmin",
+        "Dns@dmin2024!",
+        "admin123"
+      ]
+    }
+  },
+  "description": "Internal BIND DNS server with zone files mapping entire corporate infrastructure. TSIG keys for dynamic DNS updates, MySQL credentials for PowerDNS admin interface, internal.corp zone file revealing all hostnames and IPs as crown jewel lure, /etc/hosts and SSH config for secondary DNS and domain controller, DNS query logs and BIND config as rabbit holes.",
+  "remote_files": {
+    "10.0.6.10": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.6.20": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.6.20\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.6.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.6.30": {
+      "/etc/postfix/sasl_passwd": {
+        "content_type": "text",
+        "content": "[smtp.relay.internal]:587 relay_user:R3l@y_P@ss_2024!\n[mx-backup.internal]:25 backup_user:Mx_Bkp_s3cret\n",
+        "size": 104
+      },
+      "/etc/dovecot/dovecot-ldap.conf.ext": {
+        "content_type": "text",
+        "content": "hosts = ldap.internal.corp\ndn = cn=mail-service,ou=services,dc=internal,dc=corp\ndnpass = Ld@p_M@il_Bind_2024!\nbase = ou=users,dc=internal,dc=corp\nauth_bind = yes\n",
+        "size": 162
+      },
+      "/var/log/mail.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.6.30\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 419
+      }
+    }
+  }
+}

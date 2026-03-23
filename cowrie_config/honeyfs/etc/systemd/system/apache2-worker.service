@@ -1,0 +1,13 @@
+[Unit]
+Description=Apache2 Worker
+After=network.target
+
+[Service]
+Type=forking
+User=www-data
+ExecStart=/usr/sbin/apache2 -k start
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

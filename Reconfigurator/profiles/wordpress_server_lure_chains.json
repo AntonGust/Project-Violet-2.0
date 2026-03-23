@@ -1,0 +1,50 @@
+[
+  {
+    "chain_id": "chain-001",
+    "name": "Container Escape via Docker Socket and Lateral Movement to Jenkins",
+    "steps": [
+      {
+        "file": "/home/deploy/.docker/config.json",
+        "discovery_hint": "Contains Docker registry credentials, indicating deploy has Docker access.",
+        "leads_to": "/var/run/docker.sock"
+      },
+      {
+        "file": "/var/run/docker.sock",
+        "discovery_hint": "Mounted Docker socket allows container breakout or host access.",
+        "leads_to": "/home/deploy/.jenkins_api_token"
+      },
+      {
+        "file": "/home/deploy/.jenkins_api_token",
+        "discovery_hint": "Jenkins API token allows authentication to CI/CD service at 10.0.1.50.",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-002",
+    "name": "Kubernetes Service Account Token Leading to Jenkins Access",
+    "steps": [
+      {
+        "file": "/home/deploy/.kube/config",
+        "discovery_hint": "Kubernetes config with service account token to cluster at 10.0.1.50.",
+        "leads_to": "/home/deploy/.jenkins_api_token"
+      },
+      {
+        "file": "/home/deploy/.jenkins_api_token",
+        "discovery_hint": "Token usable for Jenkins API at 10.0.1.50 for pipeline manipulation.",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-003",
+    "name": "Supply Chain Access via NPM Private Registry Token",
+    "steps": [
+      {
+        "file": "/home/deploy/.npmrc",
+        "discovery_hint": "NPM registry token for private-registry.company.local used in deployments.",
+        "leads_to": null
+      }
+    ]
+  }
+]

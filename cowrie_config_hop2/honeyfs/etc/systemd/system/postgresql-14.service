@@ -1,0 +1,13 @@
+[Unit]
+Description=Postgresql 14
+After=network.target
+
+[Service]
+Type=forking
+User=postgres
+ExecStart=/usr/pgsql-14/bin/postmaster -D /var/lib/pgsql/14/data
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

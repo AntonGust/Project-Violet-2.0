@@ -1,0 +1,65 @@
+[
+  {
+    "chain_id": "chain-001",
+    "name": "NPM token to Docker registry lateral",
+    "steps": [
+      {
+        "file": "/home/jenkins/.npmrc",
+        "discovery_hint": "Found .npmrc with auth token for private registry.internal.corp matching CI pipeline host",
+        "leads_to": "/home/jenkins/.docker/config.json"
+      },
+      {
+        "file": "/home/jenkins/.docker/config.json",
+        "discovery_hint": "Docker config.json stores base64 encoded credentials for private registry.internal.corp",
+        "leads_to": "/var/lib/jenkins/workspace/deploy-production/Jenkinsfile"
+      },
+      {
+        "file": "/var/lib/jenkins/workspace/deploy-production/Jenkinsfile",
+        "discovery_hint": "Jenkinsfile defines deployment steps using images from registry.internal.corp, hinting at container access",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-002",
+    "name": "PyPI credentials to Docker registry access",
+    "steps": [
+      {
+        "file": "/home/gitlab-runner/.pypirc",
+        "discovery_hint": "PyPI config with credentials for internal Python package index hosted at registry.internal.corp",
+        "leads_to": "/home/gitlab-runner/.docker/config.json"
+      },
+      {
+        "file": "/home/gitlab-runner/.docker/config.json",
+        "discovery_hint": "Docker config.json contains base64 encoded auth for registry.internal.corp matching PyPI server domain",
+        "leads_to": "/var/lib/gitlab-runner/.gitlab-ci.yml"
+      },
+      {
+        "file": "/var/lib/gitlab-runner/.gitlab-ci.yml",
+        "discovery_hint": "GitLab CI configuration references private container images from registry.internal.corp",
+        "leads_to": null
+      }
+    ]
+  },
+  {
+    "chain_id": "chain-003",
+    "name": "Maven settings to internal registry access",
+    "steps": [
+      {
+        "file": "/home/jenkins/.m2/settings.xml",
+        "discovery_hint": "Maven settings.xml contains username/password and mirror URL pointing to registry.internal.corp",
+        "leads_to": "/home/jenkins/.docker/config.json"
+      },
+      {
+        "file": "/home/jenkins/.docker/config.json",
+        "discovery_hint": "Docker auth for registry.internal.corp matches Maven mirror host",
+        "leads_to": "/var/lib/jenkins/credentials.xml"
+      },
+      {
+        "file": "/var/lib/jenkins/credentials.xml",
+        "discovery_hint": "Jenkins credentials file stores secrets used in CI pipeline, potentially for registry access",
+        "leads_to": null
+      }
+    ]
+  }
+]

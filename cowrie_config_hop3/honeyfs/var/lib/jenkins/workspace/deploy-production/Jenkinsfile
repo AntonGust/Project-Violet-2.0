@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_REGISTRY = 'registry.internal.corp:5000'
+        DEPLOY_HOST = '10.0.2.50'
+        SLACK_WEBHOOK = 'https://hooks.example.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t ${DOCKER_REGISTRY}/api-service:${BUILD_NUMBER} .'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push ${DOCKER_REGISTRY}/api-service:${BUILD_NUMBER}'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sshagent(credentials: ['deploy-key-prod']) {
+                    sh 'ssh deployer@${DEPLOY_HOST} "cd /opt/api && docker-compose pull && docker-compose up -d"'
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Sshd
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=sshd: /usr/sbin/sshd -D
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

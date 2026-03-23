@@ -1,0 +1,12 @@
+Feb 24 03:00:01 ci-runner-07 CRON[5678]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 03:00:45 ci-runner-07 CRON[5678]: pam_unix(cron:session): session closed for user root
+Feb 24 08:15:22 ci-runner-07 sshd[6012]: Accepted password for root from 10.0.2.10 port 48231 ssh2
+Feb 24 08:15:22 ci-runner-07 sshd[6012]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 09:30:11 ci-runner-07 sshd[6345]: Accepted password for jenkins from 10.0.2.10 port 52341 ssh2
+Feb 24 09:30:11 ci-runner-07 sshd[6345]: pam_unix(sshd:session): session opened for user jenkins(uid=1000) by (uid=0)
+Feb 24 09:45:00 ci-runner-07 sudo:  jenkins : TTY=pts/1 ; PWD=/var/lib/jenkins ; USER=root ; COMMAND=/usr/bin/docker build -t registry.internal.corp:5000/api-service:142 .
+Feb 24 10:22:33 ci-runner-07 sshd[6789]: Failed password for admin from 192.0.2.100 port 39821 ssh2
+Feb 24 10:22:35 ci-runner-07 sshd[6789]: Failed password for admin from 192.0.2.100 port 39821 ssh2
+Feb 24 11:00:01 ci-runner-07 CRON[7012]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Feb 24 12:15:44 ci-runner-07 sshd[7234]: Accepted password for jenkins from 10.0.2.10 port 55421 ssh2
+Feb 24 14:30:18 ci-runner-07 sshd[7567]: Accepted password for root from 10.0.2.1 port 53421 ssh2

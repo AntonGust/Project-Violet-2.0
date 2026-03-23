@@ -1,0 +1,7 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          1234  0.1  0.1   171680   5244 ?        Ss   Jan01   0:42 /usr/sbin/apache2 -k start
+www-data      1240  0.1  0.1   171680   5244 ?        Ss   Jan01   0:42 /usr/sbin/apache2 -k start
+mysql         2345  0.1  4.4  1793204 178432 ?        Ss   Jan01   0:42 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql
+root           890  0.1  0.1    72304   5520 ?        Ss   Jan01   0:42 sshd: /usr/sbin/sshd -D
+root           567  0.1  0.1     8544   3200 ?        Ss   Jan01   0:42 /usr/sbin/cron -f
+root          3456  0.1  2.2  1564832  89424 ?        Ss   Jan01   0:42 /usr/bin/dockerd -H fd://

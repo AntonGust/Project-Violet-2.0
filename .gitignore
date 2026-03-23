@@ -1,0 +1,18 @@
+
+/Big_Ass_Dataset
+
+# Cowrie runtime data
+cowrie_config/var/
+cowrie_config_hop1/var/
+cowrie_config_hop2/var/
+cowrie_config_hop3/var/
+
+# Python
+__pycache__/
+*.pyc
+
+# Lure secret mappings (real values for honeypot deployment)
+scripts/.lure_secrets
+
+# Logs
+logs/

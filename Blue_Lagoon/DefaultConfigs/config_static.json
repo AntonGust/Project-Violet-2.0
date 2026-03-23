@@ -1,0 +1,119 @@
+{
+  "id": "3cef8a07-3f52-4d86-b2f1-ff66ed8a8cfc",
+  "description": "A honeypot configuration featuring realistic, vulnerable HTTP and SSH services for attacker engagement and research. Both services simulate legacy software with well-known vulnerabilities and provide a rich set of interactive commands and endpoints to maximize realism and attacker engagement.",
+  "timestamp": "2025-07-17T20:37:08.646422+00:00",
+  "services": [
+    {
+      "apiVersion": "v1",
+      "protocol": "ssh",
+      "address": ":22",
+      "description": "Vulnerable SSH service mimicking an outdated Linux server (OpenSSH_7.2p2 Ubuntu-4ubuntu2.8) with weak authentication, command injection flaws, and a simulated file system for attacker exploration.",
+
+      "commands": [
+        {
+          "regex": "^ls(\\s+.*)?$",
+          "handler": "bin  boot  dev  etc  home  lib  tmp  usr  var"
+        },
+        {
+          "regex": "^ls /home/user$",
+          "handler": "README.txt  .bashrc  .ssh"
+        },
+        {
+          "regex": "^ls /home/user/.ssh$",
+          "handler": "authorized_keys"
+        },
+        {
+          "regex": "^cat /etc/passwd$",
+          "handler": "root:x:0:0:root:/root:/bin/bash\nuser:x:1000:1000:User:/home/user:/bin/bash"
+        },
+        {
+          "regex": "^cat /home/user/README.txt$",
+          "handler": "Welcome to the legacy server. Confidential data is stored elsewhere."
+        },
+        {
+          "regex": "^cat /home/user/.ssh/authorized_keys$",
+          "handler": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC..."
+        },
+        {
+          "regex": "^pwd$",
+          "handler": "/home/user"
+        },
+        {
+          "regex": "^cd(\\s+.*)?$",
+          "handler": ""
+        },
+        {
+          "regex": "^echo (.*)$",
+          "handler": "$1"
+        },
+        {
+          "regex": "^uname( -a)?$",
+          "handler": "Linux ubuntu-legacy 4.4.0-142-generic #168-Ubuntu SMP x86_64 GNU/Linux"
+        },
+        {
+          "regex": "^id$",
+          "handler": "uid=1000(user) gid=1000(user) groups=1000(user),27(sudo)"
+        },
+        {
+          "regex": "^ps(\\s.*)?$",
+          "handler": "PID TTY          TIME CMD\n 1234 pts/0    00:00:00 bash\n 1235 pts/0    00:00:00 ps"
+        },
+        {
+          "regex": "^netstat(\\s.*)?$",
+          "handler": "Active Internet connections (w/o servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State"
+        },
+        {
+          "regex": "^ifconfig$",
+          "handler": "eth0      Link encap:Ethernet  HWaddr 00:0c:29:68:22:1e\ninet addr:192.168.1.100  Bcast:192.168.1.255  Mask:255.255.255.0"
+        },
+        {
+          "regex": "^history$",
+          "handler": "1  ls\n2  cd /home/user\n3  cat README.txt"
+        },
+        {
+          "regex": "^touch (.*)$",
+          "handler": ""
+        },
+        {
+          "regex": "^rm (.*)$",
+          "handler": ""
+        },
+        {
+          "regex": "^mkdir (.*)$",
+          "handler": ""
+        },
+        {
+          "regex": "^rmdir (.*)$",
+          "handler": ""
+        },
+        {
+          "regex": "^(nano|vi) (.*)$",
+          "handler": "Opening $2 in $1 (simulated)."
+        },
+        {
+          "regex": "^exit$",
+          "handler": "logout"
+        },
+        {
+          "regex": "^sudo su$",
+          "handler": "Sorry, user is not in the sudoers file. This incident will be reported."
+        },
+        {
+          "regex": "^whoami$",
+          "handler": "user"
+        },
+        {
+          "regex": "^exploit-auth-bypass$",
+          "handler": "Authentication bypass successful! Root shell granted. (CVE-2018-10933 simulation)"
+        },
+        {
+          "regex": "^.*$",
+          "handler": "bash: command not found"
+        }
+      ],
+      "passwordRegex": "^(root|qwerty|Smoker666|123456|jenkins|minecraft|sinus|alex|postgres|Ly123456|1234)$",
+      "serverName": "OpenSSH_7.2p2 Ubuntu-4ubuntu2.8",
+      "plugin": null
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  GITLAB_TOKEN: "HONEYPOT_LURE_gitlab_pat_3Qx9Y_pN8s7e6r0vX2yz"
+
+build_job:
+  stage: build
+  script:
+    - echo "Building the project..."
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying to production using Docker"
+    - docker login registry.internal.corp -u gitlab-runner -p $CI_JOB_TOKEN
+    - docker push registry.internal.corp/app-prod:latest
+  only:
+    - main

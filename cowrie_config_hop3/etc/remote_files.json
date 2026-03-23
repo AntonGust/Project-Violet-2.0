@@ -1,0 +1,84 @@
+{
+  "10.0.2.10": {
+    "/var/lib/jenkins/credentials.xml": {
+      "size": 394,
+      "honeyfs_path": "_remote/10.0.2.10/var/lib/jenkins/credentials.xml"
+    },
+    "/opt/ci/deploy.sh": {
+      "size": 183,
+      "honeyfs_path": "_remote/10.0.2.10/opt/ci/deploy.sh"
+    },
+    "/var/log/jenkins/jenkins.log": {
+      "size": 419,
+      "honeyfs_path": "_remote/10.0.2.10/var/log/jenkins/jenkins.log"
+    }
+  },
+  "10.0.2.20": {
+    "/opt/registry/config.yml": {
+      "size": 262,
+      "honeyfs_path": "_remote/10.0.2.20/opt/registry/config.yml"
+    },
+    "/root/.docker/config.json": {
+      "size": 117,
+      "honeyfs_path": "_remote/10.0.2.20/root/.docker/config.json"
+    }
+  },
+  "10.0.2.30": {
+    "/opt/registry/config.yml": {
+      "size": 262,
+      "honeyfs_path": "_remote/10.0.2.30/opt/registry/config.yml"
+    },
+    "/root/.docker/config.json": {
+      "size": 117,
+      "honeyfs_path": "_remote/10.0.2.30/root/.docker/config.json"
+    }
+  },
+  "10.0.2.50": {
+    "/var/www/html/wp-config.php": {
+      "size": 286,
+      "honeyfs_path": "_remote/10.0.2.50/var/www/html/wp-config.php"
+    },
+    "/var/log/nginx/error.log": {
+      "size": 419,
+      "honeyfs_path": "_remote/10.0.2.50/var/log/nginx/error.log"
+    },
+    "/opt/app/.env": {
+      "size": 304,
+      "honeyfs_path": "_remote/10.0.2.50/opt/app/.env"
+    }
+  },
+  "10.0.2.51": {
+    "/var/www/html/wp-config.php": {
+      "size": 286,
+      "honeyfs_path": "_remote/10.0.2.51/var/www/html/wp-config.php"
+    },
+    "/var/log/nginx/error.log": {
+      "size": 419,
+      "honeyfs_path": "_remote/10.0.2.51/var/log/nginx/error.log"
+    },
+    "/opt/app/.env": {
+      "size": 304,
+      "honeyfs_path": "_remote/10.0.2.51/opt/app/.env"
+    }
+  },
+  "10.0.2.100": {
+    "/var/backups/db_dump_latest.sql": {
+      "size": 604,
+      "honeyfs_path": "_remote/10.0.2.100/var/backups/db_dump_latest.sql"
+    },
+    "/etc/mysql/conf.d/replication.cnf": {
+      "size": 241,
+      "honeyfs_path": "_remote/10.0.2.100/etc/mysql/conf.d/replication.cnf"
+    },
+    "/opt/db/.env": {
+      "size": 305,
+      "honeyfs_path": "_remote/10.0.2.100/opt/db/.env"
+    }
+  },
+  "10.0.2.110": {
+    "/etc/redis/redis.conf": {
+      "size": 131,
+      "honeyfs_path": "_remote/10.0.2.110/etc/redis/redis.conf"
+    }
+  }
+}

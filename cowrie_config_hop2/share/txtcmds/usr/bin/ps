@@ -1,0 +1,8 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+postgres      1456  0.1  0.3    22537  11157 ?        Ss   Jan01   0:42 /usr/pgsql-14/bin/postmaster -D /var/lib/pgsql/14/data
+postgres      2345  0.1  0.3    28760  13824 ?        Ss   Jan01   0:42 /usr/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini
+root           890  0.1  0.1    72304   5520 ?        Ss   Jan01   0:42 /usr/sbin/sshd -D
+root           567  0.1  0.2    16314   8490 ?        Ss   Jan01   0:42 /usr/sbin/crond -n
+nagios        4567  0.1  0.5    44314  20490 ?        Ss   Jan01   0:42 /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d
+root           678  0.1  0.2    17091   8823 ?        Ss   Jan01   0:42 /usr/sbin/rsyslogd -n
+root           789  0.1  0.2    17868   9156 ?        Ss   Jan01   0:42 /usr/bin/python2 -Es /usr/sbin/tuned -l -P

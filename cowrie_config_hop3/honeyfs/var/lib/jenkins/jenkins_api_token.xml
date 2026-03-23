@@ -1,0 +1,7 @@
+<apiTokens>
+  <token>
+    <name>ci-token</name>
+    <value>jenkins-token-abc123xyz789</value>
+    <user>jenkins</user>
+  </token>
+</apiTokens>

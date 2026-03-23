@@ -1,0 +1,11 @@
+root       pts/0   10.0.1.1         Fri Mar 20 04:54   - Fri Mar 20 04:54  (  still logged in)
+deploy     pts/1   10.0.1.186       Fri Mar 20 03:15   - Fri Mar 20 03:15  (  still logged in)
+root       pts/2   172.17.0.1       Thu Mar 19 06:35   - Thu Mar 19 06:35  (02:12)
+deploy     pts/3   172.17.0.149     Wed Mar 18 08:18   - Wed Mar 18 08:18  (03:11)
+root       pts/4   10.0.1.1         Tue Mar 17 11:07   - Tue Mar 17 11:07  (05:16)
+deploy     pts/5   10.0.1.186       Sun Mar 15 06:16   - Sun Mar 15 06:16  (00:37)
+root       pts/6   172.17.0.1       Fri Mar 13 07:25   - Fri Mar 13 07:25  (01:51)
+deploy     pts/7   172.17.0.149     Sun Mar 08 14:46   - Sun Mar 08 14:46  (03:22)
+root       pts/8   10.0.1.1         Thu Mar 05 13:14   - Thu Mar 05 13:14  (04:56)
+
+wtmp begins Sat Dec 20 14:46:31 2025

@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Honeypot Filesystem Profile",
+  "description": "Defines a complete honeypot server persona: OS, users, filesystem, services, network, and SSH config. Used by the reconfigurator to generate Cowrie artifacts (fs.pickle, honeyfs, txtcmds).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this profile."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this profile was created."
+    },
+    "system": {
+      "type": "object",
+      "description": "Operating system identity.",
+      "properties": {
+        "os": {
+          "type": "string",
+          "description": "Full OS name and version, e.g. 'Ubuntu 22.04.3 LTS'"
+        },
+        "hostname": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,62}$"
+        },
+        "kernel_version": {
+          "type": "string",
+          "description": "e.g. '5.15.0-91-generic'"
+        },
+        "arch": {
+          "type": "string",
+          "enum": ["x86_64", "aarch64", "armv7l"]
+        },
+        "timezone": {
+          "type": "string",
+          "description": "e.g. 'America/New_York'"
+        }
+      },
+      "required": ["os", "hostname", "kernel_version", "arch"],
+      "additionalProperties": false
+    },
+    "users": {
+      "type": "array",
+      "description": "User accounts on the system. Must include root.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "uid": { "type": "integer", "minimum": 0 },
+          "gid": { "type": "integer", "minimum": 0 },
+          "home": { "type": "string", "pattern": "^/" },
+          "shell": { "type": "string", "pattern": "^/" },
+          "password_hash": {
+            "type": "string",
+            "description": "Crypt-format hash for /etc/shadow. Use '*' for locked accounts."
+          },
+          "groups": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "sudo_rules": {
+            "type": "string",
+            "description": "sudoers line for this user, e.g. 'deploy ALL=(ALL) NOPASSWD: ALL'. Null or absent if no sudo."
+          }
+        },
+        "required": ["name", "uid", "gid", "home", "shell"],
+        "additionalProperties": false
+      }
+    },
+    "directory_tree": {
+      "type": "object",
+      "description": "Map of directory path -> list of entries. Each key is an absolute directory path. Entries describe the files/dirs/symlinks directly inside that directory.",
+      "propertyNames": { "pattern": "^/" },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "type": {
+              "type": "string",
+              "enum": ["file", "dir", "symlink"]
+            },
+            "permissions": {
+              "type": "string",
+              "pattern": "^[01]?[0-7]{3}$",
+              "description": "Octal permission string, e.g. '0644', '1777'"
+            },
+            "owner": { "type": "string" },
+            "group": { "type": "string" },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "File size in bytes. Ignored for directories."
+            },
+            "symlink_target": {
+              "type": "string",
+              "description": "Target path for symlinks. Required when type='symlink'."
+            }
+          },
+          "required": ["name", "type"],
+          "additionalProperties": false,
+          "if": { "properties": { "type": { "const": "symlink" } } },
+          "then": { "required": ["name", "type", "symlink_target"] }
+        }
+      }
+    },
+    "file_contents": {
+      "type": "object",
+      "description": "Map of absolute file path -> text content. These become honeyfs entries that 'cat' returns.",
+      "propertyNames": { "pattern": "^/" },
+      "additionalProperties": { "type": "string" }
+    },
+    "services": {
+      "type": "array",
+      "description": "Running services visible via ps/systemctl/netstat.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "pid": { "type": "integer", "minimum": 1 },
+          "user": { "type": "string" },
+          "command": {
+            "type": "string",
+            "description": "Full command line as shown in ps output."
+          },
+          "ports": {
+            "type": "array",
+            "items": { "type": "integer", "minimum": 1, "maximum": 65535 },
+            "description": "TCP ports this service listens on."
+          }
+        },
+        "required": ["name", "pid", "user", "command"],
+        "additionalProperties": false
+      }
+    },
+    "network": {
+      "type": "object",
+      "description": "Network interfaces visible via ifconfig/ip.",
+      "properties": {
+        "interfaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "ip": { "type": "string", "format": "ipv4" },
+              "netmask": { "type": "string" },
+              "mac": {
+                "type": "string",
+                "pattern": "^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$"
+              }
+            },
+            "required": ["name", "ip"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "installed_packages": {
+      "type": "array",
+      "description": "Key packages to appear in dpkg/rpm queries.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" }
+        },
+        "required": ["name", "version"],
+        "additionalProperties": false
+      }
+    },
+    "crontabs": {
+      "type": "object",
+      "description": "Map of username -> crontab content string.",
+      "additionalProperties": { "type": "string" }
+    },
+    "ssh_config": {
+      "type": "object",
+      "description": "SSH server configuration and accepted credentials.",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "default": 22,
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "permit_root_login": { "type": "boolean", "default": true },
+        "password_auth": { "type": "boolean", "default": true },
+        "server_banner": {
+          "type": "string",
+          "description": "SSH version string shown to clients, e.g. 'SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.11'"
+        },
+        "accepted_passwords": {
+          "type": "object",
+          "description": "Map of username -> list of passwords that grant access.",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      },
+      "required": ["accepted_passwords"],
+      "additionalProperties": false
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable summary of what this profile represents and what lures it contains."
+    },
+    "remote_files": {
+      "type": "object",
+      "description": "Files available on fake remote hosts (referenced in /etc/hosts, scripts). Keyed by host IP or hostname, each value maps remote file paths to metadata. Used by SCP pull simulation to serve realistic content.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "content_type": {
+              "type": "string",
+              "enum": ["text", "binary"],
+              "description": "'text' for files stored as-is in honeyfs, 'binary' for generated stubs."
+            },
+            "content": {
+              "type": "string",
+              "description": "Actual file content for text files."
+            },
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "File size in bytes. Used for VFS entry and progress bar."
+            },
+            "description": {
+              "type": "string",
+              "description": "Optional hint about what this file represents."
+            }
+          },
+          "required": ["content_type"],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "system",
+    "users",
+    "directory_tree",
+    "file_contents",
+    "services",
+    "ssh_config",
+    "description"
+  ],
+  "additionalProperties": false
+}

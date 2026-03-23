@@ -1,0 +1,7 @@
+2024-03-15 08:12:33 INFO  Starting backup on 10.0.2.50
+2024-03-15 08:12:34 INFO  Connected to database as root@localhost
+2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written
+2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups
+2024-03-15 12:00:00 INFO  Starting scheduled backup
+2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379
+2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written

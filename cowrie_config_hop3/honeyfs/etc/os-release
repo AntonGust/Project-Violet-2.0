@@ -1,0 +1,12 @@
+PRETTY_NAME="Debian 12.4 bookworm"
+NAME="Debian"
+VERSION_ID="12.4"
+VERSION="12.4 bookworm"
+ID=debian
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal

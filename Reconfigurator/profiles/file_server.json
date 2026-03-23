@@ -1,0 +1,589 @@
+{
+  "id": "f7a1b2c3-d4e5-6789-abcd-ef0123456789",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Debian 11.8 bullseye",
+    "hostname": "nas-01",
+    "kernel_version": "5.10.0-27-amd64",
+    "arch": "x86_64",
+    "timezone": "America/Los_Angeles"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$rSa$fakehashroot00nas01",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "smbuser",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/smbuser",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$sMb$fakehashsmbuser01",
+      "groups": [
+        "smbuser",
+        "sambashare",
+        "sudo"
+      ],
+      "sudo_rules": "smbuser ALL=(ALL) NOPASSWD: /usr/bin/smbpasswd, /usr/bin/systemctl restart smbd"
+    },
+    {
+      "name": "backupbot",
+      "uid": 1001,
+      "gid": 1001,
+      "home": "/home/backupbot",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$bKp$fakehashbackupbot01",
+      "groups": [
+        "backupbot",
+        "sambashare"
+      ]
+    },
+    {
+      "name": "nobody",
+      "uid": 65534,
+      "gid": 65534,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "nogroup"
+      ]
+    },
+    {
+      "name": "nfsuser",
+      "uid": 1002,
+      "gid": 1002,
+      "home": "/home/nfsuser",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "$6$rounds=656000$nFs$fakehashnfsuser01",
+      "groups": [
+        "nfsuser"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1247
+      },
+      {
+        "name": ".profile",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 161
+      }
+    ],
+    "/home/smbuser": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 3526
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 892
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "smbuser",
+        "group": "smbuser"
+      },
+      {
+        "name": "mount_shares.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 634
+      }
+    ],
+    "/home/smbuser/.ssh": [
+      {
+        "name": "id_rsa",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 1675
+      },
+      {
+        "name": "id_rsa.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 400
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 1120
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "smbuser",
+        "size": 412
+      }
+    ],
+    "/home/backupbot": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "backupbot",
+        "group": "backupbot",
+        "size": 3526
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupbot",
+        "group": "backupbot",
+        "size": 456
+      },
+      {
+        "name": ".netrc",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "backupbot",
+        "group": "backupbot",
+        "size": 198
+      },
+      {
+        "name": "nightly_backup.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "backupbot",
+        "group": "backupbot",
+        "size": 542
+      }
+    ],
+    "/etc/samba": [
+      {
+        "name": "smb.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 2345
+      },
+      {
+        "name": "smbpasswd",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 128
+      }
+    ],
+    "/srv/shares": [
+      {
+        "name": "public",
+        "type": "dir",
+        "permissions": "0777",
+        "owner": "nobody",
+        "group": "nogroup"
+      },
+      {
+        "name": "finance",
+        "type": "dir",
+        "permissions": "0770",
+        "owner": "root",
+        "group": "sambashare"
+      },
+      {
+        "name": "engineering",
+        "type": "dir",
+        "permissions": "0770",
+        "owner": "root",
+        "group": "sambashare"
+      },
+      {
+        "name": "IT",
+        "type": "dir",
+        "permissions": "0770",
+        "owner": "smbuser",
+        "group": "sambashare"
+      },
+      {
+        "name": "backups",
+        "type": "dir",
+        "permissions": "0750",
+        "owner": "backupbot",
+        "group": "backupbot"
+      }
+    ],
+    "/srv/shares/IT": [
+      {
+        "name": "credentials.xlsx.bak",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "smbuser",
+        "group": "sambashare",
+        "size": 1872
+      },
+      {
+        "name": "network_diagram.png",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "sambashare",
+        "size": 45230
+      },
+      {
+        "name": "onboarding_checklist.txt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "smbuser",
+        "group": "sambashare",
+        "size": 312
+      }
+    ],
+    "/srv/shares/public": [
+      {
+        "name": "README.txt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "nobody",
+        "group": "nogroup",
+        "size": 84
+      }
+    ],
+    "/srv/shares/finance": [
+      {
+        "name": "Q4_2025_report.pdf",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "sambashare",
+        "size": 234567
+      }
+    ],
+    "/srv/shares/engineering": [
+      {
+        "name": "project_specs",
+        "type": "dir",
+        "permissions": "0775",
+        "owner": "root",
+        "group": "sambashare"
+      }
+    ],
+    "/srv/nfs": [
+      {
+        "name": "home",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "nfsuser",
+        "group": "nfsuser"
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8743
+      },
+      {
+        "name": "samba",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "adm"
+      },
+      {
+        "name": "syslog",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 24531
+      },
+      {
+        "name": "fail2ban.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 3421
+      }
+    ],
+    "/var/log/samba": [
+      {
+        "name": "log.smbd",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "adm",
+        "size": 18234
+      },
+      {
+        "name": "log.nmbd",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "adm",
+        "size": 5123
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1845
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "smb-session-cache",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "apt update && apt upgrade -y\napt install samba samba-common nfs-kernel-server rpcbind -y\nsystemctl enable smbd nmbd nfs-kernel-server rpcbind\nsystemctl start smbd nmbd\ntestparm\nss -tlnp\nsmbpasswd -a smbuser\n# password: Sh@res2024!\nsmbpasswd -a backupbot\n# password: b@ckup123\npdbedit -L\nmount -t nfs localhost:/srv/nfs/data /mnt/test\nexportfs -ra\ncat /etc/exports\ntail -f /var/log/samba/log.smbd\nfail2ban-client status sshd\nsmartctl -a /dev/sda\ndf -h\ndu -sh /srv/shares/*\niptables -L -n\nhistory",
+    "/etc/samba/smb.conf": "[global]\n   workgroup = INTERNAL\n   server string = NAS-01 File Server\n   server role = standalone server\n   log file = /var/log/samba/log.%m\n   max log size = 1000\n   logging = file\n   panic action = /usr/share/samba/panic-action %d\n   server role = standalone server\n   obey pam restrictions = yes\n   unix password sync = yes\n   passwd program = /usr/bin/passwd %u\n   passwd chat = *Enter\\snew\\s*\\spassword:* %n\\n *Retype\\snew\\s*\\spassword:* %n\\n *password\\supdated\\ssuccessfully* .\n   pam password change = yes\n   map to guest = bad user\n   usershare allow guests = yes\n   # NOTE: old admin password was 'FileServ3r!' - changed 2025-08-14\n   # TODO: rotate smbuser password, currently Sh@res2024! - ticket INFRA-2847\n   # legacy guest password for migration: guestpass123\n\n[public]\n   comment = Public Share\n   path = /srv/shares/public\n   browseable = yes\n   read only = no\n   guest ok = yes\n   create mask = 0644\n   directory mask = 0755\n\n[finance]\n   comment = Finance Department\n   path = /srv/shares/finance\n   browseable = yes\n   read only = no\n   valid users = @sambashare\n   create mask = 0660\n   directory mask = 0770\n   force group = sambashare\n\n[engineering]\n   comment = Engineering Projects\n   path = /srv/shares/engineering\n   browseable = yes\n   read only = no\n   valid users = @sambashare\n   create mask = 0660\n   directory mask = 0775\n   force group = sambashare\n\n[IT]\n   comment = IT Department Internal\n   path = /srv/shares/IT\n   browseable = no\n   read only = no\n   valid users = smbuser\n   create mask = 0660\n   directory mask = 0770\n   force user = smbuser\n   force group = sambashare\n\n[backups]\n   comment = Backup Archive\n   path = /srv/shares/backups\n   browseable = no\n   read only = yes\n   valid users = backupbot\n   write list = backupbot\n   create mask = 0640\n   directory mask = 0750",
+    "/etc/exports": "# /etc/exports - NFS file system export configuration\n# See exports(5) for details\n\n/srv/nfs/home    10.0.4.0/24(rw,sync,no_subtree_check)\n/srv/nfs/data    10.0.4.100(rw,sync,no_root_squash) 10.0.4.10(rw,sync,no_root_squash) 10.0.4.11(ro,sync)\n/srv/shares/engineering  10.0.4.0/24(ro,sync,no_subtree_check)\n",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tnas-01\n\n# File server infrastructure\n10.0.4.50\tnas-01\n10.0.4.10\tdc-01.internal.corp dc-01\n10.0.4.11\tdc-02.internal.corp dc-02\n10.0.4.100\terp-01\n10.0.4.200\tbackup-01\n10.0.4.1\tgateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/home/smbuser/mount_shares.sh": "#!/bin/bash\n# Mount remote shares for data sync\n# Last updated: 2025-11-20 by smbuser\n\n# Mount ERP share for report generation\nmount -t cifs //erp-01/reports /mnt/erp-reports \\\n  -o username=svc_reports,password=R3ports@2024!,domain=INTERNAL\n\n# Mount DC backup share\nmount -t cifs //dc-01.internal.corp/sysvol /mnt/dc-sysvol \\\n  -o username=admin,password=DC@dmin2025!,domain=INTERNAL\n\n# Mount backup server archive\nmount -t cifs //backup-01/archive /mnt/backup-archive \\\n  -o username=backupbot,password=b@ckup123,domain=INTERNAL\n\necho \"All shares mounted successfully.\"\n",
+    "/home/smbuser/.ssh/config": "Host dc-01\n    HostName 10.0.4.10\n    User admin\n    IdentityFile ~/.ssh/id_rsa\n    StrictHostKeyChecking no\n\nHost dc-02\n    HostName 10.0.4.11\n    User admin\n    IdentityFile ~/.ssh/id_rsa\n    StrictHostKeyChecking no\n\nHost erp-01\n    HostName 10.0.4.100\n    User svc_reports\n    IdentityFile ~/.ssh/id_rsa\n\nHost backup-01\n    HostName 10.0.4.200\n    User backupbot\n    IdentityFile ~/.ssh/id_rsa\n",
+    "/home/backupbot/.netrc": "machine backup-01\n  login backupbot\n  password b@ckup123\n\nmachine offsite-ftp.externalstorage.net\n  login nas01-backup\n  password FTP_0ff$ite!2025\n\nmachine erp-01\n  login svc_backup\n  password ErpBkUp#99\n",
+    "/srv/shares/IT/credentials.xlsx.bak": "=== CREDENTIAL INVENTORY EXPORT - INTERNAL USE ONLY ===\nExported: 2025-09-15 by J. Morrison (IT Admin)\nFormat: Tab-separated (converted from XLSX for compatibility)\n\nSYSTEM\tSERVICE\tUSERNAME\tPASSWORD\tNOTES\n----------\t----------\t----------\t----------\t----------\nnas-01\tSamba Admin\tsmbuser\tSh@res2024!\tMain file server admin\nnas-01\tSamba Backup\tbackupbot\tb@ckup123\tNightly backup service account\ndc-01\tDomain Admin\tadministrator\tD0m@in_Adm1n!\tPrimary domain controller\ndc-02\tDomain Admin\tadministrator\tD0m@in_Adm1n!\tSecondary DC (same creds)\nerp-01\tERP Database\tsa\tErpDB_Pr0d#2024\tSQL Server SA account\nerp-01\tERP Application\tsvc_erp\tErpApp$3rvice\tService account for ERP web\nerp-01\tReport Service\tsvc_reports\tR3ports@2024!\tRead-only reporting\nbackup-01\tBackup Admin\tbkadmin\tB@ckup_Mast3r!\tVeeam console login\nbackup-01\tFTP Offsite\tnas01-backup\tFTP_0ff$ite!2025\tOffsite replication to externalstorage.net\ngateway\tFirewall\tadmin\tGw@Admin2024\tFortiGate management console\ngateway\tVPN\tvpnadmin\tVPN_K3y!Secure\tSSL VPN admin portal\n\n*** REMINDER: Rotate all passwords quarterly per policy ITSEC-014 ***\n*** Next rotation due: 2026-01-15 ***\n*** Contact: j.morrison@internal.corp ***\n",
+    "/home/backupbot/nightly_backup.sh": "#!/bin/bash\n# Nightly backup script for NAS-01\n# Runs via cron at 01:00 daily as root\n\nLOG=/var/log/backup_$(date +%Y%m%d).log\necho \"=== Backup started at $(date) ===\" >> $LOG\n\n# Sync all shares to backup server\nrsync -avz --delete /srv/shares/ backupbot@backup-01:/mnt/nas-backup/ >> $LOG 2>&1\n\n# Check exit code\nif [ $? -eq 0 ]; then\n    echo \"Backup completed successfully at $(date)\" >> $LOG\nelse\n    echo \"ERROR: Backup failed at $(date)\" >> $LOG\n    mail -s \"NAS-01 Backup FAILED\" root@nas-01 < $LOG\nfi\n\necho \"=== Backup finished at $(date) ===\" >> $LOG\n",
+    "/var/log/auth.log": "Mar  5 03:00:01 nas-01 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 03:00:01 nas-01 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  5 06:00:01 nas-01 CRON[4890]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 06:00:45 nas-01 CRON[4890]: pam_unix(cron:session): session closed for user root\nMar  5 08:22:14 nas-01 sshd[5102]: Accepted password for smbuser from 10.0.4.10 port 44231 ssh2\nMar  5 08:22:14 nas-01 sshd[5102]: pam_unix(sshd:session): session opened for user smbuser(uid=1000) by (uid=0)\nMar  5 08:45:33 nas-01 sudo:  smbuser : TTY=pts/0 ; PWD=/home/smbuser ; USER=root ; COMMAND=/usr/bin/systemctl restart smbd\nMar  5 09:10:22 nas-01 sshd[5345]: Accepted password for root from 10.0.4.1 port 52110 ssh2\nMar  5 09:10:22 nas-01 sshd[5345]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  5 10:15:41 nas-01 sshd[5678]: Failed password for admin from 192.168.1.55 port 39821 ssh2\nMar  5 10:15:43 nas-01 sshd[5678]: Failed password for admin from 192.168.1.55 port 39821 ssh2\nMar  5 10:15:45 nas-01 sshd[5678]: Failed password for admin from 192.168.1.55 port 39821 ssh2\nMar  5 11:00:01 nas-01 CRON[5901]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 12:30:18 nas-01 sshd[6123]: Accepted password for smbuser from 10.0.4.100 port 48901 ssh2\nMar  5 14:00:01 nas-01 CRON[6456]: pam_unix(cron:session): session opened for user backupbot(uid=1001) by (uid=0)\nMar  5 14:00:45 nas-01 CRON[6456]: pam_unix(cron:session): session closed for user backupbot\nMar  5 16:45:09 nas-01 sudo:  smbuser : TTY=pts/0 ; PWD=/home/smbuser ; USER=root ; COMMAND=/usr/bin/smbpasswd -a newuser",
+    "/var/log/samba/log.smbd": "[2026/03/05 08:30:12.456789,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.10:49152) connect to service public initially as user nobody (uid=65534, gid=65534) (pid 4012)\n[2026/03/05 08:30:15.123456,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.10:49152) connect to service finance initially as user smbuser (uid=1000, gid=1000) (pid 4012)\n[2026/03/05 08:35:22.789012,  2] ../../source3/smbd/trans2.c:1388(call_trans2qfilepathinfo)\n  smbuser accessed /srv/shares/finance/Q4_2025_report.pdf\n[2026/03/05 09:00:01.234567,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.100:50234) connect to service engineering initially as user smbuser (uid=1000, gid=1000) (pid 4023)\n[2026/03/05 09:15:44.567890,  1] ../../source3/auth/auth_util.c:1568(make_server_info_info3)\n  Authentication for user [smbuser] -> [smbuser] succeeded\n[2026/03/05 09:15:45.890123,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.100:50234) connect to service IT initially as user smbuser (uid=1000, gid=1000) (pid 4023)\n[2026/03/05 09:45:00.123456,  0] ../../source3/auth/auth_util.c:1568(make_server_info_info3)\n  Authentication for user [guest] -> [nobody] FAILED with error NT_STATUS_NO_SUCH_USER\n[2026/03/05 10:00:33.456789,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.11:51002) connect to service engineering initially as user backupbot (uid=1001, gid=1001) (pid 4034)\n[2026/03/05 10:30:12.789012,  2] ../../source3/smbd/trans2.c:1388(call_trans2qfilepathinfo)\n  backupbot accessed /srv/shares/engineering/project_specs/\n[2026/03/05 11:00:01.012345,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.10:52100) connect to service finance initially as user smbuser (uid=1000, gid=1000) (pid 4045)\n[2026/03/05 12:15:22.345678,  1] ../../source3/smbd/close.c:813(close_normal_file)\n  nas-01 (ipv4:10.0.4.10:52100) closed file /srv/shares/finance/Q4_2025_report.pdf (numopen=0) OK\n[2026/03/05 14:00:44.678901,  1] ../../source3/smbd/service.c:764(make_connection_snum)\n  nas-01 (ipv4:10.0.4.200:53200) connect to service backups initially as user backupbot (uid=1001, gid=1001) (pid 4056)\n[2026/03/05 14:01:02.901234,  2] ../../source3/smbd/trans2.c:1388(call_trans2qfilepathinfo)\n  backupbot listed directory /srv/shares/backups/ (12 entries)",
+    "/var/mail/root": "From cron@nas-01 Thu Mar  5 01:05:22 2026\nSubject: Cron <root@nas-01> /home/backupbot/nightly_backup.sh\nDate: Thu, 5 Mar 2026 01:05:22 -0800\n\n=== Backup started at Thu Mar  5 01:00:01 PST 2026 ===\nsending incremental file list\nshares/finance/Q4_2025_report.pdf\nshares/IT/credentials.xlsx.bak\nsent 245,891 bytes  received 1,245 bytes  494,272.00 bytes/sec\ntotal size is 12,345,678  speedup is 49.92\nBackup completed successfully at Thu Mar  5 01:04:58 PST 2026\n\nFrom smartd@nas-01 Mon Mar  2 06:00:15 2026\nSubject: SMART status report for /dev/sda\nDate: Mon, 2 Mar 2026 06:00:15 -0800\n\nDevice: /dev/sda [WDC WD4003FFBX-68MU3N0]\nSerial: WD-FAKESERIALNUMBER\nHealth: PASSED\nTemperature: 34C\nPower On Hours: 18,432\nReallocated Sectors: 0\nPending Sectors: 0\n\nAll values within acceptable range. No action required.\n",
+    "/home/smbuser/.bash_history": "ls -la /srv/shares/\nsmbstatus\nsudo systemctl restart smbd\nsudo smbpasswd -a newuser\ncat /etc/samba/smb.conf\ntestparm\ndf -h\ndu -sh /srv/shares/*\nssh admin@dc-01\nscp /srv/shares/IT/credentials.xlsx.bak smbuser@backup-01:/tmp/\ncat /etc/exports\nshowmount -e localhost\nrsync -avz /srv/shares/ backupbot@backup-01:/mnt/nas-backup/",
+    "/opt/filebrowser/docker-compose.yml": "version: '3.8'\nservices:\n  filebrowser:\n    image: filebrowser/filebrowser:latest\n    container_name: filebrowser\n    restart: unless-stopped\n    ports:\n      - '8080:80'\n    volumes:\n      - /srv/shares:/srv\n      - ./filebrowser.db:/database.db\n    environment:\n      - FB_DATABASE=/database.db\n      - FB_ROOT=/srv\n      - FB_BASEURL=/files\n      # Default admin: admin / Fil3Br0wser!\n    networks:\n      - internal\nnetworks:\n  internal:\n    driver: bridge"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "smbd",
+      "pid": 1234,
+      "user": "root",
+      "command": "/usr/sbin/smbd --foreground --no-process-group",
+      "ports": [
+        445,
+        139
+      ]
+    },
+    {
+      "name": "nmbd",
+      "pid": 1235,
+      "user": "root",
+      "command": "/usr/sbin/nmbd --foreground --no-process-group",
+      "ports": [
+        137,
+        138
+      ]
+    },
+    {
+      "name": "nfs-kernel-server",
+      "pid": 1456,
+      "user": "root",
+      "command": "/usr/sbin/nfsd",
+      "ports": [
+        2049
+      ]
+    },
+    {
+      "name": "rpcbind",
+      "pid": 678,
+      "user": "root",
+      "command": "/sbin/rpcbind -f -w",
+      "ports": [
+        111
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.4.50",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:04:32"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "samba",
+      "version": "2:4.13.13+dfsg-1~deb11u6"
+    },
+    {
+      "name": "nfs-kernel-server",
+      "version": "1:1.3.4-6"
+    },
+    {
+      "name": "rpcbind",
+      "version": "1.2.5-9"
+    },
+    {
+      "name": "rsync",
+      "version": "3.2.3-4+deb11u1"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.4p1-5+deb11u3"
+    },
+    {
+      "name": "cifs-utils",
+      "version": "2:6.11-3.1+deb11u1"
+    },
+    {
+      "name": "fail2ban",
+      "version": "0.11.2-2"
+    },
+    {
+      "name": "smartmontools",
+      "version": "7.2-1"
+    }
+  ],
+  "crontabs": {
+    "root": "0 1 * * * /home/backupbot/nightly_backup.sh\n0 6 * * 1 smartctl -a /dev/sda >> /var/log/smart_status.log",
+    "backupbot": "30 2 * * * rsync -avz /srv/shares/ backupbot@backup-01:/mnt/nas-backup/"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u3",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "smbuser": [
+        "smbuser",
+        "Sh@res2024!",
+        "admin123"
+      ],
+      "backupbot": [
+        "backup",
+        "b@ckup123"
+      ]
+    }
+  },
+  "description": "File server running Samba and NFS with multiple shared directories. Leaked SMB passwords in bash_history and mount scripts, FTP credentials in .netrc for offsite backup, fake credential spreadsheet backup in IT share, /etc/hosts mapping domain controllers and ERP servers, NFS exports revealing internal clients, Samba config and logs as rabbit holes.",
+  "remote_files": {
+    "10.0.4.10": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.4.11": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.4.100": {
+      "/opt/erp/config/database.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.4.100:/opt/erp/config/database.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 267
+      },
+      "/opt/erp/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.4.100\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    },
+    "10.0.4.200": {
+      "/var/backups/full_backup_latest.sql.gz": {
+        "content_type": "binary",
+        "size": 4913505
+      },
+      "/opt/backup/backup.sh": {
+        "content_type": "text",
+        "content": "#!/bin/bash\n# Script from 10.0.4.200:/opt/backup/backup.sh\nexport MYSQL_PWD='Bkp_r00t_2024!'\nmysqldump -u root --all-databases > /var/backups/full_dump.sql\ngzip /var/backups/full_dump.sql\n",
+        "size": 188
+      },
+      "/opt/backup/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.4.200\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 305
+      }
+    }
+  }
+}

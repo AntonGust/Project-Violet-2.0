@@ -1,0 +1,123 @@
+{
+  "command": {
+    "ps": [
+      {
+        "USER": "root",
+        "PID": 1,
+        "CPU": 0.0,
+        "MEM": 0.4,
+        "VSZ": 167340,
+        "RSS": 11200,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.48,
+        "COMMAND": "/sbin/init"
+      },
+      {
+        "USER": "root",
+        "PID": 2,
+        "CPU": 0.0,
+        "MEM": 0.0,
+        "VSZ": 0,
+        "RSS": 0,
+        "TTY": "?",
+        "STAT": "S",
+        "START": "Jan01",
+        "TIME": 0.0,
+        "COMMAND": "[kthreadd]"
+      },
+      {
+        "USER": "postgres",
+        "PID": 1456,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 22537,
+        "RSS": 11157,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/pgsql-14/bin/postmaster -D /var/lib/pgsql/14/data"
+      },
+      {
+        "USER": "postgres",
+        "PID": 2345,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 28760,
+        "RSS": 13824,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/pgbouncer /etc/pgbouncer/pgbouncer.ini"
+      },
+      {
+        "USER": "root",
+        "PID": 890,
+        "CPU": 0.1,
+        "MEM": 0.1,
+        "VSZ": 72304,
+        "RSS": 5520,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/sshd -D"
+      },
+      {
+        "USER": "root",
+        "PID": 567,
+        "CPU": 0.1,
+        "MEM": 0.2,
+        "VSZ": 16314,
+        "RSS": 8490,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/crond -n"
+      },
+      {
+        "USER": "nagios",
+        "PID": 4567,
+        "CPU": 0.1,
+        "MEM": 0.5,
+        "VSZ": 44314,
+        "RSS": 20490,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -d"
+      },
+      {
+        "USER": "root",
+        "PID": 678,
+        "CPU": 0.1,
+        "MEM": 0.0,
+        "VSZ": 28428,
+        "RSS": 1508,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/rsyslogd -n"
+      },
+      {
+        "USER": "root",
+        "PID": 789,
+        "CPU": 0.1,
+        "MEM": 0.2,
+        "VSZ": 17868,
+        "RSS": 9156,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/python2 -Es /usr/sbin/tuned -l -P"
+      }
+    ]
+  }
+}

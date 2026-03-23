@@ -1,0 +1,608 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-234567890abc",
+  "timestamp": "2026-03-06T10:00:00Z",
+  "system": {
+    "os": "Ubuntu 22.04.4 LTS",
+    "hostname": "vpn-gw-01",
+    "kernel_version": "5.15.0-94-generic",
+    "arch": "x86_64",
+    "timezone": "Europe/Berlin"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$xyz$fakehashroot",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "openvpn",
+      "uid": 115,
+      "gid": 115,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "openvpn"
+      ]
+    },
+    {
+      "name": "netadmin",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/netadmin",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$uvw$fakehashnetadmin",
+      "groups": [
+        "netadmin",
+        "sudo",
+        "adm"
+      ],
+      "sudo_rules": "netadmin ALL=(ALL) NOPASSWD: /usr/sbin/openvpn, /usr/bin/wg, /usr/sbin/iptables, /usr/bin/systemctl"
+    },
+    {
+      "name": "nobody",
+      "uid": 65534,
+      "gid": 65534,
+      "home": "/nonexistent",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "nogroup"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1542
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 412
+      }
+    ],
+    "/home/netadmin": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 3771
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 987
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "netadmin",
+        "group": "netadmin"
+      },
+      {
+        "name": "vpn_user_provision.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 1245
+      },
+      {
+        "name": "iptables_rules.sh",
+        "type": "file",
+        "permissions": "0750",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 2340
+      }
+    ],
+    "/home/netadmin/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 620
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "netadmin",
+        "group": "netadmin",
+        "size": 1890
+      }
+    ],
+    "/etc/openvpn": [
+      {
+        "name": "server",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "update-resolv-conf",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 1523
+      }
+    ],
+    "/etc/openvpn/server": [
+      {
+        "name": "server.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1890
+      },
+      {
+        "name": "auth-user-pass.txt",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 245
+      },
+      {
+        "name": "ca.crt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 1850
+      },
+      {
+        "name": "server.crt",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 5240
+      },
+      {
+        "name": "server.key",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1704
+      },
+      {
+        "name": "dh2048.pem",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 424
+      },
+      {
+        "name": "ta.key",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 636
+      },
+      {
+        "name": "ccd",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/etc/openvpn/server/ccd": [
+      {
+        "name": "client-erp-gateway",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 185
+      },
+      {
+        "name": "client-dev-workstation",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 142
+      },
+      {
+        "name": "client-monitoring",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 120
+      }
+    ],
+    "/etc/wireguard": [
+      {
+        "name": "wg0.conf",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 980
+      }
+    ],
+    "/etc/dnsmasq.d": [
+      {
+        "name": "vpn-dns.conf",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 345
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 12450
+      },
+      {
+        "name": "openvpn",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "fail2ban.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8923
+      }
+    ],
+    "/var/log/openvpn": [
+      {
+        "name": "openvpn.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 24560
+      },
+      {
+        "name": "status.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 3240
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1845
+      }
+    ],
+    "/usr/local/bin": [
+      {
+        "name": "update_vpn_status.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 342
+      },
+      {
+        "name": "rotate_vpn_logs.sh",
+        "type": "file",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "root",
+        "size": 456
+      }
+    ],
+    "/etc/easy-rsa": [
+      {
+        "name": "pki",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      },
+      {
+        "name": "vars",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 520
+      }
+    ],
+    "/etc/fail2ban": [
+      {
+        "name": "jail.local",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 410
+      }
+    ]
+  },
+  "file_contents": {
+    "/root/.bash_history": "systemctl status openvpn-server@server\njournalctl -u openvpn-server@server -f\ncat /etc/openvpn/server/server.conf\nopenssl x509 -in /etc/openvpn/server/ca.crt -text -noout\ncd /etc/easy-rsa && ./easyrsa build-client-full remote-user1 nopass\ncp /etc/easy-rsa/pki/issued/remote-user1.crt /etc/openvpn/server/\ncp /etc/easy-rsa/pki/private/remote-user1.key /etc/openvpn/server/\nwg show wg0\nwg genkey | tee /etc/wireguard/server_private.key | wg pubkey > /etc/wireguard/server_public.key\ncat /etc/wireguard/wg0.conf\niptables -t nat -L -n\niptables -L FORWARD -n -v\nsystemctl restart openvpn-server@server\nsystemctl status wg-quick@wg0\ncat /var/log/openvpn/status.log\ncat /etc/openvpn/server/auth-user-pass.txt\nfail2ban-client status sshd\nss -tulnp\nip route show\nping 10.0.1.10\nssh fw-01.internal.corp",
+    "/etc/openvpn/server/auth-user-pass.txt": "# OpenVPN user auth file\n# Used for client certificate + password auth\nvpn_admin    Vpn@dm1n_S3cure!2024\nremote-user1 R3m0te#Acc3ss_77\nbackup-svc   Bkup$erv1ce_Key!\nmonitor      M0n1t0r_Vpn@2024",
+    "/home/netadmin/.ssh/config": "# SSH client configuration for VPN infrastructure\n# Updated 2026-02-28 by netadmin\n# Default password for all internal hosts: N3t@dmin_Int3rnal!\n\nHost fw-01\n    HostName 10.0.1.10\n    User admin\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n    # fallback password: Fw@ll_Adm1n_2024!\n\nHost ldap\n    HostName 10.0.1.20\n    User ldapadmin\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n    # password: Ld@p_Bnd_S3cret!\n\nHost radius\n    HostName 10.0.1.50\n    User radmin\n    Port 22\n    IdentityFile ~/.ssh/id_ed25519\n    # password: R@d1us_Sh@red_K3y!",
+    "/etc/wireguard/wg0.conf": "[Interface]\nAddress = 10.10.0.1/24\nListenPort = 51820\nPrivateKey = cGvYdkV7j8QzXrN2mBpU6wLsA4HfR9tE5yKxO0iWnFg=\nPostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE\nPostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE\nDNS = 192.168.100.1\n\n# Site-to-site peer: fw-01 firewall\n[Peer]\nPublicKey = aB3cD4eF5gH6iJ7kL8mN9oP0qR1sT2uV3wX4yZ5aBC=\nPresharedKey = zY9xW8vU7tS6rQ5pO4nM3lK2jI1hG0fE9dC8bA7zYXW=\nAllowedIPs = 10.10.0.2/32, 10.0.1.0/24\nEndpoint = 10.0.1.10:51820\nPersistentKeepalive = 25\n\n# Remote admin peer: netadmin laptop\n[Peer]\nPublicKey = xW8vU7tS6rQ5pO4nM3lK2jI1hG0fE9dC8bA7zYXWaB3=\nAllowedIPs = 10.10.0.10/32\n\n# Monitoring server peer\n[Peer]\nPublicKey = rQ5pO4nM3lK2jI1hG0fE9dC8bA7zYXWaB3cD4eF5gH6=\nAllowedIPs = 10.10.0.20/32\nEndpoint = 192.168.100.30:51820\nPersistentKeepalive = 25",
+    "/home/netadmin/vpn_user_provision.sh": "#!/bin/bash\n# VPN user provisioning script\n# Creates OpenVPN client certs and LDAP accounts\n# Author: netadmin\n# Last updated: 2026-02-15\n\nset -euo pipefail\n\nUSERNAME=\"$1\"\nEMAIL=\"$2\"\nDEPARTMENT=\"${3:-engineering}\"\n\n# LDAP connection settings\nLDAP_HOST=\"ldap.internal.corp\"\nLDAP_BASE_DN=\"dc=internal,dc=corp\"\nLDAP_BIND_DN=\"cn=vpn-provisioner,ou=service-accounts,dc=internal,dc=corp\"\nLDAP_BIND_PASSWORD=\"Ldap#Pr0v1s10n_Bnd!2024\"\n\necho \"[*] Provisioning VPN user: $USERNAME ($EMAIL)\"\n\n# Create LDAP user entry\nldapadd -H ldap://${LDAP_HOST} -D \"${LDAP_BIND_DN}\" -w \"${LDAP_BIND_PASSWORD}\" <<EOF\ndn: uid=${USERNAME},ou=vpn-users,${LDAP_BASE_DN}\nobjectClass: inetOrgPerson\nobjectClass: posixAccount\nuid: ${USERNAME}\ncn: ${USERNAME}\nsn: ${USERNAME}\nmail: ${EMAIL}\nuidNumber: $(shuf -i 2000-9999 -n 1)\ngidNumber: 1001\nhomeDirectory: /home/${USERNAME}\nloginShell: /bin/false\nouDepartment: ${DEPARTMENT}\nEOF\n\n# Generate OpenVPN client certificate\ncd /etc/easy-rsa\n./easyrsa build-client-full \"${USERNAME}\" nopass\n\n# Create client config\ncat > /tmp/${USERNAME}.ovpn <<OVPN\nclient\ndev tun\nproto udp\nremote vpn-gw-01.external.corp 1194\nresolv-retry infinite\nnobind\npersist-key\npersist-tun\nauth-user-pass\nOVPN\n\necho \"[+] User ${USERNAME} provisioned successfully\"\necho \"[+] Client config: /tmp/${USERNAME}.ovpn\"",
+    "/etc/openvpn/server/server.conf": "# OpenVPN Server Configuration\n# vpn-gw-01 - Primary VPN Gateway\n# Last modified: 2026-02-20\n\nport 1194\nproto udp\ndev tun\n\n# Certificate and key paths\nca /etc/openvpn/server/ca.crt\ncert /etc/openvpn/server/server.crt\nkey /etc/openvpn/server/server.key\ndh /etc/openvpn/server/dh2048.pem\ntls-auth /etc/openvpn/server/ta.key 0\n\n# Network configuration\nserver 10.8.0.0 255.255.255.0\ntopology subnet\n\n# Push routes to clients for internal networks\npush \"route 192.168.100.0 255.255.255.0\"\npush \"route 10.0.1.0 255.255.255.0\"\npush \"dhcp-option DNS 192.168.100.1\"\npush \"dhcp-option DOMAIN internal.corp\"\n\n# Client-specific configuration directory\nclient-config-dir /etc/openvpn/server/ccd\n\n# Authentication\nplugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so openvpn\nauth-user-pass-verify /usr/local/bin/vpn_auth_ldap.sh via-env\nscript-security 3\n\n# Logging\nstatus /var/log/openvpn/status.log 30\nlog-append /var/log/openvpn/openvpn.log\nverb 4\nmute 20\n\n# Security hardening\ncipher AES-256-GCM\ndata-ciphers AES-256-GCM:AES-128-GCM:CHACHA20-POLY1305\nauth SHA256\ntls-version-min 1.2\ntls-cipher TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256\n\n# Connection settings\nkeepalive 10 120\nmax-clients 100\npersist-key\npersist-tun\n\n# Drop privileges after init\nuser openvpn\ngroup openvpn\n\n# Client certificate revocation list\ncrl-verify /etc/easy-rsa/pki/crl.pem\n\n# Management interface (local only)\nmanagement 127.0.0.1 7505\nmanagement-log-cache 200",
+    "/var/log/openvpn/status.log": "OpenVPN CLIENT LIST\nUpdated,2026-03-06 09:45:30\nCommon Name,Real Address,Bytes Received,Bytes Sent,Connected Since\nremote-user1,185.23.45.67:49281,15482934,8234561,2026-03-06 08:12:45\nclient-erp-gateway,203.45.67.89:51022,892345123,445672561,2026-03-05 22:00:01\nclient-dev-workstation,91.234.56.78:44521,234567890,123456789,2026-03-06 07:30:22\nbackup-svc,10.0.1.100:38745,45678901,23456789,2026-03-05 04:00:00\nclient-monitoring,78.90.12.34:52311,12345678,6789012,2026-03-06 06:00:15\nj.mueller,188.12.34.56:48923,5678901,3456789,2026-03-06 09:00:33\ns.weber,176.45.67.89:55102,4567890,2345678,2026-03-06 08:45:10\nm.schmidt,195.78.90.12:41234,3456789,1234567,2026-03-06 09:15:00\na.fischer,82.34.56.78:47891,2345678,1123456,2026-03-06 09:30:45\nROUTING TABLE\nVirtual Address,Common Name,Real Address,Last Ref\n10.8.0.2,remote-user1,185.23.45.67:49281,2026-03-06 09:45:28\n10.8.0.3,client-erp-gateway,203.45.67.89:51022,2026-03-06 09:45:30\n10.8.0.4,client-dev-workstation,91.234.56.78:44521,2026-03-06 09:45:25\n10.8.0.5,backup-svc,10.0.1.100:38745,2026-03-06 09:45:20\n10.8.0.6,client-monitoring,78.90.12.34:52311,2026-03-06 09:45:15\n10.8.0.7,j.mueller,188.12.34.56:48923,2026-03-06 09:45:22\n10.8.0.8,s.weber,176.45.67.89:55102,2026-03-06 09:44:58\n10.8.0.9,m.schmidt,195.78.90.12:41234,2026-03-06 09:45:10\n10.8.0.10,a.fischer,82.34.56.78:47891,2026-03-06 09:45:30\n192.168.100.0/24,client-erp-gateway,203.45.67.89:51022,2026-03-06 09:45:30\nGLOBAL STATS\nMax bcast/mcast queue length,12\nEND",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tvpn-gw-01\n\n# VPN infrastructure\n10.0.1.1\tvpn-gw-01\n10.0.1.10\tfw-01.internal.corp fw-01\n10.0.1.20\tldap.internal.corp ldap\n10.0.1.50\tradius.internal.corp radius\n\n# Internal services behind VPN\n192.168.100.10\tinternal-wiki\n192.168.100.20\terp.internal.corp erp\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/etc/openvpn/server/ccd/client-erp-gateway": "# ERP gateway client - full access to internal network\nifconfig-push 10.8.0.3 255.255.255.0\niroute 192.168.100.0 255.255.255.0\npush \"route 10.0.1.0 255.255.255.0\"\npush \"route 192.168.200.0 255.255.255.0\"\npush \"dhcp-option DNS 192.168.100.1\"",
+    "/etc/openvpn/server/ccd/client-dev-workstation": "# Dev workstation - access to wiki and ERP only\nifconfig-push 10.8.0.4 255.255.255.0\npush \"route 192.168.100.10 255.255.255.255\"\npush \"route 192.168.100.20 255.255.255.255\"",
+    "/etc/openvpn/server/ccd/client-monitoring": "# Monitoring server - access to all subnets for health checks\nifconfig-push 10.8.0.6 255.255.255.0\npush \"route 10.0.1.0 255.255.255.0\"\npush \"route 192.168.100.0 255.255.255.0\"",
+    "/var/log/auth.log": "Mar  6 02:00:01 vpn-gw-01 CRON[4521]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  6 02:00:01 vpn-gw-01 CRON[4521]: pam_unix(cron:session): session closed for user root\nMar  6 04:00:01 vpn-gw-01 CRON[4890]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  6 04:00:05 vpn-gw-01 CRON[4890]: pam_unix(cron:session): session closed for user root\nMar  6 07:22:15 vpn-gw-01 sshd[5234]: Accepted password for netadmin from 10.10.0.10 port 49231 ssh2\nMar  6 07:22:15 vpn-gw-01 sshd[5234]: pam_unix(sshd:session): session opened for user netadmin(uid=1000) by (uid=0)\nMar  6 07:25:33 vpn-gw-01 sudo: netadmin : TTY=pts/0 ; PWD=/home/netadmin ; USER=root ; COMMAND=/usr/bin/systemctl status openvpn-server@server\nMar  6 07:30:01 vpn-gw-01 sudo: netadmin : TTY=pts/0 ; PWD=/home/netadmin ; USER=root ; COMMAND=/usr/bin/wg show wg0\nMar  6 08:15:44 vpn-gw-01 sshd[5567]: Accepted password for root from 10.0.1.10 port 52341 ssh2\nMar  6 08:15:44 vpn-gw-01 sshd[5567]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  6 09:10:22 vpn-gw-01 sshd[5890]: Failed password for admin from 45.33.32.156 port 38921 ssh2\nMar  6 09:10:24 vpn-gw-01 sshd[5890]: Failed password for admin from 45.33.32.156 port 38921 ssh2\nMar  6 09:10:26 vpn-gw-01 sshd[5890]: Failed password for root from 45.33.32.156 port 38921 ssh2\nMar  6 09:12:00 vpn-gw-01 fail2ban[1234]: WARNING [sshd] Ban 45.33.32.156\nMar  6 09:30:15 vpn-gw-01 sshd[6012]: Accepted password for netadmin from 188.12.34.56 port 55231 ssh2",
+    "/var/mail/root": "From fw-01@internal.corp Thu Mar  6 03:15:00 2026\nSubject: [FIREWALL ALERT] Unusual outbound traffic detected\nDate: Thu, 06 Mar 2026 03:15:00 +0100\n\nAlert: Unusual outbound traffic volume detected on fw-01.\nSource: 192.168.100.20 (erp.internal.corp)\nDestination: 45.77.123.45:443\nBytes transferred: 2.3 GB in last hour\nAction: LOGGED (threshold alert only)\nReview iptables rules on vpn-gw-01 and fw-01.\n\nFrom logwatch@vpn-gw-01 Thu Mar  6 04:00:05 2026\nSubject: [Logwatch] VPN Gateway Daily Report\nDate: Thu, 06 Mar 2026 04:00:05 +0100\n\nOpenVPN status: active, 9 clients connected\nWireGuard wg0: active, 3 peers\nFail2ban: 4 IPs banned in last 24h\nDisk usage: /var/log 34% used\nUptime: 47 days, 12:34:56\n\nNote: Certificate for remote-user1 expires in 14 days.\nRun: cd /etc/easy-rsa && ./easyrsa renew remote-user1",
+    "/home/netadmin/.bash_history": "sudo systemctl status openvpn-server@server\nsudo wg show wg0\nsudo iptables -t nat -L -n\ncat /etc/openvpn/server/server.conf\ncat /var/log/openvpn/status.log\nsudo systemctl restart wg-quick@wg0\nssh fw-01\nssh ldap\nping 192.168.100.20\n./vpn_user_provision.sh j.mueller j.mueller@corp.de engineering\ncat /etc/wireguard/wg0.conf\nsudo fail2ban-client status sshd\nip route show",
+    "/home/netadmin/iptables_rules.sh": "#!/bin/bash\n# iptables firewall rules for vpn-gw-01\n# Managed by netadmin - DO NOT EDIT without change request\n# Last updated: 2026-02-28\n# Ticket: NET-2024-0847\n\nset -euo pipefail\n\n# Flush existing rules\niptables -F\niptables -t nat -F\niptables -t mangle -F\niptables -X\n\n# Default policies - drop everything\niptables -P INPUT DROP\niptables -P FORWARD DROP\niptables -P OUTPUT ACCEPT\n\n# Loopback\niptables -A INPUT -i lo -j ACCEPT\niptables -A OUTPUT -o lo -j ACCEPT\n\n# Established/related connections\niptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT\niptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT\n\n# SSH access - restricted to management subnet and WireGuard\niptables -A INPUT -i eth0 -p tcp --dport 22 -s 10.0.1.0/24 -j ACCEPT\niptables -A INPUT -i wg0 -p tcp --dport 22 -j ACCEPT\niptables -A INPUT -i eth1 -p tcp --dport 22 -s 192.168.100.0/24 -j ACCEPT\n\n# OpenVPN - accept from WAN\niptables -A INPUT -i eth0 -p udp --dport 1194 -j ACCEPT\n\n# WireGuard\niptables -A INPUT -i eth0 -p udp --dport 51820 -j ACCEPT\n\n# DNS (dnsmasq) - VPN clients and internal only\niptables -A INPUT -i tun0 -p udp --dport 53 -j ACCEPT\niptables -A INPUT -i tun0 -p tcp --dport 53 -j ACCEPT\niptables -A INPUT -i eth1 -p udp --dport 53 -j ACCEPT\niptables -A INPUT -i eth1 -p tcp --dport 53 -j ACCEPT\niptables -A INPUT -i wg0 -p udp --dport 53 -j ACCEPT\n\n# ICMP\niptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT\n\n# Forward: VPN clients to internal network\niptables -A FORWARD -i tun0 -o eth1 -s 10.8.0.0/24 -d 192.168.100.0/24 -j ACCEPT\niptables -A FORWARD -i tun0 -o eth0 -s 10.8.0.0/24 -d 10.0.1.0/24 -j ACCEPT\n\n# Forward: WireGuard to internal\niptables -A FORWARD -i wg0 -o eth1 -s 10.10.0.0/24 -d 192.168.100.0/24 -j ACCEPT\niptables -A FORWARD -i wg0 -o eth0 -s 10.10.0.0/24 -d 10.0.1.0/24 -j ACCEPT\n\n# Forward: Internal to VPN subnets (return traffic)\niptables -A FORWARD -i eth1 -o tun0 -s 192.168.100.0/24 -d 10.8.0.0/24 -j ACCEPT\niptables -A FORWARD -i eth0 -o wg0 -s 10.0.1.0/24 -d 10.10.0.0/24 -j ACCEPT\n\n# NAT: Masquerade VPN traffic going to WAN\niptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE\niptables -t nat -A POSTROUTING -s 10.10.0.0/24 -o eth0 -j MASQUERADE\n\n# NAT: Masquerade VPN traffic going to internal LAN\niptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth1 -j MASQUERADE\niptables -t nat -A POSTROUTING -s 10.10.0.0/24 -o eth1 -j MASQUERADE\n\n# Log dropped packets (rate limited)\niptables -A INPUT -m limit --limit 5/min -j LOG --log-prefix \"[IPTABLES-DROP-IN] \" --log-level 4\niptables -A FORWARD -m limit --limit 5/min -j LOG --log-prefix \"[IPTABLES-DROP-FWD] \" --log-level 4\n\n# Save rules\nnetfilter-persistent save\n\necho \"[+] Firewall rules applied successfully.\"",
+    "/etc/dnsmasq.d/vpn-dns.conf": "# dnsmasq configuration for VPN clients\nlisten-address=192.168.100.1,10.8.0.1,127.0.0.1\nbind-interfaces\n\n# Internal DNS records\naddress=/internal-wiki/192.168.100.10\naddress=/erp.internal.corp/192.168.100.20\naddress=/ldap.internal.corp/10.0.1.20\naddress=/radius.internal.corp/10.0.1.50\naddress=/fw-01.internal.corp/10.0.1.10\n\n# Upstream DNS\nserver=8.8.8.8\nserver=8.8.4.4",
+    "/etc/nginx/conf.d/vpn-portal.conf": "server {\n    listen 443 ssl;\n    server_name vpn-portal.internal.corp;\n\n    ssl_certificate /etc/letsencrypt/live/vpn-portal.internal.corp/fullchain.pem;\n    ssl_certificate_key /etc/letsencrypt/live/vpn-portal.internal.corp/privkey.pem;\n\n    location / {\n        proxy_pass http://127.0.0.1:8080;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        # VPN management portal\n        # admin credentials: vpnadmin / Vpn_P0rtal_2024!\n        auth_basic \"VPN Admin Portal\";\n        auth_basic_user_file /etc/nginx/.htpasswd;\n    }\n\n    location /api/clients {\n        proxy_pass http://127.0.0.1:8080/api/clients;\n    }\n\n    access_log /var/log/nginx/vpn-portal.access.log;\n    error_log /var/log/nginx/vpn-portal.error.log;\n}"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "openvpn",
+      "pid": 1456,
+      "user": "openvpn",
+      "command": "/usr/sbin/openvpn --config /etc/openvpn/server/server.conf",
+      "ports": [
+        1194
+      ]
+    },
+    {
+      "name": "wireguard",
+      "pid": 0,
+      "user": "root",
+      "command": "[wg0] wireguard kernel module",
+      "ports": [
+        51820
+      ]
+    },
+    {
+      "name": "iptables-persistent",
+      "pid": 0,
+      "user": "root",
+      "command": "netfilter-persistent (loaded)",
+      "ports": []
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "fail2ban",
+      "pid": 1234,
+      "user": "root",
+      "command": "/usr/bin/python3 /usr/bin/fail2ban-server -xf start",
+      "ports": []
+    },
+    {
+      "name": "dnsmasq",
+      "pid": 2345,
+      "user": "dnsmasq",
+      "command": "/usr/sbin/dnsmasq --conf-dir=/etc/dnsmasq.d",
+      "ports": [
+        53
+      ]
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.1.1",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:01:01"
+      },
+      {
+        "name": "eth1",
+        "ip": "192.168.100.1",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:c0:a8:64:01"
+      },
+      {
+        "name": "wg0",
+        "ip": "10.10.0.1",
+        "netmask": "255.255.255.0",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "name": "tun0",
+        "ip": "10.8.0.1",
+        "netmask": "255.255.255.0",
+        "mac": "00:00:00:00:00:00"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "openvpn",
+      "version": "2.5.9-0ubuntu0.22.04.2"
+    },
+    {
+      "name": "wireguard-tools",
+      "version": "1.0.20210914-1ubuntu2"
+    },
+    {
+      "name": "iptables-persistent",
+      "version": "1.0.16"
+    },
+    {
+      "name": "dnsmasq",
+      "version": "2.86-1.1ubuntu0.4"
+    },
+    {
+      "name": "fail2ban",
+      "version": "0.11.2-6ubuntu0.1"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.9p1-3ubuntu0.6"
+    },
+    {
+      "name": "easy-rsa",
+      "version": "3.0.8-1ubuntu2"
+    },
+    {
+      "name": "certbot",
+      "version": "1.21.0-1ubuntu1"
+    },
+    {
+      "name": "tcpdump",
+      "version": "4.99.1-3ubuntu0.1"
+    },
+    {
+      "name": "net-tools",
+      "version": "1.60+git20181103.0eebece-1ubuntu5"
+    }
+  ],
+  "crontabs": {
+    "root": "*/5 * * * * /usr/local/bin/update_vpn_status.sh\n0 4 * * * /usr/local/bin/rotate_vpn_logs.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6",
+    "accepted_passwords": {
+      "root": [
+        "root",
+        "123456"
+      ],
+      "netadmin": [
+        "netadmin",
+        "Vpn@dmin2024!",
+        "admin123"
+      ]
+    }
+  },
+  "description": "VPN gateway running OpenVPN and WireGuard with dnsmasq. Leaked VPN credentials in auth-user-pass.txt, WireGuard private keys in wg0.conf, LDAP bind password in provisioning script, /etc/hosts mapping internal infrastructure behind VPN, OpenVPN client configs revealing internal subnet routes, SSH config for firewall and LDAP servers, connected client status log and complex iptables rules as rabbit holes.",
+  "remote_files": {
+    "10.0.1.20": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "10.0.1.50": {
+      "/etc/ldap/slapd.d/credentials.ldif": {
+        "content_type": "text",
+        "content": "dn: cn=admin,dc=internal,dc=corp\nuserPassword: {SSHA}Ld@p_Adm1n_Pr0d_2024!\n\ndn: cn=replication,dc=internal,dc=corp\nuserPassword: {SSHA}R3pl_Ld@p_s3cret\n",
+        "size": 152
+      }
+    },
+    "192.168.100.10": {
+      "/opt/wiki/conf/local.php": {
+        "content_type": "text",
+        "content": "<?php\n$conf['dbtype'] = 'mysql';\n$conf['dbserver'] = 'localhost';\n$conf['dbname'] = 'wiki_prod';\n$conf['dbuser'] = 'wiki_admin';\n$conf['dbpass'] = 'W1k1_DB_Pr0d_2024!';\n",
+        "size": 169
+      }
+    },
+    "192.168.100.20": {
+      "/opt/erp/config/database.yml": {
+        "content_type": "text",
+        "content": "# Config from 192.168.100.20:/opt/erp/config/database.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 271
+      },
+      "/opt/erp/.env": {
+        "content_type": "text",
+        "content": "# Environment from 192.168.100.20\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 309
+      }
+    }
+  }
+}

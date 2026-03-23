@@ -1,0 +1,5 @@
+root:0:root
+root:0:123456
+root:0:postgres
+dba:1000:dba2024
+dba:1000:123456

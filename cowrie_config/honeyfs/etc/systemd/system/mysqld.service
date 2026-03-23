@@ -1,0 +1,13 @@
+[Unit]
+Description=Mysqld
+After=network.target
+
+[Service]
+Type=forking
+User=mysql
+ExecStart=/usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

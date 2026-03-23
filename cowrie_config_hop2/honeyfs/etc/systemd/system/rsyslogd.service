@@ -1,0 +1,13 @@
+[Unit]
+Description=Rsyslogd
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/sbin/rsyslogd -n
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

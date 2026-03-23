@@ -1,0 +1,16 @@
+concurrent = 4
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "ci-runner-07"
+  url = "https://gitlab.internal.corp/"
+  token = "glrt-7xPq3Km9NvWs2Yb4Jf8R"
+  executor = "docker"
+  [runners.docker]
+    image = "docker:24.0"
+    privileged = true
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+    allowed_images = ["*"]

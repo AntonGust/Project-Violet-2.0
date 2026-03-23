@@ -1,0 +1,13 @@
+[Unit]
+Description=Cron
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/sbin/cron -f
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

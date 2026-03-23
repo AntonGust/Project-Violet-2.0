@@ -1,0 +1,74 @@
+{
+  "10.0.1.20": {
+    "/var/backups/db_dump_latest.sql": {
+      "size": 603,
+      "honeyfs_path": "_remote/10.0.1.20/var/backups/db_dump_latest.sql"
+    },
+    "/etc/mysql/conf.d/replication.cnf": {
+      "size": 240,
+      "honeyfs_path": "_remote/10.0.1.20/etc/mysql/conf.d/replication.cnf"
+    },
+    "/opt/db/.env": {
+      "size": 304,
+      "honeyfs_path": "_remote/10.0.1.20/opt/db/.env"
+    }
+  },
+  "10.0.1.25": {
+    "/etc/redis/redis.conf": {
+      "size": 131,
+      "honeyfs_path": "_remote/10.0.1.25/etc/redis/redis.conf"
+    }
+  },
+  "10.0.1.30": {
+    "/etc/grafana/grafana.ini": {
+      "size": 206,
+      "honeyfs_path": "_remote/10.0.1.30/etc/grafana/grafana.ini"
+    },
+    "/opt/prometheus/prometheus.yml": {
+      "size": 268,
+      "honeyfs_path": "_remote/10.0.1.30/opt/prometheus/prometheus.yml"
+    }
+  },
+  "10.0.1.50": {
+    "/var/lib/jenkins/credentials.xml": {
+      "size": 394,
+      "honeyfs_path": "_remote/10.0.1.50/var/lib/jenkins/credentials.xml"
+    },
+    "/opt/ci/deploy.sh": {
+      "size": 183,
+      "honeyfs_path": "_remote/10.0.1.50/opt/ci/deploy.sh"
+    },
+    "/var/log/jenkins/jenkins.log": {
+      "size": 419,
+      "honeyfs_path": "_remote/10.0.1.50/var/log/jenkins/jenkins.log"
+    }
+  },
+  "10.0.1.100": {
+    "/var/backups/full_backup_latest.sql.gz": {
+      "size": 4913505,
+      "honeyfs_path": "_remote/10.0.1.100/var/backups/full_backup_latest.sql.gz"
+    },
+    "/opt/backup/backup.sh": {
+      "size": 188,
+      "honeyfs_path": "_remote/10.0.1.100/opt/backup/backup.sh"
+    },
+    "/opt/backup/.env": {
+      "size": 305,
+      "honeyfs_path": "_remote/10.0.1.100/opt/backup/.env"
+    }
+  },
+  "172.17.0.2": {
+    "/var/www/html/wp-config.php": {
+      "size": 286,
+      "honeyfs_path": "_remote/172.17.0.2/var/www/html/wp-config.php"
+    },
+    "/var/log/nginx/error.log": {
+      "size": 420,
+      "honeyfs_path": "_remote/172.17.0.2/var/log/nginx/error.log"
+    },
+    "/opt/app/.env": {
+      "size": 305,
+      "honeyfs_path": "_remote/172.17.0.2/opt/app/.env"
+    }
+  }
+}

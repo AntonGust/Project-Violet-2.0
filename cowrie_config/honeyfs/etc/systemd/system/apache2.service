@@ -1,0 +1,13 @@
+[Unit]
+Description=Apache2
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/sbin/apache2 -k start
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

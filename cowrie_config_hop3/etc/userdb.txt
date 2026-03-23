@@ -1,0 +1,6 @@
+root:0:root
+root:0:123456
+root:0:jenkins
+jenkins:1000:jenkins
+jenkins:1000:admin123
+jenkins:1000:123456
