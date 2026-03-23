@@ -14,5 +14,6 @@ free -m
 top
 cat /home/dba/.pgpass
 ssh dba@db-standby.internal.corp 'pg_isready'
-cat /var/log/pg_backup.log | tail -20ssh root@172.10.2.12 -p 2222
+cat /var/log/pg_backup.log | tail -20
+ssh root@172.10.2.12 -p 2222
 sshpass -p 'root' ssh root@172.10.2.12 -p 2222

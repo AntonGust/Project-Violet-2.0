@@ -1,5 +1,5 @@
 [Mon Feb 24 08:15:23.456789 2026] [php7:error] [pid 1240] [client 10.0.1.1:52341] PHP Fatal error:  Uncaught Error: Call to undefined function wp_cache_get() in /var/www/html/wp-content/plugins/redis-cache/includes/class-plugin.php:42
-[Mon Feb 24 09:22:11.123456 2026] [php7:warn] [pid 1241] [client 203.0.113.10:48201] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'wp_readonly'@'localhost' (using password: YES) in /var/www/html/wp-content/plugins/custom-reporting/db.php:15
+[Mon Feb 24 09:22:11.123456 2026] [php7:warn] [pid 1241] [client 203.0.113.10:48201] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'wp_readonly'@'localhost' (using password: YsES) in /var/www/html/wp-content/plugins/custom-reporting/db.php:15
 [Mon Feb 24 09:22:11.234567 2026] [php7:warn] [pid 1241] [client 203.0.113.10:48201] PHP Warning:  Attempt to connect to MySQL with password 'R3p0rt1ng_R34d!' failed
 [Mon Feb 24 10:05:45.678901 2026] [core:error] [pid 1242] [client 10.0.1.30:39201] AH00126: Invalid URI in request GET /wp-admin/admin-ajax.php?action=heartbeat HTTP/1.1
 [Mon Feb 24 11:45:00.000000 2026] [ssl:warn] [pid 1234] AH01909: wp-prod-01:443:0 server certificate is a self-signed certificate

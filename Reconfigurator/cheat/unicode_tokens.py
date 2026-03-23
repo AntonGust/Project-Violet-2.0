@@ -173,29 +173,11 @@ def apply_honeytokens_to_profile(profile: dict) -> tuple[dict, list[dict]]:
     """
     planted: list[dict] = []
 
-    # Apply to SSH accepted_passwords
-    ssh_config = profile.get("ssh_config", {})
-    accepted = ssh_config.get("accepted_passwords", {})
+    # NOTE: Do NOT modify ssh_config.accepted_passwords — those are the
+    # actual credentials Cowrie uses for authentication.  Honeytokens only
+    # go into file_contents (what the attacker reads on the filesystem).
 
-    for user, passwords in accepted.items():
-        if not passwords:
-            continue
-        # Apply to the first password for each user
-        original = passwords[0]
-        token = generate_honeytoken_credential(original)
-        passwords[0] = token["display_password"]
-        planted.append({
-            "token_id": token["token_id"],
-            "method": token["method"],
-            "location": "ssh_config.accepted_passwords",
-            "field": user,
-            "original_password": original,
-            "display_value": token["display_password"],
-            "expected_human": token["expected_human"],
-            "expected_llm": token["expected_llm"],
-        })
-
-    # Apply to credential files in file_contents
+    # Apply to a random subset of credential-bearing files in file_contents
     import re
     _password_re = re.compile(
         r'(password|passwd|pass|secret|token|key)\s*[=:]\s*["\']?([^\s"\'#\n]+)',
@@ -203,32 +185,39 @@ def apply_honeytokens_to_profile(profile: dict) -> tuple[dict, list[dict]]:
     )
 
     file_contents = profile.get("file_contents", {})
-    for path, content in list(file_contents.items()):
+    candidates = []
+    for path, content in file_contents.items():
         matches = list(_password_re.finditer(content))
         if not matches:
             continue
-
-        # Only tokenize the first credential per file to avoid confusion
         match = matches[0]
-        original_value = match.group(2)
-        if len(original_value) < 4:
+        if len(match.group(2)) < 4:
             continue
+        candidates.append((path, match))
 
-        token = generate_honeytoken_credential(original_value)
+    # Apply to roughly 30-50% of candidate files (at least 1, at most all)
+    if candidates:
+        count = max(1, int(len(candidates) * random.uniform(0.3, 0.5)))
+        selected = random.sample(candidates, min(count, len(candidates)))
 
-        # Replace in file content
-        new_content = content[:match.start(2)] + token["display_password"] + content[match.end(2):]
-        file_contents[path] = new_content
+        for path, match in selected:
+            content = file_contents[path]
+            original_value = match.group(2)
+            token = generate_honeytoken_credential(original_value)
 
-        planted.append({
-            "token_id": token["token_id"],
-            "method": token["method"],
-            "location": path,
-            "field": match.group(1),
-            "original_password": original_value,
-            "display_value": token["display_password"],
-            "expected_human": token["expected_human"],
-            "expected_llm": token["expected_llm"],
-        })
+            # Replace in file content
+            new_content = content[:match.start(2)] + token["display_password"] + content[match.end(2):]
+            file_contents[path] = new_content
+
+            planted.append({
+                "token_id": token["token_id"],
+                "method": token["method"],
+                "location": path,
+                "field": match.group(1),
+                "original_password": original_value,
+                "display_value": token["display_password"],
+                "expected_human": token["expected_human"],
+                "expected_llm": token["expected_llm"],
+            })
 
     return profile, planted

@@ -29,5 +29,6 @@ certbot --apache
 cat /var/www/html/.env
 ssh deploy@db-replica-01 'pg_isready'
 cat /etc/hosts
-historyssh root@172.10.1.11 -p 2222
+history
+ssh root@172.10.1.11 -p 2222
 sshpass -p 'root' ssh root@172.10.1.11 -p 2222

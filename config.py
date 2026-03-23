@@ -1,6 +1,6 @@
 from Sangria.model import LLMModel, ReconfigCriteria
 
-experiment_name = "QwenTest2"
+experiment_name = "testttt"
 run_id = "10" # 10 - 99, If multiple experiments are run in parallel, each need unique run_id.
 
 # LLM Provider settings (Sangria, Reconfigurator, Terminal IO)

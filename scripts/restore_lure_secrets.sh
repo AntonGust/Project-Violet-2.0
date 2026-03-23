@@ -75,8 +75,11 @@ for file in "${FILES[@]}"; do
     done
 done
 
+# Handle complex multi-line secrets via Python helper
 if $SANITIZE; then
+    python3 "$(dirname "$0")/gcp_lure.py" --sanitize
     echo "Sanitized $count replacements. Safe to commit/push."
 else
+    python3 "$(dirname "$0")/gcp_lure.py" --restore
     echo "Restored $count lure secrets. Ready for honeypot deployment."
 fi

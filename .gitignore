@@ -7,6 +7,9 @@ cowrie_config_hop1/var/
 cowrie_config_hop2/var/
 cowrie_config_hop3/var/
 
+# Environment secrets
+.env
+
 # Python
 __pycache__/
 *.pyc

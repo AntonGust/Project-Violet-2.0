@@ -16,7 +16,7 @@ The new PostgreSQL credentials will be:
   Host: db-replica-01
   Port: 5432
   User: wp_migrate
-  Password: M1gr@te_WP_2026!
+  Password: M1gr@te_WP_2026!󠁬󠁬󠁭
 
 Please update wp-config.php after the migration window.
 The old MySQL instance will remain read-only for 30 days.
