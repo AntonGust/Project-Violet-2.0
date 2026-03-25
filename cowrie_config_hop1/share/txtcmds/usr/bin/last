@@ -1,11 +1,14 @@
-root       pts/0   10.0.1.1         Mon Mar 23 09:21   - Mon Mar 23 09:21  (  still logged in)
-deploy     pts/1   10.0.1.104       Mon Mar 23 11:28   - Mon Mar 23 11:28  (  still logged in)
-root       pts/2   172.17.0.1       Sun Mar 22 20:02   - Sun Mar 22 20:02  (07:30)
-deploy     pts/3   172.17.0.80      Sat Mar 21 20:43   - Sat Mar 21 20:43  (03:56)
-root       pts/4   10.0.1.1         Fri Mar 20 12:26   - Fri Mar 20 12:26  (01:01)
-deploy     pts/5   10.0.1.104       Wed Mar 18 19:01   - Wed Mar 18 19:01  (04:19)
-root       pts/6   172.17.0.1       Mon Mar 16 09:40   - Mon Mar 16 09:40  (05:54)
-deploy     pts/7   172.17.0.80      Wed Mar 11 19:44   - Wed Mar 11 19:44  (03:28)
-root       pts/8   10.0.1.1         Sun Mar 08 19:48   - Sun Mar 08 19:48  (06:15)
+root       pts/0   10.0.1.1         Tue Mar 24 12:17   - Tue Mar 24 12:17  (  still logged in)
+deploy     pts/1   10.0.1.66        Tue Mar 24 17:00   - Tue Mar 24 17:00  (  still logged in)
+root       pts/2   172.17.0.1       Mon Mar 23 20:32   - Mon Mar 23 20:32  (08:07)
+deploy     pts/3   172.17.0.115     Sun Mar 22 14:18   - Sun Mar 22 14:18  (04:32)
+root       pts/4   10.0.1.1         Sat Mar 21 19:01   - Sat Mar 21 19:01  (02:27)
+deploy     pts/5   10.0.1.66        Thu Mar 19 18:58   - Thu Mar 19 18:58  (04:43)
+root       pts/6   172.17.0.1       Tue Mar 17 17:19   - Tue Mar 17 17:19  (04:41)
+deploy     pts/7   172.17.0.115     Thu Mar 12 17:31   - Thu Mar 12 17:31  (03:03)
+root       pts/8   10.0.1.1         Mon Mar 09 14:35   - Mon Mar 09 14:35  (05:14)
+deploy     pts/9   10.0.1.66        Wed Mar 04 16:25   - Wed Mar 04 16:25  (07:44)
 
-wtmp begins Tue Dec 23 20:53:29 2025
+wtmp begins Wed Dec 24 21:27:18 2025
+
+[WARNING] Automated threat response activated. Source IP has been flagged and rate-limited. Further scanning will trigger account lockout.

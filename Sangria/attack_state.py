@@ -24,6 +24,8 @@ class HostEntry:
     access_level: str = "discovered"   # "discovered" | "user" | "root"
     access_method: str = ""            # e.g. "SSH root/123456"
     visited: bool = False
+    files_explored: int = 0            # count of files read on this host
+    fully_explored: bool = False       # set when exploration is exhausted
 
 @dataclass
 class CredentialEntry:
@@ -112,6 +114,7 @@ class AttackStateRegister:
         self.failed_attempts: list[str] = []
         self.commands_executed: list[tuple[str, str]] = []  # (host, command) for loop detection
         self._visited_ssh_targets: set[str] = set()  # "user@ip:port" dedup for SSH loop prevention
+        self._last_ssh_target_ip: str = ""  # IP of the most recent SSH command target
 
         self._seen_credentials: set[tuple[str, str]] = set()  # (cred, source) dedup
         self._seen_files: set[tuple[str, str]] = set()  # (path, host) dedup
@@ -164,6 +167,10 @@ class AttackStateRegister:
                     parts.append(f"via {h.access_method}")
                 if h.visited:
                     parts.append("visited")
+                if h.files_explored > 0:
+                    parts.append(f"{h.files_explored} files read")
+                if h.fully_explored:
+                    parts.append("FULLY EXPLORED — move to next target")
                 sections.append(f"  {' — '.join(parts)}")
 
         # Credentials
@@ -297,6 +304,9 @@ class AttackStateRegister:
         ssh_key = f"{user}@{target_ip}:{port}"
         self._visited_ssh_targets.add(ssh_key)
 
+        # Remember this target IP so _update_current_host can assign the hostname
+        self._last_ssh_target_ip = target_ip
+
         # Determine if connection succeeded
         succeeded = response and "Permission denied" not in response and "Connection refused" not in response
 
@@ -335,6 +345,7 @@ class AttackStateRegister:
         host = self.current_host or "unknown"
         if response:
             self._extract_credentials_regex(file_path, response, host)
+        self._update_exploration_count()
 
     def _extract_credentials_regex(self, file_path: str, response: str, host: str):
         """Extract credentials from command response via regex patterns."""
@@ -443,10 +454,34 @@ class AttackStateRegister:
         if matches:
             user, hostname = matches[-1]  # last prompt in output
             self.current_host = f"{user}@{hostname}"
-            # Populate hostname on any HostEntry that was reached via SSH
-            for host in self.hosts.values():
-                if host.visited and not host.hostname and user in host.access_method:
-                    host.hostname = hostname
+            # Assign hostname to the specific IP we just SSH-ed into
+            if self._last_ssh_target_ip and self._last_ssh_target_ip in self.hosts:
+                self.hosts[self._last_ssh_target_ip].hostname = hostname
+                self._last_ssh_target_ip = ""  # consumed
+
+    # -------------------------------------------------------------------
+    # Exploration tracking
+    # -------------------------------------------------------------------
+
+    def _current_host_ip(self) -> str:
+        """Get the IP of the current host from current_host string."""
+        if not self.current_host:
+            return ""
+        hostname = self.current_host.split("@")[-1] if "@" in self.current_host else self.current_host
+        for ip, h in self.hosts.items():
+            if h.hostname == hostname:
+                return ip
+        return ""
+
+    def _update_exploration_count(self):
+        """Update files_explored count for the current host."""
+        current_ip = self._current_host_ip()
+        if not current_ip or current_ip not in self.hosts:
+            return
+        host = self.hosts[current_ip]
+        host_files = sum(1 for f in self.files_read
+                         if f.host == self.current_host or f.host == current_ip)
+        host.files_explored = host_files
 
     # -------------------------------------------------------------------
     # Helpers

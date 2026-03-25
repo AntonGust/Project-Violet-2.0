@@ -5,7 +5,7 @@ services:
     ports:
     - 3010:3022
     networks:
-      net_entry:
+      net_attack:
         ipv4_address: 172.10.0.2
   cowrie_hop1:
     build: Cowrie/cowrie-src
@@ -16,7 +16,7 @@ services:
     - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
     - COWRIE_HYBRID_LLM_ENABLED=true
     - HONEYNET_MODE=true
-    - COWRIE_DB_HOST=172.10.0.21
+    - COWRIE_DB_HOST=10.0.1.100
     - COWRIE_DB_ENGINE=mysql
     - COWRIE_DB_PORT=3306
     - COWRIE_DB_ROOT_PASSWORD=H0n3yp0t_R00t!
@@ -29,10 +29,10 @@ services:
     - ./cowrie_config_hop1/share:/cowrie/cowrie-git/share/cowrie
     - ./cowrie_config_hop1/var:/cowrie/cowrie-git/var
     networks:
-      net_entry:
+      net_attack:
         ipv4_address: 172.10.0.10
-      net_hop1:
-        ipv4_address: 172.10.1.10
+      net_internal_1:
+        ipv4_address: 10.0.1.15
     ports:
     - 2210:2222
   cowrie_hop2:
@@ -44,7 +44,7 @@ services:
     - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
     - COWRIE_HYBRID_LLM_ENABLED=true
     - HONEYNET_MODE=true
-    - COWRIE_DB_HOST=172.10.1.22
+    - COWRIE_DB_HOST=10.0.3.100
     - COWRIE_DB_ENGINE=postgresql
     - COWRIE_DB_PORT=5432
     - COWRIE_DB_ROOT_PASSWORD=H0n3yp0t_R00t!
@@ -57,10 +57,10 @@ services:
     - ./cowrie_config_hop2/share:/cowrie/cowrie-git/share/cowrie
     - ./cowrie_config_hop2/var:/cowrie/cowrie-git/var
     networks:
-      net_hop1:
-        ipv4_address: 172.10.1.11
-      net_hop2:
-        ipv4_address: 172.10.2.11
+      net_attack:
+        ipv4_address: 172.10.0.11
+      net_internal_2:
+        ipv4_address: 10.0.3.10
   cowrie_hop3:
     build: Cowrie/cowrie-src
     restart: always
@@ -83,8 +83,10 @@ services:
     - ./cowrie_config_hop3/share:/cowrie/cowrie-git/share/cowrie
     - ./cowrie_config_hop3/var:/cowrie/cowrie-git/var
     networks:
-      net_hop2:
-        ipv4_address: 172.10.2.12
+      net_attack:
+        ipv4_address: 172.10.0.12
+      net_internal_3:
+        ipv4_address: 10.0.2.7
   honeypot_db_hop1:
     image: mysql:8.0
     restart: 'no'
@@ -92,8 +94,8 @@ services:
     - ./cowrie_config_hop1/db_init:/docker-entrypoint-initdb.d:ro
     - ./cowrie_config_hop1/var/log/db:/var/log/mysql
     networks:
-      net_entry:
-        ipv4_address: 172.10.0.21
+      net_internal_1:
+        ipv4_address: 10.0.1.100
     environment:
       MYSQL_ROOT_PASSWORD: H0n3yp0t_R00t!
       MYSQL_DATABASE: wordpress_prod
@@ -114,8 +116,8 @@ services:
     - ./cowrie_config_hop2/db_init:/docker-entrypoint-initdb.d:ro
     - ./cowrie_config_hop2/var/log/db:/var/log/postgresql
     networks:
-      net_hop1:
-        ipv4_address: 172.10.1.22
+      net_internal_2:
+        ipv4_address: 10.0.3.100
     environment:
       POSTGRES_PASSWORD: H0n3yp0t_R00t!
       POSTGRES_DB: app_production
@@ -127,18 +129,23 @@ services:
       timeout: 3s
       retries: 15
 networks:
-  net_entry:
+  net_attack:
     driver: bridge
     ipam:
       config:
       - subnet: 172.10.0.0/24
-  net_hop1:
+  net_internal_1:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.10.1.0/24
-  net_hop2:
+      - subnet: 10.0.1.0/24
+  net_internal_2:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.10.2.0/24
+      - subnet: 10.0.3.0/24
+  net_internal_3:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.2.0/24

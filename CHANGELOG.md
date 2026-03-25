@@ -1,5 +1,112 @@
 # Changelog
 
+## 2026-03-25 (b) — Fix: SSH Loopback on Unreachable Hosts + Exploration Tracking
+
+Two fixes for the fake SSH loopback issue documented in `docs/known-problems/cowrie-fake-ssh-loopback.md`.
+
+### SSH Loopback Eliminated (`Cowrie/cowrie-src/src/cowrie/commands/ssh.py`)
+
+- **Problem**: When the attacker SSHed to an internal IP that wasn't a real container (e.g., `10.0.1.20` from hop 1), Cowrie's proxy failed, then `_simulated_login()` faked a new shell on the same hop. The attacker saw `root@localhost:~#`, believed it had pivoted, and re-explored the same files. Each fake SSH also created a new Cowrie session ID, inflating session counts.
+- **Fix**: Removed `_simulated_login()` entirely. Both `_proxy_connect_result(CONNECT_UNREACHABLE)` and `_proxy_connect_error()` now return `"Connection timed out"` and exit. The `/etc/hosts` fast-fail in `start()` is unchanged — unknown IPs still get instant "Connection refused" without a password prompt.
+
+### Per-Host Exploration Tracking (`Sangria/attack_state.py`)
+
+- **Problem**: `history_window=40` trimmed old messages, causing the LLM to forget which files it had already read on the current host and repeat identical recon commands.
+- **Fix**: `HostEntry` gains `files_explored` (count of files read) and `fully_explored` fields. `to_prompt_string()` now shows per-host file counts (e.g., `"172.10.0.3 (wp-prod-01) — root access — visited — 7 files read"`). New `_update_exploration_count()` method called after every file read keeps the count current in the state register, which survives history windowing.
+
+## 2026-03-25 — OpenRouter Provider Support
+
+Added OpenRouter as an LLM provider, giving access to 200+ models (Claude, Gemini, Llama, DeepSeek, Qwen, etc.) through a single API key.
+
+### Changes
+
+- **`Utils/llm_client.py`**: Added `"openrouter"` to `_PROVIDER_URLS` (`https://openrouter.ai/api/v1`) and `_PROVIDER_ENV_KEYS` (`OPENROUTER_API_KEY`).
+- **`Sangria/model.py`**: Added `LLMModel` entries: `OR_CLAUDE_4_SONNET`, `OR_GEMINI_2_5_PRO`, `OR_DEEPSEEK_R1`, `OR_QWEN_3_235B`.
+- **`Sangria/sangria.py`**: Added `MODEL_PRICING` entries for the 4 OpenRouter models.
+- **`config.py`**: Updated provider option comments to include `"openrouter"`.
+
+### Usage
+
+Set `OPENROUTER_API_KEY` in `.env`, then `llm_provider = "openrouter"` in `config.py`. Any OpenRouter model ID can also be passed as a plain string.
+
+## 2026-03-24 (b) — Hardening: HONEYPOT_LURE Removal, SSH Fallback, Hostname Fix
+
+Post-run analysis of `logs/Harden_wordpress_server_2026-03-24T20_42_11` revealed the attacker detected the honeypot at iteration 128 due to a `HONEYPOT_LURE` prefix in credential values. Three fixes applied.
+
+### HONEYPOT_LURE Credential Placeholders (6 profiles)
+
+- **Problem**: Profile files contained credentials prefixed with the literal text `HONEYPOT_LURE_` (e.g., `HONEYPOT_LURE_gitlab_pat_abcdef1234567890`). The attacker read `/home/dba/.gitlab-ci.yml` on hop 2 and immediately identified this as a honeypot indicator.
+- **Fix**: All 6 profiles (`database_server`, `cicd_runner`, `monitoring_stack`, `backup_server`, `docker_swarm`, `dev_workstation`) now use bland `REDACTED_*` placeholders in git. `scripts/.lure_secrets` updated with new placeholder-to-realistic mappings. `scripts/gcp_lure.py` placeholder also renamed. The `restore_lure_secrets.sh` workflow verified end-to-end.
+
+### SSH Simulated Fallback for Unreachable Hosts (`Cowrie/cowrie-src/src/cowrie/commands/ssh_proxy.py`, `ssh.py`)
+
+- **Problem**: When the attacker SSHed to internal IPs from hop 2 (e.g., 10.0.3.15 db-standby), the proxy attempted a real TCP connection, failed, and returned "Connection refused" instantly. The existing simulated-shell fallback in `_proxy_connect_error()` never triggered because `ssh_proxy.connect()` returned `False` (handled by `_proxy_connect_result` which just called `exit()`).
+- **Fix**: `ssh_proxy.connect()` now returns a 3-value result: `CONNECT_OK`, `CONNECT_AUTH_FAILED`, or `CONNECT_UNREACHABLE`. Exception handling differentiates `socket.timeout`, `ConnectionRefusedError`, and `paramiko.AuthenticationException`. `_proxy_connect_result()` routes `CONNECT_UNREACHABLE` to `_proxy_connect_error()`, which checks `/etc/hosts` and provides a simulated shell for known hosts instead of "Connection refused".
+
+### Hostname Tracking Fallback Removed (`Sangria/attack_state.py`)
+
+- **Problem**: The fallback in `_update_current_host()` (lines 454-459) iterated through all visited hosts and assigned the current hostname to the first match when `_last_ssh_target_ip` was empty. Since the field is cleared after each SSH command, every subsequent non-SSH command triggered the fallback, overwriting hop 1's hostname ("wp-prod-01") with hop 2's ("db-primary").
+- **Fix**: Removed the fallback entirely. Hostnames are only assigned via the explicit `_last_ssh_target_ip` path from SSH commands. The `current_host` prompt string still tracks the active session correctly for display and logging.
+
+## 2026-03-24 — Honeynet Hardening: Star Topology, Credential Scatter, CHeaT Expansion
+
+Diagnostic analysis of `logs/Testing_2026-03-24T17_15_29` revealed 6 issues. All fixed.
+
+### Star Network Topology (`Blue_Lagoon/compose_generator.py`, `Blue_Lagoon/credential_chain.py`)
+
+- **Problem**: Chain-linked networks (Kali→hop1→hop2→hop3) meant the attacker could only reach each hop through the previous one. A command timeout on hop3 collapsed the entire SSH chain, ejecting the attacker to Kali with no way to reconnect without re-traversing all hops.
+- **Fix**: All honeypot hops now share a `net_attack` network (172.{run_id}.0.0/24) directly reachable from Kali. Each hop also keeps a private `net_internal_N` network for database containers and profile realism. `HopInfo` gains `attack_ip`, `internal_ip`, and `internal_subnet` fields.
+- **Session correlator updated**: `Purple/session_correlator.py` now matches sessions by attack_ip instead of chain-linked IPs, and tracks all attacker-controlled IPs (Kali + any compromised hop).
+
+### Credential Chain Realism (`Blue_Lagoon/credential_chain.py`)
+
+- **Problem**: Each hop had `/opt/.env` with plaintext SSH credentials for the next hop. The attacker found them in 2 commands (`find / -name "*.env"` → `cat /opt/.env`), pivoting with zero effort.
+- **Fix**: Credentials are now scattered across multiple files:
+  - **Username + host**: in `.bash_history` and `~/.ssh/config` (no password)
+  - **Password**: placed randomly in one of 4 realistic locations (backup scripts, root mail, notes files, deploy configs)
+  - **2 decoy credential sets** per hop in `/opt/.env.bak` and `/var/backups/credentials.old` — look real but use wrong usernames/passwords, increasing dwell time and CHeaT detection surface.
+- The `/opt/.env` all-in-one breadcrumb pattern is removed entirely.
+
+### CHeaT Defenses on All Hops (`main.py`, `config.py`)
+
+- **Problem**: CHeaT defenses (unicode honeytokens, canary URLs, prompt traps, tool traps) were only applied to hop 0. The attacker reached hops 2-3 with zero detection coverage. Canary URLs, prompt traps, and tool traps were disabled by default.
+- **Fix**: CHeaT defenses are now applied to every hop in the honeynet loop. Defense metadata is stored per-hop (`{"hop_1": {...}, "hop_2": {...}}`) and flattened for the detector via `_flatten_per_hop_defenses()`. All CHeaT modules enabled by default: `cheat_canary_urls=True`, `cheat_prompt_traps=True`, `cheat_tool_traps=True`.
+
+### Hostname Tracking Fix (`Sangria/attack_state.py`)
+
+- **Problem**: `_update_current_host()` assigned hostnames to the wrong IPs. After SSH-ing to `172.10.1.11` (db-primary), the hostname was assigned to the first unmatched visited host instead of the SSH target, producing incorrect mappings like `172.10.1.11 → wp-prod-01`.
+- **Fix**: New `_last_ssh_target_ip` field tracks the IP from the most recent SSH command. `_update_current_host()` assigns the discovered hostname to that specific IP, then clears the field. Falls back to the old heuristic only when no SSH target is tracked.
+
+### OS-Aware MOTD Templates (`Reconfigurator/profile_converter.py`)
+
+- **Problem**: All hops used a hardcoded Ubuntu-style MOTD regardless of profile OS. CentOS hops showed Ubuntu help URLs. All hops had identical system stats (0.08 load, 142 processes, 42% memory).
+- **Fix**: New `_generate_motd()` function with `_detect_os_family()` selects appropriate help URLs per OS (Ubuntu, CentOS, Debian, RHEL). System stats (load, processes, disk, memory, swap) and timestamps are randomized per hop.
+
+### Timeout Configuration (`main.py`)
+
+- Interactive timeout increased from 600s to 900s, idle timeout from 300s to 600s. Combined with star topology, timeouts are no longer session-fatal — the attacker can SSH directly back to any discovered hop.
+
+## 2026-03-23 — CHeaT Honeytoken Fix, Secret Sanitization, README
+
+### CHeaT Unicode Honeytokens Fix (`Reconfigurator/cheat/unicode_tokens.py`)
+
+- **Root cause**: `inject_unicode_honeytokens()` modified `ssh_config.accepted_passwords` — the actual credentials Cowrie uses for authentication. The injected zero-width Unicode characters made the passwords impossible for the LLM attacker to reproduce, so SSH login always failed.
+- **Fix 1**: Honeytokens are no longer injected into `accepted_passwords`. They are only applied to `file_contents` (what the attacker reads on the honeypot filesystem), which is where copy-paste detection matters.
+- **Fix 2**: Honeytokens are now applied to a random 30–50% subset of credential-bearing files instead of every file. This makes detection less predictable and more realistic.
+- **Symptom fixed**: Attacker spent all 200 iterations brute-forcing passwords that could never work because the real Cowrie credentials contained invisible Unicode.
+
+### Secret Sanitization for GitHub Push Protection (`scripts/`)
+
+- **Problem**: GitHub push protection blocked pushes due to realistic lure secrets (Grafana tokens, Stripe keys, Slack webhooks, GCP service account) committed in profile JSON and the restore script itself.
+- **`restore_lure_secrets.sh` rewritten**: Secret mappings moved from the script to `scripts/.lure_secrets` (gitignored). The committed script contains no real secret values.
+- **`gcp_lure.py` added**: Python helper for the GCP service account JSON blob in `dev_workstation.json` — sed cannot handle multi-line JSON replacements reliably.
+- **Workflow**: `--sanitize` before commit, `--restore` after checkout (also available from Settings menu in `main_menu.py`).
+- **`.gitignore` updated**: Added `.env`, `scripts/.lure_secrets`, `cowrie_config*/var/`, `__pycache__/`, `logs/`.
+
+### README Updated for Project Violet 2.0
+
+- Full rewrite covering architecture, multi-hop honeynet, CHeaT defenses, all LLM providers, reconfiguration methods, output structure, and lure secret management.
+
 ## 2026-03-18 — Hardening Fixes: DB Proxy IP, Attacker Loop Prevention, Profile Authenticity
 
 ### Compose Generator DB IP Fix (`Blue_Lagoon/compose_generator.py`)

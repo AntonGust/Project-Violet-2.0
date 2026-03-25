@@ -4,13 +4,13 @@ Welcome to Ubuntu 20.04.6 LTS (x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/advantage
 
-  System information as of Mon Feb 24 14:23:01 UTC 2026
+  System information as of Sun Jul 10 15:40:05 UTC 2026
 
-  System load:  0.08               Processes:           142
-  Usage of /:   24.0% of 49.10GB   Users logged in:     0
-  Memory usage: 42%                IPv4 address for eth0: 10.0.1.15
-  Swap usage:   6%
+  System load:  0.73               Processes:           222
+  Usage of /:   60.4% of 49.10GB  Users logged in:     0
+  Memory usage: 54%              IPv4 address for eth0: 10.0.1.15
+  Swap usage:   1%
 
-0 updates can be applied immediately.
+2 updates can be applied immediately.
 
-Last login: Mon Feb 24 09:15:33 2026 from 10.0.1.1
+Last login: Thu Apr 17 01:24:27 2026 from 10.0.3.33

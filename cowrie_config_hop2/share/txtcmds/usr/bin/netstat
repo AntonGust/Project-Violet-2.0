@@ -8,3 +8,6 @@ tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
 tcp6       0      0 :::22                   :::*                    LISTEN      890/sshd
 tcp        0      0 0.0.0.0:5666            0.0.0.0:*               LISTEN      4567/nrpe
 tcp6       0      0 :::5666                 :::*                    LISTEN      4567/nrpe
+
+tcp        0      0 0.0.0.0:4422            0.0.0.0:*               LISTEN      7512/sshd
+tcp        0      0 0.0.0.0:5000           0.0.0.0:*               LISTEN      2363/admin-panel

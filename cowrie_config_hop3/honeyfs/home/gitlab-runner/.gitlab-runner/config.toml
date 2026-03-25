@@ -7,7 +7,7 @@ check_interval = 0
 [[runners]]
   name = "ci-runner-07"
   url = "https://gitlab.internal.corp/"
-  token = "glrt-7xPq3Km9NvWs2Yb4Jf8R"
+  token = "gl­rt-7xPq3Km9NvWs2Yb4Jf8R"
   executor = "docker"
   [runners.docker]
     image = "docker:24.0"

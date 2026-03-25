@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  GITLAB_TOKEN: "HONEYPOT_LURE_gitlab_pat_abcdef1234567890"
+  GITLAB_TOKEN: "REDACTED_gitlab_pat_db_ci_deploy"
 
 build_job:
   stage: build

@@ -25,6 +25,11 @@ MODEL_PRICING = {
     "Qwen/Qwen3.5-397B-A17B":                            {"input": 0.10, "cached": 0.10, "output": 0.15},
     "deepseek-ai/DeepSeek-V3":                            {"input": 0.60, "cached": 0.60, "output": 1.70},
     "deepseek-ai/DeepSeek-R1":                            {"input": 3.00, "cached": 3.00, "output": 7.00},
+    # OpenRouter
+    "anthropic/claude-sonnet-4":                            {"input": 3.00, "cached": 0.30, "output": 15.00},
+    "google/gemini-2.5-pro-preview":                        {"input": 1.25, "cached": 0.31, "output": 10.00},
+    "deepseek/deepseek-r1":                                 {"input": 0.55, "cached": 0.14, "output": 2.19},
+    "qwen/qwen3-235b-a22b":                                {"input": 0.20, "cached": 0.20, "output": 0.60},
 }
 
 def create_json_log(messages):

@@ -13,7 +13,7 @@ from pathlib import Path
 
 FILE = Path(__file__).resolve().parent.parent / "Reconfigurator" / "profiles" / "dev_workstation.json"
 KEY = "/home/jsmith/.config/gcloud/application_default_credentials.json"
-PLACEHOLDER = "HONEYPOT_LURE_GCP_APPLICATION_DEFAULT_CREDENTIALS"
+PLACEHOLDER = "GCP_ADC_PLACEHOLDER_FOR_SANITIZE"
 
 REAL_VALUE = json.dumps({
     "type": "service_account",

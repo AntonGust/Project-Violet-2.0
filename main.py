@@ -156,8 +156,8 @@ def _write_cowrie_cfg(cowrie_base: Path, config_overrides: dict) -> None:
     cfg.set("honeypot", "log_path", "var/log/cowrie")
     cfg.set("honeypot", "contents_path", "honeyfs")
     cfg.set("honeypot", "txtcmds_path", "share/cowrie/txtcmds")
-    cfg.set("honeypot", "interactive_timeout", "600")
-    cfg.set("honeypot", "idle_timeout", "300")
+    cfg.set("honeypot", "interactive_timeout", "900")
+    cfg.set("honeypot", "idle_timeout", "600")
     cfg.set("honeypot", "authentication_timeout", "120")
 
     cfg.add_section("shell")
@@ -235,6 +235,25 @@ def apply_cheat_defenses(profile: dict) -> tuple[dict, dict]:
     return profile, defenses
 
 
+def _flatten_per_hop_defenses(per_hop: dict[str, dict]) -> dict:
+    """Flatten per-hop CHeaT defenses into a single dict for the detector.
+
+    Input:  {"hop_1": {"unicode_tokens": [...], ...}, "hop_2": {...}}
+    Output: {"unicode_tokens": [all_tokens], "canary_urls": [all_urls], ...}
+    """
+    flat: dict[str, list] = {
+        "unicode_tokens": [],
+        "canary_urls": [],
+        "prompt_traps": [],
+        "tool_traps": [],
+    }
+    for hop_key, defenses in per_hop.items():
+        for defense_type, items in defenses.items():
+            if defense_type in flat and isinstance(items, list):
+                flat[defense_type].extend(items)
+    return flat
+
+
 def main():
     if config.honeynet_enabled:
         main_honeynet()
@@ -251,7 +270,7 @@ def main_honeynet():
 
     # 2. For each hop: load profile -> enrich_lures() -> inject breadcrumbs -> deploy
     hop_profiles = []
-    cheat_defenses = None
+    cheat_defenses: dict[str, dict] = {}  # per-hop: {"hop_1": {...}, "hop_2": {...}}
     for i, hop in enumerate(manifest.hops):
         profile_path = PROJECT_ROOT / hop.profile_path
         with open(profile_path) as f:
@@ -259,9 +278,10 @@ def main_honeynet():
 
         profile, lure_chains = enrich_lures(profile)
 
-        # CHeaT: apply all defenses to first hop (entry point)
-        if i == 0 and config.cheat_enabled:
-            profile, cheat_defenses = apply_cheat_defenses(profile)
+        # CHeaT: apply all defenses to EVERY hop
+        hop_cheat = None
+        if config.cheat_enabled:
+            profile, hop_cheat = apply_cheat_defenses(profile)
 
         # Inject next-hop breadcrumbs (all but last hop)
         if i < len(manifest.hops) - 1:
@@ -269,12 +289,15 @@ def main_honeynet():
 
         result = deploy_cowrie_config(profile, hop_index=i)
 
-        # CHeaT: apply tool traps after deploy (first hop only)
-        if i == 0 and config.cheat_enabled and config.cheat_tool_traps:
+        # CHeaT: apply tool traps after deploy (every hop)
+        if config.cheat_enabled and config.cheat_tool_traps:
             txtcmds_path = result.get("txtcmds_path")
             tool_trap_planted = apply_tool_traps_to_txtcmds(txtcmds_path, profile)
-            if cheat_defenses is not None:
-                cheat_defenses["tool_traps"] = tool_trap_planted
+            if hop_cheat is not None:
+                hop_cheat["tool_traps"] = tool_trap_planted
+
+        if hop_cheat is not None:
+            cheat_defenses[f"hop_{i + 1}"] = hop_cheat
 
         hop_profiles.append((profile, lure_chains))
 
@@ -301,6 +324,9 @@ def main_honeynet():
                 save_json_to_file(lure_chains, config_path / f"lure_chains_hop{i + 1}.json")
         if cheat_defenses:
             save_json_to_file(cheat_defenses, config_path / "cheat_defenses.json")
+
+    # Flatten per-hop defenses for the CHeaT detector (it expects a flat dict)
+    flat_cheat_defenses = _flatten_per_hop_defenses(cheat_defenses) if cheat_defenses else None
 
     # Use pot1's profile for the attacker prompt (organic discovery)
     pot1_profile = hop_profiles[0][0]
@@ -359,11 +385,11 @@ def main_honeynet():
 
         # CHeaT: run detection analysis
         cheat_results = None
-        if cheat_detector and cheat_defenses:
+        if cheat_detector and flat_cheat_defenses:
             cowrie_logs = []
             if not config.simulate_command_line:
                 cowrie_logs = log_extractor.get_new_hp_logs()
-            cheat_results = cheat_detector.analyze_session(session, cowrie_logs, cheat_defenses)
+            cheat_results = cheat_detector.analyze_session(session, cowrie_logs, flat_cheat_defenses)
             append_json_to_file(cheat_results, config_path / "cheat_results.json", False)
 
         append_json_to_file(tokens_used, config_path / "tokens_used.json", False)
@@ -378,6 +404,7 @@ def main_honeynet():
         # Per-hop reconfiguration (credential-stable)
         if reconfigurator.should_reconfigure() and (i + 1) < config.num_of_sessions:
             display.print_reconfig_notice("honeynet hops (credential-stable)")
+            cheat_defenses = {}
             for hop_idx, hop in enumerate(manifest.hops):
                 if not config.simulate_command_line:
                     stop_single_hop(hop_idx)
@@ -388,16 +415,33 @@ def main_honeynet():
 
                 new_profile, new_lure_chains = enrich_lures(new_profile)
 
+                # CHeaT: re-apply defenses to every hop
+                hop_cheat = None
+                if config.cheat_enabled:
+                    new_profile, hop_cheat = apply_cheat_defenses(new_profile)
+
                 # Re-inject same breadcrumbs (credentials unchanged)
                 if hop_idx < len(manifest.hops) - 1:
                     inject_next_hop_breadcrumbs(new_profile, hop, manifest.hops[hop_idx + 1])
 
-                deploy_cowrie_config(new_profile, hop_index=hop_idx)
+                result = deploy_cowrie_config(new_profile, hop_index=hop_idx)
+
+                # CHeaT: re-apply tool traps after deploy
+                if config.cheat_enabled and config.cheat_tool_traps:
+                    txtcmds_path = result.get("txtcmds_path")
+                    tool_trap_planted = apply_tool_traps_to_txtcmds(txtcmds_path, new_profile)
+                    if hop_cheat is not None:
+                        hop_cheat["tool_traps"] = tool_trap_planted
+
+                if hop_cheat is not None:
+                    cheat_defenses[f"hop_{hop_idx + 1}"] = hop_cheat
+
                 hop_profiles[hop_idx] = (new_profile, new_lure_chains)
 
                 if not config.simulate_command_line:
                     start_single_hop(hop_idx)
 
+            flat_cheat_defenses = _flatten_per_hop_defenses(cheat_defenses) if cheat_defenses else None
             pot1_profile = hop_profiles[0][0]
             reconfigurator.reset()
             config_counter += 1
@@ -407,6 +451,7 @@ def main_honeynet():
             os.makedirs(full_logs_path, exist_ok=True)
 
             if not config.simulate_command_line:
+                save_json_to_file(cheat_defenses, config_path / "cheat_defenses.json")
                 clear_hp_logs()
                 log_extractor.reset_offset()
 

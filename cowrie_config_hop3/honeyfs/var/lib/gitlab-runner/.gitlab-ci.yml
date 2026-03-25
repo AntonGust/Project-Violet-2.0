@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  GITLAB_TOKEN: "HONEYPOT_LURE_gitlab_pat_3Qx9Y_pN8s7e6r0vX2yz"
+  GITLAB_TOKEN: "REDACTED_gitlab_pat_cicd_runner"
 
 build_job:
   stage: build

@@ -30,5 +30,4 @@ cat /var/www/html/.env
 ssh deploy@db-replica-01 'pg_isready'
 cat /etc/hosts
 history
-ssh root@172.10.1.11 -p 2222
-sshpass -p 'root' ssh root@172.10.1.11 -p 2222
+ssh root@172.10.0.11 -p 2222

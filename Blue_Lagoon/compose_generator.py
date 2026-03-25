@@ -1,9 +1,9 @@
 """Generate docker-compose.honeynet.yml for multi-hop HoneyNet deployments.
 
-Creates isolated Docker bridge networks so that:
-- Kali sits only on net_entry and can only reach Pot1
-- Each pot sits on two networks (inbound + outbound), except the last pot (inbound only)
-- DB containers for applicable hops sit on the same network as their pot
+Star topology — all honeypot hops share a single net_attack network so that
+the attacker (Kali) can reach any hop directly once it has credentials.
+Each hop also gets its own internal network for profile realism (databases,
+internal services, etc.).
 """
 
 from __future__ import annotations
@@ -33,17 +33,17 @@ def generate_honeynet_compose(manifest: "ChainManifest") -> Path:
     networks: dict = {}
 
     # --- Networks ---
-    # net_entry: Kali <-> Pot1
-    networks["net_entry"] = {
+    # net_attack: shared network — Kali + all pots
+    networks["net_attack"] = {
         "driver": "bridge",
         "ipam": {"config": [{"subnet": f"172.{run_id}.0.0/24"}]},
     }
-    # net_hopN: PotN <-> PotN+1
-    for i in range(num_hops - 1):
-        net_name = f"net_hop{i + 1}"
+    # net_internal_{N}: per-hop internal network for databases/services
+    for i, hop in enumerate(hops):
+        net_name = f"net_internal_{i + 1}"
         networks[net_name] = {
             "driver": "bridge",
-            "ipam": {"config": [{"subnet": f"172.{run_id}.{i + 1}.0/24"}]},
+            "ipam": {"config": [{"subnet": hop.internal_subnet}]},
         }
 
     # --- Kali ---
@@ -52,7 +52,7 @@ def generate_honeynet_compose(manifest: "ChainManifest") -> Path:
         "privileged": True,
         "ports": [f"30{run_id}:3022"],
         "networks": {
-            "net_entry": {"ipv4_address": f"172.{run_id}.0.2"},
+            "net_attack": {"ipv4_address": f"172.{run_id}.0.2"},
         },
     }
 
@@ -82,28 +82,19 @@ def generate_honeynet_compose(manifest: "ChainManifest") -> Path:
         if i == 0:
             svc["ports"] = [f"22{run_id}:2222"]
 
-        # Inbound network
-        if i == 0:
-            # First pot: on net_entry
-            svc["networks"]["net_entry"] = {
-                "ipv4_address": f"172.{run_id}.0.10",
-            }
-        else:
-            # Inner pots: on net_hop{i} (shared with predecessor)
-            net_in = f"net_hop{i}"
-            svc["networks"][net_in] = {
-                "ipv4_address": f"172.{run_id}.{i}.{10 + i}",
-            }
+        # All pots on the shared attack network (directly reachable from Kali)
+        svc["networks"]["net_attack"] = {
+            "ipv4_address": hop.attack_ip,
+        }
 
-        # Outbound network (all but last pot)
-        if i < num_hops - 1:
-            net_out = f"net_hop{i + 1}"
-            svc["networks"][net_out] = {
-                "ipv4_address": f"172.{run_id}.{i + 1}.{10 + i}",
-            }
+        # Each pot also on its own internal network
+        internal_net = f"net_internal_{hop_num}"
+        svc["networks"][internal_net] = {
+            "ipv4_address": hop.internal_ip,
+        }
 
         # DB env vars for hops with databases
-        _inject_db_env(svc, hop_num, i, run_id)
+        _inject_db_env(svc, hop_num, i, run_id, hop)
 
         services[service_name] = svc
 
@@ -112,7 +103,7 @@ def generate_honeynet_compose(manifest: "ChainManifest") -> Path:
     for i, hop in enumerate(hops):
         hop_num = i + 1
         if i < len(cfg.chain_db_enabled) and cfg.chain_db_enabled[i]:
-            db_svc = _build_db_service(hop_num, i, run_id)
+            db_svc = _build_db_service(hop_num, i, run_id, hop)
             if db_svc:
                 services[f"honeypot_db_hop{hop_num}"] = db_svc
 
@@ -122,11 +113,19 @@ def generate_honeynet_compose(manifest: "ChainManifest") -> Path:
     with open(out_path, "w") as f:
         yaml.dump(compose, f, default_flow_style=False, sort_keys=False)
 
-    print(f"Generated {out_path.name} ({num_hops} hops)")
+    print(f"Generated {out_path.name} ({num_hops} hops, star topology)")
     return out_path
 
 
-def _inject_db_env(svc: dict, hop_num: int, hop_index: int, run_id: str) -> None:
+def _db_ip_for_hop(hop, run_id: str) -> str:
+    """Compute the DB container IP — sits on the hop's internal network."""
+    # Use .100 offset in the internal subnet for the DB container
+    # e.g., internal_ip = 10.0.1.15 → db_ip = 10.0.1.100
+    parts = hop.internal_ip.rsplit(".", 1)
+    return f"{parts[0]}.100"
+
+
+def _inject_db_env(svc: dict, hop_num: int, hop_index: int, run_id: str, hop) -> None:
     """Add COWRIE_DB_* env vars to a pot service if its db_config.json exists."""
     db_config_path = PROJECT_ROOT / f"cowrie_config_hop{hop_num}" / "db_config.json"
     if not db_config_path.exists():
@@ -143,11 +142,7 @@ def _inject_db_env(svc: dict, hop_num: int, hop_index: int, run_id: str) -> None
     except (json.JSONDecodeError, OSError):
         return
 
-    # Compute DB host IP to match _build_db_service() IP assignment
-    if hop_index == 0:
-        db_ip = f"172.{run_id}.0.{20 + hop_num}"
-    else:
-        db_ip = f"172.{run_id}.{hop_index}.{20 + hop_num}"
+    db_ip = _db_ip_for_hop(hop, run_id)
     svc["environment"].append(f"COWRIE_DB_HOST={db_ip}")
     svc["environment"].append(f"COWRIE_DB_ENGINE={db_config.get('engine', '')}")
     svc["environment"].append(f"COWRIE_DB_PORT={db_config.get('port', '')}")
@@ -161,7 +156,7 @@ def _inject_db_env(svc: dict, hop_num: int, hop_index: int, run_id: str) -> None
             svc["environment"].append(f"COWRIE_DB_PASSWORD={users[0].get('password', '')}")
 
 
-def _build_db_service(hop_num: int, hop_index: int, run_id: str) -> dict | None:
+def _build_db_service(hop_num: int, hop_index: int, run_id: str, hop) -> dict | None:
     """Build a DB service dict for a specific hop, if db_config.json exists."""
     db_config_path = PROJECT_ROOT / f"cowrie_config_hop{hop_num}" / "db_config.json"
     if not db_config_path.exists():
@@ -177,13 +172,9 @@ def _build_db_service(hop_num: int, hop_index: int, run_id: str) -> dict | None:
     image = db_config["image"]
     root_password = db_config["root_password"]
 
-    # DB sits on the same inbound network as its pot
-    if hop_index == 0:
-        net_name = "net_entry"
-        ip = f"172.{run_id}.0.{20 + hop_num}"
-    else:
-        net_name = f"net_hop{hop_index}"
-        ip = f"172.{run_id}.{hop_index}.{20 + hop_num}"
+    # DB sits on the hop's internal network
+    internal_net = f"net_internal_{hop_num}"
+    db_ip = _db_ip_for_hop(hop, run_id)
 
     svc: dict = {
         "image": image,
@@ -193,7 +184,7 @@ def _build_db_service(hop_num: int, hop_index: int, run_id: str) -> dict | None:
             f"./cowrie_config_hop{hop_num}/var/log/db:/var/log/{'mysql' if engine == 'mysql' else 'postgresql'}",
         ],
         "networks": {
-            net_name: {"ipv4_address": ip},
+            internal_net: {"ipv4_address": db_ip},
         },
     }
 

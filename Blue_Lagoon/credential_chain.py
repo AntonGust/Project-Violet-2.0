@@ -18,12 +18,19 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 @dataclass
 class HopInfo:
     hop_index: int
-    ip_from_prev: str       # IP as seen from previous hop's network
+    attack_ip: str          # IP on the shared net_attack network (reachable from Kali)
+    internal_ip: str        # IP on the hop's internal network (for profile realism)
+    internal_subnet: str    # Internal network subnet (e.g. "10.0.1.0/24")
     ssh_port: int            # always 2222
     username: str            # SSH user for this hop
     password: str            # SSH password for this hop
     hostname: str            # from profile system.hostname
     profile_path: str
+
+    @property
+    def ip_from_prev(self) -> str:
+        """Backwards-compatible alias — breadcrumbs now use attack_ip."""
+        return self.attack_ip
 
 
 @dataclass
@@ -32,14 +39,27 @@ class ChainManifest:
     run_id: str
 
 
+# Internal subnets for per-hop realism (what the profile's /etc/hosts etc. show)
+_INTERNAL_SUBNETS = [
+    ("10.0.1.0/24", "10.0.1.15"),
+    ("10.0.3.0/24", "10.0.3.10"),
+    ("10.0.2.0/24", "10.0.2.7"),
+    ("10.0.4.0/24", "10.0.4.20"),
+    ("10.0.5.0/24", "10.0.5.12"),
+]
+
+
 def build_chain_manifest(run_id: str, chain_profiles: list[str]) -> ChainManifest:
     """Load each profile and build the chain manifest with IPs and credentials.
 
-    IP scheme (matches compose_generator.py):
-    - Pot1 on net_entry: 172.{run_id}.0.10
-    - Pot2 on net_hop1:  172.{run_id}.1.11
-    - Pot3 on net_hop2:  172.{run_id}.2.12
-    - PotN on net_hop{N-1}: 172.{run_id}.{N-1}.{10+N-1}
+    Star topology — all hops are on a shared net_attack network:
+    - Kali:  172.{run_id}.0.2
+    - Pot1:  172.{run_id}.0.10
+    - Pot2:  172.{run_id}.0.11
+    - Pot3:  172.{run_id}.0.12
+    - PotN:  172.{run_id}.0.{10+N-1}
+
+    Each hop also gets an internal network for profile realism.
     """
     hops: list[HopInfo] = []
 
@@ -61,15 +81,21 @@ def build_chain_manifest(run_id: str, chain_profiles: list[str]) -> ChainManifes
                 password = passwords[0]
                 break
 
-        # IP as seen from the previous hop's shared network
-        if i == 0:
-            ip_from_prev = f"172.{run_id}.0.10"
+        # All hops on the shared attack network
+        attack_ip = f"172.{run_id}.0.{10 + i}"
+
+        # Internal network for profile realism
+        if i < len(_INTERNAL_SUBNETS):
+            internal_subnet, internal_ip = _INTERNAL_SUBNETS[i]
         else:
-            ip_from_prev = f"172.{run_id}.{i}.{10 + i}"
+            internal_subnet = f"10.0.{i + 1}.0/24"
+            internal_ip = f"10.0.{i + 1}.15"
 
         hops.append(HopInfo(
             hop_index=i,
-            ip_from_prev=ip_from_prev,
+            attack_ip=attack_ip,
+            internal_ip=internal_ip,
+            internal_subnet=internal_subnet,
             ssh_port=2222,
             username=username,
             password=password,
@@ -85,14 +111,14 @@ def inject_next_hop_breadcrumbs(
     current_hop: HopInfo,
     next_hop: HopInfo,
 ) -> dict:
-    """Inject real next-hop credentials into the profile dict.
+    """Inject real next-hop credentials into the profile, scattered across files.
 
-    Modifies:
-    1. /etc/hosts — adds hostname mapping for next hop
-    2. .bash_history — adds SSH commands to next hop
-    3. ~/.ssh/config — adds Host block for next hop
-    4. lateral_movement_targets in lure files
-    5. A .env breadcrumb with connection info
+    The credentials are split so the attacker must correlate multiple files:
+    - /etc/hosts: hostname mapping (host + IP)
+    - .bash_history: SSH commands with username + host (no password)
+    - ~/.ssh/config: Host block with username + host (no password)
+    - Scattered password: placed in a realistic location (backup script, mail, notes)
+    - Decoy credentials: 2 fake credential sets in other files
 
     Returns the modified profile (also mutates in-place).
     """
@@ -102,19 +128,22 @@ def inject_next_hop_breadcrumbs(
     next_host = next_hop.hostname
     next_port = next_hop.ssh_port
 
-    # --- 1. /etc/hosts ---
+    # --- 1. /etc/hosts — hostname mapping ---
     _inject_etc_hosts(profile, next_ip, next_host)
 
-    # --- 2. .bash_history ---
-    _inject_bash_history(profile, next_ip, next_user, next_pass, next_port)
+    # --- 2. .bash_history — SSH commands WITHOUT password (user must find it elsewhere) ---
+    _inject_bash_history_no_password(profile, next_ip, next_user, next_port)
 
-    # --- 3. ~/.ssh/config ---
+    # --- 3. ~/.ssh/config — Host block (no password) ---
     _inject_ssh_config(profile, next_ip, next_user, next_host, next_port)
 
-    # --- 4. Lure file breadcrumbs ---
-    _inject_lure_breadcrumbs(profile, next_ip, next_user, next_pass, next_host, next_port)
+    # --- 4. Password in a realistic scattered location ---
+    _inject_scattered_password(profile, next_ip, next_user, next_pass, next_host)
 
-    # --- 5. lateral_movement_targets ---
+    # --- 5. Decoy credentials (look real but fail) ---
+    _inject_decoy_credentials(profile, next_ip, next_host)
+
+    # --- 6. lateral_movement_targets ---
     _ensure_lateral_movement_target(profile, next_ip)
 
     return profile
@@ -132,11 +161,13 @@ def _inject_etc_hosts(profile: dict, ip: str, hostname: str) -> None:
     file_contents["/etc/hosts"] = hosts_content
 
 
-def _inject_bash_history(profile: dict, ip: str, user: str, password: str, port: int) -> None:
-    """Add SSH commands to .bash_history in file_contents."""
+def _inject_bash_history_no_password(profile: dict, ip: str, user: str, port: int) -> None:
+    """Add SSH commands to .bash_history WITHOUT the password.
+
+    The attacker must find the password in a separate file.
+    """
     file_contents = profile.setdefault("file_contents", {})
 
-    # Find the root user's home for history file path
     home = "/root"
     for u in profile.get("users", []):
         if u.get("name") == "root":
@@ -146,13 +177,11 @@ def _inject_bash_history(profile: dict, ip: str, user: str, password: str, port:
     history_path = f"{home}/.bash_history"
     history = file_contents.get(history_path, "")
 
-    # Ensure trailing newline before appending
     if history and not history.endswith("\n"):
         history += "\n"
 
     new_entries = [
         f"ssh {user}@{ip} -p {port}",
-        f"sshpass -p '{password}' ssh {user}@{ip} -p {port}",
         f"ssh {user}@{ip}",
     ]
     for entry in new_entries:
@@ -189,37 +218,160 @@ def _inject_ssh_config(profile: dict, ip: str, user: str, hostname: str, port: i
     file_contents[ssh_config_path] = ssh_config
 
 
-def _inject_lure_breadcrumbs(
-    profile: dict, ip: str, user: str, password: str, hostname: str, port: int,
+import random as _random
+
+
+# Realistic locations where a password might be found, per profile type
+_PASSWORD_LOCATIONS = [
+    # (path, template) — {user}, {password}, {host}, {ip} are interpolated
+    (
+        "/var/backups/migrate.sh",
+        "#!/bin/bash\n"
+        "# Migration script - last run 2026-02-18\n"
+        "# Transfers data to {hostname}\n\n"
+        "REMOTE_USER={user}\n"
+        "REMOTE_PASS=\"{password}\"\n"
+        "REMOTE_HOST={ip}\n\n"
+        "rsync -avz /var/www/html/ $REMOTE_USER@$REMOTE_HOST:/var/www/html/\n",
+    ),
+    (
+        "/var/mail/root",
+        "From: admin@internal.corp\n"
+        "To: root@localhost\n"
+        "Subject: Credential rotation for {hostname}\n"
+        "Date: Tue, 18 Feb 2026 09:12:00 +0000\n\n"
+        "Hi,\n\n"
+        "The new credentials for {hostname} ({ip}) are:\n"
+        "  User: {user}\n"
+        "  Pass: {password}\n\n"
+        "Please update your configs.\n\n"
+        "-- IT Operations\n",
+    ),
+    (
+        "/root/notes.txt",
+        "# Server access notes (updated 2026-02-20)\n\n"
+        "- {hostname} ({ip})\n"
+        "  user: {user}\n"
+        "  pw: {password}\n"
+        "  port: 2222\n\n"
+        "- TODO: rotate creds before Q2 audit\n",
+    ),
+    (
+        "/opt/deploy/config.yml",
+        "# Deployment configuration\n"
+        "targets:\n"
+        "  - name: {hostname}\n"
+        "    host: {ip}\n"
+        "    port: 2222\n"
+        "    ssh_user: {user}\n"
+        "    ssh_password: \"{password}\"\n"
+        "    deploy_path: /var/www/html\n",
+    ),
+]
+
+# Decoy credential sets — look real but will fail authentication
+_DECOY_USERS = ["admin", "deployer", "backup", "svc-monitor", "jenkins", "ansible"]
+_DECOY_PASSWORDS = [
+    "Ch@ng3M3_2025!", "Pr0d_Acc3ss#88", "T3mp0rary_P@ss!",
+    "B@ckup_S3cur3_99", "Old_Admin_P@ss!", "R0tat3d_Cr3d_Q1!",
+]
+
+
+def _inject_scattered_password(
+    profile: dict, ip: str, user: str, password: str, hostname: str,
 ) -> None:
-    """Add credential references to lure-style config files."""
+    """Place the real password in a single realistic file (not /opt/.env).
+
+    The attacker must find and correlate this with the username from .bash_history.
+    """
     file_contents = profile.setdefault("file_contents", {})
-
-    # Add a .env file with internal connection info
-    env_path = "/opt/.env"
-    env_content = file_contents.get(env_path, "")
-    if ip not in env_content:
-        env_content += (
-            f"\n# Internal infrastructure\n"
-            f"INTERNAL_HOST={ip}\n"
-            f"INTERNAL_SSH_USER={user}\n"
-            f"INTERNAL_SSH_PASS={password}\n"
-            f"INTERNAL_SSH_PORT={port}\n"
-            f"INTERNAL_HOSTNAME={hostname}\n"
-        )
-    file_contents[env_path] = env_content
-
-    # Ensure /opt/.env appears in directory_tree
     dir_tree = profile.setdefault("directory_tree", {})
+
+    # Pick a random location that doesn't already exist in the profile
+    available = [
+        (path, tmpl) for path, tmpl in _PASSWORD_LOCATIONS
+        if path not in file_contents
+    ]
+    if not available:
+        available = _PASSWORD_LOCATIONS  # fallback: overwrite
+
+    path, template = _random.choice(available)
+    content = template.format(user=user, password=password, hostname=hostname, ip=ip)
+
+    file_contents[path] = content
+
+    # Ensure the file appears in directory_tree
+    parent = "/".join(path.split("/")[:-1]) or "/"
+    filename = path.split("/")[-1]
+    entries = dir_tree.setdefault(parent, [])
+    if not any(e.get("name") == filename for e in entries):
+        entries.append({
+            "name": filename,
+            "type": "file",
+            "permissions": "0640",
+            "owner": "root",
+            "group": "root",
+            "size": len(content),
+        })
+
+
+def _inject_decoy_credentials(profile: dict, real_ip: str, real_hostname: str) -> None:
+    """Inject 2 fake credential sets that look plausible but won't work.
+
+    These increase attacker dwell time and create CHeaT detection opportunities.
+    """
+    file_contents = profile.setdefault("file_contents", {})
+    dir_tree = profile.setdefault("directory_tree", {})
+
+    decoy_user1 = _random.choice(_DECOY_USERS)
+    decoy_pass1 = _random.choice(_DECOY_PASSWORDS)
+    decoy_user2 = _random.choice([u for u in _DECOY_USERS if u != decoy_user1])
+    decoy_pass2 = _random.choice([p for p in _DECOY_PASSWORDS if p != decoy_pass1])
+
+    # Decoy 1: old config file with expired-looking credentials
+    decoy1_path = "/opt/.env.bak"
+    decoy1_content = (
+        f"# OLD CONFIG — migrated 2025-11-03, DO NOT USE IN PROD\n"
+        f"INTERNAL_HOST={real_ip}\n"
+        f"INTERNAL_SSH_USER={decoy_user1}\n"
+        f"INTERNAL_SSH_PASS={decoy_pass1}\n"
+        f"INTERNAL_SSH_PORT=2222\n"
+        f"INTERNAL_HOSTNAME={real_hostname}\n"
+    )
+    file_contents[decoy1_path] = decoy1_content
+
     opt_entries = dir_tree.setdefault("/opt", [])
-    if not any(e.get("name") == ".env" for e in opt_entries):
+    if not any(e.get("name") == ".env.bak" for e in opt_entries):
         opt_entries.append({
-            "name": ".env",
+            "name": ".env.bak",
             "type": "file",
             "permissions": "0644",
             "owner": "root",
             "group": "root",
-            "size": len(env_content),
+            "size": len(decoy1_content),
+        })
+
+    # Decoy 2: credentials file in /var/backups
+    decoy2_path = "/var/backups/credentials.old"
+    decoy2_content = (
+        f"# Backup of credentials — rotated 2025-12-01\n"
+        f"# {real_hostname} access\n"
+        f"user={decoy_user2}\n"
+        f"password={decoy_pass2}\n"
+        f"host={real_ip}\n"
+        f"port=2222\n"
+    )
+    file_contents[decoy2_path] = decoy2_content
+
+    backup_entries = dir_tree.setdefault("/var/backups", [])
+    if not any(e.get("name") == "credentials.old" for e in backup_entries):
+        backup_entries.append({
+            "name": "credentials.old",
+            "type": "file",
+            "permissions": "0600",
+            "owner": "root",
+            "group": "root",
+            "size": len(decoy2_content),
         })
 
 

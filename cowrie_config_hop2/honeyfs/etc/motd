@@ -1,16 +1,16 @@
 Welcome to CentOS 7.9.2009 (x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
+ * Documentation:  https://docs.centos.org
+ * Community:      https://centos.org/forums
+ * Bug Reports:    https://bugs.centos.org
 
-  System information as of Mon Feb 24 14:23:01 UTC 2026
+  System information as of Sat Sep  8 11:33:33 UTC 2026
 
-  System load:  0.08               Processes:           142
-  Usage of /:   24.0% of 49.10GB   Users logged in:     0
-  Memory usage: 42%                IPv4 address for eth0: 10.0.3.10
-  Swap usage:   6%
+  System load:  0.35               Processes:           257
+  Usage of /:   34.9% of 196.50GB Users logged in:     0
+  Memory usage: 35%              IPv4 address for eth0: 10.0.3.10
+  Swap usage:   10%
 
 0 updates can be applied immediately.
 
-Last login: Mon Feb 24 09:15:33 2026 from 10.0.1.1
+Last login: Thu Nov 18 01:40:28 2026 from 10.0.2.246

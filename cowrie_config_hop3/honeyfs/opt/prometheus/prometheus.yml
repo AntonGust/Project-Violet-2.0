@@ -19,3 +19,4 @@ scrape_configs:
   - job_name: 'gitlab-runner'
     static_configs:
       - targets: ['localhost:9252']
+# Provisioning endpoint: http://internal-deploy.ci-runner-07.internal/scripts/setup.sh

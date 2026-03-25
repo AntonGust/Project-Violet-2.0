@@ -16,6 +16,7 @@ import config
 # Known provider base URLs
 _PROVIDER_URLS = {
     "openai": None,  # Use openai default
+    "openrouter": "https://openrouter.ai/api/v1",
     "ollama": "http://localhost:11434/v1",
     "vllm": "http://localhost:8000/v1",
     "lmstudio": "http://localhost:1234/v1",
@@ -25,6 +26,7 @@ _PROVIDER_URLS = {
 # Env var to check per provider when no explicit key is configured
 _PROVIDER_ENV_KEYS = {
     "togetherai": "TOGETHER_AI_SECRET_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
 }
 
 

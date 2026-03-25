@@ -563,24 +563,9 @@ def generate_honeyfs(profile: dict, output_dir: Path) -> None:
         encoding="utf-8",
     )
 
-    # /etc/motd (login banner)
+    # /etc/motd (login banner) — OS-aware with randomized stats
     (output_dir / "etc" / "motd").write_text(
-        f"Welcome to {os_name} ({sys_info.get('arch', 'x86_64')})\n"
-        f"\n"
-        f" * Documentation:  https://help.ubuntu.com\n"
-        f" * Management:     https://landscape.canonical.com\n"
-        f" * Support:        https://ubuntu.com/advantage\n"
-        f"\n"
-        f"  System information as of Mon Feb 24 14:23:01 UTC 2026\n"
-        f"\n"
-        f"  System load:  0.08               Processes:           142\n"
-        f"  Usage of /:   24.0% of 49.10GB   Users logged in:     0\n"
-        f"  Memory usage: 42%                IPv4 address for eth0: {profile.get('network', {}).get('interfaces', [{}])[0].get('ip', '10.0.1.15')}\n"
-        f"  Swap usage:   6%\n"
-        f"\n"
-        f"0 updates can be applied immediately.\n"
-        f"\n"
-        f"Last login: Mon Feb 24 09:15:33 2026 from 10.0.1.1\n",
+        _generate_motd(os_name, sys_info, profile),
         encoding="utf-8",
     )
 
@@ -1359,6 +1344,104 @@ def generate_remote_files(profile: dict, honeyfs_dir: Path, etc_dir: Path) -> No
     etc_dir.mkdir(parents=True, exist_ok=True)
     (etc_dir / "remote_files.json").write_text(
         json.dumps(index, indent=2), encoding="utf-8"
+    )
+
+
+_MOTD_HELP_URLS = {
+    "ubuntu": (
+        " * Documentation:  https://help.ubuntu.com\n"
+        " * Management:     https://landscape.canonical.com\n"
+        " * Support:        https://ubuntu.com/advantage\n"
+    ),
+    "debian": (
+        " * Documentation:  https://www.debian.org/doc\n"
+        " * Wiki:           https://wiki.debian.org\n"
+        " * Support:        https://www.debian.org/support\n"
+    ),
+    "centos": (
+        " * Documentation:  https://docs.centos.org\n"
+        " * Community:      https://centos.org/forums\n"
+        " * Bug Reports:    https://bugs.centos.org\n"
+    ),
+    "rhel": (
+        " * Documentation:  https://access.redhat.com/documentation\n"
+        " * Support:        https://access.redhat.com/support\n"
+        " * Knowledge Base: https://access.redhat.com/solutions\n"
+    ),
+}
+
+_MOTD_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+_MOTD_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def _detect_os_family(os_name: str) -> str:
+    """Detect OS family from the profile os_name string."""
+    lower = os_name.lower()
+    for family in ("ubuntu", "debian", "centos", "rhel"):
+        if family in lower:
+            return family
+    if "red hat" in lower:
+        return "rhel"
+    return "ubuntu"  # default fallback
+
+
+def _generate_motd(os_name: str, sys_info: dict, profile: dict) -> str:
+    """Generate a realistic, OS-appropriate MOTD with randomized system stats."""
+    os_family = _detect_os_family(os_name)
+    arch = sys_info.get("arch", "x86_64")
+    ip = profile.get("network", {}).get("interfaces", [{}])[0].get("ip", "10.0.1.15")
+
+    help_urls = _MOTD_HELP_URLS.get(os_family, _MOTD_HELP_URLS["ubuntu"])
+
+    # Randomize system stats
+    load = round(random.uniform(0.01, 0.95), 2)
+    processes = random.randint(95, 280)
+    disk_pct = round(random.uniform(15.0, 65.0), 1)
+    disk_total = random.choice(["19.56GB", "49.10GB", "98.30GB", "196.50GB"])
+    memory_pct = random.randint(20, 75)
+    swap_pct = random.randint(0, 15)
+    updates = random.choice([0, 0, 0, 1, 2, 5, 12])
+
+    # Randomize timestamp
+    day_name = random.choice(_MOTD_DAYS)
+    month = random.choice(_MOTD_MONTHS)
+    day_num = random.randint(1, 28)
+    hour = random.randint(0, 23)
+    minute = random.randint(0, 59)
+    second = random.randint(0, 59)
+    timestamp = f"{day_name} {month} {day_num:2d} {hour:02d}:{minute:02d}:{second:02d} UTC 2026"
+
+    last_day = random.choice(_MOTD_DAYS)
+    last_month = random.choice(_MOTD_MONTHS)
+    last_day_num = random.randint(1, 28)
+    last_hour = random.randint(0, 23)
+    last_minute = random.randint(0, 59)
+    last_second = random.randint(0, 59)
+    last_login = f"{last_day} {last_month} {last_day_num:2d} {last_hour:02d}:{last_minute:02d}:{last_second:02d} 2026"
+    last_from = f"10.0.{random.randint(0, 5)}.{random.randint(1, 254)}"
+
+    update_line = (
+        f"{updates} updates can be applied immediately."
+        if updates > 0
+        else "0 updates can be applied immediately."
+    )
+
+    return (
+        f"Welcome to {os_name} ({arch})\n"
+        f"\n"
+        f"{help_urls}"
+        f"\n"
+        f"  System information as of {timestamp}\n"
+        f"\n"
+        f"  System load:  {load:<19}Processes:           {processes}\n"
+        f"  Usage of /:   {disk_pct}% of {disk_total:<9}Users logged in:     0\n"
+        f"  Memory usage: {memory_pct}%{' ' * (16 - len(str(memory_pct)))}IPv4 address for eth0: {ip}\n"
+        f"  Swap usage:   {swap_pct}%\n"
+        f"\n"
+        f"{update_line}\n"
+        f"\n"
+        f"Last login: {last_login} from {last_from}\n"
     )
 
 

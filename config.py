@@ -1,15 +1,15 @@
 from Sangria.model import LLMModel, ReconfigCriteria
 
-experiment_name = "testttt"
+experiment_name = "Harden_wordpress_server"
 run_id = "10" # 10 - 99, If multiple experiments are run in parallel, each need unique run_id.
 
 # LLM Provider settings (Sangria, Reconfigurator, Terminal IO)
-llm_provider = "togetherai"           # "openai" | "togetherai" | "ollama" | "vllm" | "lmstudio" | "custom"
+llm_provider = "togetherai"           # "openai" | "openrouter" | "togetherai" | "ollama" | "vllm" | "lmstudio" | "custom"
 llm_base_url = ""                 # Empty = default OpenAI endpoint
 llm_api_key = ""                  # Empty = use OPENAI_API_KEY env var
 
 # Honeypot LLM provider (separate — runs inside Docker, may need host.docker.internal)
-llm_provider_hp = "togetherai"        # "openai" | "togetherai" | "ollama" | "vllm" | "lmstudio" | "custom"
+llm_provider_hp = "togetherai"        # "openai" | "openrouter" | "togetherai" | "ollama" | "vllm" | "lmstudio" | "custom"
 llm_base_url_hp = ""              # Empty = default OpenAI endpoint
 llm_api_key_hp = ""               # Empty = use OPENAI_API_KEY env var
 
@@ -71,7 +71,7 @@ DB_PROXY_TIMEOUT = 5.0
 # CHeaT defense settings (proactive LLM attacker detection & disruption)
 cheat_enabled = True                 # Master toggle for all CHeaT defenses
 cheat_unicode_honeytokens = True     # Inject unicode honeytokens into credentials
-cheat_canary_urls = False             # Plant honey URLs in files and history
-cheat_prompt_traps = False            # Embed prompt injection payloads in file contents
-cheat_tool_traps = False              # Inject trap payloads into command outputs (txtcmds)
+cheat_canary_urls = True              # Plant honey URLs in files and history
+cheat_prompt_traps = True             # Embed prompt injection payloads in file contents
+cheat_tool_traps = True               # Inject trap payloads into command outputs (txtcmds)
 cheat_overwhelm = False               # Flood attacker with fake CVEs and open ports

@@ -171,16 +171,19 @@ def correlate_sessions(manifest: ChainManifest) -> list[AttackerJourney]:
     if not all_sessions or not all_sessions[0]:
         return []
 
-    # Build pot IP lookup: hop_index -> set of IPs that pot uses on
-    # shared networks with the next hop
+    # Build pot IP lookup: hop_index -> set of IPs that this pot uses
+    # as source when connecting to other hops.
+    # Star topology: all pots share net_attack, so pot N's src_ip when
+    # connecting to pot M is pot N's attack_ip.
+    # We also include the Kali IP since it can reach any hop directly.
     pot_ips: dict[int, set[str]] = {}
+    kali_ip = f"172.{manifest.run_id}.0.2"
     for hop in manifest.hops:
         i = hop.hop_index
-        # IP this pot has on the outbound network (shared with next hop)
-        if i < num_hops - 1:
-            # Pot i's IP on net_hop{i+1} is 172.{run_id}.{i+1}.{10+i}
-            outbound_ip = f"172.{manifest.run_id}.{i + 1}.{10 + i}"
-            pot_ips.setdefault(i, set()).add(outbound_ip)
+        # This pot's attack_ip is what other hops see as src_ip
+        pot_ips.setdefault(i, set()).add(hop.attack_ip)
+        # Also add internal_ip in case connections come via the internal net
+        pot_ips[i].add(hop.internal_ip)
 
     # Start with hop0 sessions (these are attacker entries from Kali)
     journeys: list[AttackerJourney] = []
@@ -188,20 +191,23 @@ def correlate_sessions(manifest: ChainManifest) -> list[AttackerJourney]:
     # Track which sessions have already been claimed by a journey
     used_sessions: set[tuple[int, str]] = set()  # (hop_index, session_id)
 
+    # All IPs that could be the attacker (Kali or any pot the attacker controls)
+    attacker_ips: set[str] = {kali_ip}
+
     for sess_id, hop0_sess in all_sessions[0].items():
         journey = AttackerJourney(hop_sessions=[hop0_sess])
         used_sessions.add((0, sess_id))
+        # After gaining hop0, the attacker can also SSH from hop0's IP
+        attacker_ips.update(pot_ips.get(0, set()))
 
-        # Try to chain through subsequent hops
-        current_pot_ips = pot_ips.get(0, set())
+        # Try to find sessions on subsequent hops from any attacker-controlled IP
         for hop_idx in range(1, num_hops):
             hop_sessions = all_sessions[hop_idx]
-            # Find sessions on this hop whose src_ip matches previous pot's IP
-            # Prefer sessions with commands; skip already-claimed sessions
+            # Find sessions whose src_ip is any attacker-controlled IP
             matched = None
             best_cmd_count = -1
             for s_id, s in hop_sessions.items():
-                if s.src_ip in current_pot_ips and (hop_idx, s_id) not in used_sessions:
+                if s.src_ip in attacker_ips and (hop_idx, s_id) not in used_sessions:
                     cmd_count = len(s.commands)
                     if cmd_count > best_cmd_count:
                         matched = s
@@ -210,9 +216,8 @@ def correlate_sessions(manifest: ChainManifest) -> list[AttackerJourney]:
             if matched:
                 journey.hop_sessions.append(matched)
                 used_sessions.add((hop_idx, matched.session_id))
-                current_pot_ips = pot_ips.get(hop_idx, set())
-            else:
-                break  # No pivot to this hop
+                # Attacker now also controls this hop's IPs
+                attacker_ips.update(pot_ips.get(hop_idx, set()))
 
         journeys.append(journey)
 
