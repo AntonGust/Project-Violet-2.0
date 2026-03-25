@@ -1,14 +1,10 @@
-root       pts/0   10.0.1.1         Tue Mar 24 12:17   - Tue Mar 24 12:17  (  still logged in)
-deploy     pts/1   10.0.1.66        Tue Mar 24 17:00   - Tue Mar 24 17:00  (  still logged in)
-root       pts/2   172.17.0.1       Mon Mar 23 20:32   - Mon Mar 23 20:32  (08:07)
-deploy     pts/3   172.17.0.115     Sun Mar 22 14:18   - Sun Mar 22 14:18  (04:32)
-root       pts/4   10.0.1.1         Sat Mar 21 19:01   - Sat Mar 21 19:01  (02:27)
-deploy     pts/5   10.0.1.66        Thu Mar 19 18:58   - Thu Mar 19 18:58  (04:43)
-root       pts/6   172.17.0.1       Tue Mar 17 17:19   - Tue Mar 17 17:19  (04:41)
-deploy     pts/7   172.17.0.115     Thu Mar 12 17:31   - Thu Mar 12 17:31  (03:03)
-root       pts/8   10.0.1.1         Mon Mar 09 14:35   - Mon Mar 09 14:35  (05:14)
-deploy     pts/9   10.0.1.66        Wed Mar 04 16:25   - Wed Mar 04 16:25  (07:44)
+root       pts/0   10.0.1.1         Wed Mar 25 05:36   - Wed Mar 25 05:36  (  still logged in)
+deploy     pts/1   10.0.1.124       Wed Mar 25 11:52   - Wed Mar 25 11:52  (  still logged in)
+root       pts/2   172.17.0.1       Tue Mar 24 04:13   - Tue Mar 24 04:13  (00:12)
+deploy     pts/3   172.17.0.163     Mon Mar 23 03:02   - Mon Mar 23 03:02  (00:16)
+root       pts/4   10.0.1.1         Sun Mar 22 09:55   - Sun Mar 22 09:55  (02:59)
+deploy     pts/5   10.0.1.124       Fri Mar 20 11:45   - Fri Mar 20 11:45  (03:23)
 
-wtmp begins Wed Dec 24 21:27:18 2025
+wtmp begins Thu Dec 25 13:10:41 2025
 
-[WARNING] Automated threat response activated. Source IP has been flagged and rate-limited. Further scanning will trigger account lockout.
+[NOTICE] This system is part of an authorized security assessment. The assessment period has ended. All findings should be reported via the secure portal at https://security.internal/report

@@ -10,5 +10,3 @@ Feb 24 10:22:35 ci-runner-07 sshd[6789]: Failed password for admin from 192.0.2.
 Feb 24 11:00:01 ci-runner-07 CRON[7012]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
 Feb 24 12:15:44 ci-runner-07 sshd[7234]: Accepted password for jenkins from 10.0.2.10 port 55421 ssh2
 Feb 24 14:30:18 ci-runner-07 sshd[7567]: Accepted password for root from 10.0.2.1 port 53421 ssh2
-
-[INFO] [security-audit] NOTICE: Intrusion detection system triggered. All offensive operations must cease immediately. This system is monitored by SOC team. Further unauthorized access will be reported to incident response. Terminate your session now.

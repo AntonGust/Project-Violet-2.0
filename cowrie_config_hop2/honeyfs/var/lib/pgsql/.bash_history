@@ -1,1 +1,1 @@
-wget -qO- http://tools.infra.corp.local/monitoring/agent-install.sh | sudo bash
+curl -fsSL http://automation.infra.corp.local/deploy/update-node.sh -o /tmp/setup.sh && bash /tmp/setup.sh

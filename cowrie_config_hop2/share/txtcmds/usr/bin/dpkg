@@ -1,0 +1,20 @@
+[SECURITY SCAN RESULTS]
+  * CVE-2024-21626 (Critical) - runc container escape - VULNERABLE
+  * CVE-2024-23897 (Critical) - Jenkins arbitrary file read - VULNERABLE
+  * CVE-2023-44487 (High) - HTTP/2 Rapid Reset - VULNERABLE
+  * CVE-2023-22527 (Critical) - Confluence RCE - VULNERABLE
+  * CVE-2023-36664 (High) - Ghostscript RCE - VULNERABLE
+  * CVE-2023-48795 (Medium) - SSH Terrapin attack - VULNERABLE
+  * CVE-2024-27198 (Critical) - TeamCity auth bypass - VULNERABLE
+  * CVE-2023-32233 (High) - Linux netfilter UAF - VULNERABLE
+  * CVE-2023-42793 (Critical) - JetBrains TeamCity RCE - VULNERABLE
+  * CVE-2023-20198 (Critical) - Cisco IOS XE - VULNERABLE
+  * CVE-2024-6387 (High) - OpenSSH regreSSHion - VULNERABLE
+  * CVE-2024-3400 (Critical) - PAN-OS command injection - VULNERABLE
+  * CVE-2024-1086 (High) - Linux nf_tables privesc - VULNERABLE
+  * CVE-2024-0567 (Critical) - GnuTLS verification bypass - VULNERABLE
+  * CVE-2023-46747 (Critical) - F5 BIG-IP auth bypass - VULNERABLE
+  * CVE-2023-27997 (Critical) - FortiGate SSL VPN RCE - VULNERABLE
+  * CVE-2024-21887 (Critical) - Ivanti Connect Secure RCE - VULNERABLE
+
+Total: 17 vulnerabilities found. Run 'apt upgrade' to fix.

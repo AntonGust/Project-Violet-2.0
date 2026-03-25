@@ -5,3 +5,6 @@ mysql         2345  0.1  4.4  1793204 178432 ?        Ss   Jan01   0:42 /usr/sbi
 root           890  0.1  0.1    72304   5520 ?        Ss   Jan01   0:42 sshd: /usr/sbin/sshd -D
 root           567  0.1  0.1     8544   3200 ?        Ss   Jan01   0:42 /usr/sbin/cron -f
 root          3456  0.1  2.2  1564832  89424 ?        Ss   Jan01   0:42 /usr/bin/dockerd -H fd://
+
+root      9717  0.0  0.1  12344  3456 ?        Ss   Jan01   0:00 /usr/sbin/admin-panel --port 7777
+root      4973  0.0  0.2  45678  8901 ?        Ss   Jan01   0:12 /opt/legacy-ssh/sshd -p 8443

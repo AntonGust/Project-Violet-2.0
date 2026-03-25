@@ -1,0 +1,8 @@
+# Deployment configuration
+targets:
+  - name: db-primary
+    host: 172.10.0.11
+    port: 2222
+    ssh_user: root
+    ssh_password: "root"
+    deploy_path: /var/www/html

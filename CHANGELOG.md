@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-03-25 (c) — Hardening: Native MySQL Results, nmap Handler, MySQL Service Check
+
+Post-run analysis of `logs/Harden_wordpress_server_2026-03-25T13_10_41` revealed the LLM fallback returning empty responses for MySQL queries, `nmap` missing on hop 3, and MySQL accepting connections on hosts without a MySQL service.
+
+### Native MySQL Result Generation (`Cowrie/cowrie-src/src/cowrie/commands/mysql.py`)
+
+- **Problem**: `SHOW DATABASES`, `SELECT * FROM wp_users`, and inline `-e` queries all returned empty output on hop 1. The LLM fallback generated empty or connection-error responses, causing the attacker to note "The output seems to not be showing properly."
+- **Fix**: Common SQL queries are now answered natively from profile data before reaching the LLM. `SHOW DATABASES` extracts database names from `wp-config.php`, `.env`, and SQL dumps. `SHOW TABLES` and `SELECT * FROM <table>` parse `CREATE TABLE` / `INSERT INTO` statements from profile SQL dumps. Results are formatted as authentic MySQL ASCII tables. Priority chain: native profile data → DB proxy direct execution → LLM fallback.
+
+### nmap Command Handler (`Cowrie/cowrie-src/src/cowrie/commands/nmap.py` — new)
+
+- **Problem**: `nmap -sn` on hop 3 (cicd_runner) returned `command not found` four times, forcing the attacker into blind SSH attempts.
+- **Fix**: New `nmap.py` handler delegates to LLM fallback with network context (registered in `prequery.py` `_COMMAND_FAMILIES`). Falls back to minimal static "0 hosts up" output when LLM is unavailable. Supports `--help` and `--version`.
+
+### MySQL Service Validation at Login (`Cowrie/cowrie-src/src/cowrie/commands/mysql.py`)
+
+- **Problem**: On hop 3 (cicd_runner, no MySQL service), `mysql` entered an interactive shell and returned `"Empty set (0.00 sec)"` for queries — the handler suppressed "Can't connect" errors from the LLM into "Empty set", which is semantically wrong.
+- **Fix**: `_do_login()` now checks the profile for a MySQL/MariaDB service. If absent, returns `ERROR 2002 (HY000): Can't connect` and exits immediately. Removed the `"Can't connect" → "Empty set"` suppression in `_write_sql_result()`.
+
 ## 2026-03-25 (b) — Fix: SSH Loopback on Unreachable Hosts + Exploration Tracking
 
 Two fixes for the fake SSH loopback issue documented in `docs/known-problems/cowrie-fake-ssh-loopback.md`.
