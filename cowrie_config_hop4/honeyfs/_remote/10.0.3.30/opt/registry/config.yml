@@ -1,0 +1,10 @@
+# Config from 10.0.3.30:/opt/registry/config.yml
+version: '3.8'
+services:
+  app:
+    image: internal-registry:5000/webapp:latest
+    environment:
+      DB_PASSWORD: Pr0d_p@ss_2024
+      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c
+    ports:
+      - '8080:8080'

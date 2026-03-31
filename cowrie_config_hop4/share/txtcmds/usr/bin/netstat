@@ -1,0 +1,12 @@
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      890/sshd
+tcp6       0      0 :::22                   :::*                    LISTEN      890/sshd
+tcp        0      0 0.0.0.0:3000            0.0.0.0:*               LISTEN      1456/grafana-server
+tcp6       0      0 :::3000                 :::*                    LISTEN      1456/grafana-server
+tcp        0      0 0.0.0.0:9090            0.0.0.0:*               LISTEN      1523/prometheus
+tcp6       0      0 :::9090                 :::*                    LISTEN      1523/prometheus
+tcp        0      0 0.0.0.0:9093            0.0.0.0:*               LISTEN      1589/alertmanager
+tcp6       0      0 :::9093                 :::*                    LISTEN      1589/alertmanager
+tcp        0      0 0.0.0.0:9100            0.0.0.0:*               LISTEN      1634/node_exporter
+tcp6       0      0 :::9100                 :::*                    LISTEN      1634/node_exporter

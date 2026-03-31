@@ -1,0 +1,13 @@
+[Unit]
+Description=Grafana Server
+After=network.target
+
+[Service]
+Type=forking
+User=grafana
+ExecStart=/usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

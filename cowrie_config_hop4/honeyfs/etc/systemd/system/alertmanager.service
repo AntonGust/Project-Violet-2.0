@@ -1,0 +1,13 @@
+[Unit]
+Description=Alertmanager
+After=network.target
+
+[Service]
+Type=forking
+User=alertmanager
+ExecStart=/usr/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/var/lib/alertmanager
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

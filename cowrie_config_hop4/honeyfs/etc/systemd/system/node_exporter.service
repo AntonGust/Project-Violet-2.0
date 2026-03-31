@@ -1,0 +1,13 @@
+[Unit]
+Description=Node_Exporter
+After=network.target
+
+[Service]
+Type=forking
+User=root
+ExecStart=/usr/bin/node_exporter --web.listen-address=:9100
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

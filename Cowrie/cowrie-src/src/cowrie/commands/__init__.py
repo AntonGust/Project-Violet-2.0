@@ -43,6 +43,8 @@ __all__ = [
     "lspci",
     "mysql",
     "nc",
+    "nmap",
+    "psql",
     "netstat",
     "nohup",
     "perl",

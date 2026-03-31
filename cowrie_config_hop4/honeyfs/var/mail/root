@@ -1,0 +1,20 @@
+From alertmanager@internal.corp Wed Mar  5 07:51:05 2026
+Subject: [FIRING:1] Disk Space Low (db-primary)
+Date: Wed, 05 Mar 2026 07:51:05 +0000
+
+Alert: DiskSpaceLow
+Severity: warning
+Instance: db-primary (10.0.3.10)
+Description: Disk usage on db-primary is above 85% on /var/lib/postgresql
+Current value: 87.3%
+
+Silence: http://mon-01:9093/#/silences/new
+
+From cron-daemon@mon-01 Wed Mar  5 01:00:05 2026
+Subject: Cron <root@mon-01> /usr/local/bin/backup_grafana_db.sh
+Date: Wed, 05 Mar 2026 01:00:05 +0000
+
+Grafana DB backup completed successfully.
+Backup file: /var/backups/grafana/grafana_db_20260305.sql.gz
+Size: 24M
+Target: db-primary:/var/backups/grafana/

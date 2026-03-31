@@ -1,0 +1,8 @@
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           890  0.1  0.1    72304   5520 ?        Ss   Jan01   0:42 sshd: /usr/sbin/sshd -D
+grafana       1456  0.1  0.3    22537  11157 ?        Ss   Jan01   0:42 /usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana
+prometheus    1523  0.1  0.3    23006  11358 ?        Ss   Jan01   0:42 /usr/bin/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus/data --storage.tsdb.retention.time=30d --web.enable-lifecycle
+alertmanager  1589  0.1  0.3    23468  11556 ?        Ss   Jan01   0:42 /usr/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/var/lib/alertmanager
+root          1634  0.1  0.3    23783  11691 ?        Ss   Jan01   0:42 /usr/bin/node_exporter --web.listen-address=:9100
+root           567  0.1  0.1     8544   3200 ?        Ss   Jan01   0:42 /usr/sbin/cron -f
+root          1023  0.1  2.2  1564832  89424 ?        Ss   Jan01   0:42 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock

@@ -85,20 +85,47 @@ class SSHProxySession:
             self._cleanup()
             return self.CONNECT_UNREACHABLE
 
-        try:
-            self._channel = self._client.invoke_shell(
-                term="xterm",
-                width=80,
-                height=24,
-            )
-            self._channel.settimeout(0.1)
-        except Exception as e:
-            reactor.callFromThread(  # type: ignore[attr-defined]
-                self.command.write, f"ssh: failed to open shell: {e}\n"
-            )
-            log.msg(f"SSH proxy shell request failed: {e}")
-            self._cleanup()
-            return self.CONNECT_UNREACHABLE
+        for attempt in range(2):
+            try:
+                self._channel = self._client.invoke_shell(
+                    term="xterm",
+                    width=80,
+                    height=24,
+                )
+                self._channel.settimeout(0.1)
+                break
+            except Exception as e:
+                if attempt == 0 and "Channel closed" in str(e):
+                    log.msg(
+                        f"SSH proxy shell failed on first attempt (filesystem init race), retrying: {e}"
+                    )
+                    self._cleanup()
+                    time.sleep(0.5)
+                    # Re-establish connection for retry
+                    try:
+                        self._client = paramiko.SSHClient()
+                        self._client.set_missing_host_key_policy(
+                            paramiko.AutoAddPolicy()
+                        )
+                        self._client.connect(
+                            hostname=self.host,
+                            port=self.port,
+                            username=self.username,
+                            password=self.password,
+                            timeout=10,
+                            look_for_keys=False,
+                            allow_agent=False,
+                        )
+                    except Exception:
+                        self._cleanup()
+                        return self.CONNECT_UNREACHABLE
+                    continue
+                reactor.callFromThread(  # type: ignore[attr-defined]
+                    self.command.write, f"ssh: failed to open shell: {e}\n"
+                )
+                log.msg(f"SSH proxy shell request failed: {e}")
+                self._cleanup()
+                return self.CONNECT_UNREACHABLE
 
         self.active = True
 

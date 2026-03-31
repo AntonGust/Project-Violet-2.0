@@ -1,0 +1,123 @@
+{
+  "command": {
+    "ps": [
+      {
+        "USER": "root",
+        "PID": 1,
+        "CPU": 0.0,
+        "MEM": 0.4,
+        "VSZ": 167340,
+        "RSS": 11200,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.48,
+        "COMMAND": "/sbin/init"
+      },
+      {
+        "USER": "root",
+        "PID": 2,
+        "CPU": 0.0,
+        "MEM": 0.0,
+        "VSZ": 0,
+        "RSS": 0,
+        "TTY": "?",
+        "STAT": "S",
+        "START": "Jan01",
+        "TIME": 0.0,
+        "COMMAND": "[kthreadd]"
+      },
+      {
+        "USER": "root",
+        "PID": 890,
+        "CPU": 0.1,
+        "MEM": 0.1,
+        "VSZ": 72304,
+        "RSS": 5520,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "sshd: /usr/sbin/sshd -D"
+      },
+      {
+        "USER": "grafana",
+        "PID": 1456,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 22537,
+        "RSS": 11157,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana"
+      },
+      {
+        "USER": "prometheus",
+        "PID": 1523,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 23006,
+        "RSS": 11358,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus/data --storage.tsdb.retention.time=30d --web.enable-lifecycle"
+      },
+      {
+        "USER": "alertmanager",
+        "PID": 1589,
+        "CPU": 0.1,
+        "MEM": 0.3,
+        "VSZ": 23468,
+        "RSS": 11556,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/var/lib/alertmanager"
+      },
+      {
+        "USER": "root",
+        "PID": 1634,
+        "CPU": 0.1,
+        "MEM": 0.2,
+        "VSZ": 24680,
+        "RSS": 8120,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/node_exporter --web.listen-address=:9100"
+      },
+      {
+        "USER": "root",
+        "PID": 567,
+        "CPU": 0.1,
+        "MEM": 0.1,
+        "VSZ": 8544,
+        "RSS": 3200,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/sbin/cron -f"
+      },
+      {
+        "USER": "root",
+        "PID": 1023,
+        "CPU": 0.1,
+        "MEM": 2.2,
+        "VSZ": 1564832,
+        "RSS": 89424,
+        "TTY": "?",
+        "STAT": "Ss",
+        "START": "Jan01",
+        "TIME": 0.42,
+        "COMMAND": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock"
+      }
+    ]
+  }
+}

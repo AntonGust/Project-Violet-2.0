@@ -25,7 +25,10 @@ from Blue_Lagoon.honeypot_tools import (
     wait_for_all_cowrie, wait_for_honeynet_dbs, generate_db_compose,
     remove_db_compose, stop_single_hop, start_single_hop,
 )
-from Blue_Lagoon.credential_chain import build_chain_manifest, inject_next_hop_breadcrumbs
+from Blue_Lagoon.credential_chain import (
+    build_chain_manifest, inject_next_hop_breadcrumbs,
+    CredentialTier, ensure_crackable_password, lock_down_hop_passwords,
+)
 from Blue_Lagoon.compose_generator import generate_honeynet_compose
 from Purple.session_correlator import correlate_sessions, print_correlation_report
 import Sangria.log_extractor as log_extractor
@@ -285,7 +288,29 @@ def main_honeynet():
 
         # Inject next-hop breadcrumbs (all but last hop)
         if i < len(manifest.hops) - 1:
-            inject_next_hop_breadcrumbs(profile, hop, manifest.hops[i + 1])
+            tiers = getattr(config, "credential_tiers", [])
+            tier = tiers[i] if i < len(tiers) else CredentialTier.PLAINTEXT
+            next_hop = manifest.hops[i + 1]
+
+            # For non-plaintext tiers, lock down the next hop so only the
+            # tier-specific password works (prevents star-topology bypass)
+            if tier != CredentialTier.PLAINTEXT:
+                next_profile_path = PROJECT_ROOT / next_hop.profile_path
+                with open(next_profile_path) as nf:
+                    next_profile = json.load(nf)
+
+                if tier == CredentialTier.SHADOW_HASH:
+                    cracked_pw = ensure_crackable_password(next_profile, next_hop.username)
+                    next_hop.password = cracked_pw
+                else:
+                    # T2/T3: replace guessable password + remove all other credentials
+                    new_pw = lock_down_hop_passwords(next_profile, next_hop.username, next_hop.password)
+                    next_hop.password = new_pw
+
+                with open(next_profile_path, "w") as nf:
+                    json.dump(next_profile, nf, indent=2)
+
+            inject_next_hop_breadcrumbs(profile, hop, next_hop, credential_tier=tier)
 
         result = deploy_cowrie_config(profile, hop_index=i)
 
@@ -420,9 +445,14 @@ def main_honeynet():
                 if config.cheat_enabled:
                     new_profile, hop_cheat = apply_cheat_defenses(new_profile)
 
-                # Re-inject same breadcrumbs (credentials unchanged)
+                # Re-inject same breadcrumbs (credentials unchanged, same tier)
                 if hop_idx < len(manifest.hops) - 1:
-                    inject_next_hop_breadcrumbs(new_profile, hop, manifest.hops[hop_idx + 1])
+                    tiers = getattr(config, "credential_tiers", [])
+                    tier = tiers[hop_idx] if hop_idx < len(tiers) else CredentialTier.PLAINTEXT
+                    inject_next_hop_breadcrumbs(
+                        new_profile, hop, manifest.hops[hop_idx + 1],
+                        credential_tier=tier,
+                    )
 
                 result = deploy_cowrie_config(new_profile, hop_index=hop_idx)
 

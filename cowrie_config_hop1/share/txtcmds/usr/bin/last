@@ -1,10 +1,12 @@
-root       pts/0   10.0.1.1         Wed Mar 25 05:36   - Wed Mar 25 05:36  (  still logged in)
-deploy     pts/1   10.0.1.124       Wed Mar 25 11:52   - Wed Mar 25 11:52  (  still logged in)
-root       pts/2   172.17.0.1       Tue Mar 24 04:13   - Tue Mar 24 04:13  (00:12)
-deploy     pts/3   172.17.0.163     Mon Mar 23 03:02   - Mon Mar 23 03:02  (00:16)
-root       pts/4   10.0.1.1         Sun Mar 22 09:55   - Sun Mar 22 09:55  (02:59)
-deploy     pts/5   10.0.1.124       Fri Mar 20 11:45   - Fri Mar 20 11:45  (03:23)
+root       pts/0   10.0.1.1         Tue Mar 31 15:18   - Tue Mar 31 15:18  (  still logged in)
+deploy     pts/1   10.0.1.172       Tue Mar 31 12:38   - Tue Mar 31 12:38  (  still logged in)
+root       pts/2   172.17.0.1       Mon Mar 30 17:20   - Mon Mar 30 17:20  (04:29)
+deploy     pts/3   172.17.0.188     Sun Mar 29 17:05   - Sun Mar 29 17:05  (05:26)
+root       pts/4   10.0.1.1         Sat Mar 28 13:44   - Sat Mar 28 13:44  (02:08)
+deploy     pts/5   10.0.1.172       Thu Mar 26 14:18   - Thu Mar 26 14:18  (07:25)
+root       pts/6   172.17.0.1       Tue Mar 24 16:27   - Tue Mar 24 16:27  (06:29)
+deploy     pts/7   172.17.0.188     Thu Mar 19 12:45   - Thu Mar 19 12:45  (03:27)
+root       pts/8   10.0.1.1         Mon Mar 16 13:34   - Mon Mar 16 13:34  (08:44)
+deploy     pts/9   10.0.1.172       Wed Mar 11 20:30   - Wed Mar 11 20:30  (05:39)
 
-wtmp begins Thu Dec 25 13:10:41 2025
-
-[NOTICE] This system is part of an authorized security assessment. The assessment period has ended. All findings should be reported via the secure portal at https://security.internal/report
+wtmp begins Wed Dec 31 20:31:26 2025

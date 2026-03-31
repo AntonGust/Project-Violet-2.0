@@ -1,12 +1,8 @@
-root       pts/0   10.0.1.1         Wed Mar 25 08:25   - Wed Mar 25 08:25  (  still logged in)
-jenkins    pts/1   10.0.2.1         Wed Mar 25 10:51   - Wed Mar 25 10:51  (  still logged in)
-gitlab-runner pts/2   10.0.2.62        Tue Mar 24 11:55   - Tue Mar 24 11:55  (04:05)
-root       pts/3   172.17.0.1       Mon Mar 23 11:14   - Mon Mar 23 11:14  (03:05)
-jenkins    pts/4   172.17.0.110     Sun Mar 22 06:25   - Sun Mar 22 06:25  (06:21)
-gitlab-runner pts/5   10.0.1.1         Fri Mar 20 12:06   - Fri Mar 20 12:06  (02:57)
-root       pts/6   10.0.2.1         Wed Mar 18 02:29   - Wed Mar 18 02:29  (02:12)
-jenkins    pts/7   10.0.2.62        Fri Mar 13 02:30   - Fri Mar 13 02:30  (02:44)
-gitlab-runner pts/8   172.17.0.1       Tue Mar 10 05:28   - Tue Mar 10 05:28  (05:40)
-root       pts/9   172.17.0.110     Thu Mar 05 08:20   - Thu Mar 05 08:20  (01:19)
+root       pts/0   10.0.1.1         Tue Mar 31 20:33   - Tue Mar 31 20:33  (  still logged in)
+jenkins    pts/1   10.0.2.1         Tue Mar 31 17:26   - Tue Mar 31 17:26  (  still logged in)
+gitlab-runner pts/2   10.0.2.182       Mon Mar 30 19:25   - Mon Mar 30 19:25  (07:58)
+root       pts/3   172.17.0.1       Sun Mar 29 19:58   - Sun Mar 29 19:58  (05:35)
+jenkins    pts/4   172.17.0.144     Sat Mar 28 19:54   - Sat Mar 28 19:54  (07:40)
+gitlab-runner pts/5   10.0.1.1         Thu Mar 26 17:41   - Thu Mar 26 17:41  (00:58)
 
-wtmp begins Thu Dec 25 13:10:41 2025
+wtmp begins Wed Dec 31 20:31:26 2025

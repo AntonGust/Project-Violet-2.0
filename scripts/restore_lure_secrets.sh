@@ -48,6 +48,12 @@ FILES=(
     cowrie_config_hop3/honeyfs/var/lib/gitlab-runner/.gitlab-ci.yml
     cowrie_config_hop3/honeyfs/var/lib/jenkins/workspace/deploy-production/Jenkinsfile
     cowrie_config_hop2/honeyfs/home/dba/.gitlab-ci.yml
+    cowrie_config_hop4/etc/profile.json
+    cowrie_config_hop4/etc/llm_prompt.txt
+    cowrie_config_hop4/honeyfs/home/sysops/.grafana_api_token
+    cowrie_config_hop4/honeyfs/home/sysops/.bash_history
+    cowrie_config_hop4/honeyfs/home/sysops/alertmanager_config_backup.yml
+    cowrie_config_hop4/honeyfs/root/.bash_history
 )
 
 count=0

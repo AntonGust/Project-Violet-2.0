@@ -54,7 +54,11 @@ class SSHSessionForCowrieUser:
                 "/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
             )
 
-        self.server.initFileSystem(self.avatar.home)
+        try:
+            self.server.initFileSystem(self.avatar.home)
+        except Exception as e:
+            log.msg(f"initFileSystem failed for {self.avatar.home}: {e}")
+            raise
 
         if self.avatar.temporary:
             self.server.fs.mkdir(self.avatar.home, self.uid, self.gid, 4096, 755)

@@ -1,5 +1,41 @@
 # Changelog
 
+## 2026-03-31 — Credential Cracking Dwell Time Amplifier
+
+Added a tiered credential difficulty system that forces LLM attacker agents to crack, decrypt, or extract protected credentials before pivoting between hops — replacing the previous plaintext-only password placement.
+
+### Credential Tiers (`Blue_Lagoon/credential_chain.py`)
+
+- **`CredentialTier` enum** with four levels: `PLAINTEXT` (existing behavior), `SHADOW_HASH`, `ENCRYPTED_FILE`, `PROTECTED_ARCHIVE`.
+- **Tier 1 — Shadow Hash**: Hint file tells attacker to check `/etc/shadow`. Password is from `CRACKABLE_PASSWORDS` (top ~1000 of rockyou.txt), crackable by `john` within the 40-second terminal timeout. `ensure_crackable_password()` updates the next hop's profile with a matching SHA-512 hash + accepted password.
+- **Tier 2 — Encrypted File**: Plants `_encrypted_credentials` metadata on the profile. `profile_converter.py` generates a real GPG-encrypted `.gpg` file in honeyfs during deployment. Passphrase hint (server hostname) placed in a separate file.
+- **Tier 3 — Protected Archive**: Plants `_protected_archives` metadata. `profile_converter.py` generates a real password-protected ZIP via the `zip` CLI. ZIP password placed in a cron job or script on the same hop.
+- `inject_next_hop_breadcrumbs()` now accepts a `credential_tier` parameter (default: `PLAINTEXT` for backward compatibility).
+
+### Config (`config.py`)
+
+- New `credential_tiers` list controls per-hop-transition difficulty. Default: `[SHADOW_HASH, ENCRYPTED_FILE]` (hop1→2 uses shadow cracking, hop2→3 uses GPG decryption). Falls back to `PLAINTEXT` for transitions beyond the list length.
+
+### Deployment Pipeline (`main.py`)
+
+- Both breadcrumb injection call sites (initial deploy + reconfiguration) now read `config.credential_tiers` and pass the appropriate tier.
+- For `SHADOW_HASH` tier, calls `ensure_crackable_password()` to update the next hop's profile before deployment.
+
+### Profile Converter (`Reconfigurator/profile_converter.py`)
+
+- `_generate_encrypted_files()`: Generates GPG symmetric-encrypted files from `_encrypted_credentials` metadata.
+- `_generate_protected_archives()`: Generates password-protected ZIPs from `_protected_archives` metadata via `zip` CLI.
+- Both called automatically during `deploy_profile()`.
+
+### Attacker Prompt (`Sangria/attacker_prompt.py`)
+
+- Added "Credential cracking & decryption" section to `_THOROUGH_EXPLOITATION` checklist with explicit `john`, `gpg -d`, and `unzip -P` command examples so LLM agents know how to handle non-plaintext credentials.
+
+### Design Docs
+
+- `docs/upcoming/dwell-time-amplifiers.md`: Full brainstorm of 5 dwell-time categories.
+- `docs/doing/password-cracking-design.md`: Detailed design for the credential tier system.
+
 ## 2026-03-25 (c) — Hardening: Native MySQL Results, nmap Handler, MySQL Service Check
 
 Post-run analysis of `logs/Harden_wordpress_server_2026-03-25T13_10_41` revealed the LLM fallback returning empty responses for MySQL queries, `nmap` missing on hop 3, and MySQL accepting connections on hosts without a MySQL service.

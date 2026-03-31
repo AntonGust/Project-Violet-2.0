@@ -1,0 +1,107 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+  external_labels:
+    monitor: 'mon-01'
+    environment: 'production'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - localhost:9093
+
+rule_files:
+  - /opt/prometheus/rules/alert_rules.yml
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          instance: 'mon-01'
+
+  - job_name: 'node-exporter'
+    basic_auth:
+      username: prometheus
+      password: Pr0m_Scr4pe_Auth!2024
+    static_configs:
+      - targets:
+        - '10.0.3.15:9100'
+        - '10.0.3.5:9100'
+        - '10.0.3.6:9100'
+        - '10.0.3.10:9100'
+        - '10.0.3.20:9100'
+        - '10.0.3.30:9100'
+        labels:
+          group: 'infrastructure'
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '10.0.3.15:(.*)'
+        target_label: instance
+        replacement: 'mon-01'
+      - source_labels: [__address__]
+        regex: '10.0.3.5:(.*)'
+        target_label: instance
+        replacement: 'app-prod-01'
+      - source_labels: [__address__]
+        regex: '10.0.3.6:(.*)'
+        target_label: instance
+        replacement: 'app-prod-02'
+      - source_labels: [__address__]
+        regex: '10.0.3.10:(.*)'
+        target_label: instance
+        replacement: 'db-primary'
+      - source_labels: [__address__]
+        regex: '10.0.3.20:(.*)'
+        target_label: instance
+        replacement: 'redis-01'
+      - source_labels: [__address__]
+        regex: '10.0.3.30:(.*)'
+        target_label: instance
+        replacement: 'k8s-master'
+
+  - job_name: 'app-servers'
+    scheme: http
+    basic_auth:
+      username: metrics
+      password: M3tr1cs_B@sic_Auth!
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - '10.0.3.5:8080'
+        - '10.0.3.6:8080'
+        labels:
+          group: 'application'
+
+  - job_name: 'postgres-exporter'
+    basic_auth:
+      username: prometheus
+      password: DB_M0n1tor_P@ss!
+    static_configs:
+      - targets: ['10.0.3.10:9187']
+        labels:
+          instance: 'db-primary'
+
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets: ['10.0.3.20:9121']
+        labels:
+          instance: 'redis-01'
+
+  - job_name: 'kubernetes-apiservers'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    bearer_token: eyJhbGciOiJSUzI1NiIsImtpZCI6InByb21ldGhldXMtc2EifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwic3ViIjoicHJvbWV0aGV1cyJ9.FAKE_K8S_TOKEN
+    static_configs:
+      - targets: ['10.0.3.30:6443']
+        labels:
+          instance: 'k8s-master'
+
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['localhost:3000']
+        labels:
+          instance: 'mon-01'

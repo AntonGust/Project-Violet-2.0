@@ -1,9 +1,9 @@
-root       pts/0   10.0.1.1         Wed Mar 25 07:19   - Wed Mar 25 07:19  (  still logged in)
-postgres   pts/1   10.0.3.1         Wed Mar 25 05:41   - Wed Mar 25 05:41  (  still logged in)
-dba        pts/2   10.0.3.146       Tue Mar 24 09:26   - Tue Mar 24 09:26  (07:35)
-root       pts/3   10.0.1.1         Mon Mar 23 03:43   - Mon Mar 23 03:43  (02:27)
-postgres   pts/4   10.0.3.1         Sun Mar 22 05:05   - Sun Mar 22 05:05  (08:48)
-dba        pts/5   10.0.3.146       Fri Mar 20 06:07   - Fri Mar 20 06:07  (01:56)
-root       pts/6   10.0.1.1         Wed Mar 18 06:07   - Wed Mar 18 06:07  (02:00)
+root       pts/0   10.0.1.1         Tue Mar 31 20:23   - Tue Mar 31 20:23  (  still logged in)
+postgres   pts/1   10.0.3.1         Tue Mar 31 21:12   - Tue Mar 31 21:12  (  still logged in)
+dba        pts/2   10.0.3.152       Mon Mar 30 09:32   - Mon Mar 30 09:32  (03:53)
+root       pts/3   10.0.1.1         Sun Mar 29 16:24   - Sun Mar 29 16:24  (04:38)
+postgres   pts/4   10.0.3.1         Sat Mar 28 12:56   - Sat Mar 28 12:56  (01:59)
+dba        pts/5   10.0.3.152       Thu Mar 26 14:07   - Thu Mar 26 14:07  (08:08)
+root       pts/6   10.0.1.1         Tue Mar 24 14:20   - Tue Mar 24 14:20  (05:14)
 
-wtmp begins Thu Dec 25 13:10:41 2025
+wtmp begins Wed Dec 31 20:31:26 2025

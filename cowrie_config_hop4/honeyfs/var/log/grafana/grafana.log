@@ -1,0 +1,23 @@
+t=2026-03-05T06:00:01+0000 lvl=info msg="Starting Grafana" logger=server version=10.2.3 commit=abc1234def branch=main compiled=2026-01-15T10:00:00+0000
+t=2026-03-05T06:00:01+0000 lvl=info msg="Config loaded from" logger=settings file=/etc/grafana/grafana.ini
+t=2026-03-05T06:00:02+0000 lvl=info msg="Connecting to DB" logger=sqlstore dbtype=postgres
+t=2026-03-05T06:00:02+0000 lvl=info msg="Database connected" logger=sqlstore host=10.0.3.10:5432 database=grafana user=grafana_db_user ssl=disable
+t=2026-03-05T06:00:03+0000 lvl=info msg="Starting plugin search" logger=plugins
+t=2026-03-05T06:00:03+0000 lvl=info msg="Plugin registered" logger=plugins id=grafana-clock-panel
+t=2026-03-05T06:00:03+0000 lvl=info msg="Plugin registered" logger=plugins id=grafana-piechart-panel
+t=2026-03-05T06:00:04+0000 lvl=info msg="Registering provisioned data source" logger=provisioning datasource="Prometheus (default)"
+t=2026-03-05T06:00:04+0000 lvl=info msg="Provisioned data source" logger=provisioning datasource=Prometheus url=http://localhost:9090
+t=2026-03-05T06:00:05+0000 lvl=info msg="HTTP Server Listen" logger=http.server address=0.0.0.0:3000 protocol=http subUrl= socket=
+t=2026-03-05T06:00:05+0000 lvl=info msg="Grafana server is running" logger=server address=0.0.0.0:3000
+t=2026-03-05T07:42:30+0000 lvl=info msg="Successful Login" logger=http.server method=POST path=/login user=admin remoteAddr=10.0.3.1
+t=2026-03-05T07:43:15+0000 lvl=info msg="Dashboard loaded" logger=dashboard id=1 title="Infrastructure Overview" orgId=1
+t=2026-03-05T07:44:02+0000 lvl=info msg="Dashboard loaded" logger=dashboard id=2 title="Node Exporter Full" orgId=1
+t=2026-03-05T07:50:45+0000 lvl=info msg="Alert rule evaluated" logger=alerting rule="High CPU Usage" state=normal
+t=2026-03-05T07:51:00+0000 lvl=info msg="Alert rule evaluated" logger=alerting rule="Disk Space Low" state=alerting instance=db-primary
+t=2026-03-05T07:51:00+0000 lvl=warn msg="Alert notification sent" logger=alerting rule="Disk Space Low" channel=slack-critical
+t=2026-03-05T08:00:00+0000 lvl=info msg="SMTP notification sent" logger=smtp from=grafana-alerts@internal.corp to=sysops@internal.corp subject="[Grafana Alert] Disk Space Low - db-primary"
+t=2026-03-05T09:30:55+0000 lvl=warn msg="Invalid username or password" logger=http.server method=POST path=/login remoteAddr=198.51.100.45
+t=2026-03-05T09:30:57+0000 lvl=warn msg="Invalid username or password" logger=http.server method=POST path=/login remoteAddr=198.51.100.45
+t=2026-03-05T10:15:00+0000 lvl=info msg="API key used" logger=http.server key="sysops-automation" remoteAddr=127.0.0.1 path=/api/dashboards/home
+t=2026-03-05T12:00:00+0000 lvl=info msg="Cleanup old dashboard versions" logger=cleanup deleted=12
+t=2026-03-05T12:22:30+0000 lvl=info msg="Successful Login" logger=http.server method=POST path=/login user=admin remoteAddr=10.0.3.30

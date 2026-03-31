@@ -1,0 +1,2 @@
+Deploy credentials: /opt/.credentials.gpg
+Contains SSH user/password/host/port for ci-runner-07.

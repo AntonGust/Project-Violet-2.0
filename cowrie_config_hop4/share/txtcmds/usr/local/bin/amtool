@@ -1,0 +1,5 @@
+amtool, version 0.26.0 (branch: HEAD, revision: d78e23c)
+  build user:       root@fa1fb22b64d1
+  build date:       20231123-11:34:13
+  go version:       go1.21.3
+  platform:         linux/amd64

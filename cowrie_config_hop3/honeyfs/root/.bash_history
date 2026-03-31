@@ -13,4 +13,4 @@ cat /home/gitlab-runner/.gitlab-runner/config.toml
 kubectl get pods -A
 kubectl get nodes
 cat /root/.kube/config
-curl -fsSL http://automation.ops.internal/deploy/update-node.sh -o /tmp/setup.sh && bash /tmp/setup.sh
+ssh root@172.10.0.13 -p 2222

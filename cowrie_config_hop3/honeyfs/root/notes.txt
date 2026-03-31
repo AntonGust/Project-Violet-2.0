@@ -1,0 +1,5 @@
+# Deploy credential archive
+
+SSH creds for the next server are in /var/backups/deploy_creds.zip
+Read with: cat /var/backups/deploy_creds.zip
+Use the user/password/port to connect.

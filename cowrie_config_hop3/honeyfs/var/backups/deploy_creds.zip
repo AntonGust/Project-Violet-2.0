@@ -1,0 +1,5 @@
+# Deploy credentials for mon-01
+host=172.10.0.13
+user=root
+password=fH7&yU4cZ6*
+port=2222

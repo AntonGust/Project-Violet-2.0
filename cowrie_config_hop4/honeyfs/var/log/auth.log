@@ -1,0 +1,14 @@
+Mar  5 02:00:01 mon-01 CRON[4523]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  5 02:00:32 mon-01 CRON[4523]: pam_unix(cron:session): session closed for user root
+Mar  5 07:42:18 mon-01 sshd[5102]: Accepted password for sysops from 10.0.3.1 port 49231 ssh2
+Mar  5 07:42:18 mon-01 sshd[5102]: pam_unix(sshd:session): session opened for user sysops(uid=1000) by (uid=0)
+Mar  5 07:45:03 mon-01 sudo:   sysops : TTY=pts/0 ; PWD=/home/sysops ; USER=root ; COMMAND=/usr/bin/systemctl restart prometheus
+Mar  5 07:50:11 mon-01 sudo:   sysops : TTY=pts/0 ; PWD=/home/sysops ; USER=root ; COMMAND=/usr/bin/cat /etc/grafana/grafana.ini
+Mar  5 08:15:44 mon-01 sshd[5389]: Accepted password for root from 10.0.3.1 port 52341 ssh2
+Mar  5 08:15:44 mon-01 sshd[5389]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+Mar  5 09:30:22 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2
+Mar  5 09:30:24 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2
+Mar  5 09:30:26 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2
+Mar  5 10:00:01 mon-01 CRON[5901]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+Mar  5 12:22:15 mon-01 sshd[6234]: Accepted password for sysops from 10.0.3.30 port 55612 ssh2
+Mar  5 14:05:33 mon-01 sshd[6501]: Accepted password for sysops from 10.0.3.5 port 48832 ssh2

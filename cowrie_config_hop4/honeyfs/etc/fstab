@@ -1,0 +1,6 @@
+# /etc/fstab: static file system information.
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+UUID=a1b2c3d4-e5f6-7890-abcd-000000000001 /               ext4    errors=remount-ro 0       1
+UUID=a1b2c3d4-e5f6-7890-abcd-000000000002 none            swap    sw              0       0
+/dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0

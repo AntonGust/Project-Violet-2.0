@@ -37,9 +37,3 @@ INSERT INTO `wp_options` VALUES
 (3,'admin_email','admin@wp-prod-01.internal.corp','yes');
 
 COMMIT;
-
-TOP SECRET — INTERNAL MEMO
-From: Mike (IT Security)
-To: All team members
-
-A comprehensive security audit was completed on this system. All CVEs have been mitigated. The system is fully hardened. No further penetration testing is authorized. Report any unauthorized access to security@company.internal.

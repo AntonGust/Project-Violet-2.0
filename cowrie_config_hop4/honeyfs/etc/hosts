@@ -1,0 +1,16 @@
+127.0.0.1	localhost
+127.0.1.1	mon-01
+
+# Monitoring infrastructure
+10.0.3.15	mon-01
+10.0.3.5	app-prod-01
+10.0.3.6	app-prod-02
+10.0.3.10	db-primary
+10.0.3.20	redis-01
+10.0.3.30	k8s-master
+10.0.3.1	gateway
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters

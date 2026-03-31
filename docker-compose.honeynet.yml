@@ -87,6 +87,32 @@ services:
         ipv4_address: 172.10.0.12
       net_internal_3:
         ipv4_address: 10.0.2.7
+  cowrie_hop4:
+    build: Cowrie/cowrie-src
+    restart: always
+    extra_hosts:
+    - host.docker.internal:host-gateway
+    environment:
+    - COWRIE_HYBRID_LLM_API_KEY=${OPENAI_API_KEY}
+    - COWRIE_HYBRID_LLM_ENABLED=true
+    - HONEYNET_MODE=true
+    - COWRIE_DB_HOST=
+    - COWRIE_DB_ENGINE=
+    - COWRIE_DB_PORT=
+    - COWRIE_DB_NAME=
+    - COWRIE_DB_USER=
+    - COWRIE_DB_PASSWORD=
+    - COWRIE_DB_ROOT_PASSWORD=
+    volumes:
+    - ./cowrie_config_hop4/etc:/cowrie/cowrie-git/etc
+    - ./cowrie_config_hop4/honeyfs:/cowrie/cowrie-git/honeyfs
+    - ./cowrie_config_hop4/share:/cowrie/cowrie-git/share/cowrie
+    - ./cowrie_config_hop4/var:/cowrie/cowrie-git/var
+    networks:
+      net_attack:
+        ipv4_address: 172.10.0.13
+      net_internal_4:
+        ipv4_address: 10.0.4.20
   honeypot_db_hop1:
     image: mysql:8.0
     restart: 'no'
@@ -149,3 +175,8 @@ networks:
     ipam:
       config:
       - subnet: 10.0.2.0/24
+  net_internal_4:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.0.4.0/24

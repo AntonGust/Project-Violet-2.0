@@ -1,0 +1,626 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-234567890abc",
+  "timestamp": "2026-03-06T12:00:00Z",
+  "system": {
+    "os": "Ubuntu 22.04.4 LTS",
+    "hostname": "mon-01",
+    "kernel_version": "5.15.0-92-generic",
+    "arch": "x86_64",
+    "timezone": "UTC"
+  },
+  "users": [
+    {
+      "name": "root",
+      "uid": 0,
+      "gid": 0,
+      "home": "/root",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$xyz$fakehashroot",
+      "groups": [
+        "root"
+      ]
+    },
+    {
+      "name": "grafana",
+      "uid": 472,
+      "gid": 472,
+      "home": "/usr/share/grafana",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "grafana"
+      ]
+    },
+    {
+      "name": "prometheus",
+      "uid": 473,
+      "gid": 473,
+      "home": "/var/lib/prometheus",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "prometheus"
+      ]
+    },
+    {
+      "name": "sysops",
+      "uid": 1000,
+      "gid": 1000,
+      "home": "/home/sysops",
+      "shell": "/bin/bash",
+      "password_hash": "$6$rounds=656000$mno$fakehashsysops",
+      "groups": [
+        "sysops",
+        "sudo",
+        "docker"
+      ],
+      "sudo_rules": "sysops ALL=(ALL) NOPASSWD: ALL"
+    },
+    {
+      "name": "alertmanager",
+      "uid": 474,
+      "gid": 474,
+      "home": "/var/lib/alertmanager",
+      "shell": "/usr/sbin/nologin",
+      "password_hash": "*",
+      "groups": [
+        "alertmanager"
+      ]
+    }
+  ],
+  "directory_tree": {
+    "/root": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "root",
+        "group": "root",
+        "size": 570
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 1247
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "root",
+        "group": "root"
+      }
+    ],
+    "/root/.ssh": [
+      {
+        "name": "authorized_keys",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "root",
+        "group": "root",
+        "size": 412
+      }
+    ],
+    "/home/sysops": [
+      {
+        "name": ".bashrc",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 3771
+      },
+      {
+        "name": ".bash_history",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 1890
+      },
+      {
+        "name": ".ssh",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "sysops",
+        "group": "sysops"
+      },
+      {
+        "name": "alertmanager_config_backup.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 1120
+      },
+      {
+        "name": ".grafana_api_token",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 86
+      },
+      {
+        "name": ".docker",
+        "type": "dir",
+        "permissions": "0700",
+        "owner": "sysops",
+        "group": "sysops"
+      }
+    ],
+    "/home/sysops/.ssh": [
+      {
+        "name": "id_ed25519",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 464
+      },
+      {
+        "name": "id_ed25519.pub",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 100
+      },
+      {
+        "name": "config",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 620
+      },
+      {
+        "name": "known_hosts",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 3120
+      }
+    ],
+    "/home/sysops/.docker": [
+      {
+        "name": "config.json",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 98
+      }
+    ],
+    "/etc/grafana": [
+      {
+        "name": "grafana.ini",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "grafana",
+        "size": 4210
+      },
+      {
+        "name": "provisioning",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "grafana"
+      }
+    ],
+    "/etc/grafana/provisioning": [
+      {
+        "name": "datasources",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "grafana"
+      },
+      {
+        "name": "dashboards",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "root",
+        "group": "grafana"
+      }
+    ],
+    "/opt/prometheus": [
+      {
+        "name": "prometheus.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "prometheus",
+        "group": "prometheus",
+        "size": 2840
+      },
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "prometheus",
+        "group": "prometheus"
+      },
+      {
+        "name": "rules",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "prometheus",
+        "group": "prometheus"
+      },
+      {
+        "name": "console_libraries",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "prometheus",
+        "group": "prometheus"
+      }
+    ],
+    "/opt/prometheus/rules": [
+      {
+        "name": "alert_rules.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "prometheus",
+        "group": "prometheus",
+        "size": 1450
+      }
+    ],
+    "/etc/alertmanager": [
+      {
+        "name": "alertmanager.yml",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "alertmanager",
+        "size": 980
+      }
+    ],
+    "/opt/monitoring": [
+      {
+        "name": "docker-compose.yml",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 1560
+      },
+      {
+        "name": ".env",
+        "type": "file",
+        "permissions": "0600",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 245
+      }
+    ],
+    "/var/log": [
+      {
+        "name": "auth.log",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "root",
+        "group": "adm",
+        "size": 8934
+      },
+      {
+        "name": "grafana",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "grafana",
+        "group": "grafana"
+      },
+      {
+        "name": "prometheus",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "prometheus",
+        "group": "prometheus"
+      }
+    ],
+    "/var/log/grafana": [
+      {
+        "name": "grafana.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "grafana",
+        "group": "grafana",
+        "size": 28745
+      }
+    ],
+    "/var/log/prometheus": [
+      {
+        "name": "prometheus.log",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "prometheus",
+        "group": "prometheus",
+        "size": 12340
+      }
+    ],
+    "/var/mail": [
+      {
+        "name": "root",
+        "type": "file",
+        "permissions": "0660",
+        "owner": "root",
+        "group": "mail",
+        "size": 1840
+      }
+    ],
+    "/tmp": [
+      {
+        "name": "grafana_export.json",
+        "type": "file",
+        "permissions": "0644",
+        "owner": "sysops",
+        "group": "sysops",
+        "size": 4520
+      }
+    ],
+    "/var/lib/grafana": [
+      {
+        "name": "grafana.db",
+        "type": "file",
+        "permissions": "0640",
+        "owner": "grafana",
+        "group": "grafana",
+        "size": 1048576
+      },
+      {
+        "name": "plugins",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "grafana",
+        "group": "grafana"
+      }
+    ],
+    "/var/lib/prometheus": [
+      {
+        "name": "data",
+        "type": "dir",
+        "permissions": "0755",
+        "owner": "prometheus",
+        "group": "prometheus"
+      }
+    ]
+  },
+  "file_contents": {
+    "/etc/grafana/grafana.ini": "[paths]\ndata = /var/lib/grafana\nlogs = /var/log/grafana\nplugins = /var/lib/grafana/plugins\nprovisioning = /etc/grafana/provisioning\n\n[server]\nprotocol = http\nhttp_addr = 0.0.0.0\nhttp_port = 3000\ndomain = mon-01.internal.corp\nroot_url = %(protocol)s://%(domain)s:%(http_port)s/\nserve_from_sub_path = false\n\n[database]\ntype = postgres\nhost = 10.0.3.10:5432\nname = grafana\nuser = grafana_db_user\npassword = Gr4f@na_DB_s3cret!2024\nssl_mode = disable\nmax_idle_conn = 25\nmax_open_conn = 100\nconn_max_lifetime = 14400\nlog_queries = false\n\n[session]\nprovider = file\nprovider_config = sessions\ncookie_name = grafana_sess\ncookie_secure = false\nsession_life_time = 86400\n\n[analytics]\nreporting_enabled = false\ncheck_for_updates = true\n\n[security]\nadmin_user = admin\nadmin_password = Gr@f4na_Adm1n_M0n!\nsecret_key = SW2YcwTIb9zpOOhoPsMm\ndisable_gravatar = true\ncookie_secure = false\ncookie_samesite = lax\nallow_embedding = true\n\n[users]\nallow_sign_up = false\nallow_org_create = false\nauto_assign_org = true\nauto_assign_org_role = Viewer\n\n[auth]\ndisable_login_form = false\ndisable_signout_menu = false\n\n[auth.anonymous]\nenabled = false\n\n[smtp]\nenabled = true\nhost = smtp.internal.corp:587\nuser = grafana-alerts@internal.corp\npassword = SMTP_Gr4f@na_P@ss!\nfrom_address = grafana-alerts@internal.corp\nfrom_name = Grafana Alerts (mon-01)\nskip_verify = true\n\n[alerting]\nenabled = true\nexecute_alerts = true\nnotification_timeout_seconds = 30\nmax_attempts = 3\nmin_interval_seconds = 10\n\n[log]\nmode = file\nlevel = info\nfilters = \n\n[log.file]\nlog_rotate = true\nmax_lines = 1000000\nmax_size_shift = 28\ndaily_rotate = true\nmax_days = 7\n\n[dashboards]\nmin_refresh_interval = 5s\ndefault_home_dashboard_path = \n\n[unified_alerting]\nenabled = true\nha_listen_address = \"0.0.0.0:9094\"\nha_peers = \"\"\nha_peer_timeout = 15s",
+    "/opt/prometheus/prometheus.yml": "global:\n  scrape_interval: 15s\n  evaluation_interval: 15s\n  scrape_timeout: 10s\n  external_labels:\n    monitor: 'mon-01'\n    environment: 'production'\n\nalerting:\n  alertmanagers:\n    - static_configs:\n        - targets:\n          - localhost:9093\n\nrule_files:\n  - /opt/prometheus/rules/alert_rules.yml\n\nscrape_configs:\n  - job_name: 'prometheus'\n    static_configs:\n      - targets: ['localhost:9090']\n        labels:\n          instance: 'mon-01'\n\n  - job_name: 'node-exporter'\n    basic_auth:\n      username: prometheus\n      password: Pr0m_Scr4pe_Auth!2024\n    static_configs:\n      - targets:\n        - '10.0.3.15:9100'\n        - '10.0.3.5:9100'\n        - '10.0.3.6:9100'\n        - '10.0.3.10:9100'\n        - '10.0.3.20:9100'\n        - '10.0.3.30:9100'\n        labels:\n          group: 'infrastructure'\n    relabel_configs:\n      - source_labels: [__address__]\n        regex: '10.0.3.15:(.*)'\n        target_label: instance\n        replacement: 'mon-01'\n      - source_labels: [__address__]\n        regex: '10.0.3.5:(.*)'\n        target_label: instance\n        replacement: 'app-prod-01'\n      - source_labels: [__address__]\n        regex: '10.0.3.6:(.*)'\n        target_label: instance\n        replacement: 'app-prod-02'\n      - source_labels: [__address__]\n        regex: '10.0.3.10:(.*)'\n        target_label: instance\n        replacement: 'db-primary'\n      - source_labels: [__address__]\n        regex: '10.0.3.20:(.*)'\n        target_label: instance\n        replacement: 'redis-01'\n      - source_labels: [__address__]\n        regex: '10.0.3.30:(.*)'\n        target_label: instance\n        replacement: 'k8s-master'\n\n  - job_name: 'app-servers'\n    scheme: http\n    basic_auth:\n      username: metrics\n      password: M3tr1cs_B@sic_Auth!\n    metrics_path: /metrics\n    static_configs:\n      - targets:\n        - '10.0.3.5:8080'\n        - '10.0.3.6:8080'\n        labels:\n          group: 'application'\n\n  - job_name: 'postgres-exporter'\n    basic_auth:\n      username: prometheus\n      password: DB_M0n1tor_P@ss!\n    static_configs:\n      - targets: ['10.0.3.10:9187']\n        labels:\n          instance: 'db-primary'\n\n  - job_name: 'redis-exporter'\n    static_configs:\n      - targets: ['10.0.3.20:9121']\n        labels:\n          instance: 'redis-01'\n\n  - job_name: 'kubernetes-apiservers'\n    scheme: https\n    tls_config:\n      insecure_skip_verify: true\n    bearer_token: eyJhbGciOiJSUzI1NiIsImtpZCI6InByb21ldGhldXMtc2EifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwic3ViIjoicHJvbWV0aGV1cyJ9.FAKE_K8S_TOKEN\n    static_configs:\n      - targets: ['10.0.3.30:6443']\n        labels:\n          instance: 'k8s-master'\n\n  - job_name: 'grafana'\n    static_configs:\n      - targets: ['localhost:3000']\n        labels:\n          instance: 'mon-01'",
+    "/root/.bash_history": "systemctl status grafana-server\nsystemctl status prometheus\nsystemctl restart alertmanager\njournalctl -u grafana-server -f\ndocker ps -a\nss -tlnp\ncurl -s http://localhost:9090/-/healthy\ncurl -s -u admin:Gr@f4na_Adm1n_M0n! http://localhost:3000/api/org\ncurl -H \"Authorization: Bearer REDACTED_grafana_sa_sysops_automation\" http://localhost:3000/api/dashboards/home\ncat /etc/grafana/grafana.ini | grep password\nprometheus --config.file=/opt/prometheus/prometheus.yml --check-config\ncat /opt/prometheus/prometheus.yml\niptables -L -n\nufw status\napt update && apt upgrade -y\ncat /var/log/grafana/grafana.log | tail -100",
+    "/home/sysops/alertmanager_config_backup.yml": "global:\n  resolve_timeout: 5m\n  smtp_smarthost: 'smtp.internal.corp:587'\n  smtp_from: 'alertmanager@internal.corp'\n  smtp_auth_username: 'alertmanager@internal.corp'\n  smtp_auth_password: 'SMTP_Al3rt_P@ss!2024'\n  smtp_require_tls: true\n  slack_api_url: 'https://hooks.example.com/services/T04NQRYJK/B06PQRS5T/xHb9dZqR3mKfVwN7pY2cA1eG'\n  pagerduty_url: 'https://events.pagerduty.com/v2/enqueue'\n\nroute:\n  group_by: ['alertname', 'cluster', 'service']\n  group_wait: 30s\n  group_interval: 5m\n  repeat_interval: 4h\n  receiver: 'slack-critical'\n  routes:\n    - match:\n        severity: critical\n      receiver: 'pagerduty-critical'\n    - match:\n        severity: warning\n      receiver: 'slack-warning'\n\nreceivers:\n  - name: 'slack-critical'\n    slack_configs:\n      - channel: '#ops-critical'\n        send_resolved: true\n        title: '[{{ .Status | toUpper }}] {{ .GroupLabels.alertname }}'\n        text: '{{ range .Alerts }}*Alert:* {{ .Annotations.summary }}\\n{{ end }}'\n\n  - name: 'slack-warning'\n    slack_configs:\n      - channel: '#ops-warnings'\n        send_resolved: true\n\n  - name: 'pagerduty-critical'\n    pagerduty_configs:\n      - service_key: 'f8e7d6c5b4a39281706f5e4d3c2b1a09'\n        severity: 'critical'\n        description: '{{ .GroupLabels.alertname }}: {{ .CommonAnnotations.summary }}'",
+    "/home/sysops/.grafana_api_token": "# Grafana Service Account Token - sysops-automation\nGRAFANA_API_KEY=REDACTED_grafana_sa_sysops_automation",
+    "/home/sysops/.ssh/config": "Host app-prod-01\n    HostName 10.0.3.5\n    User sysops\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost app-prod-02\n    HostName 10.0.3.6\n    User sysops\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost db-primary\n    HostName 10.0.3.10\n    User sysops\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost redis-01\n    HostName 10.0.3.20\n    User sysops\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n\nHost k8s-master\n    HostName 10.0.3.30\n    User sysops\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no",
+    "/etc/hosts": "127.0.0.1\tlocalhost\n127.0.1.1\tmon-01\n\n# Monitoring infrastructure\n10.0.3.15\tmon-01\n10.0.3.5\tapp-prod-01\n10.0.3.6\tapp-prod-02\n10.0.3.10\tdb-primary\n10.0.3.20\tredis-01\n10.0.3.30\tk8s-master\n10.0.3.1\tgateway\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters",
+    "/var/log/auth.log": "Mar  5 02:00:01 mon-01 CRON[4523]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 02:00:32 mon-01 CRON[4523]: pam_unix(cron:session): session closed for user root\nMar  5 07:42:18 mon-01 sshd[5102]: Accepted password for sysops from 10.0.3.1 port 49231 ssh2\nMar  5 07:42:18 mon-01 sshd[5102]: pam_unix(sshd:session): session opened for user sysops(uid=1000) by (uid=0)\nMar  5 07:45:03 mon-01 sudo:   sysops : TTY=pts/0 ; PWD=/home/sysops ; USER=root ; COMMAND=/usr/bin/systemctl restart prometheus\nMar  5 07:50:11 mon-01 sudo:   sysops : TTY=pts/0 ; PWD=/home/sysops ; USER=root ; COMMAND=/usr/bin/cat /etc/grafana/grafana.ini\nMar  5 08:15:44 mon-01 sshd[5389]: Accepted password for root from 10.0.3.1 port 52341 ssh2\nMar  5 08:15:44 mon-01 sshd[5389]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)\nMar  5 09:30:22 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2\nMar  5 09:30:24 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2\nMar  5 09:30:26 mon-01 sshd[5678]: Failed password for admin from 198.51.100.45 port 38721 ssh2\nMar  5 10:00:01 mon-01 CRON[5901]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)\nMar  5 12:22:15 mon-01 sshd[6234]: Accepted password for sysops from 10.0.3.30 port 55612 ssh2\nMar  5 14:05:33 mon-01 sshd[6501]: Accepted password for sysops from 10.0.3.5 port 48832 ssh2",
+    "/var/log/grafana/grafana.log": "t=2026-03-05T06:00:01+0000 lvl=info msg=\"Starting Grafana\" logger=server version=10.2.3 commit=abc1234def branch=main compiled=2026-01-15T10:00:00+0000\nt=2026-03-05T06:00:01+0000 lvl=info msg=\"Config loaded from\" logger=settings file=/etc/grafana/grafana.ini\nt=2026-03-05T06:00:02+0000 lvl=info msg=\"Connecting to DB\" logger=sqlstore dbtype=postgres\nt=2026-03-05T06:00:02+0000 lvl=info msg=\"Database connected\" logger=sqlstore host=10.0.3.10:5432 database=grafana user=grafana_db_user ssl=disable\nt=2026-03-05T06:00:03+0000 lvl=info msg=\"Starting plugin search\" logger=plugins\nt=2026-03-05T06:00:03+0000 lvl=info msg=\"Plugin registered\" logger=plugins id=grafana-clock-panel\nt=2026-03-05T06:00:03+0000 lvl=info msg=\"Plugin registered\" logger=plugins id=grafana-piechart-panel\nt=2026-03-05T06:00:04+0000 lvl=info msg=\"Registering provisioned data source\" logger=provisioning datasource=\"Prometheus (default)\"\nt=2026-03-05T06:00:04+0000 lvl=info msg=\"Provisioned data source\" logger=provisioning datasource=Prometheus url=http://localhost:9090\nt=2026-03-05T06:00:05+0000 lvl=info msg=\"HTTP Server Listen\" logger=http.server address=0.0.0.0:3000 protocol=http subUrl= socket=\nt=2026-03-05T06:00:05+0000 lvl=info msg=\"Grafana server is running\" logger=server address=0.0.0.0:3000\nt=2026-03-05T07:42:30+0000 lvl=info msg=\"Successful Login\" logger=http.server method=POST path=/login user=admin remoteAddr=10.0.3.1\nt=2026-03-05T07:43:15+0000 lvl=info msg=\"Dashboard loaded\" logger=dashboard id=1 title=\"Infrastructure Overview\" orgId=1\nt=2026-03-05T07:44:02+0000 lvl=info msg=\"Dashboard loaded\" logger=dashboard id=2 title=\"Node Exporter Full\" orgId=1\nt=2026-03-05T07:50:45+0000 lvl=info msg=\"Alert rule evaluated\" logger=alerting rule=\"High CPU Usage\" state=normal\nt=2026-03-05T07:51:00+0000 lvl=info msg=\"Alert rule evaluated\" logger=alerting rule=\"Disk Space Low\" state=alerting instance=db-primary\nt=2026-03-05T07:51:00+0000 lvl=warn msg=\"Alert notification sent\" logger=alerting rule=\"Disk Space Low\" channel=slack-critical\nt=2026-03-05T08:00:00+0000 lvl=info msg=\"SMTP notification sent\" logger=smtp from=grafana-alerts@internal.corp to=sysops@internal.corp subject=\"[Grafana Alert] Disk Space Low - db-primary\"\nt=2026-03-05T09:30:55+0000 lvl=warn msg=\"Invalid username or password\" logger=http.server method=POST path=/login remoteAddr=198.51.100.45\nt=2026-03-05T09:30:57+0000 lvl=warn msg=\"Invalid username or password\" logger=http.server method=POST path=/login remoteAddr=198.51.100.45\nt=2026-03-05T10:15:00+0000 lvl=info msg=\"API key used\" logger=http.server key=\"sysops-automation\" remoteAddr=127.0.0.1 path=/api/dashboards/home\nt=2026-03-05T12:00:00+0000 lvl=info msg=\"Cleanup old dashboard versions\" logger=cleanup deleted=12\nt=2026-03-05T12:22:30+0000 lvl=info msg=\"Successful Login\" logger=http.server method=POST path=/login user=admin remoteAddr=10.0.3.30",
+    "/var/mail/root": "From alertmanager@internal.corp Wed Mar  5 07:51:05 2026\nSubject: [FIRING:1] Disk Space Low (db-primary)\nDate: Wed, 05 Mar 2026 07:51:05 +0000\n\nAlert: DiskSpaceLow\nSeverity: warning\nInstance: db-primary (10.0.3.10)\nDescription: Disk usage on db-primary is above 85% on /var/lib/postgresql\nCurrent value: 87.3%\n\nSilence: http://mon-01:9093/#/silences/new\n\nFrom cron-daemon@mon-01 Wed Mar  5 01:00:05 2026\nSubject: Cron <root@mon-01> /usr/local/bin/backup_grafana_db.sh\nDate: Wed, 05 Mar 2026 01:00:05 +0000\n\nGrafana DB backup completed successfully.\nBackup file: /var/backups/grafana/grafana_db_20260305.sql.gz\nSize: 24M\nTarget: db-primary:/var/backups/grafana/",
+    "/tmp/grafana_export.json": "{\n  \"dashboard\": {\n    \"id\": 1,\n    \"uid\": \"infra-overview\",\n    \"title\": \"Infrastructure Overview\",\n    \"tags\": [\"production\", \"infrastructure\"],\n    \"timezone\": \"utc\",\n    \"panels\": [\n      {\"id\": 1, \"title\": \"CPU Usage\", \"type\": \"graph\", \"datasource\": \"Prometheus\"},\n      {\"id\": 2, \"title\": \"Memory Usage\", \"type\": \"graph\", \"datasource\": \"Prometheus\"},\n      {\"id\": 3, \"title\": \"Disk I/O\", \"type\": \"graph\", \"datasource\": \"Prometheus\"},\n      {\"id\": 4, \"title\": \"Network Traffic\", \"type\": \"graph\", \"datasource\": \"Prometheus\"}\n    ]\n  },\n  \"meta\": {\n    \"exportedBy\": \"sysops\",\n    \"exportedAt\": \"2026-03-04T18:30:00Z\"\n  }\n}",
+    "/opt/monitoring/docker-compose.yml": "version: '3.8'\n\nservices:\n  grafana:\n    image: grafana/grafana:10.2.3\n    container_name: grafana\n    restart: unless-stopped\n    ports:\n      - \"3000:3000\"\n    volumes:\n      - /var/lib/grafana:/var/lib/grafana\n      - /etc/grafana/grafana.ini:/etc/grafana/grafana.ini\n      - /etc/grafana/provisioning:/etc/grafana/provisioning\n    environment:\n      - GF_SECURITY_ADMIN_PASSWORD=Gr@f4na_Adm1n_M0n!\n      - GF_DATABASE_TYPE=postgres\n      - GF_DATABASE_HOST=10.0.3.10:5432\n      - GF_DATABASE_PASSWORD=Gr4f@na_DB_s3cret!2024\n    user: \"472\"\n    networks:\n      - monitoring\n\n  prometheus:\n    image: prom/prometheus:v2.48.1\n    container_name: prometheus\n    restart: unless-stopped\n    ports:\n      - \"9090:9090\"\n    volumes:\n      - /opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml\n      - /opt/prometheus/rules:/etc/prometheus/rules\n      - /opt/prometheus/data:/prometheus\n    command:\n      - '--config.file=/etc/prometheus/prometheus.yml'\n      - '--storage.tsdb.path=/prometheus'\n      - '--storage.tsdb.retention.time=30d'\n      - '--web.enable-lifecycle'\n    user: \"473\"\n    networks:\n      - monitoring\n\n  alertmanager:\n    image: prom/alertmanager:v0.26.0\n    container_name: alertmanager\n    restart: unless-stopped\n    ports:\n      - \"9093:9093\"\n    volumes:\n      - /etc/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml\n    command:\n      - '--config.file=/etc/alertmanager/alertmanager.yml'\n      - '--storage.path=/alertmanager'\n    user: \"474\"\n    networks:\n      - monitoring\n\n  node-exporter:\n    image: prom/node-exporter:v1.7.0\n    container_name: node-exporter\n    restart: unless-stopped\n    ports:\n      - \"9100:9100\"\n    volumes:\n      - /proc:/host/proc:ro\n      - /sys:/host/sys:ro\n      - /:/rootfs:ro\n    command:\n      - '--path.procfs=/host/proc'\n      - '--path.sysfs=/host/sys'\n      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'\n    networks:\n      - monitoring\n\nnetworks:\n  monitoring:\n    driver: bridge",
+    "/home/sysops/.bash_history": "sudo systemctl status grafana-server\nsudo systemctl status prometheus\nsudo systemctl restart alertmanager\ndocker ps\ndocker logs grafana --tail 50\ncurl -s http://localhost:9090/api/v1/targets | jq '.data.activeTargets[] | {instance: .labels.instance, health: .health}'\ncurl -s -u admin:Gr@f4na_Adm1n_M0n! http://localhost:3000/api/health\ncat /opt/prometheus/prometheus.yml\nsudo cat /etc/grafana/grafana.ini\ncp /etc/alertmanager/alertmanager.yml ~/alertmanager_config_backup.yml\nssh app-prod-01 'systemctl status node_exporter'\nssh db-primary 'df -h /var/lib/postgresql'\nssh redis-01 'redis-cli info memory'\nsudo journalctl -u prometheus --since '1 hour ago'\ncat /home/sysops/.grafana_api_token\ncurl -H \"Authorization: Bearer REDACTED_grafana_sa_sysops_automation\" http://localhost:3000/api/dashboards/home",
+    "/home/sysops/.docker/config.json": "{\n  \"auths\": {\n    \"https://index.docker.io/v1/\": {\n      \"auth\": \"c3lzb3BzOkQwY2tlckhAY2sxMjM=\"\n    }\n  }\n}"
+  },
+  "services": [
+    {
+      "name": "sshd",
+      "pid": 890,
+      "user": "root",
+      "command": "sshd: /usr/sbin/sshd -D",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "name": "grafana-server",
+      "pid": 1456,
+      "user": "grafana",
+      "command": "/usr/share/grafana/bin/grafana server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana",
+      "ports": [
+        3000
+      ]
+    },
+    {
+      "name": "prometheus",
+      "pid": 1523,
+      "user": "prometheus",
+      "command": "/usr/bin/prometheus --config.file=/opt/prometheus/prometheus.yml --storage.tsdb.path=/opt/prometheus/data --storage.tsdb.retention.time=30d --web.enable-lifecycle",
+      "ports": [
+        9090
+      ]
+    },
+    {
+      "name": "alertmanager",
+      "pid": 1589,
+      "user": "alertmanager",
+      "command": "/usr/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/var/lib/alertmanager",
+      "ports": [
+        9093
+      ]
+    },
+    {
+      "name": "node_exporter",
+      "pid": 1634,
+      "user": "root",
+      "command": "/usr/bin/node_exporter --web.listen-address=:9100",
+      "ports": [
+        9100
+      ]
+    },
+    {
+      "name": "cron",
+      "pid": 567,
+      "user": "root",
+      "command": "/usr/sbin/cron -f",
+      "ports": []
+    },
+    {
+      "name": "dockerd",
+      "pid": 1023,
+      "user": "root",
+      "command": "/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock",
+      "ports": []
+    }
+  ],
+  "network": {
+    "interfaces": [
+      {
+        "name": "eth0",
+        "ip": "10.0.3.15",
+        "netmask": "255.255.255.0",
+        "mac": "02:42:0a:00:03:0f"
+      },
+      {
+        "name": "docker0",
+        "ip": "172.17.0.1",
+        "netmask": "255.255.0.0",
+        "mac": "02:42:ac:11:00:01"
+      },
+      {
+        "name": "lo",
+        "ip": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "mac": "00:00:00:00:00:00"
+      }
+    ]
+  },
+  "installed_packages": [
+    {
+      "name": "grafana",
+      "version": "10.2.3"
+    },
+    {
+      "name": "prometheus",
+      "version": "2.48.1"
+    },
+    {
+      "name": "alertmanager",
+      "version": "0.26.0"
+    },
+    {
+      "name": "docker-ce",
+      "version": "24.0.7-1"
+    },
+    {
+      "name": "prometheus-node-exporter",
+      "version": "1.7.0"
+    },
+    {
+      "name": "openssh-server",
+      "version": "1:8.9p1-3ubuntu0.6"
+    },
+    {
+      "name": "curl",
+      "version": "7.81.0-1ubuntu1.15"
+    },
+    {
+      "name": "jq",
+      "version": "1.6-2.1ubuntu3"
+    },
+    {
+      "name": "python3",
+      "version": "3.10.12-1~22.04.3"
+    }
+  ],
+  "crontabs": {
+    "root": "0 1 * * * /usr/local/bin/backup_grafana_db.sh\n*/5 * * * * /usr/local/bin/check_prometheus.sh"
+  },
+  "ssh_config": {
+    "port": 22,
+    "permit_root_login": true,
+    "password_auth": true,
+    "server_banner": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6",
+    "accepted_passwords": {
+      "root": [
+        "fH7&yU4cZ6*"
+      ]
+    }
+  },
+  "llm_context": "MONITORING STACK API CONTEXT:\nThis server runs Grafana (port 3000), Prometheus (port 9090), Alertmanager (port 9093), and node_exporter (port 9100).\n\nWhen the attacker runs curl commands against these services, generate realistic JSON API responses:\n\n- curl localhost:9090/-/healthy \u2192 'Prometheus Server is Healthy.'\n- curl localhost:9090/-/ready \u2192 'Prometheus Server is Ready.'\n- curl localhost:9090/api/v1/targets \u2192 JSON with targets from prometheus.yml scrape_configs (6 node-exporter targets, 2 app-server targets, 1 postgres-exporter, 1 redis-exporter, 1 k8s-apiserver, 1 grafana). Most should show health: 'up'.\n- curl localhost:9090/api/v1/query?query=up \u2192 JSON with metric results showing which targets are up.\n- curl localhost:3000/api/health \u2192 {\"commit\":\"abc1234def\",\"database\":\"ok\",\"version\":\"10.2.3\"}\n- curl -u admin:Gr@f4na_Adm1n_M0n! localhost:3000/api/org \u2192 {\"id\":1,\"name\":\"Main Org.\",\"address\":{\"address1\":\"\",\"address2\":\"\",\"city\":\"\",\"zipCode\":\"\",\"state\":\"\",\"country\":\"\"}}\n- curl -H 'Authorization: Bearer REDACTED_grafana_sa_sysops_automation' localhost:3000/api/dashboards/home \u2192 JSON with dashboard uid 'infra-overview', title 'Infrastructure Overview'.\n- curl localhost:3000/api/... without auth \u2192 {\"message\":\"Unauthorized\"} with realistic error.\n- curl localhost:9093/api/v1/alerts \u2192 JSON with one active alert: DiskSpaceLow on db-primary.\n- curl localhost:9093/api/v1/status \u2192 JSON with alertmanager version 0.26.0, uptime, cluster status.\n- curl localhost:9100/metrics \u2192 Prometheus metrics text format with node_cpu, node_memory, node_disk lines.\n\nGrafana admin credentials: admin / Gr@f4na_Adm1n_M0n!\nGrafana API token: REDACTED_grafana_sa_sysops_automation\nPrometheus scrape auth: prometheus / Pr0m_Scr4pe_Auth!2024\n\nFor docker commands:\n- docker ps \u2192 show 4 running containers: grafana (port 3000), prometheus (port 9090), alertmanager (port 9093), node-exporter (port 9100)\n- docker logs grafana \u2192 show last lines of Grafana startup log\n- docker exec -it grafana bash \u2192 simulate a shell inside the grafana container\n\nFor systemctl commands, all monitoring services should show as active (running).",
+  "extra_txtcmds": {
+    "usr/bin/grafana-cli": "grafana cli version 10.2.3\n",
+    "usr/sbin/grafana-cli": "grafana cli version 10.2.3\n",
+    "usr/bin/promtool": "promtool, version 2.48.1 (branch: HEAD, revision: c7de230)\n  build user:       root@a]b8e702c1a2\n  build date:       20231201-15:22:44\n  go version:       go1.21.4\n  platform:         linux/amd64\n  tags:             netgo,builtinassets,stringlabels\n",
+    "usr/bin/amtool": "amtool, version 0.26.0 (branch: HEAD, revision: d78e23c)\n  build user:       root@fa1fb22b64d1\n  build date:       20231123-11:34:13\n  go version:       go1.21.3\n  platform:         linux/amd64\n",
+    "usr/local/bin/grafana-cli": "grafana cli version 10.2.3\n",
+    "usr/local/bin/promtool": "promtool, version 2.48.1 (branch: HEAD, revision: c7de230)\n  build user:       root@a]b8e702c1a2\n  build date:       20231201-15:22:44\n  go version:       go1.21.4\n  platform:         linux/amd64\n  tags:             netgo,builtinassets,stringlabels\n",
+    "usr/local/bin/amtool": "amtool, version 0.26.0 (branch: HEAD, revision: d78e23c)\n  build user:       root@fa1fb22b64d1\n  build date:       20231123-11:34:13\n  go version:       go1.21.3\n  platform:         linux/amd64\n"
+  },
+  "description": "Monitoring stack running Grafana, Prometheus, and Alertmanager. Leaked Grafana admin password and SMTP creds in grafana.ini, Prometheus scrape configs with basic_auth passwords revealing all monitored hosts, Alertmanager config with Slack webhook and PagerDuty keys, /etc/hosts mapping production infrastructure, SSH config for monitored servers, grafana.ini and prometheus.yml as rabbit holes with full configurations.",
+  "remote_files": {
+    "10.0.3.5": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.3.5\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 418
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.3.5\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 303
+      }
+    },
+    "10.0.3.6": {
+      "/var/www/html/wp-config.php": {
+        "content_type": "text",
+        "content": "<?php\ndefine('DB_NAME', 'wordpress_prod');\ndefine('DB_USER', 'wp_admin');\ndefine('DB_PASSWORD', 'Wp_Pr0d_2024!');\ndefine('DB_HOST', 'localhost');\ndefine('AUTH_KEY', 'xK9#mP2$vL5nQ8@jR3wT6yU0iO4eA7s');\ndefine('SECURE_AUTH_KEY', 'bN1cM6xZ3kJ8hG5fD2lS9aW4qE7rT0u');\n$table_prefix = 'wp_';\n",
+        "size": 286
+      },
+      "/var/log/nginx/error.log": {
+        "content_type": "text",
+        "content": "2024-03-15 08:12:33 INFO  Starting backup on 10.0.3.6\n2024-03-15 08:12:34 INFO  Connected to database as root@localhost\n2024-03-15 08:15:01 INFO  Backup complete: 2.4GB written\n2024-03-15 08:15:02 WARN  Disk usage at 78% on /var/backups\n2024-03-15 12:00:00 INFO  Starting scheduled backup\n2024-03-15 12:00:01 ERROR Connection refused to redis://prod-cache:6379\n2024-03-15 12:03:45 INFO  Backup complete: 2.5GB written\n",
+        "size": 418
+      },
+      "/opt/app/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.3.6\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 303
+      }
+    },
+    "10.0.3.10": {
+      "/var/backups/db_dump_latest.sql": {
+        "content_type": "text",
+        "content": "-- MySQL dump from 10.0.3.10\n-- Generated by mysqldump\n\nCREATE DATABASE IF NOT EXISTS `app_db`;\nUSE `app_db`;\n\nCREATE TABLE `users` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `username` varchar(64) NOT NULL,\n  `email` varchar(128) DEFAULT NULL,\n  `password_hash` varchar(255) NOT NULL,\n  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n\nINSERT INTO `users` VALUES (1,'admin','admin@internal.corp','$2b$12$LJ3m4ys2Kn0RS.YFHBXH0O',NOW());\nINSERT INTO `users` VALUES (2,'deploy','deploy@internal.corp','$2b$12$wZKj8PQm1sT.V3xRK5BzXe',NOW());\n",
+        "size": 603
+      },
+      "/etc/mysql/conf.d/replication.cnf": {
+        "content_type": "text",
+        "content": "# Configuration from 10.0.3.10:/etc/mysql/conf.d/replication.cnf\n[database]\nhost = localhost\nport = 3306\nuser = app_user\npassword = Pr0d_DB_p@ss_2024\ndatabase = production\n\n[redis]\nhost = 127.0.0.1\nport = 6379\npassword = R3dis_C@che_s3cret\n",
+        "size": 240
+      },
+      "/opt/db/.env": {
+        "content_type": "text",
+        "content": "# Environment from 10.0.3.10\nDB_HOST=localhost\nDB_USER=webapp\nDB_PASSWORD=W3b@pp_DB_2024!\nDB_NAME=production\nREDIS_URL=redis://:r3d1s_s3cret@localhost:6379/0\nSECRET_KEY=a8f5f167f44f4964e6c998dee827110c\nAWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE\nAWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n",
+        "size": 304
+      }
+    },
+    "10.0.3.20": {
+      "/etc/redis/redis.conf": {
+        "content_type": "text",
+        "content": "bind 0.0.0.0\nport 6379\nrequirepass R3dis_Pr0d_s3cret_2024\nmaxmemory 2gb\nmaxmemory-policy allkeys-lru\n# masterauth R3dis_R3pl_Auth!\n",
+        "size": 131
+      }
+    },
+    "10.0.3.30": {
+      "/opt/registry/config.yml": {
+        "content_type": "text",
+        "content": "# Config from 10.0.3.30:/opt/registry/config.yml\nversion: '3.8'\nservices:\n  app:\n    image: internal-registry:5000/webapp:latest\n    environment:\n      DB_PASSWORD: Pr0d_p@ss_2024\n      SECRET_KEY: a8f5f167f44f4964e6c998dee827110c\n    ports:\n      - '8080:8080'\n",
+        "size": 262
+      },
+      "/root/.docker/config.json": {
+        "content_type": "text",
+        "content": "{\n  \"auths\": {\n    \"registry.internal.corp:5000\": {\n      \"auth\": \"YWRtaW46UjNnMXN0cnlfUHIwZF8yMDI0IQ==\"\n    }\n  }\n}\n",
+        "size": 117
+      }
+    }
+  }
+}

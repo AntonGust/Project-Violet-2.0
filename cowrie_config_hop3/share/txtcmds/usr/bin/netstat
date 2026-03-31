@@ -6,6 +6,3 @@ tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      
 tcp6       0      0 :::22                   :::*                    LISTEN      890/sshd
 tcp        0      0 0.0.0.0:9100            0.0.0.0:*               LISTEN      3456/node_exporter
 tcp6       0      0 :::9100                 :::*                    LISTEN      3456/node_exporter
-
-tcp        0      0 0.0.0.0:2233            0.0.0.0:*               LISTEN      5601/sshd
-tcp        0      0 0.0.0.0:3000           0.0.0.0:*               LISTEN      7312/admin-panel

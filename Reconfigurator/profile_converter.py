@@ -146,15 +146,21 @@ def profile_to_pickle(profile: dict) -> list:
             if d not in standard_dirs:
                 standard_dirs.append(d)
 
-    # Ensure parent dirs for user home directories
+    # Ensure parent dirs for user home directories (skip nologin/service users
+    # whose homes like /nonexistent are not real directories on production systems)
+    _SKIP_HOMES = {"/nonexistent", "/usr/sbin", "/bin", "/dev", "/"}
     for u in profile.get("users", []):
         home = u.get("home", "")
-        if home and home != "/":
-            parts = home.strip("/").split("/")
-            for i in range(len(parts)):
-                d = "/" + "/".join(parts[: i + 1])
-                if d not in standard_dirs:
-                    standard_dirs.append(d)
+        shell = u.get("shell", "")
+        if not home or home in _SKIP_HOMES:
+            continue
+        if "nologin" in shell or "false" in shell:
+            continue
+        parts = home.strip("/").split("/")
+        for i in range(len(parts)):
+            d = "/" + "/".join(parts[: i + 1])
+            if d not in standard_dirs:
+                standard_dirs.append(d)
 
     # Create all directories with install-time timestamps
     dir_nodes = {"/": root}
@@ -288,6 +294,50 @@ def profile_to_pickle(profile: dict) -> list:
             parent_node[A_CONTENTS].append(child)
             added_files.add(suid_path)
 
+    # Add binary stubs for installed packages so `which` returns results.
+    # Maps package name patterns to the binaries they provide.
+    _PKG_BINARIES: dict[str, list[str]] = {
+        "mysql-server": ["/usr/bin/mysql", "/usr/bin/mysqldump", "/usr/bin/mysqladmin"],
+        "mysql-client": ["/usr/bin/mysql", "/usr/bin/mysqldump"],
+        "mariadb-server": ["/usr/bin/mysql", "/usr/bin/mysqldump", "/usr/bin/mariadb"],
+        "postgresql": ["/usr/bin/psql", "/usr/bin/pg_dump", "/usr/bin/pg_isready"],
+        "curl": ["/usr/bin/curl"],
+        "wget": ["/usr/bin/wget"],
+        "net-tools": ["/sbin/ifconfig", "/usr/sbin/ifconfig", "/bin/netstat"],
+        "iproute2": ["/sbin/ip", "/usr/sbin/ip", "/usr/bin/ip"],
+        "nmap": ["/usr/bin/nmap"],
+        "python3": ["/usr/bin/python3"],
+        "python": ["/usr/bin/python"],
+        "docker-ce": ["/usr/bin/docker"],
+        "docker.io": ["/usr/bin/docker"],
+        "git": ["/usr/bin/git"],
+        "vim": ["/usr/bin/vim"],
+        "nano": ["/usr/bin/nano"],
+        "apache2": ["/usr/sbin/apache2", "/usr/sbin/apachectl"],
+        "nginx": ["/usr/sbin/nginx"],
+        "openssh-server": ["/usr/sbin/sshd"],
+        "openssh-client": ["/usr/bin/ssh", "/usr/bin/scp", "/usr/bin/ssh-keygen"],
+        "coreutils": ["/usr/bin/ls", "/usr/bin/cat", "/usr/bin/cp", "/usr/bin/mv"],
+    }
+    for pkg in profile.get("installed_packages", []):
+        pkg_name = pkg.get("name", "").lower()
+        for pattern, bins in _PKG_BINARIES.items():
+            if pattern in pkg_name:
+                for bin_path in bins:
+                    if bin_path in added_files:
+                        continue
+                    added_files.add(bin_path)
+                    parent_dir = str(Path(bin_path).parent)
+                    parent_node = dir_nodes.get(parent_dir)
+                    if not parent_node:
+                        parent_node = _ensure_dir(dir_nodes, parent_dir, _ts_install())
+                    name = Path(bin_path).name
+                    existing = [c for c in parent_node[A_CONTENTS] if c[A_NAME] == name]
+                    if not existing:
+                        child = [name, T_FILE, 0, 0, random.randint(20000, 120000),
+                                 0o755, _ts_install(), None, "", None]
+                        parent_node[A_CONTENTS].append(child)
+
     return root
 
 
@@ -373,6 +423,10 @@ def generate_honeyfs(profile: dict, output_dir: Path) -> None:
             f"{u['name']}:{u['home']}:{u['shell']}"
         )
         shadow_lines.append(f"{u['name']}:{u.get('password_hash', '*')}:19000:0:99999:7:::")
+
+    # Extra shadow entries injected by credential_chain (e.g. crackable hashes)
+    for entry in profile.get("_extra_shadow_entries", []):
+        shadow_lines.append(f"{entry['username']}:{entry['hash']}:19000:0:99999:7:::")
 
     (etc_dir / "passwd").write_text("\n".join(passwd_lines) + "\n", encoding="utf-8")
     (etc_dir / "shadow").write_text("\n".join(shadow_lines) + "\n", encoding="utf-8")
@@ -808,6 +862,47 @@ def generate_txtcmds(profile: dict, output_dir: Path) -> None:
         ifconfig_lines.append("")
     cmds["usr/sbin/ifconfig"] = "\n".join(ifconfig_lines) + "\n"
 
+    # ip addr — iproute2-style output consistent with ifconfig above
+    ip_lines = []
+    for idx, iface in enumerate(
+        profile.get("network", {}).get("interfaces", []), 1
+    ):
+        name = iface.get("name", f"eth{idx - 1}")
+        ip_addr = iface.get("ip", "127.0.0.1")
+        mask = iface.get("netmask", "255.255.255.0")
+        mac = iface.get("mac", "00:00:00:00:00:00")
+        cidr = sum(bin(int(x)).count("1") for x in mask.split("."))
+        ip_parts = [int(x) for x in ip_addr.split(".")]
+        mask_parts = [int(x) for x in mask.split(".")]
+        bcast = ".".join(
+            str(ip_parts[i] | (255 - mask_parts[i])) for i in range(4)
+        )
+        if name == "lo":
+            ip_lines.append(
+                f"{idx}: {name}: <LOOPBACK,UP,LOWER_UP> mtu 65536"
+                f" qdisc noqueue state UNKNOWN group default qlen 1000"
+            )
+            ip_lines.append(
+                "    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00"
+            )
+        else:
+            ip_lines.append(
+                f"{idx}: {name}: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500"
+                f" qdisc fq_codel state UP group default qlen 1000"
+            )
+            ip_lines.append(
+                f"    link/ether {mac} brd ff:ff:ff:ff:ff:ff"
+            )
+        ip_lines.append(
+            f"    inet {ip_addr}/{cidr} brd {bcast}"
+            f" scope global {name}"
+        )
+        ip_lines.append("       valid_lft forever preferred_lft forever")
+    ip_output = "\n".join(ip_lines) + "\n"
+    cmds["sbin/ip"] = ip_output
+    cmds["usr/sbin/ip"] = ip_output
+    cmds["usr/bin/ip"] = ip_output
+
     # netstat -tlnp — consistent with profile services, correct format
     netstat_lines = [
         "Active Internet connections (only servers)",
@@ -926,6 +1021,10 @@ def generate_txtcmds(profile: dict, output_dir: Path) -> None:
         f"root     pts/0    {fake_ips[0]:<16s} 14:23    0.00s  0.04s  0.00s w",
     ]
     cmds["usr/bin/w"] = "\n".join(w_lines) + "\n"
+
+    # Profile-defined extra txtcmds (e.g. grafana-cli --version)
+    for cmd_path, output in profile.get("extra_txtcmds", {}).items():
+        cmds[cmd_path] = output
 
     # Write all txtcmds
     for cmd_path, output in cmds.items():
@@ -1086,6 +1185,11 @@ AWS CLI CONTEXT:
 - When the attacker runs AWS CLI commands (aws s3 ls, aws sts get-caller-identity, aws ec2 describe-instances, etc.), generate realistic output consistent with the credentials and resources described above.
 - aws CLI is installed and configured. Commands should succeed with fake but realistic data.
 - Do NOT actually connect to any external service. Simulate all output locally."""
+
+    # Append profile-defined extra LLM context (monitoring APIs, custom services, etc.)
+    extra_llm = profile.get("llm_context")
+    if extra_llm:
+        prompt += f"\n\n{extra_llm}"
 
     return prompt
 
@@ -1445,6 +1549,79 @@ def _generate_motd(os_name: str, sys_info: dict, profile: dict) -> str:
     )
 
 
+def _generate_encrypted_files(profile: dict, honeyfs_dir: Path) -> None:
+    """Generate GPG-encrypted files from ``_encrypted_credentials`` metadata.
+
+    Called during deploy to produce binary .gpg files in honeyfs that the
+    attacker must exfiltrate and decrypt (Tier 2 credential difficulty).
+    """
+    import subprocess
+
+    for entry in profile.get("_encrypted_credentials", []):
+        output_path = honeyfs_dir / entry["path"].lstrip("/")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if entry["method"] == "gpg-symmetric":
+            subprocess.run(
+                [
+                    "gpg", "--batch", "--yes",
+                    "--passphrase", entry["passphrase"],
+                    "--symmetric", "--cipher-algo", "AES256",
+                    "--output", str(output_path),
+                ],
+                input=entry["plaintext"].encode(),
+                capture_output=True,
+            )
+        elif entry["method"] == "openssl":
+            subprocess.run(
+                [
+                    "openssl", "enc", "-aes-256-cbc", "-pbkdf2",
+                    "-pass", f"pass:{entry['passphrase']}",
+                    "-out", str(output_path),
+                ],
+                input=entry["plaintext"].encode(),
+                capture_output=True,
+            )
+
+
+def _generate_protected_archives(profile: dict, honeyfs_dir: Path) -> None:
+    """Generate password-protected ZIP files from ``_protected_archives`` metadata.
+
+    Called during deploy to produce .zip files in honeyfs that the attacker
+    must find the password for (Tier 3 credential difficulty).
+
+    Uses the ``zip`` CLI because Python's zipfile module cannot write
+    encrypted archives.
+    """
+    import subprocess
+    import tempfile
+
+    for entry in profile.get("_protected_archives", []):
+        output_path = honeyfs_dir / entry["archive_path"].lstrip("/")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Write inner file to a temp location, then zip it
+        with tempfile.NamedTemporaryFile(
+            mode="w", suffix=f"_{entry['inner_file']}", delete=False,
+        ) as tmp:
+            tmp.write(entry["content"])
+            tmp_path = tmp.name
+
+        try:
+            subprocess.run(
+                [
+                    "zip", "-j", "-P", entry["zip_password"],
+                    str(output_path), tmp_path,
+                ],
+                capture_output=True,
+            )
+            # Rename the inner file inside the zip to the desired name
+            # (zip -j strips path, uses the tmp filename — rename via zipnote
+            # isn't worth the complexity; the attacker will see the content)
+        finally:
+            Path(tmp_path).unlink(missing_ok=True)
+
+
 def deploy_profile(profile: dict, cowrie_base: Path) -> dict:
     """
     Full deployment: generate all Cowrie artifacts from a filesystem profile.
@@ -1471,6 +1648,10 @@ def deploy_profile(profile: dict, cowrie_base: Path) -> dict:
     if honeyfs_path.exists():
         shutil.rmtree(honeyfs_path)
     generate_honeyfs(profile, honeyfs_path)
+
+    # 2b. Generate encrypted files / protected archives (credential tiers)
+    _generate_encrypted_files(profile, honeyfs_path)
+    _generate_protected_archives(profile, honeyfs_path)
 
     # 3. Generate txtcmds
     txtcmds_path = cowrie_base / "share" / "txtcmds"

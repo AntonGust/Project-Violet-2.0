@@ -1,8 +1,0 @@
-# Deployment configuration
-targets:
-  - name: ci-runner-07
-    host: 172.10.0.12
-    port: 2222
-    ssh_user: root
-    ssh_password: "root"
-    deploy_path: /var/www/html

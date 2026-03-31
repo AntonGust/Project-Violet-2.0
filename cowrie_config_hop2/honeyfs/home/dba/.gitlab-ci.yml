@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  GITLAB_TOKEN: "REDACTED_gitlab_pat­_db_ci_deploy"
+  GITLAB_TOKEN: "REDACTED_gitlab_pat_db_ci_deploy"
 
 build_job:
   stage: build

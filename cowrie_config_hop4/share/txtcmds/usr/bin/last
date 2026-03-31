@@ -1,0 +1,9 @@
+root       pts/0   10.0.1.1         Tue Mar 31 20:33   - Tue Mar 31 20:33  (  still logged in)
+sysops     pts/1   10.0.3.1         Tue Mar 31 19:47   - Tue Mar 31 19:47  (  still logged in)
+root       pts/2   10.0.3.79        Mon Mar 30 10:47   - Mon Mar 30 10:47  (05:42)
+sysops     pts/3   172.17.0.1       Sun Mar 29 09:46   - Sun Mar 29 09:46  (00:46)
+root       pts/4   172.17.0.69      Sat Mar 28 08:57   - Sat Mar 28 08:57  (04:28)
+sysops     pts/5   10.0.1.1         Thu Mar 26 13:39   - Thu Mar 26 13:39  (08:49)
+root       pts/6   10.0.3.1         Tue Mar 24 12:26   - Tue Mar 24 12:26  (05:31)
+
+wtmp begins Wed Dec 31 20:31:26 2025
