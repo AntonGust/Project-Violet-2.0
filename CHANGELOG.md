@@ -1,5 +1,40 @@
 # Changelog
 
+## 2026-03-31 (b) — Hop4 Monitoring Stack, Credential Tier Fixes
+
+Added monitoring_stack (Grafana/Prometheus/Alertmanager) as hop4, completing a 4-hop honeynet chain with full credential tier progression: T1 shadow hash → T2 credential file → T3 archive.
+
+### Hop4: Monitoring Stack
+
+- Added `monitoring_stack.json` as 4th hop in `config.chain_profiles`
+- New `llm_context` profile field: detailed API response guidance for Grafana (port 3000), Prometheus (9090), Alertmanager (9093) curl requests so the LLM fallback generates realistic JSON
+- New `extra_txtcmds` profile field: version outputs for `grafana-cli`, `promtool`, `amtool` at multiple paths
+- `cowrie_config_hop4/` directory with full Cowrie artifacts (fs.pickle, honeyfs, txtcmds, userdb.txt, llm_prompt.txt)
+- Profile has 14 file_contents with credentials (Grafana admin, API tokens, DB passwords, Slack webhooks, PagerDuty keys)
+
+### Profile Converter (`Reconfigurator/profile_converter.py`)
+
+- `extra_txtcmds` support: profiles can define custom static command outputs alongside auto-generated ones
+- `llm_context` support: profiles can append custom context to the LLM fallback system prompt
+
+### Credential Chain Fixes (`Blue_Lagoon/credential_chain.py`)
+
+- **Star topology bypass fix**: `lock_down_hop_passwords()` strips all passwords except the tier-specific one, preventing attackers from guessing `root/root` on later hops
+- **T2 GPG fix**: `.credentials.gpg` stored as plaintext in `file_contents` (Cowrie can't run `gpg`), readable via `cat`
+- **T3 archive fix**: Same approach — `deploy_creds.zip` stored as plaintext, readable via `cat`
+- **T3 hint templates**: Now include `{hostname}`, `{ip}`, `{user}` like T1/T2 (were previously generic with no target info)
+- **Shadow hash fix**: `_inject_shadow_hash_breadcrumb()` replaces existing user's hash in current hop (was adding duplicate entries)
+- **Crackable passwords**: Default SHA-512 rounds (~5000) instead of 656000 so `john` cracks within terminal timeout
+
+### Attacker Prompt (`Sangria/attacker_prompt.py`)
+
+- Emphasized that `john`, `hashcat`, `gpg`, `unzip` are Kali-only tools with step-by-step exit→crack→ssh flow
+- Added "READ files in /root/ early" guidance
+
+### Sanitize Script (`scripts/restore_lure_secrets.sh`)
+
+- Added 6 hop4 files to the FILES array for Grafana SA token and Slack webhook sanitization
+
 ## 2026-03-31 — Credential Cracking Dwell Time Amplifier
 
 Added a tiered credential difficulty system that forces LLM attacker agents to crack, decrypt, or extract protected credentials before pivoting between hops — replacing the previous plaintext-only password placement.
